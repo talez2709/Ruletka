@@ -13,8 +13,8 @@
 
 #define iloœæ_minimalna_obrotów_ruletki 2
 #define iloœæ_max_dodatkowych_obrotów_ruletki 3
-#define czas_przeskoku_kulki_szybki 2
-#define czas_przeskoku_kulki_wolny 1
+#define czas_przeskoku_kulki_szybki 200
+#define czas_przeskoku_kulki_wolny 100
 #define czas_przerwy_dzwiêku 500
 
 using namespace std;
@@ -50,12 +50,26 @@ int main() {
 	if (!_access("log_aktualny.txt", 0)) /* Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik) */
 	{
 		log.open("log_aktualny.txt", ios::in);
-		string buf;
+		string buf,buf2;
 		while (!log.eof())
-		{
+		{			
 			getline(log, buf);
+			if (buf != "") buf2 = buf;
+			else continue;
+
 		}
-		if (buf.find("Posiadasz") != string::npos || buf.find("Przegrales") != string::npos || buf.find("Wygrywasz") != string::npos) co_kontynuowaæ = 'n';
+		if (buf == "") buf = buf2;
+		if (buf.find("Posiadasz") != string::npos || buf.find("Przegrales") != string::npos || buf.find("Wygrywasz") != string::npos)
+		{
+			co_kontynuowaæ = 'n';
+			int pocz¹tek = (int)buf.size();
+			while (buf[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek;
+			++pocz¹tek;
+			string buf2 = buf;
+			buf2.erase(0, pocz¹tek);
+			buf2.erase(buf2.size()-1, 1);
+			iloœæ_pieniêdzy = atoi(buf2.c_str());
+		}
 		else if (buf.find("Wylosowano") != string::npos)
 		{
 			co_kontynuowaæ = 'w';
@@ -414,7 +428,7 @@ int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba) {
 
 	if (wygrana > kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl;
 	else if (wygrana == kwota / 2) cout << "Obstawiles niepoprawnie, dostajesz po³owê zak³adu " << wygrana << "$." << endl;
-	else if (wygrana == kwota) cout << "poprawnie, wygrywasz " << wygrana << "$." << endl;
+	else if (wygrana == kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl;
 	else if (wygrana == 0) cout << "Obstawiles niepoprawnie, przegra³eœ " << kwota << "$." << endl;
 
 	return wygrana;
