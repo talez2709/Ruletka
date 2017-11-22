@@ -202,45 +202,32 @@ int main() {
 		log_ogólny.flush();
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba);
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w')
-			if (wygrana > kwota_zak³adu)
+			if (wygrana >= kwota_zak³adu)
 			{
 				log_ogólny << " Wygrywasz " << wygrana << "$";
 				log << " Wygrywasz " << wygrana << "$";
-				cout << "\a";
 				iloœæ_pieniêdzy += wygrana;
+				iloœæ_pieniêdzy += kwota_zak³adu;
 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log.flush();
 				log_ogólny.flush();
+				cout << "\a";
 				Sleep(czas_przerwy_dzwiêku);
 				cout << "\a";
 				Sleep(czas_przerwy_dzwiêku);
 				cout << "\a";
 			}
-			else if (wygrana == kwota_zak³adu / 2)
+			else if (wygrana == (kwota_zak³adu / 2))
 			{
 				log_ogólny << " Dostajesz polowe zak³adu " << wygrana << "$";
 				log << " Dostajesz polowe zak³adu " << wygrana << "$";
 				iloœæ_pieniêdzy += wygrana;
+				iloœæ_pieniêdzy += kwota_zak³adu;
 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log.flush();
 				log_ogólny.flush();
-				cout << "\a";
-				Sleep(czas_przerwy_dzwiêku);
-				cout << "\a";
-			}
-			else if (wygrana == kwota_zak³adu)
-			{
-				log_ogólny << " Wygrywasz " << wygrana << "$";
-				log << " Wygrywasz " << wygrana << "$";
-				iloœæ_pieniêdzy += wygrana;
-				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log.flush();
-				log_ogólny.flush();
-				cout << "\a";
-				Sleep(czas_przerwy_dzwiêku);
 				cout << "\a";
 				Sleep(czas_przerwy_dzwiêku);
 				cout << "\a";
@@ -440,9 +427,8 @@ int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba) {
 	else if (wylosowana_liczba == atoi(typ_zak³adu.c_str())) wygrana *= 35;
 	else wygrana *= 0;
 
-	if (wygrana > kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl;
-	else if (wygrana == kwota / 2) cout << "Obstawiles niepoprawnie, dostajesz po³owê zak³adu " << wygrana << "$." << endl;
-	else if (wygrana == kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl;
+	if (wygrana >= kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl;
+	else if (wygrana == kwota / 2) cout << "Obstawiles niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl;
 	else if (wygrana == 0) cout << "Obstawiles niepoprawnie, przegra³eœ " << kwota << "$." << endl;
 
 	return wygrana;
