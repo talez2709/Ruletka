@@ -23,3 +23,7 @@ Obstawiono za 50$ Obstawiono zaklad k1 Wylosowano 21 Wygrywasz 100$ Posiadasz 40
 Obstawiono za 200$ Obstawiono zaklad k1 Wylosowano 5 Przegrales 200$ Posiadasz 200$
 Obstawiono za 200$ Obstawiono zaklad k1 Wylosowano 11 Przegrales 200$ Posiadasz 0$
 Koñczysz gre z wynikiem 0$
+Nowa gra rozpoczeta dnia 22.11.2017 o godzinie 20:34:36
+Obstawiono za 100$ Obstawiono zaklad k1 Wylosowano 28 Przegrales 100$ Posiadasz 900$
+Obstawiono za 100$ Obstawiono zaklad k1 Wylosowano 22 Przegrales 100$ Posiadasz 900$
+Obstawiono za 100$ Obstawiono zaklad k1 Wylosowano 14 Przegrales 100$ Posiadasz 1000$

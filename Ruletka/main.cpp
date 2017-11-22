@@ -13,12 +13,11 @@
 
 #define iloœæ_minimalna_obrotów_ruletki 2
 #define iloœæ_max_dodatkowych_obrotów_ruletki 3
-#define czas_przeskoku_kulki_szybki 200
-#define czas_przeskoku_kulki_wolny 100
+#define czas_przeskoku_kulki_szybki 100
+#define czas_przeskoku_kulki_wolny 200
 #define czas_przerwy_dzwiêku 500
 
 using namespace std;
-
 
 string Obstaw(int & iloœæ_pieniêdzy);
 void Wczytaj_Kwotê_Zak³adu(int & kwota, int & iloœæ_pieniêdzy);
@@ -26,8 +25,11 @@ int Zakrêæ_Ruletk¹();
 int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba);
 bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy);
 
+void Change_Col(int num_of_col);
+
 const int Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 };
 const char Ruletka_plansza_kolor[] = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' };
+int Ruletka_plansza_kolor_col[] = { 0,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 };
 
 SYSTEMTIME Czas;
 
@@ -36,8 +38,6 @@ int main() {
 	setlocale(LC_ALL, "polish");
 	srand((unsigned int)time(NULL));
 	GetSystemTime(&Czas);
-
-
 
 	ofstream log_ogólny;
 	log_ogólny.open("log_ogólny.txt", ios::app);
@@ -50,9 +50,9 @@ int main() {
 	if (!_access("log_aktualny.txt", 0)) /* Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik) */
 	{
 		log.open("log_aktualny.txt", ios::in);
-		string buf,buf2;
+		string buf, buf2;
 		while (!log.eof())
-		{			
+		{
 			getline(log, buf);
 			if (buf != "") buf2 = buf;
 			else continue;
@@ -67,7 +67,7 @@ int main() {
 			++pocz¹tek;
 			string buf2 = buf;
 			buf2.erase(0, pocz¹tek);
-			buf2.erase(buf2.size()-1, 1);
+			buf2.erase(buf2.size() - 1, 1);
 			iloœæ_pieniêdzy = atoi(buf2.c_str());
 		}
 		else if (buf.find("Wylosowano") != string::npos)
@@ -175,13 +175,13 @@ int main() {
 	do
 	{
 		if (co_kontynuowaæ == 'n') Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy);
-		else cout << "Obstawiono za " << kwota_zak³adu << "$";
+		else cout << "Obstawiono za " << kwota_zak³adu << "$" << endl;
 		if (co_kontynuowaæ == 'n') log << "Obstawiono za " << kwota_zak³adu << "$";
 		if (co_kontynuowaæ == 'n') log_ogólny << "Obstawiono za " << kwota_zak³adu << "$";
 		log.flush();
 		log_ogólny.flush();
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') typ_zak³adu = Obstaw(iloœæ_pieniêdzy);
-		else cout << " Obstawiono zak³ad " << typ_zak³adu;
+		else cout << "Obstawiono zak³ad " << typ_zak³adu << endl;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log << " Obstawiono zaklad " << typ_zak³adu;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log_ogólny << " Obstawiono zaklad " << typ_zak³adu;
 		log.flush();
@@ -189,7 +189,13 @@ int main() {
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') iloœæ_pieniêdzy -= kwota_zak³adu;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') wylosowana_liczba = Zakrêæ_Ruletk¹();
-		else cout << "Wylosowano numer " << wylosowana_liczba << ". ";
+		else {
+			cout << "Wylosowano numer ";
+			Change_Col(Ruletka_plansza_kolor_col[wylosowana_liczba]);
+			cout << wylosowana_liczba;
+			Change_Col(7);
+			cout << ". ";
+		}
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log << " Wylosowano " << wylosowana_liczba;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log_ogólny << " Wylosowano " << wylosowana_liczba;
 		log.flush();
@@ -372,20 +378,28 @@ int Zakrêæ_Ruletk¹() {
 	for (int i = 0; i < iloœæ_zakrêceñ; ++i)
 		for (int ii = 0; ii < 37; ++ii)
 		{
+			Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]);
 			cout << Ruletka_ko³o[ii];
 			Sleep(czas_przeskoku_kulki_szybki);
+			Change_Col(7);
 			cout << "\b\b" << "  " << "\b\b";
 		}
 	int wylosowana_liczba = rand() % 37;
 	for (int ii = 0; ii < wylosowana_liczba; ++ii)
 	{
+		Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]);
 		cout << Ruletka_ko³o[ii];
 		Sleep(czas_przeskoku_kulki_wolny);
+		Change_Col(7);
 		cout << "\b\b" << "  " << "\b\b";
 
 	}
-	cout << "Wylosowano numer " << wylosowana_liczba << ". ";
-	return wylosowana_liczba;
+	cout << "Wylosowano numer ";
+	Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[wylosowana_liczba]]);
+	cout << Ruletka_ko³o[wylosowana_liczba];
+	Change_Col(7);
+	cout << ". ";
+	return Ruletka_ko³o[wylosowana_liczba];
 }
 
 int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba) {
@@ -449,3 +463,11 @@ bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy) {
 			else return 0;
 	}
 }
+
+void Change_Col(int num_of_col) {
+	// 0 - czarny 1 - niebieski 2 - zielony 3 - b³êkitny 4 - czerwony 5 - purpurowy 6 - ¿ó³ty 7 - bia³y 8 - szary 9 - jasnoniebieski 10 - jasnozielony 11 - jasnob³êkitny 12 - jasnoczerwony 13 - jasnopurpurowy 14 - jasno¿ó³ty 15 - jaskrawobia³y
+	HANDLE h_wyj;
+	h_wyj = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(h_wyj, num_of_col);
+}
+
