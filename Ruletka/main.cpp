@@ -1,55 +1,62 @@
-#define _CRT_SECURE_NO_DEPRECATE
+//------------------ deklaracje bibiotek u¿ywanych w programie -----------------------
+#include <ctime> //time()
+#include <fstream> //Obs³uga pliku
+#include <io.h> //!_access()
+#include <iostream> //Obs³uga strumenia cout,cin
+#include <locale.h> //setlocale()
+#include <string> //Obs³uga stringów
+#include <windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),HANDLE,GetStdHandle(),SetConsoleTextAttribute()
+//-------------------------------------------------------------------------------------
 
-#include <iostream>
-#include <locale.h>
-#include <ctime>
-#include <cstdlib>
-#include <windows.h>
-#include <fstream>
-#include <string>
-#include <cstdio>
-#include <ctime>
-#include <io.h>
+//------ deklaracje definicji preprocesora do zmian funcjonowania programu ------------
+#define iloœæ_minimalna_obrotów_ruletki 2 // Minimalna iloœæ obrotów ruletki przed podaniem wartoœci wylosowanej
+#define iloœæ_max_dodatkowych_obrotów_ruletki 3 // Maksymalna iloœæ dodatkowych obrotów ruletki przed podaniem wartoœci wylosowanej
+#define czas_przeskoku_kulki_szybki 100 //Czas w ms przerwy pomiêdzy przeskokami na pocz¹tek losowania na kolejn¹ liczbê na kole ruletki
+#define czas_przeskoku_kulki_wolny 200 //Czas w ms przerwy pomiêdzy przeskokami pod koniec losowania na kolejn¹ liczbê na kole ruletki
+#define czas_przerwy_dzwiêku 500 //Czas w ms przerwy pomiêdzy pikniêciami oznaczaj¹cymi wynik zak³adu
+#define styl_liczenia_wygranej 1 //0 dla odejmowania w³o¿onych w zak³ad pieniêdzy (przy tym zak³ady 1:1 nie zwiêkszaj¹ iloœæ_pieniêdzy), 1 dla nie odejmowania (przy tym zak³ady 1:1 zwiêkszaj¹ iloœæ_pieniêdzy)
+//-------------------------------------------------------------------------------------
 
-#define iloœæ_minimalna_obrotów_ruletki 2
-#define iloœæ_max_dodatkowych_obrotów_ruletki 3
-#define czas_przeskoku_kulki_szybki 100
-#define czas_przeskoku_kulki_wolny 200
-#define czas_przerwy_dzwiêku 500
-
+//-------------------------- deklaracja wyboru przestrzeni nazw std -------------------
 using namespace std;
+//-------------------------------------------------------------------------------------
 
-string Obstaw(int & iloœæ_pieniêdzy);
-void Wczytaj_Kwotê_Zak³adu(int & kwota, int & iloœæ_pieniêdzy);
-int Zakrêæ_Ruletk¹();
-int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba);
-bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy);
+//---------------------------------- deklaracje funkcji w³asnych ----------------------
+string Obstaw(); //Funkcja wczytywania typu zak³ad, do string aby mieæ tak¿e zak³ady sk³adaj¹ce siê z liter i cyfr
+void Wczytaj_Kwotê_Zak³adu(int & kwota, int & iloœæ_pieniêdzy); //Funkcja wczytywania kwoty zak³adu aby uchroniæ siê przed problemem wpisania znaku,litery zamiast liczby i osbstawienie za wiêksz¹ kwotê ni¿ siê ma 
+int Zakrêæ_Ruletk¹(); //Funkcja losuje liczbê z ko³a ruletki
+int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba); //Funcja sprawdza czy wygraliœmy i podaje kwote wygranej/przegranej/odzysku czêœci w³o¿onych pieniêdzy
+bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy); //Funkcja sprawdzj¹ca czy ma siê œrodki do gry, je¿eli ma siê to pyta czy chce siê graæ dalej 
+//-------------------------------------------------------------------------------------
+//---------------------------------- deklaracje funkcji obcych ------------------------
+void Change_Col(int num_of_col); //Funcja zmieniaj¹ca kolor tekstu 0 - czarny 1 - niebieski 2 - zielony 3 - b³êkitny 4 - czerwony 5 - purpurowy 6 - ¿ó³ty 7 - bia³y 8 - szary 9 - jasnoniebieski 10 - jasnozielony 11 - jasnob³êkitny 12 - jasnoczerwony 13 - jasnopurpurowy 14 - jasno¿ó³ty 15 - jaskrawobia³y
+//-------------------------------------------------------------------------------------
 
-void Change_Col(int num_of_col);
+//----------------------------- deklaracje tablic pomocniczych ------------------------
+const int Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 };// Kolejnoœæ liczb zgodna z ko³em ruletki
+const char Ruletka_plansza_kolor[] = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' };// Kolor dla ka¿dej liczby na planszy
+int Ruletka_plansza_kolor_col[] = { 0,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; // Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
+//-------------------------------------------------------------------------------------
 
-const int Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 };
-const char Ruletka_plansza_kolor[] = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' };
-int Ruletka_plansza_kolor_col[] = { 0,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 };
-
+//---------------------------- deklaracje zmiennych globalnych ------------------------
 SYSTEMTIME Czas;
+//-------------------------------------------------------------------------------------
 
 int main() {
+	//Inicjowanie funkcji 
+	setlocale(LC_ALL, "polish"); // W celu polskich liter w konsoli
+	srand((unsigned int)time(NULL)); //Aby by³o losowanie przynajmniej pseudolosowe
 
-	setlocale(LC_ALL, "polish");
-	srand((unsigned int)time(NULL));
-	GetSystemTime(&Czas);
+	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
+	log_ogólny.open("log_ogólny.txt", ios::app); //Otworzenie pliku z ustawieniem kursora zapisu do pliku 
+	fstream log; //Utworzenie typu do celu zapisu i/lub odczytu do i/lub z pliku
+	int iloœæ_pieniêdzy = 1000, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
+	string typ_zak³adu; //Przechowuje typ zak³adu wprowadzony przez u¿ytkownika
+	char co_kontynuowaæ = 'n'; //Przechowuje nazwan¹ znakiem od którego punktu kontynuowaæ runde
 
-	ofstream log_ogólny;
-	log_ogólny.open("log_ogólny.txt", ios::app);
-	fstream log;
-	int iloœæ_pieniêdzy = 1000, kwota_zak³adu, wylosowana_liczba, wygrana;
-	string typ_zak³adu;
-	char co_kontynuowaæ = 'n';
-
-
-	if (!_access("log_aktualny.txt", 0)) /* Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik) */
+	if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 	{
-		log.open("log_aktualny.txt", ios::in);
+		log.open("log_aktualny.txt", ios::in); //Otworzenie pliku w trybie odczytu z pliku
 		string buf, buf2;
 		while (!log.eof())
 		{
@@ -147,7 +154,7 @@ int main() {
 	else
 	{
 		log.open("log_aktualny.txt", ios::out);
-		GetSystemTime(&Czas);
+		GetSystemTime(&Czas); //Pobieranie aktualnej daty i czasu z zegara systemowego
 		log << "Gra rozpoczeta dnia " << Czas.wDay << "." << Czas.wMonth << "." << Czas.wYear << " o godzinie ";
 		if (Czas.wHour < 10) log << "0";
 		log << Czas.wHour << ":";
@@ -166,12 +173,6 @@ int main() {
 		log_ogólny.flush();
 		co_kontynuowaæ = 'n';
 	}
-
-
-
-
-	//	while (1);
-
 	do
 	{
 		if (co_kontynuowaæ == 'n') Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy);
@@ -180,7 +181,7 @@ int main() {
 		if (co_kontynuowaæ == 'n') log_ogólny << "Obstawiono za " << kwota_zak³adu << "$";
 		log.flush();
 		log_ogólny.flush();
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') typ_zak³adu = Obstaw(iloœæ_pieniêdzy);
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') typ_zak³adu = Obstaw();
 		else cout << "Obstawiono zak³ad " << typ_zak³adu << endl;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log << " Obstawiono zaklad " << typ_zak³adu;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log_ogólny << " Obstawiono zaklad " << typ_zak³adu;
@@ -207,7 +208,9 @@ int main() {
 				log_ogólny << " Wygrywasz " << wygrana << "$";
 				log << " Wygrywasz " << wygrana << "$";
 				iloœæ_pieniêdzy += wygrana;
+#if styl_liczenia_wygranej == 1
 				iloœæ_pieniêdzy += kwota_zak³adu;
+#endif // styl_liczenia_wygranej
 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log.flush();
@@ -223,7 +226,6 @@ int main() {
 				log_ogólny << " Dostajesz polowe zak³adu " << wygrana << "$";
 				log << " Dostajesz polowe zak³adu " << wygrana << "$";
 				iloœæ_pieniêdzy += wygrana;
-				iloœæ_pieniêdzy += kwota_zak³adu;
 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log.flush();
@@ -236,10 +238,8 @@ int main() {
 			{
 				log_ogólny << " Przegrales " << kwota_zak³adu << "$";
 				log << " Przegrales " << kwota_zak³adu << "$";
-				iloœæ_pieniêdzy += wygrana;
 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log.flush();
 				log.flush();
 				log_ogólny.flush();
 				cout << "\a";
@@ -255,12 +255,11 @@ int main() {
 	log.close();
 	remove("log_aktualny.txt");
 
-
 	system("pause");
 	return 0;
 }
 
-string Obstaw(int & iloœæ_pieniêdzy) {
+string Obstaw() {
 	string zaklad_typ;
 	do {
 		cout << "Jak¹ opcje chcesz obstawic ? (zgodnie z poni¿szym opisem) :" << endl;
@@ -275,61 +274,66 @@ string Obstaw(int & iloœæ_pieniêdzy) {
 		cout << "0 - 36 - pojedyncze pole o odpowiednim numerze" << endl;
 		cin >> zaklad_typ;
 	} while (!(
-		zaklad_typ == "p" ||
-		zaklad_typ == "n" ||
-		zaklad_typ == "r" ||
-		zaklad_typ == "b" ||
-		zaklad_typ == "g" ||
-		zaklad_typ == "d" ||
-		zaklad_typ == "k1" ||
-		zaklad_typ == "k2" ||
-		zaklad_typ == "k3" ||
-		zaklad_typ == "w1" ||
-		zaklad_typ == "w2" ||
-		zaklad_typ == "w3" ||
-		zaklad_typ == "w4" ||
-		zaklad_typ == "w5" ||
-		zaklad_typ == "w6" ||
-		zaklad_typ == "w7" ||
-		zaklad_typ == "w8" ||
-		zaklad_typ == "w9" ||
-		zaklad_typ == "w10" ||
-		zaklad_typ == "w11" ||
-		zaklad_typ == "w12" ||
-		zaklad_typ == "0" ||
-		zaklad_typ == "1" ||
-		zaklad_typ == "2" ||
-		zaklad_typ == "3" ||
-		zaklad_typ == "4" ||
-		zaklad_typ == "5" ||
-		zaklad_typ == "6" ||
-		zaklad_typ == "7" ||
-		zaklad_typ == "8" ||
-		zaklad_typ == "9" ||
-		zaklad_typ == "10" ||
-		zaklad_typ == "11" ||
-		zaklad_typ == "12" ||
-		zaklad_typ == "13" ||
-		zaklad_typ == "14" ||
-		zaklad_typ == "15" ||
-		zaklad_typ == "16" ||
-		zaklad_typ == "17" ||
-		zaklad_typ == "18" ||
-		zaklad_typ == "19" ||
-		zaklad_typ == "20" ||
-		zaklad_typ == "21" ||
-		zaklad_typ == "22" ||
-		zaklad_typ == "23" ||
-		zaklad_typ == "24" ||
-		zaklad_typ == "25" ||
-		zaklad_typ == "26" ||
-		zaklad_typ == "27" ||
-		zaklad_typ == "28" ||
-		zaklad_typ == "29" ||
-		zaklad_typ == "30" ||
-		zaklad_typ == "31" ||
-		zaklad_typ == "32"
+		zaklad_typ == "p" || //Sprawdzanie czy wprowadzono zak³ad na liczby parzyste
+		zaklad_typ == "n" || //Sprawdzanie czy wprowadzono zak³ad na liczby nieparzyste
+		zaklad_typ == "r" || //Sprawdzanie czy wprowadzono zak³ad na czerwone liczby
+		zaklad_typ == "b" || //Sprawdzanie czy wprowadzono zak³ad na czarne liczby
+		zaklad_typ == "g" || //Sprawdzanie czy wprowadzono zak³ad na liczby z górnej po³ówki
+		zaklad_typ == "d" || //Sprawdzanie czy wprowadzono zak³ad na liczby z dolnej po³ówki
+		zaklad_typ == "k1" || //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 1
+		zaklad_typ == "k2" || //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 2
+		zaklad_typ == "k3" || //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 3
+		zaklad_typ == "w1" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 1
+		zaklad_typ == "w2" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 2
+		zaklad_typ == "w3" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 3
+		zaklad_typ == "w4" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 4
+		zaklad_typ == "w5" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 5
+		zaklad_typ == "w6" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 6
+		zaklad_typ == "w7" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 7
+		zaklad_typ == "w8" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 8
+		zaklad_typ == "w9" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 9
+		zaklad_typ == "w10" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 10
+		zaklad_typ == "w11" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 11
+		zaklad_typ == "w12" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 12
+		zaklad_typ == "0" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 0
+		zaklad_typ == "1" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 1
+		zaklad_typ == "2" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 2
+		zaklad_typ == "3" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 3
+		zaklad_typ == "4" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 4
+		zaklad_typ == "5" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 5
+		zaklad_typ == "6" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 6
+		zaklad_typ == "7" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 7
+		zaklad_typ == "8" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 8
+		zaklad_typ == "9" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 9
+		zaklad_typ == "10" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 10
+		zaklad_typ == "11" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 11
+		zaklad_typ == "12" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 12
+		zaklad_typ == "13" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 13
+		zaklad_typ == "14" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 14
+		zaklad_typ == "15" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 15
+		zaklad_typ == "16" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 16
+		zaklad_typ == "17" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 17
+		zaklad_typ == "18" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 18
+		zaklad_typ == "19" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 19
+		zaklad_typ == "20" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 20
+		zaklad_typ == "21" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 21
+		zaklad_typ == "22" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 22
+		zaklad_typ == "23" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 23
+		zaklad_typ == "24" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 24
+		zaklad_typ == "25" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 25
+		zaklad_typ == "26" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 26
+		zaklad_typ == "27" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 27
+		zaklad_typ == "28" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 28
+		zaklad_typ == "29" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 29
+		zaklad_typ == "30" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 30
+		zaklad_typ == "31" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 31
+		zaklad_typ == "32" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 32
+		zaklad_typ == "33" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 33
+		zaklad_typ == "34" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 34
+		zaklad_typ == "35" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 35
+		zaklad_typ == "36" //Sprawdzanie czy wprowadzono zak³ad na liczbê 36
 		));
+
 	return zaklad_typ;
 }
 
@@ -361,15 +365,15 @@ void Wczytaj_Kwotê_Zak³adu(int & kwota_zak³adu, int & iloœæ_pieniêdzy) {
 }
 
 int Zakrêæ_Ruletk¹() {
-	int iloœæ_zakrêceñ = rand() % (iloœæ_max_dodatkowych_obrotów_ruletki - 1) + iloœæ_minimalna_obrotów_ruletki;
+	int iloœæ_zakrêceñ = rand() % (iloœæ_max_dodatkowych_obrotów_ruletki + 1) + iloœæ_minimalna_obrotów_ruletki;
 	for (int i = 0; i < iloœæ_zakrêceñ; ++i)
 		for (int ii = 0; ii < 37; ++ii)
 		{
-			Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]);
+			Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 			cout << Ruletka_ko³o[ii];
 			Sleep(czas_przeskoku_kulki_szybki);
-			Change_Col(7);
-			cout << "\b\b" << "  " << "\b\b";
+			Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
+			cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 		}
 	int wylosowana_liczba = rand() % 37;
 	for (int ii = 0; ii < wylosowana_liczba; ++ii)
@@ -386,6 +390,7 @@ int Zakrêæ_Ruletk¹() {
 	cout << Ruletka_ko³o[wylosowana_liczba];
 	Change_Col(7);
 	cout << ". ";
+
 	return Ruletka_ko³o[wylosowana_liczba];
 }
 
@@ -451,9 +456,8 @@ bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy) {
 }
 
 void Change_Col(int num_of_col) {
-	// 0 - czarny 1 - niebieski 2 - zielony 3 - b³êkitny 4 - czerwony 5 - purpurowy 6 - ¿ó³ty 7 - bia³y 8 - szary 9 - jasnoniebieski 10 - jasnozielony 11 - jasnob³êkitny 12 - jasnoczerwony 13 - jasnopurpurowy 14 - jasno¿ó³ty 15 - jaskrawobia³y
-	HANDLE h_wyj;
-	h_wyj = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h_wyj, num_of_col);
+	HANDLE h_wyj; //Stworzenie zmiennej typu uchwyt
+	h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Pobiera uchwyt do standardowego wyjœcia
+	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
 }
 
