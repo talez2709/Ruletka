@@ -8,6 +8,10 @@
 #include <windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),HANDLE,GetStdHandle(),SetConsoleTextAttribute()
 //-------------------------------------------------------------------------------------
 
+//--------- deklaracje plików nag³ówkowych u¿ywanych w programie ----------------------
+#include "MT.h" //Generator liczb pseudolosowych Mersenne Twister
+//-------------------------------------------------------------------------------------
+
 //------ deklaracje definicji preprocesora do zmian funcjonowania programu ------------
 #define iloœæ_minimalna_obrotów_ruletki 2 // Minimalna iloœæ obrotów ruletki przed podaniem wartoœci wylosowanej
 #define iloœæ_max_dodatkowych_obrotów_ruletki 3 // Maksymalna iloœæ dodatkowych obrotów ruletki przed podaniem wartoœci wylosowanej
@@ -15,6 +19,7 @@
 #define czas_przeskoku_kulki_wolny 200 //Czas w ms przerwy pomiêdzy przeskokami pod koniec losowania na kolejn¹ liczbê na kole ruletki
 #define czas_przerwy_dzwiêku 500 //Czas w ms przerwy pomiêdzy pikniêciami oznaczaj¹cymi wynik zak³adu
 #define styl_liczenia_wygranej 1 //0 dla odejmowania w³o¿onych w zak³ad pieniêdzy (przy tym zak³ady 1:1 nie zwiêkszaj¹ iloœæ_pieniêdzy), 1 dla nie odejmowania (przy tym zak³ady 1:1 zwiêkszaj¹ iloœæ_pieniêdzy)
+#define kwota_pocz¹tkowa 1000 //Iloœæ $ z którymi zaczyna siê gre
 //-------------------------------------------------------------------------------------
 
 //-------------------------- deklaracja wyboru przestrzeni nazw std -------------------
@@ -28,8 +33,10 @@ int Zakrêæ_Ruletk¹(); //Funkcja losuje liczbê z ko³a ruletki
 int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba); //Funcja sprawdza czy wygraliœmy i podaje kwote wygranej/przegranej/odzysku czêœci w³o¿onych pieniêdzy
 bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy); //Funkcja sprawdzj¹ca czy ma siê œrodki do gry, je¿eli ma siê to pyta czy chce siê graæ dalej 
 //-------------------------------------------------------------------------------------
-//---------------------------------- deklaracje funkcji obcych ------------------------
+//------------------------------- deklaracje funkcji obcych ---------------------------
 void Change_Col(int num_of_col); //Funcja zmieniaj¹ca kolor tekstu 0 - czarny 1 - niebieski 2 - zielony 3 - b³êkitny 4 - czerwony 5 - purpurowy 6 - ¿ó³ty 7 - bia³y 8 - szary 9 - jasnoniebieski 10 - jasnozielony 11 - jasnob³êkitny 12 - jasnoczerwony 13 - jasnopurpurowy 14 - jasno¿ó³ty 15 - jaskrawobia³y
+void HideCursor();
+void ShowCursor();
 //-------------------------------------------------------------------------------------
 
 //----------------------------- deklaracje tablic pomocniczych ------------------------
@@ -39,43 +46,47 @@ int Ruletka_plansza_kolor_col[] = { 0,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,
 //-------------------------------------------------------------------------------------
 
 //---------------------------- deklaracje zmiennych globalnych ------------------------
-SYSTEMTIME Czas;
+SYSTEMTIME Czas; //Struktura do której zapisywana jest aktualna data i czas
 //-------------------------------------------------------------------------------------
 
 int main() {
 	//Inicjowanie funkcji 
 	setlocale(LC_ALL, "polish"); // W celu polskich liter w konsoli
-	srand((unsigned int)time(NULL)); //Aby by³o losowanie przynajmniej pseudolosowe
+	InicjujMT((unsigned int)time(NULL)); //Zainicjowanie generatorza MT (Mersenne-Twister) dla wa¿nych liczb
+	srand((unsigned int)time(NULL)); //Zainicjowanie generatorza LCG (Liniowy Generator Kongruentny) dla ma³o wa¿nych liczb
+	HideCursor(); //Ukrycie kursora tekstowego w konsoli
+
+
+
+
 
 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
 	log_ogólny.open("log_ogólny.txt", ios::app); //Otworzenie pliku z ustawieniem kursora zapisu do pliku 
 	fstream log; //Utworzenie typu do celu zapisu i/lub odczytu do i/lub z pliku
-	int iloœæ_pieniêdzy = 1000, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
+	int iloœæ_pieniêdzy = kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
 	string typ_zak³adu; //Przechowuje typ zak³adu wprowadzony przez u¿ytkownika
 	char co_kontynuowaæ = 'n'; //Przechowuje nazwan¹ znakiem od którego punktu kontynuowaæ runde
 
 	if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 	{
 		log.open("log_aktualny.txt", ios::in); //Otworzenie pliku w trybie odczytu z pliku
-		string buf, buf2;
-		while (!log.eof())
+		string buf, buf2; //Uworzenie 2 buforów na tekst, pierwszy na ostatni¹ linie tekst, drugi na przedostani¹ nie pust¹ linie tekstu lub ostani¹ w przypadku gdy ostania jest pusta
+		while (!log.eof()) //Pêtla dzia³j¹ca do czasu kiedy kursor odczytu z pliku nie bêdzie na koñcu pliku
 		{
-			getline(log, buf);
-			if (buf != "") buf2 = buf;
-			else continue;
-
+			getline(log, buf); //Odczyt ca³ej lini z pliku
+			if (buf != "") buf2 = buf; //Sprawdzenie czy odczytana linia nie jest pusta, je¿eli nie jest pusta to skopiowanie do drugiego bufora celem posiadania dwóch ostatnich linijek tekstu bêd¹cego w pliku
 		}
-		if (buf == "") buf = buf2;
-		if (buf.find("Posiadasz") != string::npos || buf.find("Przegrales") != string::npos || buf.find("Wygrywasz") != string::npos)
+		if (buf == "") buf = buf2; //Sprawdzenie czy linia w buforze jest pusta, je¿eli jest pusta to zastopienie jej poprzedni¹ lini¹ tekstu z pliku
+		if (buf.find("Posiadasz") != string::npos || buf.find("Przegrales") != string::npos || buf.find("Wygrywasz") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o skoñczeniu rundy
 		{
-			co_kontynuowaæ = 'n';
-			int pocz¹tek = (int)buf.size();
-			while (buf[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek;
-			++pocz¹tek;
-			string buf2 = buf;
-			buf2.erase(0, pocz¹tek);
-			buf2.erase(buf2.size() - 1, 1);
-			iloœæ_pieniêdzy = atoi(buf2.c_str());
+			co_kontynuowaæ = 'n'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od pocz¹tku
+			int pocz¹tek = (int)buf.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			while (buf[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
+			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
+			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹ 
+			buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
+			iloœæ_pieniêdzy = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 		}
 		else if (buf.find("Wylosowano") != string::npos)
 		{
@@ -187,7 +198,7 @@ int main() {
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log_ogólny << " Obstawiono zaklad " << typ_zak³adu;
 		log.flush();
 		log_ogólny.flush();
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') iloœæ_pieniêdzy -= kwota_zak³adu;
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') iloœæ_pieniêdzy -= kwota_zak³adu;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') wylosowana_liczba = Zakrêæ_Ruletk¹();
 		else {
@@ -254,7 +265,14 @@ int main() {
 	log_ogólny.flush();
 	log.close();
 	remove("log_aktualny.txt");
-
+	if (iloœæ_pieniêdzy == 0)
+		for (int i = 0; i < 5; ++i)
+		{
+			cout << "\a";
+			Sleep(czas_przerwy_dzwiêku);
+		}
+	if (iloœæ_pieniêdzy > kwota_pocz¹tkowa && iloœæ_pieniêdzy < kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl;
+	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl;
 	system("pause");
 	return 0;
 }
@@ -375,59 +393,71 @@ int Zakrêæ_Ruletk¹() {
 			Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 			cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 		}
-	int wylosowana_liczba = rand() % 37;
-	for (int ii = 0; ii < wylosowana_liczba; ++ii)
+	int wylosowana_pozycja = MersenneTwister() % 37;
+	for (int ii = 0; ii < wylosowana_pozycja; ++ii)
 	{
-		Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]);
+		Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 		cout << Ruletka_ko³o[ii];
 		Sleep(czas_przeskoku_kulki_wolny);
-		Change_Col(7);
-		cout << "\b\b" << "  " << "\b\b";
+		Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
+		cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 
 	}
 	cout << "Wylosowano numer ";
-	Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[wylosowana_liczba]]);
-	cout << Ruletka_ko³o[wylosowana_liczba];
+	Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[wylosowana_pozycja]]);
+	cout << Ruletka_ko³o[wylosowana_pozycja];
 	Change_Col(7);
 	cout << ". ";
 
-	return Ruletka_ko³o[wylosowana_liczba];
+	return Ruletka_ko³o[wylosowana_pozycja];
 }
 
 int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba) {
 	int wygrana = kwota;
 
+	if (wylosowana_liczba == 0)
+		if (typ_zak³adu == "p")
+			wygrana /= 2;
+		else if (typ_zak³adu == "n")
+			wygrana /= 2;
+		else if (typ_zak³adu == "r")
+			wygrana /= 2;
+		else if (typ_zak³adu == "b")
+			wygrana /= 2;
+		else if (typ_zak³adu == "g")
+			wygrana /= 2;
+		else if (typ_zak³adu == "d")
+			wygrana /= 2;
+		else if (typ_zak³adu[0] == 'k')
+			wygrana *= 0;
+		else if (typ_zak³adu[0] == 'w')
+			wygrana *= 0;
+		else if (typ_zak³adu[0] == '0')
+			wygrana *= 35;
+
 	if (typ_zak³adu == "p")
-		if (wylosowana_liczba % 2 == 0 && wylosowana_liczba != 0) wygrana *= 1;
-		else if (wylosowana_liczba == 0) wygrana /= 2;
+		if (wylosowana_liczba % 2 == 0) wygrana *= 1;
 		else wygrana *= 0;
 	else if (typ_zak³adu == "n")
-		if (wylosowana_liczba % 2 == 1 && wylosowana_liczba != 0) wygrana *= 1;
-		else if (wylosowana_liczba == 0) wygrana /= 2;
+		if (wylosowana_liczba % 2 == 1) wygrana *= 1;
 		else wygrana *= 0;
 	else if (typ_zak³adu == "r")
-		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r' && wylosowana_liczba != 0) wygrana *= 1;
-		else if (wylosowana_liczba == 0) wygrana /= 2;
+		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') wygrana *= 1;
 		else wygrana *= 0;
 	else if (typ_zak³adu == "b")
-		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'b' && wylosowana_liczba != 0) wygrana *= 1;
-		else if (wylosowana_liczba == 0) wygrana /= 2;
+		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'b') wygrana *= 1;
 		else wygrana *= 0;
 	else if (typ_zak³adu == "g")
-		if (wylosowana_liczba < 19 && wylosowana_liczba != 0) wygrana *= 1;
-		else if (wylosowana_liczba == 0) wygrana /= 2;
+		if (wylosowana_liczba < 19) wygrana *= 1;
 		else wygrana *= 0;
 	else if (typ_zak³adu == "d")
-		if (wylosowana_liczba > 18 && wylosowana_liczba != 0) wygrana *= 1;
-		else if (wylosowana_liczba == 0) wygrana /= 2;
+		if (wylosowana_liczba > 18) wygrana *= 1;
 		else wygrana *= 0;
 	else if (typ_zak³adu[0] == 'k')
-		if (wylosowana_liczba % 3 == typ_zak³adu[1] - 49 && wylosowana_liczba != 0) wygrana *= 2;
-		else if (wylosowana_liczba == 0) wygrana *= 0;
+		if (wylosowana_liczba % 3 == typ_zak³adu[1] - 49) wygrana *= 2;
 		else wygrana *= 0;
 	else if (typ_zak³adu[0] == 'w')
-		if (wylosowana_liczba >= ((atoi(typ_zak³adu.erase(1, 1).c_str()) - 1) * 3 + 1) && wylosowana_liczba <= (atoi(typ_zak³adu.erase(1, 1).c_str()) * 3) && wylosowana_liczba != 0) wygrana *= 11;
-		else if (wylosowana_liczba == 0) wygrana *= 0;
+		if (((wylosowana_liczba - 1) / 3 + 1) == atoi(typ_zak³adu.erase(0, 1).c_str())) wygrana *= 11;
 		else wygrana *= 0;
 	else if (wylosowana_liczba == atoi(typ_zak³adu.c_str())) wygrana *= 35;
 	else wygrana *= 0;
@@ -460,4 +490,23 @@ void Change_Col(int num_of_col) {
 	h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Pobiera uchwyt do standardowego wyjœcia
 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
 }
+void HideCursor()
+{
+	::HANDLE hConsoleOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
+	::CONSOLE_CURSOR_INFO hCCI;
+	::GetConsoleCursorInfo(hConsoleOut, &hCCI);
+	hCCI.bVisible = FALSE;
+	::SetConsoleCursorInfo(hConsoleOut, &hCCI);
+}
 
+void ShowCursor()
+{
+	::HANDLE hConsoleOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
+	::CONSOLE_CURSOR_INFO hCCI;
+	::GetConsoleCursorInfo(hConsoleOut, &hCCI);
+	if (hCCI.bVisible != TRUE)
+	{
+		hCCI.bVisible = TRUE;
+		::SetConsoleCursorInfo(hConsoleOut, &hCCI);
+	}
+}

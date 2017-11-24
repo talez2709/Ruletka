@@ -1,29 +1,15 @@
-Nowa gra rozpoczeta dnia 22.11.2017 o godzinie 17:08:53
-Obstawiono za 50$ Obstawiono zaklad 13 Wylosowano 20 Przegrales 50$ Posiadasz 950$
-Obstawiono za 50$ Obstawiono zaklad 13 Wylosowano 9 Przegrales 50$ Posiadasz 900$
-Obstawiono za 50$ Obstawiono zaklad 13 Wylosowano 28 Przegrales 50$ Posiadasz 850$
-Obstawiono za 50$ Obstawiono zaklad 13 Wylosowano 30 Przegrales 50$ Posiadasz 800$
-Obstawiono za 50$ Obstawiono zaklad 13 Wylosowano 26 Przegrales 50$ Posiadasz 750$
-Obstawiono za 50$ Obstawiono zaklad 13 Wylosowano 32 Przegrales 50$ Posiadasz 700$
-Obstawiono za 100$ Obstawiono zaklad 30 Wylosowano 27 Przegrales 100$ Posiadasz 600$
-Obstawiono za 200$ Obstawiono zaklad k3 Wylosowano 7 Przegrales 200$ Posiadasz 400$
-Obstawiono za 100$ Obstawiono zaklad w1 Wylosowano 7 Przegrales 100$ Posiadasz 300$
-Obstawiono za 50$ Obstawiono zaklad 8 Wylosowano 9 Przegrales 50$ Posiadasz 250$
-Obstawiono za 50$ Obstawiono zaklad 23 Wylosowano 25 Przegrales 50$ Posiadasz 200$
-Obstawiono za 50$ Obstawiono zaklad k1 Wylosowano 6 Wygrywasz 100$ Posiadasz 250$
-Obstawiono za 50$ Obstawiono zaklad k1 Wylosowano 34 Przegrales 50$ Posiadasz 200$
-Obstawiono za 50$ Obstawiono zaklad k1 Wylosowano 8 Przegrales 50$ Posiadasz 150$
-Obstawiono za 100$ Obstawiono zaklad w1 Wylosowano 18 Przegrales 100$ Posiadasz 50$
-Obstawiono za 50$ Obstawiono zaklad k2 Wylosowano 22 Wygrywasz 100$ Posiadasz 100$
-Obstawiono za 50$ Obstawiono zaklad k2 Wylosowano 34 Wygrywasz 100$ Posiadasz 150$
-Obstawiono za 50$ Obstawiono zaklad k2 Wylosowano 28 Wygrywasz 100$ Posiadasz 200$
-Obstawiono za 200$ Obstawiono zaklad k2 Wylosowano 31 Wygrywasz 400$ Posiadasz 400$
-Obstawiono za 50$ Obstawiono zaklad k3 Wylosowano 7 Przegrales 50$ Posiadasz 350$
-Obstawiono za 50$ Obstawiono zaklad k1 Wylosowano 21 Wygrywasz 100$ Posiadasz 400$
-Obstawiono za 200$ Obstawiono zaklad k1 Wylosowano 5 Przegrales 200$ Posiadasz 200$
-Obstawiono za 200$ Obstawiono zaklad k1 Wylosowano 11 Przegrales 200$ Posiadasz 0$
-Koñczysz gre z wynikiem 0$
-Nowa gra rozpoczeta dnia 22.11.2017 o godzinie 20:34:36
-Obstawiono za 100$ Obstawiono zaklad k1 Wylosowano 28 Przegrales 100$ Posiadasz 900$
-Obstawiono za 100$ Obstawiono zaklad k1 Wylosowano 22 Przegrales 100$ Posiadasz 900$
-Obstawiono za 100$ Obstawiono zaklad k1 Wylosowano 14 Przegrales 100$ Posiadasz 1000$
+Nowa gra rozpoczeta dnia 24.11.2017 o godzinie 07:59:08
+Obstawiono za 100$ Obstawiono zaklad r Wylosowano 5 Wygrywasz 100$ Posiadasz 1100$
+Obstawiono za 100$ Obstawiono zaklad r Wylosowano 6 Przegrales 100$ Posiadasz 1000$
+Obstawiono za 200$ Obstawiono zaklad r Wylosowano 35 Przegrales 200$ Posiadasz 800$
+Obstawiono za 400$ Obstawiono zaklad r Wylosowano 6 Przegrales 400$ Posiadasz 400$
+Obstawiono za 400$ Obstawiono zaklad r Wylosowano 23 Wygrywasz 400$ Posiadasz 800$
+Obstawiono za 800$ Obstawiono zaklad r Wylosowano 21 Wygrywasz 800$ Posiadasz 1600$
+Obstawiono za 800$ Obstawiono zaklad r Wylosowano 8 Przegrales 800$ Posiadasz 800$
+Obstawiono za 800$ Obstawiono zaklad r Wylosowano 23 Wygrywasz 800$ Posiadasz 1600$
+Obstawiono za 800$ Obstawiono zaklad r Wylosowano 24 Przegrales 800$ Posiadasz 800$
+Obstawiono za 800$ Obstawiono zaklad r Wylosowano 19 Wygrywasz 800$ Posiadasz 1600$
+Obstawiono za 800$ Obstawiono zaklad r Wylosowano 27 Wygrywasz 800$ Posiadasz 2400$
+Obstawiono za 800$ Obstawiono zaklad r Wylosowano 4 Przegrales 800$ Posiadasz 1600$
+Obstawiono za 1600$ Obstawiono zaklad r Wylosowano 7 Wygrywasz 1600$ Posiadasz 3200$
+Koñczysz gre z wynikiem 3200$
