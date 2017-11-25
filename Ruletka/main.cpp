@@ -20,7 +20,36 @@
 #define czas_przerwy_dzwiêku 500 //Czas w ms przerwy pomiêdzy pikniêciami oznaczaj¹cymi wynik zak³adu
 #define styl_liczenia_wygranej 1 //0 dla odejmowania w³o¿onych w zak³ad pieniêdzy (przy tym zak³ady 1:1 nie zwiêkszaj¹ iloœæ_pieniêdzy), 1 dla nie odejmowania (przy tym zak³ady 1:1 zwiêkszaj¹ iloœæ_pieniêdzy)
 #define kwota_pocz¹tkowa 1000 //Iloœæ $ z którymi zaczyna siê gre
+#define stan_dŸwiêków 1 //Czy w³¹czone dŸwiêki 1 <-tak 0 <-nie
 //-------------------------------------------------------------------------------------
+
+//sprawdzanie poprawnoœci deklaracji definicji preprocesora do zmian funcjonowania programu
+#if czas_przeskoku_kulki_wolny < czas_przeskoku_kulki_szybki
+#error Wartoœæ wolnego czasu przeskoku kulkimusi byæ ni¿sza ni¿ wartoœæ szybkiego czasu przeskoku kulki
+//Wygenerowanie b³êdu kompilacji jak warunek jest spe³niony (Wartoœci tych zmiennych to czas opóŸnienia wiêc im jest wy¿szy tym d³u¿a przerwa)
+#endif
+#if iloœæ_minimalna_obrotów_ruletki < 0
+#error Iloœæ minimalna obrotów ruletki nie mo¿e byæ mniejsza od 0
+#endif
+#if iloœæ_max_dodatkowych_obrotów_ruletki < 0
+#error Iloœæ max obrotów ruletki nie mo¿e byæ mniejsza od 0
+#endif
+#if (iloœæ_minimalna_obrotów_ruletki == 0) && (iloœæ_max_dodatkowych_obrotów_ruletki == 0)
+#error Jedna z deklaracji w sprawie obrotów ruletki musi byæ wiêksza od zera
+#endif
+#if (styl_liczenia_wygranej > 1) || (styl_liczenia_wygranej < 0)
+#error Styl liczeia wygranej przyjmuje wartoœci tylko 0 lub 1
+#endif
+#if czas_przerwy_dzwiêku <0
+#error Czas przerwy dŸwiêku nie mo¿e byæ mniejszy od zera
+#endif
+#if kwota_pocz¹tkowa <0
+#error Kwota pocz¹tkowa nie mo¿e byæ mniejsza od zera
+#endif
+#if (stan_dŸwiêków> 1) || (stan_dŸwiêków < 0)
+#error Stan dŸwiêków przyjmuje wartoœci tylko 0 lub 1
+#endif
+//-----------------------------------------------------------------------------------------
 
 //-------------------------- deklaracja wyboru przestrzeni nazw std -------------------
 using namespace std;
@@ -42,7 +71,7 @@ void ShowCursor();
 //----------------------------- deklaracje tablic pomocniczych ------------------------
 const int Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 };// Kolejnoœæ liczb zgodna z ko³em ruletki
 const char Ruletka_plansza_kolor[] = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' };// Kolor dla ka¿dej liczby na planszy
-int Ruletka_plansza_kolor_col[] = { 0,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; // Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
+int Ruletka_plansza_kolor_col[] = { 2,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; // Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
 //-------------------------------------------------------------------------------------
 
 //---------------------------- deklaracje zmiennych globalnych ------------------------
@@ -54,7 +83,7 @@ int main() {
 	setlocale(LC_ALL, "polish"); // W celu polskich liter w konsoli
 	InicjujMT((unsigned int)time(NULL)); //Zainicjowanie generatorza MT (Mersenne-Twister) dla wa¿nych liczb
 	srand((unsigned int)time(NULL)); //Zainicjowanie generatorza LCG (Liniowy Generator Kongruentny) dla ma³o wa¿nych liczb
-	HideCursor(); //Ukrycie kursora tekstowego w konsoli
+	ShowCursor(); //Pokazanie kursora tekstowego w konsoli
 
 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
 	log_ogólny.open("log_ogólny.txt", ios::app); //Otworzenie pliku z ustawieniem kursora zapisu do pliku
@@ -222,11 +251,21 @@ int main() {
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log.flush();
 				log_ogólny.flush();
+#if stan_dŸwiêków == 1
 				cout << "\a";
+#endif // stan_dŸwiêków
+#if stan_dŸwiêków == 1
 				Sleep(czas_przerwy_dzwiêku);
+#endif // stan_dŸwiêków
+#if stan_dŸwiêków == 1
 				cout << "\a";
+#endif // stan_dŸwiêków
+#if stan_dŸwiêków == 1
 				Sleep(czas_przerwy_dzwiêku);
+#endif // stan_dŸwiêków
+#if stan_dŸwiêków == 1
 				cout << "\a";
+#endif // stan_dŸwiêków
 			}
 			else if (wygrana == (kwota_zak³adu / 2))
 			{
@@ -237,9 +276,15 @@ int main() {
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log.flush();
 				log_ogólny.flush();
+#if stan_dŸwiêków == 1
 				cout << "\a";
+#endif // stan_dŸwiêków
+#if stan_dŸwiêków == 1
 				Sleep(czas_przerwy_dzwiêku);
+#endif // stan_dŸwiêków
+#if stan_dŸwiêków == 1
 				cout << "\a";
+#endif // stan_dŸwiêków
 			}
 			else if (wygrana == 0)
 			{
@@ -249,7 +294,9 @@ int main() {
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log.flush();
 				log_ogólny.flush();
+#if stan_dŸwiêków == 1
 				cout << "\a";
+#endif // stan_dŸwiêków
 			}
 		co_kontynuowaæ = 'n';
 	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy));
@@ -261,12 +308,15 @@ int main() {
 	log_ogólny.flush();
 	log.close();
 	remove("log_aktualny.txt");
+#if stan_dŸwiêków == 1
 	if (iloœæ_pieniêdzy == 0)
 		for (int i = 0; i < 5; ++i)
 		{
 			cout << "\a";
 			Sleep(czas_przerwy_dzwiêku);
 		}
+#endif // stan_dŸwiêków
+
 	if (iloœæ_pieniêdzy > kwota_pocz¹tkowa && iloœæ_pieniêdzy < kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl;
 	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl;
 	system("pause");
@@ -368,33 +418,57 @@ void Wczytaj_Kwotê_Zak³adu(int & kwota_zak³adu, int & iloœæ_pieniêdzy) {
 					if (kwota_zak³adu_s[i] != '0')
 					{
 						cout << "Wprowadzi³eæ nieprawid³ow¹ wartoœæ" << endl;
+#if stan_dŸwiêków == 1
+						cout << "\a";
+#endif // stan_dŸwiêków
 						czy_zero = 0;
 						break;
 					}
-				if (czy_zero) cout << "Nie mo¿esz obstawiæ zerowego zak³adu" << endl;
+				if (czy_zero)
+				{
+					cout << "Nie mo¿esz obstawiæ zerowego zak³adu" << endl;
+#if stan_dŸwiêków == 1
+					cout << "\a";
+#endif // stan_dŸwiêków
+				}
 			}
-			else if (kwota_zak³adu > iloœæ_pieniêdzy) cout << "Nie masz tyle pieniêdzy" << endl;
-			else if (kwota_zak³adu < 0) cout << "Nie mo¿esz obstawiæ ujemn¹ kwot¹ zak³adu" << endl;
+			else if (kwota_zak³adu > iloœæ_pieniêdzy)
+			{
+				cout << "Nie masz tyle pieniêdzy" << endl;
+#if stan_dŸwiêków == 1
+				cout << "\a";
+#endif // stan_dŸwiêków
+			}
+			else if (kwota_zak³adu < 0)
+			{
+				cout << "Nie mo¿esz obstawiæ ujemn¹ kwot¹ zak³adu" << endl;
+#if stan_dŸwiêków == 1
+				cout << "\a";
+#endif // stan_dŸwiêków
+			}
 	}
 }
 
 int Zakrêæ_Ruletk¹() {
 	int iloœæ_zakrêceñ = rand() % (iloœæ_max_dodatkowych_obrotów_ruletki + 1) + iloœæ_minimalna_obrotów_ruletki;
+	double czas_przeskoku_kulki_szybki_przyspieszenie = czas_przeskoku_kulki_szybki / (iloœæ_zakrêceñ * 37.0);
+	HideCursor();
 	for (int i = 0; i < iloœæ_zakrêceñ; ++i)
 		for (int ii = 0; ii < 37; ++ii)
 		{
 			Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 			cout << Ruletka_ko³o[ii];
-			Sleep(czas_przeskoku_kulki_szybki);
+			Sleep((DWORD)(czas_przeskoku_kulki_szybki_przyspieszenie*((double)i*37.0 + (double)ii)));
 			Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 			cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 		}
 	int wylosowana_pozycja = MersenneTwister() % 37;
-	for (int ii = 0; ii < wylosowana_pozycja; ++ii)
+	double czas_przeskoku_kulki_wolny_przyspieszenie = (czas_przeskoku_kulki_wolny - czas_przeskoku_kulki_szybki) / (double)(wylosowana_pozycja);
+	for (int i = 0; i < wylosowana_pozycja; ++i)
 	{
-		Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
-		cout << Ruletka_ko³o[ii];
-		Sleep(czas_przeskoku_kulki_wolny);
+		Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[i]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
+		cout << Ruletka_ko³o[i];
+		Sleep((DWORD)(czas_przeskoku_kulki_szybki + (czas_przeskoku_kulki_wolny_przyspieszenie*i)));
 		Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 		cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 	}
@@ -403,6 +477,7 @@ int Zakrêæ_Ruletk¹() {
 	cout << Ruletka_ko³o[wylosowana_pozycja];
 	Change_Col(7);
 	cout << ". ";
+	ShowCursor();
 
 	return Ruletka_ko³o[wylosowana_pozycja];
 }
