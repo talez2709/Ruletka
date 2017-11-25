@@ -21,6 +21,7 @@
 #define styl_liczenia_wygranej 1 //0 dla odejmowania w³o¿onych w zak³ad pieniêdzy (przy tym zak³ady 1:1 nie zwiêkszaj¹ iloœæ_pieniêdzy), 1 dla nie odejmowania (przy tym zak³ady 1:1 zwiêkszaj¹ iloœæ_pieniêdzy)
 #define kwota_pocz¹tkowa 1000 //Iloœæ $ z którymi zaczyna siê gre
 #define stan_dŸwiêków 1 //Czy w³¹czone dŸwiêki 1 <-tak 0 <-nie
+#define czy_kontynuowaæ_grê 1 //Czy w³¹czone kontynuowanie gry od skoñczonej poprzednio pozycji 1 <-tak 0 <-nie
 //-------------------------------------------------------------------------------------
 
 //sprawdzanie poprawnoœci deklaracji definicji preprocesora do zmian funcjonowania programu
@@ -48,6 +49,9 @@
 #endif
 #if (stan_dŸwiêków> 1) || (stan_dŸwiêków < 0)
 #error Stan dŸwiêków przyjmuje wartoœci tylko 0 lub 1
+#endif
+#if (czy_kontynuowaæ_grê > 1) || (czy_kontynuowaæ_grê < 0)
+#error Opcja kontynuowania gry przyjmuje wartoœci tylko 0 lub 1
 #endif
 //-----------------------------------------------------------------------------------------
 
@@ -92,6 +96,15 @@ int main() {
 	string typ_zak³adu; //Przechowuje typ zak³adu wprowadzony przez u¿ytkownika
 	char co_kontynuowaæ = 'n'; //Przechowuje nazwan¹ znakiem od którego punktu kontynuowaæ runde
 
+#if czy_kontynuowaæ_grê == 0
+	if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
+	{
+		remove("log_aktualny.txt");
+		log_ogólny << endl << "Uruchomiono ponownie grê z wy³¹czon¹ opcj¹ kontynuowania" << endl;
+		log_ogólny.flush();
+	}
+#endif // czy_kontynuowaæ_grê
+
 	if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 	{
 		log.open("log_aktualny.txt", ios::in); //Otworzenie pliku w trybie odczytu z pliku
@@ -127,6 +140,7 @@ int main() {
 			pocz¹tek += 2;
 			buf2 = buf;
 			buf2.erase(0, pocz¹tek);
+			buf2.erase(buf2.find(" Wylosowano"), buf2.size() - buf2.find(" Wylosowano"));
 			typ_zak³adu = buf2;
 			buf.erase(buf.find("Obstawiono zaklad"), buf.size() - buf.find("Obstawiono zaklad"));
 			pocz¹tek = 0;
@@ -154,7 +168,7 @@ int main() {
 			typ_zak³adu = buf2;
 			buf.erase(buf.find("Obstawiono zaklad"), buf.size() - buf.find("Obstawiono zaklad"));
 			pocz¹tek = 0;
-			if (buf[12] == 'a') { pocz¹tek = 14; }
+			if (buf[12] == 'a') pocz¹tek = 14;
 			else
 			{
 				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek;
@@ -486,6 +500,7 @@ int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba) {
 	int wygrana = kwota;
 
 	if (wylosowana_liczba == 0)
+	{
 		if (typ_zak³adu == "p")
 			wygrana /= 2;
 		else if (typ_zak³adu == "n")
@@ -504,33 +519,36 @@ int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba) {
 			wygrana *= 0;
 		else if (typ_zak³adu[0] == '0')
 			wygrana *= 35;
-
-	if (typ_zak³adu == "p")
-		if (wylosowana_liczba % 2 == 0) wygrana *= 1;
+	}
+	else
+	{
+		if (typ_zak³adu == "p")
+			if (wylosowana_liczba % 2 == 0) wygrana *= 1;
+			else wygrana *= 0;
+		else if (typ_zak³adu == "n")
+			if (wylosowana_liczba % 2 == 1) wygrana *= 1;
+			else wygrana *= 0;
+		else if (typ_zak³adu == "r")
+			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') wygrana *= 1;
+			else wygrana *= 0;
+		else if (typ_zak³adu == "b")
+			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'b') wygrana *= 1;
+			else wygrana *= 0;
+		else if (typ_zak³adu == "g")
+			if (wylosowana_liczba < 19) wygrana *= 1;
+			else wygrana *= 0;
+		else if (typ_zak³adu == "d")
+			if (wylosowana_liczba > 18) wygrana *= 1;
+			else wygrana *= 0;
+		else if (typ_zak³adu[0] == 'k')
+			if ((wylosowana_liczba - 1) % 3 == typ_zak³adu[1] - 49) wygrana *= 2;
+			else wygrana *= 0;
+		else if (typ_zak³adu[0] == 'w')
+			if (((wylosowana_liczba - 1) / 3 + 1) == atoi(typ_zak³adu.erase(0, 1).c_str())) wygrana *= 11;
+			else wygrana *= 0;
+		else if (wylosowana_liczba == atoi(typ_zak³adu.c_str())) wygrana *= 35;
 		else wygrana *= 0;
-	else if (typ_zak³adu == "n")
-		if (wylosowana_liczba % 2 == 1) wygrana *= 1;
-		else wygrana *= 0;
-	else if (typ_zak³adu == "r")
-		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') wygrana *= 1;
-		else wygrana *= 0;
-	else if (typ_zak³adu == "b")
-		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'b') wygrana *= 1;
-		else wygrana *= 0;
-	else if (typ_zak³adu == "g")
-		if (wylosowana_liczba < 19) wygrana *= 1;
-		else wygrana *= 0;
-	else if (typ_zak³adu == "d")
-		if (wylosowana_liczba > 18) wygrana *= 1;
-		else wygrana *= 0;
-	else if (typ_zak³adu[0] == 'k')
-		if ((wylosowana_liczba - 1) % 3 == typ_zak³adu[1] - 49) wygrana *= 2;
-		else wygrana *= 0;
-	else if (typ_zak³adu[0] == 'w')
-		if (((wylosowana_liczba - 1) / 3 + 1) == atoi(typ_zak³adu.erase(0, 1).c_str())) wygrana *= 11;
-		else wygrana *= 0;
-	else if (wylosowana_liczba == atoi(typ_zak³adu.c_str())) wygrana *= 35;
-	else wygrana *= 0;
+	}
 
 	if (wygrana >= kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl;
 	else if (wygrana == kwota / 2) cout << "Obstawiles niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl;
