@@ -574,27 +574,27 @@ bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy) {
 }
 
 void Change_Col(int num_of_col) {
-	HANDLE h_wyj; //Stworzenie zmiennej typu uchwyt
-	h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Pobiera uchwyt do standardowego wyjœcia
+	HANDLE h_wyj =GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
 }
+
 void HideCursor()
 {
-	::HANDLE hConsoleOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
-	::CONSOLE_CURSOR_INFO hCCI;
-	::GetConsoleCursorInfo(hConsoleOut, &hCCI);
+	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
+	CONSOLE_CURSOR_INFO hCCI;
+	GetConsoleCursorInfo(hConsoleOut, &hCCI);
 	hCCI.bVisible = FALSE;
-	::SetConsoleCursorInfo(hConsoleOut, &hCCI);
+	SetConsoleCursorInfo(hConsoleOut, &hCCI);
 }
 
 void ShowCursor()
 {
-	::HANDLE hConsoleOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
-	::CONSOLE_CURSOR_INFO hCCI;
-	::GetConsoleCursorInfo(hConsoleOut, &hCCI);
+	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO hCCI;
+	GetConsoleCursorInfo(hConsoleOut, &hCCI);
 	if (hCCI.bVisible != TRUE)
 	{
 		hCCI.bVisible = TRUE;
-		::SetConsoleCursorInfo(hConsoleOut, &hCCI);
+		SetConsoleCursorInfo(hConsoleOut, &hCCI);
 	}
 }
