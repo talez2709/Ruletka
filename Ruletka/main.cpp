@@ -4,12 +4,9 @@
 #include <io.h> //!_access()
 #include <iostream> //Obs³uga strumenia cout,cin
 #include <locale.h> //setlocale()
+#include <random> //random_device,distribution()
 #include <string> //Obs³uga stringów
 #include <windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),HANDLE,GetStdHandle(),SetConsoleTextAttribute()
-//-------------------------------------------------------------------------------------
-
-//--------- deklaracje plików nag³ówkowych u¿ywanych w programie ----------------------
-#include "MT.h" //Generator liczb pseudolosowych Mersenne Twister
 //-------------------------------------------------------------------------------------
 
 //------ deklaracje definicji preprocesora do zmian funcjonowania programu ------------
@@ -65,27 +62,29 @@ void Wczytaj_Kwotê_Zak³adu(int & kwota, int & iloœæ_pieniêdzy); //Funkcja wczyty
 int Zakrêæ_Ruletk¹(); //Funkcja losuje liczbê z ko³a ruletki
 int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba); //Funcja sprawdza czy wygraliœmy i podaje kwote wygranej/przegranej/odzysku czêœci w³o¿onych pieniêdzy
 bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy); //Funkcja sprawdzj¹ca czy ma siê œrodki do gry, je¿eli ma siê to pyta czy chce siê graæ dalej
+int Wylosuj(int od_liczy, int do_liczby); //Funkcja która losuje liczby od liczby do liczby losowo lub psudolosowo metod¹ MT
 //-------------------------------------------------------------------------------------
+
 //------------------------------- deklaracje funkcji obcych ---------------------------
-void Change_Col(int num_of_col); //Funcja zmieniaj¹ca kolor tekstu 0 - czarny 1 - niebieski 2 - zielony 3 - b³êkitny 4 - czerwony 5 - purpurowy 6 - ¿ó³ty 7 - bia³y 8 - szary 9 - jasnoniebieski 10 - jasnozielony 11 - jasnob³êkitny 12 - jasnoczerwony 13 - jasnopurpurowy 14 - jasno¿ó³ty 15 - jaskrawobia³y
-void HideCursor();
-void ShowCursor();
+void Change_Col(int num_of_col); //Funkcja zmieniaj¹ca kolor tekstu 0 - czarny 1 - niebieski 2 - zielony 3 - b³êkitny 4 - czerwony 5 - purpurowy 6 - ¿ó³ty 7 - bia³y 8 - szary 9 - jasnoniebieski 10 - jasnozielony 11 - jasnob³êkitny 12 - jasnoczerwony 13 - jasnopurpurowy 14 - jasno¿ó³ty 15 - jaskrawobia³y
+void HideCursor(); //Funkcja w³¹cza pokazanie kursora tekstowego
+void ShowCursor(); //Funkcja wy³¹cza pokazanie kursora tekstowego
 //-------------------------------------------------------------------------------------
 
 //----------------------------- deklaracje tablic pomocniczych ------------------------
-const int Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 };// Kolejnoœæ liczb zgodna z ko³em ruletki
-const char Ruletka_plansza_kolor[] = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' };// Kolor dla ka¿dej liczby na planszy
-int Ruletka_plansza_kolor_col[] = { 2,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; // Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
+const int Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 }; // Kolejnoœæ liczb zgodna z ko³em ruletki
+const char Ruletka_plansza_kolor[] = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' }; //Kolor dla ka¿dej liczby na planszy
+int Ruletka_plansza_kolor_col[] = { 2,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; //Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
 //-------------------------------------------------------------------------------------
 
 //---------------------------- deklaracje zmiennych globalnych ------------------------
 SYSTEMTIME Czas; //Struktura do której zapisywana jest aktualna data i czas
 //-------------------------------------------------------------------------------------
 
-int main() {
+int main()
+{
 	//Inicjowanie funkcji
 	setlocale(LC_ALL, "polish"); // W celu polskich liter w konsoli
-	InicjujMT((unsigned int)time(NULL)); //Zainicjowanie generatorza MT (Mersenne-Twister) dla wa¿nych liczb
 	srand((unsigned int)time(NULL)); //Zainicjowanie generatorza LCG (Liniowy Generator Kongruentny) dla ma³o wa¿nych liczb
 	ShowCursor(); //Pokazanie kursora tekstowego w konsoli
 
@@ -94,14 +93,14 @@ int main() {
 	fstream log; //Utworzenie typu do celu zapisu i/lub odczytu do i/lub z pliku
 	int iloœæ_pieniêdzy = kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
 	string typ_zak³adu; //Przechowuje typ zak³adu wprowadzony przez u¿ytkownika
-	char co_kontynuowaæ = 'n'; //Przechowuje nazwan¹ znakiem od którego punktu kontynuowaæ runde
+	char co_kontynuowaæ = 'n'; //Deklaracja znaku który przechowuje nazwany znakiem punkt od którego kontynuowaæ runde
 
-#if czy_kontynuowaæ_grê == 0
+#if czy_kontynuowaæ_grê == 0 //Kompilacja je¿eli czy_kontynuowaæ_grê == 0
 	if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 	{
 		remove("log_aktualny.txt");
 		log_ogólny << endl << "Uruchomiono ponownie grê z wy³¹czon¹ opcj¹ kontynuowania" << endl;
-		log_ogólny.flush();
+		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 	}
 #endif // czy_kontynuowaæ_grê
 
@@ -151,7 +150,7 @@ int main() {
 				pocz¹tek += 3;
 			}
 			int koniec = pocz¹tek + 1;
-			while (buf[koniec] != '$' && koniec < (int)buf.size()) koniec++;
+			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec;
 			buf2 = buf;
 			buf2.erase(koniec, buf2.size() - koniec);
 			buf2.erase(0, pocz¹tek);
@@ -175,7 +174,7 @@ int main() {
 				pocz¹tek += 3;
 			}
 			int koniec = pocz¹tek + 1;
-			while (buf[koniec] != '$' && koniec < (int)buf.size()) koniec++;
+			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec;
 			buf2 = buf;
 			buf2.erase(koniec, buf2.size() - koniec);
 			buf2.erase(0, pocz¹tek);
@@ -192,7 +191,7 @@ int main() {
 				pocz¹tek += 3;
 			}
 			int koniec = pocz¹tek + 1;
-			while (buf[koniec] != '$' && koniec < (int)buf.size()) koniec++;
+			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec;
 			string buf2 = buf;
 			buf2.erase(koniec, buf2.size() - koniec);
 			buf2.erase(0, pocz¹tek);
@@ -205,22 +204,22 @@ int main() {
 	{
 		log.open("log_aktualny.txt", ios::out);
 		GetSystemTime(&Czas); //Pobieranie aktualnej daty i czasu z zegara systemowego
-		log << "Gra rozpoczeta dnia " << Czas.wDay << "." << Czas.wMonth << "." << Czas.wYear << " o godzinie ";
-		if (Czas.wHour < 10) log << "0";
-		log << Czas.wHour << ":";
-		if (Czas.wMinute < 10) log << "0";
-		log << Czas.wMinute << ":";
-		if (Czas.wSecond < 10) log << "0";
-		log << Czas.wSecond << endl;
-		log_ogólny << "Nowa gra rozpoczeta dnia " << Czas.wDay << "." << Czas.wMonth << "." << Czas.wYear << " o godzinie ";
-		if (Czas.wHour < 10) log_ogólny << "0";
-		log_ogólny << Czas.wHour << ":";
-		if (Czas.wMinute < 10) log_ogólny << "0";
-		log_ogólny << Czas.wMinute << ":";
-		if (Czas.wSecond < 10) log_ogólny << "0";
-		log_ogólny << Czas.wSecond << endl;
-		log.flush();
-		log_ogólny.flush();
+		log << "Gra rozpoczeta dnia " << Czas.wDay << "." << Czas.wMonth << "." << Czas.wYear << " o godzinie "; //Wpisanie do bufora zapisu danych o dniu,miesi¹cu i roku do pliku log_aktualny.txt
+		if (Czas.wHour < 10) log << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania godzinny je¿eli godzina jest minejsza ni¿ 10 do pliku log_aktualny.txt
+		log << Czas.wHour << ":"; //Wpisanie do bufora zapisu znaku : dla rozdzielenia godzin od minut do pliku log_aktualny.txt
+		if (Czas.wMinute < 10) log << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania minut je¿eli minuty jest minejsze ni¿ 10 do pliku log_aktualny.txt
+		log << Czas.wMinute << ":"; //Wpisanie do bufora zapisu znaku : dla rozdzielenia minut od sekund do pliku log_aktualny.txt
+		if (Czas.wSecond < 10) log << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania sekund je¿eli sekundy jest minejsza ni¿ 10 do pliku log_aktualny.txt
+		log << Czas.wSecond << endl; // Wpisanie do bufora zapisu danych o sekundzie do pliku log_aktualny.txt
+		log_ogólny << "Nowa gra rozpoczeta dnia " << Czas.wDay << "." << Czas.wMonth << "." << Czas.wYear << " o godzinie "; //Wpisanie do bufora zapisu danych o dniu,miesi¹cu i roku do pliku log_ogólny.txt
+		if (Czas.wHour < 10) log_ogólny << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania godzinny je¿eli godzina jest minejsza ni¿ 10 do pliku log_ogólny.txt
+		log_ogólny << Czas.wHour << ":";//Wpisanie do bufora zapisu znaku : dla rozdzielenia godzin od minut do pliku log_aktualny.txt
+		if (Czas.wMinute < 10) log_ogólny << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania minut je¿eli minuty jest minejsza ni¿ 10 do pliku log_ogólny.txt
+		log_ogólny << Czas.wMinute << ":"; //Wpisanie do bufora zapisu znaku : dla rozdzielenia minut od sekund do pliku log_ogólny.txt
+		if (Czas.wSecond < 10) log_ogólny << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania sekund je¿eli sekundy jest minejsza ni¿ 10 do pliku log_ogólny.txt
+		log_ogólny << Czas.wSecond << endl; // Wpisanie do bufora zapisu danych o sekundzie do pliku log_ogólny.txt
+		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 		co_kontynuowaæ = 'n';
 	}
 	do
@@ -229,14 +228,14 @@ int main() {
 		else cout << "Obstawiono za " << kwota_zak³adu << "$" << endl;
 		if (co_kontynuowaæ == 'n') log << "Obstawiono za " << kwota_zak³adu << "$";
 		if (co_kontynuowaæ == 'n') log_ogólny << "Obstawiono za " << kwota_zak³adu << "$";
-		log.flush();
-		log_ogólny.flush();
+		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') typ_zak³adu = Obstaw();
 		else cout << "Obstawiono zak³ad " << typ_zak³adu << endl;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log << " Obstawiono zaklad " << typ_zak³adu;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log_ogólny << " Obstawiono zaklad " << typ_zak³adu;
-		log.flush();
-		log_ogólny.flush();
+		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') iloœæ_pieniêdzy -= kwota_zak³adu;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') wylosowana_liczba = Zakrêæ_Ruletk¹();
@@ -249,8 +248,8 @@ int main() {
 		}
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log << " Wylosowano " << wylosowana_liczba;
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log_ogólny << " Wylosowano " << wylosowana_liczba;
-		log.flush();
-		log_ogólny.flush();
+		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba);
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w')
 			if (wygrana >= kwota_zak³adu)
@@ -263,22 +262,22 @@ int main() {
 #endif // styl_liczenia_wygranej
 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log.flush();
-				log_ogólny.flush();
-#if stan_dŸwiêków == 1
-				cout << "\a";
+				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych //Zapisanie do plik wpisanych do bufora danych
+				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
 				Sleep(czas_przerwy_dzwiêku);
 #endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1
-				cout << "\a";
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
 				Sleep(czas_przerwy_dzwiêku);
 #endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1
-				cout << "\a";
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
 			}
 			else if (wygrana == (kwota_zak³adu / 2))
@@ -288,16 +287,16 @@ int main() {
 				iloœæ_pieniêdzy += wygrana;
 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log.flush();
-				log_ogólny.flush();
-#if stan_dŸwiêków == 1
-				cout << "\a";
+				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
 				Sleep(czas_przerwy_dzwiêku);
 #endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1
-				cout << "\a";
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
 			}
 			else if (wygrana == 0)
@@ -306,10 +305,10 @@ int main() {
 				log << " Przegrales " << kwota_zak³adu << "$";
 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log.flush();
-				log_ogólny.flush();
-#if stan_dŸwiêków == 1
-				cout << "\a";
+				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
 			}
 		co_kontynuowaæ = 'n';
@@ -318,15 +317,15 @@ int main() {
 	cout << endl << "Koñczysz gre z wynikiem " << iloœæ_pieniêdzy << "$" << endl;
 	log << endl << "Koñczysz gre z wynikiem " << iloœæ_pieniêdzy << "$" << endl;
 	log_ogólny << "Koñczysz gre z wynikiem " << iloœæ_pieniêdzy << "$" << endl;
-	log.flush();
-	log_ogólny.flush();
+	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 	log.close();
 	remove("log_aktualny.txt");
-#if stan_dŸwiêków == 1
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
 	if (iloœæ_pieniêdzy == 0)
 		for (int i = 0; i < 5; ++i)
 		{
-			cout << "\a";
+			cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 			Sleep(czas_przerwy_dzwiêku);
 		}
 #endif // stan_dŸwiêków
@@ -337,264 +336,281 @@ int main() {
 	return 0;
 }
 
-string Obstaw() {
-	string zaklad_typ;
-	do {
-		cout << "Jak¹ opcje chcesz obstawic ? (zgodnie z poni¿szym opisem) :" << endl;
-		cout << "p - parzyste" << endl;
-		cout << "n - nieparzyste" << endl;
-		cout << "r - czerwone(red)" << endl;
-		cout << "b - czarne(black)" << endl;
-		cout << "g - górna po³owa" << endl;
-		cout << "d - dolna po³owa" << endl;
-		cout << "k1, k2, k3 - kolumna 1, kolumna 2, kolumna 3" << endl;
-		cout << "w1, w2, ..., w12 - wiersz trzech numerów" << endl;
-		cout << "0 - 36 - pojedyncze pole o odpowiednim numerze" << endl;
-		cin >> zaklad_typ;
-	} while (!(
-		zaklad_typ == "p" || //Sprawdzanie czy wprowadzono zak³ad na liczby parzyste
-		zaklad_typ == "n" || //Sprawdzanie czy wprowadzono zak³ad na liczby nieparzyste
-		zaklad_typ == "r" || //Sprawdzanie czy wprowadzono zak³ad na czerwone liczby
-		zaklad_typ == "b" || //Sprawdzanie czy wprowadzono zak³ad na czarne liczby
-		zaklad_typ == "g" || //Sprawdzanie czy wprowadzono zak³ad na liczby z górnej po³ówki
-		zaklad_typ == "d" || //Sprawdzanie czy wprowadzono zak³ad na liczby z dolnej po³ówki
-		zaklad_typ == "k1" || //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 1
-		zaklad_typ == "k2" || //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 2
-		zaklad_typ == "k3" || //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 3
-		zaklad_typ == "w1" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 1
-		zaklad_typ == "w2" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 2
-		zaklad_typ == "w3" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 3
-		zaklad_typ == "w4" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 4
-		zaklad_typ == "w5" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 5
-		zaklad_typ == "w6" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 6
-		zaklad_typ == "w7" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 7
-		zaklad_typ == "w8" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 8
-		zaklad_typ == "w9" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 9
-		zaklad_typ == "w10" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 10
-		zaklad_typ == "w11" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 11
-		zaklad_typ == "w12" || //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 12
-		zaklad_typ == "0" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 0
-		zaklad_typ == "1" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 1
-		zaklad_typ == "2" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 2
-		zaklad_typ == "3" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 3
-		zaklad_typ == "4" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 4
-		zaklad_typ == "5" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 5
-		zaklad_typ == "6" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 6
-		zaklad_typ == "7" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 7
-		zaklad_typ == "8" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 8
-		zaklad_typ == "9" || //Sprawdzanie czy wprowadzono zak³ad na cyfre 9
-		zaklad_typ == "10" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 10
-		zaklad_typ == "11" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 11
-		zaklad_typ == "12" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 12
-		zaklad_typ == "13" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 13
-		zaklad_typ == "14" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 14
-		zaklad_typ == "15" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 15
-		zaklad_typ == "16" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 16
-		zaklad_typ == "17" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 17
-		zaklad_typ == "18" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 18
-		zaklad_typ == "19" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 19
-		zaklad_typ == "20" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 20
-		zaklad_typ == "21" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 21
-		zaklad_typ == "22" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 22
-		zaklad_typ == "23" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 23
-		zaklad_typ == "24" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 24
-		zaklad_typ == "25" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 25
-		zaklad_typ == "26" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 26
-		zaklad_typ == "27" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 27
-		zaklad_typ == "28" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 28
-		zaklad_typ == "29" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 29
-		zaklad_typ == "30" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 30
-		zaklad_typ == "31" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 31
-		zaklad_typ == "32" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 32
-		zaklad_typ == "33" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 33
-		zaklad_typ == "34" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 34
-		zaklad_typ == "35" || //Sprawdzanie czy wprowadzono zak³ad na liczbê 35
-		zaklad_typ == "36" //Sprawdzanie czy wprowadzono zak³ad na liczbê 36
-		));
+string Obstaw()
+{
+	string zaklad_typ; //Deklaracja zmiennej typu string przechowywuj¹cej typ zak³adu
 
-	return zaklad_typ;
+	do { //Pêtla do aby wykona³a siê conajmniej raz
+		cout << "Jak¹ opcje chcesz obstawic ? (zgodnie z poni¿szym opisem) :" << endl; //Zadanie pytania u¿ytkownikowi
+		cout << "p - parzyste" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "n - nieparzyste" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "r - czerwone(red)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "b - czarne(black)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "g - górna po³owa" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "d - dolna po³owa" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "k1, k2, k3 - kolumna 1, kolumna 2, kolumna 3" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "w1, w2, ..., w12 - wiersz trzech numerów" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "0 - 36 - pojedyncze pole o odpowiednim numerze" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cin >> zaklad_typ; //Pobranie od u¿ytkownika odpowiedzi na pytanie
+	} while ( //U¿ywam takiej sk³adni poniewa¿ jeœli masz wyra¿enie z logicznymi operatorami && lub ||, to w momencie gdy wynik wyra¿enia ju¿ jest znany, to nie jest wyliczany dalej. (Poniewa¿ C++ jest "leniwe", co zarazem jest optymalne)
+		zaklad_typ != "p" && //Sprawdzanie czy wprowadzono zak³ad na liczby parzyste
+		zaklad_typ != "n" && //Sprawdzanie czy wprowadzono zak³ad na liczby nieparzyste
+		zaklad_typ != "r" && //Sprawdzanie czy wprowadzono zak³ad na czerwone liczby
+		zaklad_typ != "b" && //Sprawdzanie czy wprowadzono zak³ad na czarne liczby
+		zaklad_typ != "g" && //Sprawdzanie czy wprowadzono zak³ad na liczby z górnej po³ówki
+		zaklad_typ != "d" && //Sprawdzanie czy wprowadzono zak³ad na liczby z dolnej po³ówki
+		zaklad_typ != "k1" && //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 1
+		zaklad_typ != "k2" && //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 2
+		zaklad_typ != "k3" && //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 3
+		zaklad_typ != "w1" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 1
+		zaklad_typ != "w2" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 2
+		zaklad_typ != "w3" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 3
+		zaklad_typ != "w4" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 4
+		zaklad_typ != "w5" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 5
+		zaklad_typ != "w6" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 6
+		zaklad_typ != "w7" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 7
+		zaklad_typ != "w8" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 8
+		zaklad_typ != "w9" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 9
+		zaklad_typ != "w10" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 10
+		zaklad_typ != "w11" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 11
+		zaklad_typ != "w12" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 12
+		zaklad_typ != "0" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 0
+		zaklad_typ != "1" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 1
+		zaklad_typ != "2" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 2
+		zaklad_typ != "3" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 3
+		zaklad_typ != "4" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 4
+		zaklad_typ != "5" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 5
+		zaklad_typ != "6" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 6
+		zaklad_typ != "7" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 7
+		zaklad_typ != "8" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 8
+		zaklad_typ != "9" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 9
+		zaklad_typ != "10" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 10
+		zaklad_typ != "11" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 11
+		zaklad_typ != "12" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 12
+		zaklad_typ != "13" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 13
+		zaklad_typ != "14" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 14
+		zaklad_typ != "15" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 15
+		zaklad_typ != "16" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 16
+		zaklad_typ != "17" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 17
+		zaklad_typ != "18" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 18
+		zaklad_typ != "19" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 19
+		zaklad_typ != "20" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 20
+		zaklad_typ != "21" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 21
+		zaklad_typ != "22" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 22
+		zaklad_typ != "23" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 23
+		zaklad_typ != "24" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 24
+		zaklad_typ != "25" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 25
+		zaklad_typ != "26" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 26
+		zaklad_typ != "27" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 27
+		zaklad_typ != "28" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 28
+		zaklad_typ != "29" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 29
+		zaklad_typ != "30" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 30
+		zaklad_typ != "31" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 31
+		zaklad_typ != "32" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 32
+		zaklad_typ != "33" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 33
+		zaklad_typ != "34" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 34
+		zaklad_typ != "35" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 35
+		zaklad_typ != "36" //Sprawdzanie czy wprowadzono zak³ad na liczbê 36
+		); //Je¿eli któryœ z warunków siê niezgadza to pêtla nie jest kontynuowana
+
+	return zaklad_typ; //Zwracam typ zak³adu podany przez u¿ytkownika
 }
 
-void Wczytaj_Kwotê_Zak³adu(int & kwota_zak³adu, int & iloœæ_pieniêdzy) {
-	string kwota_zak³adu_s;
-	while (true)
+void Wczytaj_Kwotê_Zak³adu(int & kwota_zak³adu, int & iloœæ_pieniêdzy)
+{
+	string kwota_zak³adu_s; //Deklaracja zmiennej typu string do wczytywania kwoty aby zabezpieczyæ siê przed b³êdem wpisania do zmiennej liczbowej litery
+
+	while (true) //Rozpoczêcie pêtli nieskoñczonej
 	{
-		cout << "Masz " << iloœæ_pieniêdzy << "$, jak¹ kwotê chcesz obstawiæ wynik?" << endl;
-		cin >> kwota_zak³adu_s;
-		kwota_zak³adu = atoi(kwota_zak³adu_s.c_str());
-		if (kwota_zak³adu > 0 && kwota_zak³adu <= iloœæ_pieniêdzy)
-			break;
-		else
-			if (kwota_zak³adu == 0)
+		cout << "Masz " << iloœæ_pieniêdzy << "$, jak¹ kwotê chcesz obstawiæ wynik?" << endl; //Podanie akualnego stanu konta i zadanie pytania o kwotê zak³adu
+		cin >> kwota_zak³adu_s; //Pobranie w tekœcie kwoty zak³¹du
+		kwota_zak³adu = atoi(kwota_zak³adu_s.c_str()); //Zmiana stringaa na inta i wpisanie do zmiennej kwota_zak³adu
+		if (kwota_zak³adu > 0 && kwota_zak³adu <= iloœæ_pieniêdzy) //Sprawdzenie czy kwota zak³¹du jest wiêksza od zeri i mniejsza lub równa dostêpnej gotówce
+			break; //Je¿eli tak to zatrzymuje pêtle
+		else //W przeciwym wypadku
+			if (kwota_zak³adu == 0) //Je¿eli wynikiem zamiany na liczbê jest zero (wynikiem zamiany jest zero kiedy tekst to zero lub kiedy jest b³¹d zamiany) to
 			{
-				bool czy_zero = 1;
-				for (short i = 0; i < (int)kwota_zak³adu_s.size(); i++)
-					if (kwota_zak³adu_s[i] != '0')
+				bool czy_zero = 1; //Utworzenie zmiennej informuj¹cej czy znaleziono zero w tekœcie i przypisanie jej wartoœci 1
+				for (short i = 0; i < (int)kwota_zak³adu_s.size(); ++i) //Rozpoczêcie pêtli numerowanej przez zmienn¹ i przez wszystkie znaki wczytanego tekst
+					if (kwota_zak³adu_s[i] != '0') //Je¿eli znak na i-tej pozycji
 					{
-						cout << "Wprowadzi³eæ nieprawid³ow¹ wartoœæ" << endl;
-#if stan_dŸwiêków == 1
-						cout << "\a";
+						cout << "Wprowadzi³eæ nieprawid³ow¹ wartoœæ" << endl; //Poinformowanie u¿ytkownika, ¿e nie mo¿e obstawiæ tekstowego
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+						cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
-						czy_zero = 0;
-						break;
+						czy_zero = 0; //Zmiana wartoœci zmiennej czy znaleziono zero w tekœcie na 0
+						break; //Zatrzymanie pêtli
 					}
-				if (czy_zero)
+				if (czy_zero) //Sprawdzenie czy znaleziono same zera w tekœcie, je¿eli tak to
 				{
-					cout << "Nie mo¿esz obstawiæ zerowego zak³adu" << endl;
-#if stan_dŸwiêków == 1
-					cout << "\a";
+					cout << "Nie mo¿esz obstawiæ zerowego zak³adu" << endl; //Poinformowanie u¿ytkownika, ¿e nie mo¿e obstawiæ zerowego zak³adu
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+					cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
 				}
 			}
-			else if (kwota_zak³adu > iloœæ_pieniêdzy)
+			else if (kwota_zak³adu > iloœæ_pieniêdzy) //Je¿eli u¿ytkownik chce obstawiæ za wiêcej ni¿ ma, to
 			{
-				cout << "Nie masz tyle pieniêdzy" << endl;
-#if stan_dŸwiêków == 1
-				cout << "\a";
+				cout << "Nie masz tyle pieniêdzy" << endl; //Poinformowanie go o tym
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
 			}
-			else if (kwota_zak³adu < 0)
+			else if (kwota_zak³adu < 0) //Je¿eli u¿ytkownik chce obstawiæ za ujemn¹ kwotê, to
 			{
-				cout << "Nie mo¿esz obstawiæ ujemn¹ kwot¹ zak³adu" << endl;
-#if stan_dŸwiêków == 1
-				cout << "\a";
+				cout << "Nie mo¿esz obstawiæ ujemn¹ kwot¹ zak³adu" << endl; //Poinformowanie go o tym
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
 			}
 	}
 }
 
-int Zakrêæ_Ruletk¹() {
-	int iloœæ_zakrêceñ = rand() % (iloœæ_max_dodatkowych_obrotów_ruletki + 1) + iloœæ_minimalna_obrotów_ruletki;
-	double czas_przeskoku_kulki_szybki_przyspieszenie = czas_przeskoku_kulki_szybki / (iloœæ_zakrêceñ * 37.0);
-	HideCursor();
-	for (int i = 0; i < iloœæ_zakrêceñ; ++i)
-		for (int ii = 0; ii < 37; ++ii)
+int Zakrêæ_Ruletk¹()
+{
+	int iloœæ_zakrêceñ = rand() % (iloœæ_max_dodatkowych_obrotów_ruletki + 1) + iloœæ_minimalna_obrotów_ruletki; //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ pseudolosow¹ (o niskiej pseoudolosowoœci) iloœæ obrotów ruletk¹ ((od 0 do max dodatkowych obrotów ruletki) + minimalna iloœæ obrotów ruletki) zanim nastêpi finalny obrót
+	double czas_przeskoku_kulki_szybki_opóŸnienie = czas_przeskoku_kulki_szybki / (iloœæ_zakrêceñ * 37.0); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
+	HideCursor(); //Ukrycie kursora tekstowego w konsoli
+	for (int i = 0; i < iloœæ_zakrêceñ; ++i) //Wykonanie iloœæ_zakrêceñ obrotów ruletk¹
+		for (int ii = 0; ii < 37; ++ii) //Przejœcie przez wszystkie pozycje ruletki
 		{
 			Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
-			cout << Ruletka_ko³o[ii];
-			Sleep((DWORD)(czas_przeskoku_kulki_szybki_przyspieszenie*((double)i*37.0 + (double)ii)));
+			cout << Ruletka_ko³o[ii]; //Wypisanie numeru na kole ruletki na którym znajduje siê pêtla
+			Sleep((DWORD)(czas_przeskoku_kulki_szybki_opóŸnienie*((double)i*37.0 + (double)ii))); //Przestój który zwiêksza siê co zmianê pozycji pêtli
 			Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 			cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 		}
-	int wylosowana_pozycja = MersenneTwister() % 37;
-	double czas_przeskoku_kulki_wolny_przyspieszenie = (czas_przeskoku_kulki_wolny - czas_przeskoku_kulki_szybki) / (double)(wylosowana_pozycja);
-	for (int i = 0; i < wylosowana_pozycja; ++i)
+	int wylosowana_pozycja = Wylosuj(0, 36); //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ losow¹ lub pseudolosow¹ liczbê (o wysokiej pseoudolosowoœci) pozycjê na ruletce
+	double czas_przeskoku_kulki_wolny_przyspieszenie = (czas_przeskoku_kulki_wolny - czas_przeskoku_kulki_szybki) / (double)(wylosowana_pozycja); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
+	for (int i = 0; i < wylosowana_pozycja; ++i) //Przejœcie przez pozycje do pozycji o 1 mniejszej od wylosowanej pozyji na ruletce
 	{
 		Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[i]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
-		cout << Ruletka_ko³o[i];
-		Sleep((DWORD)(czas_przeskoku_kulki_szybki + (czas_przeskoku_kulki_wolny_przyspieszenie*i)));
+		cout << Ruletka_ko³o[i]; //Wypisanie numeru na kole ruletki na którym znajduje siê pêtla
+		Sleep((DWORD)(czas_przeskoku_kulki_szybki + (czas_przeskoku_kulki_wolny_przyspieszenie*i))); //Przestój który zwiêksza siê co zmianê pozycji pêtli
 		Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 		cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 	}
-	cout << "Wylosowano numer ";
-	Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[wylosowana_pozycja]]);
-	cout << Ruletka_ko³o[wylosowana_pozycja];
-	Change_Col(7);
-	cout << ". ";
-	ShowCursor();
+	cout << "Wylosowano numer "; //Poinformowanie o zakoñczeniu (wyœwietlania) losowania
+	Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[wylosowana_pozycja]]);//Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
+	cout << Ruletka_ko³o[wylosowana_pozycja]; //Wypisanie liczby na wylosowanej pozycji ruletki
+	Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
+	cout << ". "; //Zakoñczenie tekstu kropk¹
+	ShowCursor(); //Pokazanie kursora tekstowego w konsoli
 
-	return Ruletka_ko³o[wylosowana_pozycja];
+	return Ruletka_ko³o[wylosowana_pozycja]; //Zwracam wartoœæ bêd¹c¹ na wylosowanym polu ruletki
 }
 
-int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba) {
-	int wygrana = kwota;
+int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba)
+{
+	int wygrana = kwota; //Deklaracja zmiennej przechowywuj¹ca kwotê wygran¹ lub zwrócon¹ przy wylosowaniu 0
 
-	if (wylosowana_liczba == 0)
-	{
-		if (typ_zak³adu == "p")
-			wygrana /= 2;
-		else if (typ_zak³adu == "n")
-			wygrana /= 2;
-		else if (typ_zak³adu == "r")
-			wygrana /= 2;
-		else if (typ_zak³adu == "b")
-			wygrana /= 2;
-		else if (typ_zak³adu == "g")
-			wygrana /= 2;
-		else if (typ_zak³adu == "d")
-			wygrana /= 2;
-		else if (typ_zak³adu[0] == 'k')
-			wygrana *= 0;
-		else if (typ_zak³adu[0] == 'w')
-			wygrana *= 0;
-		else if (typ_zak³adu[0] == '0')
-			wygrana *= 35;
+	if (wylosowana_liczba == 0) //Warunek sprawdzaj¹cy czy wylosowano 0
+	{ //Je¿eli tak to
+		if (typ_zak³adu == "p") wygrana /= 2; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+		else if (typ_zak³adu == "n") wygrana /= 2; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+		else if (typ_zak³adu == "r") wygrana /= 2; //Je¿eli typ zak³adu by³ r to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+		else if (typ_zak³adu == "b") wygrana /= 2; //Je¿eli typ zak³adu by³ b to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+		else if (typ_zak³adu == "g") wygrana /= 2; //Je¿eli typ zak³adu by³ g to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+		else if (typ_zak³adu == "d") wygrana /= 2; //Je¿eli typ zak³adu by³ d to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+		else if (typ_zak³adu[0] == 'k') wygrana *= 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
+		else if (typ_zak³adu[0] == 'w') wygrana *= 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
+		else if (typ_zak³adu[0] == '0') wygrana *= 35; //Je¿eli typ zak³adu by³ 0 to przegra³o siê zak³ad
 	}
-	else
+	else //Je¿eli wylosowana liczba nie jest zerem to
 	{
-		if (typ_zak³adu == "p")
-			if (wylosowana_liczba % 2 == 0) wygrana *= 1;
-			else wygrana *= 0;
-		else if (typ_zak³adu == "n")
-			if (wylosowana_liczba % 2 == 1) wygrana *= 1;
-			else wygrana *= 0;
-		else if (typ_zak³adu == "r")
-			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') wygrana *= 1;
-			else wygrana *= 0;
-		else if (typ_zak³adu == "b")
-			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'b') wygrana *= 1;
-			else wygrana *= 0;
-		else if (typ_zak³adu == "g")
-			if (wylosowana_liczba < 19) wygrana *= 1;
-			else wygrana *= 0;
-		else if (typ_zak³adu == "d")
-			if (wylosowana_liczba > 18) wygrana *= 1;
-			else wygrana *= 0;
-		else if (typ_zak³adu[0] == 'k')
-			if ((wylosowana_liczba - 1) % 3 == typ_zak³adu[1] - 49) wygrana *= 2;
-			else wygrana *= 0;
-		else if (typ_zak³adu[0] == 'w')
-			if (((wylosowana_liczba - 1) / 3 + 1) == atoi(typ_zak³adu.erase(0, 1).c_str())) wygrana *= 11;
-			else wygrana *= 0;
-		else if (wylosowana_liczba == atoi(typ_zak³adu.c_str())) wygrana *= 35;
-		else wygrana *= 0;
+		if (typ_zak³adu == "p") //Je¿eli typ zak³adu to p
+			if (wylosowana_liczba % 2 == 0) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest parzysta, je¿eli tak to wygrana jest 1:1
+			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest parzysta to przegra³o siê zak³ad
+		else if (typ_zak³adu == "n") //Je¿eli typ zak³adu to n
+			if (wylosowana_liczba % 2 == 1) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest nieparzysta, je¿eli tak to wygrana jest 1:1
+			else wygrana *= 0; //Je¿eli obstawiony numer nie jest nieparzysta to przegra³o siê zak³ad
+		else if (typ_zak³adu == "r") //Je¿eli typ zak³adu to n
+			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') wygrana *= 1; //To sprawdzam czy wylosowana liczba jest czerwona, je¿eli tak to wygrana jest 1:1
+			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest czerwony to przegra³o siê zak³ad
+		else if (typ_zak³adu == "b") //Je¿eli typ zak³adu to n
+			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'b') wygrana *= 1; //To sprawdzam czy wylosowana liczba jest czarna, je¿eli tak to wygrana jest 1:1
+			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest czarny to przegra³o siê zak³ad
+		else if (typ_zak³adu == "g") //Je¿eli typ zak³adu to g
+			if (wylosowana_liczba < 19) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest od 1 do 18, je¿eli tak to wygrana jest 1:1
+			else wygrana *= 0; //Je¿eli wylosowana liczba nie nale¿y do przedzia³u [1,18] to przegra³o siê zak³ad
+		else if (typ_zak³adu == "d") //Je¿eli typ zak³adu to d
+			if (wylosowana_liczba > 18) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest od 19 do 36, je¿eli tak to wygrana jest 1:1
+			else wygrana *= 0; //Je¿eli wylosowana liczba nie nale¿y do przedzia³u [19,36] to przegra³o siê zak³ad
+		else if (typ_zak³adu[0] == 'k') //Je¿eli typ zak³adu to k
+			if ((wylosowana_liczba - 1) % 3 == typ_zak³adu[1] - 49) wygrana *= 2; //To sprawdzam czy wylosowana liczba jest z obstawionej kolumny, je¿eli tak to wygrana jest 2:1
+			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest z obstawionej kolumny to przegra³o siê zak³ad
+		else if (typ_zak³adu[0] == 'w') //Je¿eli typ zak³adu to w
+			if (((wylosowana_liczba - 1) / 3 + 1) == atoi(typ_zak³adu.erase(0, 1).c_str())) wygrana *= 11; //To sprawdzam czy wylosowana liczba jest z obstawionego wiersza, je¿eli tak to wygrana jest 11:1
+			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest z obstawionego wiersza to przegra³o siê zak³ad
+		else if (wylosowana_liczba == atoi(typ_zak³adu.c_str())) wygrana *= 35; //Je¿eli typ zak³adu to liczba, to sprawdzam czy wylosowana liczba jest równa obstawionej liczbie, je¿eli tak to wygrana jest 35:1
+		else wygrana *= 0; //Je¿eli wylosowana liczba nie jest równa obstawionej liczbie to przegra³o siê zak³ad
 	}
 
-	if (wygrana >= kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl;
-	else if (wygrana == kwota / 2) cout << "Obstawiles niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl;
-	else if (wygrana == 0) cout << "Obstawiles niepoprawnie, przegra³eœ " << kwota << "$." << endl;
+	if (wygrana >= kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
+	else if (wygrana == kwota / 2) cout << "Obstawiles niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
+	else cout << "Obstawiles niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
 
-	return wygrana;
+	return wygrana; //Zwracam wartoœ wygranej lub zwrotu
 }
 
-bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy) {
-	string tak_nie;
-	if (iloœæ_pieniêdzy == 0) {
-		cout << "Nie mo¿esz kontynuowaæ, przegra³eœ wzystko" << endl;
-		return 0;
-	}
-	while (true)
+bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy)
+{
+	string tak_nie; //Zadeklarowanie zmiennej typu string
+
+	if (iloœæ_pieniêdzy == 0) //Je¿eli posiadana iloœæ gotówki jest róna 0
 	{
-		cout << "Na koncie masz " << iloœæ_pieniêdzy << "$, czy chcesz grac dalej('t' - tak, 'n' - nie) ?" << endl;
-		cin >> tak_nie;
-		if (tak_nie == "t" || tak_nie == "n" || tak_nie == "tak" || tak_nie == "nie" || tak_nie == "Tak" || tak_nie == "Nie")
-			if (tak_nie[0] == 't' || tak_nie[0] == 'T') return 1;
-			else return 0;
+		cout << "Nie mo¿esz kontynuowaæ, przegra³eœ wszystko" << endl; //Poinformowanie u¿ytkownika, ¿e jest bankrutem
+		return 0; //Zwrot wartoœci 0, co oznacza, ¿e kolejna runda siê nie odbêdzie
+	}
+
+	while (true) //Rozpoczêcie pêtli nieskoñczonej
+	{
+		cout << "Na koncie masz " << iloœæ_pieniêdzy << "$, czy chcesz grac dalej('t' - tak, 'n' - nie) ?" << endl; //Pointormowanie o stanie konta i zapytanie o to czy gra dalej
+		cin >> tak_nie; //Pobranie od u¿ytkownika odpowiedzi na powy¿sze pytanie
+		if (tak_nie != "t" || tak_nie == "tak" || tak_nie == "Tak" || tak_nie == "TAK" || tak_nie == "n" || tak_nie == "nie" || tak_nie == "Nie" || tak_nie == "NIE") //Sprawdzenie czy odpowiedŸ pasuje do mo¿liwoœci
+			if (tak_nie[0] == 't' || tak_nie[0] == 'T') return 1; //Je¿eli pasuje to sprawdzam czy pierwsza litera to t i zwracam wartoœæ 1
+			else return 0; //W przeciwym wypadku zwracam wartoœæ 0
 	}
 }
 
-void Change_Col(int num_of_col) {
-	HANDLE h_wyj =GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
+void Change_Col(int num_of_col)
+{
+	HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
 }
 
 void HideCursor()
 {
 	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
-	CONSOLE_CURSOR_INFO hCCI;
-	GetConsoleCursorInfo(hConsoleOut, &hCCI);
-	hCCI.bVisible = FALSE;
-	SetConsoleCursorInfo(hConsoleOut, &hCCI);
+	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
+	GetConsoleCursorInfo(hConsoleOut, &hCCI); //Przypisanie do zmiennej informacji o kursorze tekstowym w konsoli
+	hCCI.bVisible = FALSE; //Zmiena widocznoœci kursora na niewidoczny
+	SetConsoleCursorInfo(hConsoleOut, &hCCI); //Ustawienie widocznoœci kursora zgodnie z poprzedni¹ zmienn¹
 }
 
 void ShowCursor()
 {
 	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	CONSOLE_CURSOR_INFO hCCI;
-	GetConsoleCursorInfo(hConsoleOut, &hCCI);
-	if (hCCI.bVisible != TRUE)
+	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
+	GetConsoleCursorInfo(hConsoleOut, &hCCI); //Przypisanie do zmiennej informacji o kursorze tekstowym w konsoli
+	if (hCCI.bVisible != TRUE) //Sprawdzenie czy wartoœæ widocznoœci kursorsora tekstego w konsoli jest ró¿na od prawdy
 	{
-		hCCI.bVisible = TRUE;
-		SetConsoleCursorInfo(hConsoleOut, &hCCI);
+		hCCI.bVisible = TRUE;//Je¿eli tak, to zmiena widocznoœci kursora na widoczny
+		SetConsoleCursorInfo(hConsoleOut, &hCCI); //I ustawienie widocznoœci kursora zgodnie z poprzedni¹ zmienn¹
 	}
+}
+
+int Wylosuj(int od_liczby, int do_liczby)
+{
+	random_device generator; //Generator liczb losowych, który generuje niedeterministyczne liczby losowe, jeœli s¹ obs³ugiwane.
+	if (generator.entropy() != 32) //Je¿eli entropia jest mniejsza od 32 oznacza, ¿e komputer nie dysponuje mo¿liwoœci¹ u¿ycia tego generatora liczb losowy
+	{
+#if defined(__x86_64__) || defined(_M_X64) || defined(__x86_64) || defined(__amd64) || defined(__amd64__) || defined(_M_AMD64) //Sprawdzenie czy sytem operacyjny jest 64-bitowy
+		mt19937_64 generator((unsigned int)time(NULL)); //Dla 64 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 64 bitowej
+#else
+		mt19937 generator((unsigned int)time(NULL)); //Dla 32 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 32 bitowej
+#endif
+	}
+	uniform_int_distribution<int> distribution(od_liczby, do_liczby); //Wsazuje zakres generowanych liczb
+	return distribution(generator); //Zwraca wygenerowan¹ liczbê
 }
