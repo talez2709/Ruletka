@@ -16,7 +16,7 @@
 #define czas_przeskoku_kulki_wolny 200 //Czas w ms przerwy pomiêdzy przeskokami pod koniec losowania na kolejn¹ liczbê na kole ruletki
 #define czas_przerwy_dzwiêku 500 //Czas w ms przerwy pomiêdzy pikniêciami oznaczaj¹cymi wynik zak³adu
 #define styl_liczenia_wygranej 1 //0 dla odejmowania w³o¿onych w zak³ad pieniêdzy (przy tym zak³ady 1:1 nie zwiêkszaj¹ iloœæ_pieniêdzy), 1 dla nie odejmowania (przy tym zak³ady 1:1 zwiêkszaj¹ iloœæ_pieniêdzy)
-#define kwota_pocz¹tkowa 1000 //Iloœæ $ z którymi zaczyna siê gre
+#define kwota_pocz¹tkowa 1000 //Iloœæ $ z którymi zaczyna siê grê
 #define stan_dŸwiêków 1 //Czy w³¹czone dŸwiêki 1 <-tak 0 <-nie
 #define czy_kontynuowaæ_grê 1 //Czy w³¹czone kontynuowanie gry od skoñczonej poprzednio pozycji 1 <-tak 0 <-nie
 //-------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@
 //sprawdzanie poprawnoœci deklaracji definicji preprocesora do zmian funcjonowania programu
 #if czas_przeskoku_kulki_wolny < czas_przeskoku_kulki_szybki
 #error Wartoœæ wolnego czasu przeskoku kulkimusi byæ ni¿sza ni¿ wartoœæ szybkiego czasu przeskoku kulki
-//Wygenerowanie b³êdu kompilacji jak warunek jest spe³niony (Wartoœci tych zmiennych to czas opóŸnienia wiêc im jest wy¿szy tym d³u¿a przerwa)
+//Wygenerowanie b³êdu kompilacji jak warunek jest spe³niony (Wartoœci tych zmiennych to czas opóŸnienia wiêc im jest wy¿szy tym d³u¿sza przerwa)
 #endif
 #if iloœæ_minimalna_obrotów_ruletki < 0
 #error Iloœæ minimalna obrotów ruletki nie mo¿e byæ mniejsza od 0
@@ -91,15 +91,15 @@ int main()
 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
 	log_ogólny.open("log_ogólny.txt", ios::app); //Otworzenie pliku z ustawieniem kursora zapisu do pliku
 	fstream log; //Utworzenie typu do celu zapisu i/lub odczytu do i/lub z pliku
-	int iloœæ_pieniêdzy = kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
+	int iloœæ_pieniêdzy = kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funkcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
 	string typ_zak³adu; //Przechowuje typ zak³adu wprowadzony przez u¿ytkownika
 	char co_kontynuowaæ = 'n'; //Deklaracja znaku który przechowuje nazwany znakiem punkt od którego kontynuowaæ runde
 
 #if czy_kontynuowaæ_grê == 0 //Kompilacja je¿eli czy_kontynuowaæ_grê == 0
 	if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 	{
-		remove("log_aktualny.txt");
-		log_ogólny << endl << "Uruchomiono ponownie grê z wy³¹czon¹ opcj¹ kontynuowania" << endl;
+		remove("log_aktualny.txt"); //Usuniêcie pliku log aktualny poniewa¿ rozpoczyna siê now¹ grê
+		log_ogólny << endl << "Uruchomiono ponownie grê z wy³¹czon¹ opcj¹ kontynuowania" << endl; //Wpisanie do buforu logu ogólnego informacje o rozpoczêciu nowej gry spowodowane ustawieniem gry
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 	}
 #endif // czy_kontynuowaæ_grê
@@ -220,120 +220,109 @@ int main()
 		log_ogólny << Czas.wSecond << endl; // Wpisanie do bufora zapisu danych o sekundzie do pliku log_ogólny.txt
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-		co_kontynuowaæ = 'n';
+		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
 	}
 	do
 	{
-		if (co_kontynuowaæ == 'n') Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy);
-		else cout << "Obstawiono za " << kwota_zak³adu << "$" << endl;
-		if (co_kontynuowaæ == 'n') log << "Obstawiono za " << kwota_zak³adu << "$";
-		if (co_kontynuowaæ == 'n') log_ogólny << "Obstawiono za " << kwota_zak³adu << "$";
+		if (co_kontynuowaæ == 'n') Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy); //Przypisanie do zmiennej pobranej od u¿ytkownika kwoty zak³adu
+		else cout << "Obstawiono za " << kwota_zak³adu << "$" << endl; //Wypisanie wczytanej kwoty zak³adu
+		if (co_kontynuowaæ == 'n') log << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie obstawionego zak³adu
+		if (co_kontynuowaæ == 'n') log_ogólny << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie obstawionego zak³adu
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') typ_zak³adu = Obstaw();
-		else cout << "Obstawiono zak³ad " << typ_zak³adu << endl;
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log << " Obstawiono zaklad " << typ_zak³adu;
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log_ogólny << " Obstawiono zaklad " << typ_zak³adu;
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') typ_zak³adu = Obstaw(); //Przypisanie do zmiennej pobranej od u¿ytkownika typu zak³adu
+		else cout << "Obstawiono zak³ad " << typ_zak³adu << endl; //Wypisanie wczytanego typu zak³adu
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu aktualnego informacji o typie obstawionego zak³adu
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log_ogólny << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu ogólnego informacji o typie obstawionego zak³adu
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') iloœæ_pieniêdzy -= kwota_zak³adu;
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl;
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') wylosowana_liczba = Zakrêæ_Ruletk¹();
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') iloœæ_pieniêdzy -= kwota_zak³adu; //Odjêcie od iloœci pieniêdzy kwoty zak³adu
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl; //Poinformowanie u¿ytkownika o rozpoczêciu losowania
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') wylosowana_liczba = Zakrêæ_Ruletk¹(); //Wylosowanie i przypisanie do zmiennej liczby bêdêcej na  wylosowanej pozycji na kole ruletki
 		else {
-			cout << "Wylosowano numer ";
-			Change_Col(Ruletka_plansza_kolor_col[wylosowana_liczba]);
-			cout << wylosowana_liczba;
-			Change_Col(7);
-			cout << ". ";
+			cout << "Wylosowano numer "; //Poinformowaniu o wylosowaniu liczby
+			Change_Col(Ruletka_plansza_kolor_col[wylosowana_liczba]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
+			cout << wylosowana_liczba; //Wypisanie wylosowanej liczby
+			Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
+			cout << ". "; //Wypisanie kropki koñcz¹cej zdanie
 		}
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log << " Wylosowano " << wylosowana_liczba;
-		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log_ogólny << " Wylosowano " << wylosowana_liczba;
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu aktualnego informacji o wylosowanej liczbie
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log_ogólny << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu ogólnego informacji o wylosowanej liczbie
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba);
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w')
-			if (wygrana >= kwota_zak³adu)
+			if (wygrana >= kwota_zak³adu) //Je¿eli wygrana jest wiêksza lub równa kwocie zak³adu to znaczy, ¿e siê wygra³o zak³ad
 			{
-				log_ogólny << " Wygrywasz " << wygrana << "$";
-				log << " Wygrywasz " << wygrana << "$";
-				iloœæ_pieniêdzy += wygrana;
-#if styl_liczenia_wygranej == 1
-				iloœæ_pieniêdzy += kwota_zak³adu;
+				iloœæ_pieniêdzy += wygrana; //Dopisanie do salda kwoty wygranej z zak³adu
+#if styl_liczenia_wygranej == 1 //Kompilacja je¿eli styl_liczenia_wygranej == 1
+				iloœæ_pieniêdzy += kwota_zak³adu; //Dopisanie do salda kwoty zak³adu
 #endif // styl_liczenia_wygranej
-				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych //Zapisanie do plik wpisanych do bufora danych
-				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-#endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				Sleep(czas_przerwy_dzwiêku);
-#endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-#endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				Sleep(czas_przerwy_dzwiêku);
-#endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-#endif // stan_dŸwiêków
-			}
-			else if (wygrana == (kwota_zak³adu / 2))
-			{
-				log_ogólny << " Dostajesz polowe zak³adu " << wygrana << "$";
-				log << " Dostajesz polowe zak³adu " << wygrana << "$";
-				iloœæ_pieniêdzy += wygrana;
-				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-#endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				Sleep(czas_przerwy_dzwiêku);
-#endif // stan_dŸwiêków
-#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-#endif // stan_dŸwiêków
-			}
-			else if (wygrana == 0)
-			{
-				log_ogólny << " Przegrales " << kwota_zak³adu << "$";
-				log << " Przegrales " << kwota_zak³adu << "$";
-				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
-				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-#endif // stan_dŸwiêków
-			}
-		co_kontynuowaæ = 'n';
-	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy));
 
-	cout << endl << "Koñczysz gre z wynikiem " << iloœæ_pieniêdzy << "$" << endl;
-	log << endl << "Koñczysz gre z wynikiem " << iloœæ_pieniêdzy << "$" << endl;
-	log_ogólny << "Koñczysz gre z wynikiem " << iloœæ_pieniêdzy << "$" << endl;
+				log << " Wygrywasz " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie wygranej zak³adu
+				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+				log_ogólny << " Wygrywasz " << wygrana << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie wygranej zak³adu
+				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
+				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+#endif // stan_dŸwiêków
+			}
+			else if (wygrana == (kwota_zak³adu / 2)) //Je¿eli wygrana jest równa po³owie kwocie zak³adu to znaczy, ¿e dostaje siê zwrot po³owy kwoty zak³adu
+			{
+				iloœæ_pieniêdzy += wygrana; //Dopisanie do salda kwoty zwrotu z zak³adu
+				log << " Dostajesz polowe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie zwrotu zak³adu
+				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+				log_ogólny << " Dostajesz polowe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie zwrotu zak³adu
+				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
+				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+#endif // stan_dŸwiêków
+			}
+			else if (wygrana == 0) //Je¿eli wygrana jest równa 0 to znaczy, ¿e siê zak³ad przegra³o
+			{
+				log << " Przegrales " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o przegranej kwocie
+				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+				log_ogólny << " Przegrales " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o przegranej kwocie
+				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+#endif // stan_dŸwiêków
+			}
+		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
+	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy)); //Pêtla dza³aj¹ca do czasu wartoœci fa³sz zwróconej przez funkcjê Czy_kontynuowaæ
+
+	cout << endl << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Poinformowanie u¿ytkownika o saldzie konta
+	log << endl << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+	log_ogólny << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
 	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 	log.close();
-	remove("log_aktualny.txt");
+	remove("log_aktualny.txt"); //Usuniêcie pliku log aktualny poniewa¿ skoñczy³o siê grê
 #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-	if (iloœæ_pieniêdzy == 0)
-		for (int i = 0; i < 5; ++i)
+	if (iloœæ_pieniêdzy == 0) //Je¿eli bud¿et jest równy 0 to
+		for (int i = 0; i < 5; ++i) //Rozpoczêcie pêtli która wykona 5 obrotów
 		{
 			cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-			Sleep(czas_przerwy_dzwiêku);
+			Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem //Przerwa przed kolejnym pikniêciem
 		}
 #endif // stan_dŸwiêków
 
-	if (iloœæ_pieniêdzy > kwota_pocz¹tkowa && iloœæ_pieniêdzy < kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl;
-	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl;
-	system("pause");
-	return 0;
+	if (iloœæ_pieniêdzy > kwota_pocz¹tkowa && iloœæ_pieniêdzy < kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwiêkszenia bud¿etu
+	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwielokrotnienia przynajmniej 2 razy bud¿etu
+	system("pause"); //Wywo³anie funkcji wymagaj¹cej do zamkniêcia naciœniêcie dowolnego klawisza
+	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
 }
 
 string Obstaw()

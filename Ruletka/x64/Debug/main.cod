@@ -426,7 +426,7 @@ PUBLIC	??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@		; `string'
 PUBLIC	??_C@_01PBGHHLMH@?$AH?$AA@			; `string'
 PUBLIC	??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@ ; `string'
 PUBLIC	??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@		; `string'
-PUBLIC	??_C@_0BJ@LHJPAEHG@Ko?qczysz?5gre?5z?5wynikiem?5?$AA@ ; `string'
+PUBLIC	??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@ ; `string'
 PUBLIC	??_C@_0CL@DCKMMPCF@Gratuluje?5zwi?jkszy?$LDe?$JM?5sw?sj?5zas?sb@ ; `string'
 PUBLIC	??_C@_0BO@CAHFKDBP@?5krotnie?5sw?sj?5zas?sb?5finansowy?$AA@ ; `string'
 PUBLIC	??_C@_0BH@GDCLDFHN@Gratuluje?5zwi?jkszy?$LDe?$JM?5?$AA@ ; `string'
@@ -3697,10 +3697,10 @@ CONST	SEGMENT
 	DB	'uluje zwi', 0eaH, 'kszy', 0b3H, 'e', 09cH, ' sw', 0f3H, 'j za'
 	DB	's', 0f3H, 'b finansowy', 00H		; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BJ@LHJPAEHG@Ko?qczysz?5gre?5z?5wynikiem?5?$AA@
+;	COMDAT ??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@
 CONST	SEGMENT
-??_C@_0BJ@LHJPAEHG@Ko?qczysz?5gre?5z?5wynikiem?5?$AA@ DB 'Ko', 0f1H, 'czy'
-	DB	'sz gre z wynikiem ', 00H			; `string'
+??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@ DB 'Ko', 0f1H, 'cz'
+	DB	'ysz gr', 0eaH, ' z wynikiem ', 00H		; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@
 CONST	SEGMENT
@@ -23557,12 +23557,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -23661,7 +23661,7 @@ $LN150:
   000c8	e8 00 00 00 00	 call	 ??0?$basic_fstream@DU?$char_traits@D@std@@@std@@QEAA@XZ ; std::basic_fstream<char,std::char_traits<char> >::basic_fstream<char,std::char_traits<char> >
   000cd	90		 npad	 1
 
-; 94   : 	int iloœæ_pieniêdzy = kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
+; 94   : 	int iloœæ_pieniêdzy = kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funkcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
 
   000ce	c7 85 74 02 00
 	00 e8 03 00 00	 mov	 DWORD PTR iloœæ_pieniêdzy$[rbp], 1000 ; 000003e8H
@@ -23682,8 +23682,8 @@ $LN150:
 ; 98   : #if czy_kontynuowaæ_grê == 0 //Kompilacja je¿eli czy_kontynuowaæ_grê == 0
 ; 99   : 	if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 ; 100  : 	{
-; 101  : 		remove("log_aktualny.txt");
-; 102  : 		log_ogólny << endl << "Uruchomiono ponownie grê z wy³¹czon¹ opcj¹ kontynuowania" << endl;
+; 101  : 		remove("log_aktualny.txt"); //Usuniêcie pliku log aktualny poniewa¿ rozpoczyna siê now¹ grê
+; 102  : 		log_ogólny << endl << "Uruchomiono ponownie grê z wy³¹czon¹ opcj¹ kontynuowania" << endl; //Wpisanie do buforu logu ogólnego informacje o rozpoczêciu nowej gry spowodowane ustawieniem gry
 ; 103  : 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 ; 104  : 	}
 ; 105  : #endif // czy_kontynuowaæ_grê
@@ -25065,7 +25065,7 @@ $LN53@main:
   00e52	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 223  : 		co_kontynuowaæ = 'n';
+; 223  : 		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
 
   00e58	c6 85 34 03 00
 	00 6e		 mov	 BYTE PTR co_kontynuowaæ$[rbp], 110 ; 0000006eH
@@ -25074,7 +25074,7 @@ $LN26@main:
 ; 224  : 	}
 ; 225  : 	do
 ; 226  : 	{
-; 227  : 		if (co_kontynuowaæ == 'n') Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy);
+; 227  : 		if (co_kontynuowaæ == 'n') Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy); //Przypisanie do zmiennej pobranej od u¿ytkownika kwoty zak³adu
 
   00e5f	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25090,7 +25090,7 @@ $LN26@main:
   00e85	eb 56		 jmp	 SHORT $LN55@main
 $LN54@main:
 
-; 228  : 		else cout << "Obstawiono za " << kwota_zak³adu << "$" << endl;
+; 228  : 		else cout << "Obstawiono za " << kwota_zak³adu << "$" << endl; //Wypisanie wczytanej kwoty zak³adu
 
   00e87	80 bd b4 09 00
 	00 00		 cmp	 BYTE PTR $T35[rbp], 0
@@ -25120,7 +25120,7 @@ $LN127@main:
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 $LN55@main:
 
-; 229  : 		if (co_kontynuowaæ == 'n') log << "Obstawiono za " << kwota_zak³adu << "$";
+; 229  : 		if (co_kontynuowaæ == 'n') log << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie obstawionego zak³adu
 
   00edd	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25164,7 +25164,7 @@ $LN128@main:
   00f55	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 $LN56@main:
 
-; 230  : 		if (co_kontynuowaæ == 'n') log_ogólny << "Obstawiono za " << kwota_zak³adu << "$";
+; 230  : 		if (co_kontynuowaæ == 'n') log_ogólny << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie obstawionego zak³adu
 
   00f5a	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25206,7 +25206,7 @@ $LN57@main:
   00fbd	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 233  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') typ_zak³adu = Obstaw();
+; 233  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') typ_zak³adu = Obstaw(); //Przypisanie do zmiennej pobranej od u¿ytkownika typu zak³adu
 
   00fc3	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25233,7 +25233,7 @@ $LN60@main:
   0100d	eb 32		 jmp	 SHORT $LN59@main
 $LN58@main:
 
-; 234  : 		else cout << "Obstawiono zak³ad " << typ_zak³adu << endl;
+; 234  : 		else cout << "Obstawiono zak³ad " << typ_zak³adu << endl; //Wypisanie wczytanego typu zak³adu
 
   0100f	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@
@@ -25251,7 +25251,7 @@ $LN58@main:
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 $LN59@main:
 
-; 235  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log << " Obstawiono zaklad " << typ_zak³adu;
+; 235  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu aktualnego informacji o typie obstawionego zak³adu
 
   01041	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25288,7 +25288,7 @@ $LN101@main:
   010a1	e8 00 00 00 00	 call	 ??$?6DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z ; std::operator<<<char,std::char_traits<char>,std::allocator<char> >
 $LN61@main:
 
-; 236  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log_ogólny << " Obstawiono zaklad " << typ_zak³adu;
+; 236  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log_ogólny << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu ogólnego informacji o typie obstawionego zak³adu
 
   010a6	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25323,7 +25323,7 @@ $LN63@main:
   010f1	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 239  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') iloœæ_pieniêdzy -= kwota_zak³adu;
+; 239  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') iloœæ_pieniêdzy -= kwota_zak³adu; //Odjêcie od iloœci pieniêdzy kwoty zak³adu
 
   010f7	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25359,7 +25359,7 @@ $LN130@main:
 	00		 mov	 DWORD PTR iloœæ_pieniêdzy$[rbp], eax
 $LN65@main:
 
-; 240  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl;
+; 240  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl; //Poinformowanie u¿ytkownika o rozpoczêciu losowania
 
   01152	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25386,7 +25386,7 @@ $LN68@main:
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 $LN67@main:
 
-; 241  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') wylosowana_liczba = Zakrêæ_Ruletk¹();
+; 241  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') wylosowana_liczba = Zakrêæ_Ruletk¹(); //Wylosowanie i przypisanie do zmiennej liczby bêdêcej na  wylosowanej pozycji na kole ruletki
 
   01199	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25412,7 +25412,7 @@ $LN71@main:
   011cf	e9 83 00 00 00	 jmp	 $LN70@main
 $LN69@main:
 
-; 243  : 			cout << "Wylosowano numer ";
+; 243  : 			cout << "Wylosowano numer "; //Poinformowaniu o wylosowaniu liczby
 
   011d4	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BC@IEHJKDDM@Wylosowano?5numer?5?$AA@
@@ -25420,7 +25420,7 @@ $LN69@main:
 	00 00		 mov	 rcx, QWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
   011e2	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 244  : 			Change_Col(Ruletka_plansza_kolor_col[wylosowana_liczba]);
+; 244  : 			Change_Col(Ruletka_plansza_kolor_col[wylosowana_liczba]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 
   011e7	80 bd 94 09 00
 	00 00		 cmp	 BYTE PTR $T34[rbp], 0
@@ -25436,7 +25436,7 @@ $LN131@main:
   0120a	8b 0c 81	 mov	 ecx, DWORD PTR [rcx+rax*4]
   0120d	e8 00 00 00 00	 call	 ?Change_Col@@YAXH@Z	; Change_Col
 
-; 245  : 			cout << wylosowana_liczba;
+; 245  : 			cout << wylosowana_liczba; //Wypisanie wylosowanej liczby
 
   01212	80 bd 94 09 00
 	00 00		 cmp	 BYTE PTR $T34[rbp], 0
@@ -25452,12 +25452,12 @@ $LN132@main:
   01234	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
 
-; 246  : 			Change_Col(7);
+; 246  : 			Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 
   0123a	b9 07 00 00 00	 mov	 ecx, 7
   0123f	e8 00 00 00 00	 call	 ?Change_Col@@YAXH@Z	; Change_Col
 
-; 247  : 			cout << ". ";
+; 247  : 			cout << ". "; //Wypisanie kropki koñcz¹cej zdanie
 
   01244	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02KHOJGJKF@?4?5?$AA@
@@ -25467,7 +25467,7 @@ $LN132@main:
 $LN70@main:
 
 ; 248  : 		}
-; 249  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log << " Wylosowano " << wylosowana_liczba;
+; 249  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu aktualnego informacji o wylosowanej liczbie
 
   01257	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25516,7 +25516,7 @@ $LN133@main:
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
 $LN72@main:
 
-; 250  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log_ogólny << " Wylosowano " << wylosowana_liczba;
+; 250  : 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log_ogólny << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu ogólnego informacji o wylosowanej liczbie
 
   012dd	0f be 85 34 03
 	00 00		 movsx	 eax, BYTE PTR co_kontynuowaæ$[rbp]
@@ -25636,7 +25636,7 @@ $LN76@main:
 	00		 jne	 $LN78@main
 $LN79@main:
 
-; 255  : 			if (wygrana >= kwota_zak³adu)
+; 255  : 			if (wygrana >= kwota_zak³adu) //Je¿eli wygrana jest wiêksza lub równa kwocie zak³adu to znaczy, ¿e siê wygra³o zak³ad
 
   0141e	80 bd d4 09 00
 	00 00		 cmp	 BYTE PTR $T36[rbp], 0
@@ -25660,7 +25660,7 @@ $LN137@main:
 	00		 jl	 $LN80@main
 
 ; 256  : 			{
-; 257  : 				log_ogólny << " Wygrywasz " << wygrana << "$";
+; 257  : 				iloœæ_pieniêdzy += wygrana; //Dopisanie do salda kwoty wygranej z zak³adu
 
   0145a	80 bd d4 09 00
 	00 00		 cmp	 BYTE PTR $T36[rbp], 0
@@ -25669,135 +25669,136 @@ $LN137@main:
 	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
   0146a	e8 00 00 00 00	 call	 _RTC_UninitUse
 $LN138@main:
-  0146f	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GPFIMODH@?5Wygrywasz?5?$AA@
-  01476	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
-  0147a	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  0147f	8b 95 d4 02 00
-	00		 mov	 edx, DWORD PTR wygrana$[rbp]
-  01485	48 8b c8	 mov	 rcx, rax
-  01488	ff 15 00 00 00
-	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
-  0148e	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  01495	48 8b c8	 mov	 rcx, rax
-  01498	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-
-; 258  : 				log << " Wygrywasz " << wygrana << "$";
-
-  0149d	48 8d 85 40 01
-	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  014a4	48 85 c0	 test	 rax, rax
-  014a7	74 14		 je	 SHORT $LN104@main
-  014a9	48 8d 85 40 01
-	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  014b0	48 83 c0 10	 add	 rax, 16
-  014b4	48 89 85 08 0a
-	00 00		 mov	 QWORD PTR tv931[rbp], rax
-  014bb	eb 0b		 jmp	 SHORT $LN105@main
-$LN104@main:
-  014bd	48 c7 85 08 0a
-	00 00 00 00 00
-	00		 mov	 QWORD PTR tv931[rbp], 0
-$LN105@main:
-  014c8	80 bd d4 09 00
-	00 00		 cmp	 BYTE PTR $T36[rbp], 0
-  014cf	75 0c		 jne	 SHORT $LN139@main
-  014d1	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
-  014d8	e8 00 00 00 00	 call	 _RTC_UninitUse
-$LN139@main:
-  014dd	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GPFIMODH@?5Wygrywasz?5?$AA@
-  014e4	48 8b 8d 08 0a
-	00 00		 mov	 rcx, QWORD PTR tv931[rbp]
-  014eb	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  014f0	8b 95 d4 02 00
-	00		 mov	 edx, DWORD PTR wygrana$[rbp]
-  014f6	48 8b c8	 mov	 rcx, rax
-  014f9	ff 15 00 00 00
-	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
-  014ff	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  01506	48 8b c8	 mov	 rcx, rax
-  01509	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-
-; 259  : 				iloœæ_pieniêdzy += wygrana;
-
-  0150e	80 bd d4 09 00
-	00 00		 cmp	 BYTE PTR $T36[rbp], 0
-  01515	75 0c		 jne	 SHORT $LN140@main
-  01517	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
-  0151e	e8 00 00 00 00	 call	 _RTC_UninitUse
-$LN140@main:
-  01523	8b 85 d4 02 00
+  0146f	8b 85 d4 02 00
 	00		 mov	 eax, DWORD PTR wygrana$[rbp]
-  01529	8b 8d 74 02 00
+  01475	8b 8d 74 02 00
 	00		 mov	 ecx, DWORD PTR iloœæ_pieniêdzy$[rbp]
-  0152f	03 c8		 add	 ecx, eax
-  01531	8b c1		 mov	 eax, ecx
-  01533	89 85 74 02 00
+  0147b	03 c8		 add	 ecx, eax
+  0147d	8b c1		 mov	 eax, ecx
+  0147f	89 85 74 02 00
 	00		 mov	 DWORD PTR iloœæ_pieniêdzy$[rbp], eax
 
-; 260  : #if styl_liczenia_wygranej == 1
-; 261  : 				iloœæ_pieniêdzy += kwota_zak³adu;
+; 258  : #if styl_liczenia_wygranej == 1 //Kompilacja je¿eli styl_liczenia_wygranej == 1
+; 259  : 				iloœæ_pieniêdzy += kwota_zak³adu; //Dopisanie do salda kwoty zak³adu
 
-  01539	80 bd b4 09 00
+  01485	80 bd b4 09 00
 	00 00		 cmp	 BYTE PTR $T35[rbp], 0
-  01540	75 0c		 jne	 SHORT $LN141@main
-  01542	48 8d 0d 00 00
+  0148c	75 0c		 jne	 SHORT $LN139@main
+  0148e	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$0
-  01549	e8 00 00 00 00	 call	 _RTC_UninitUse
-$LN141@main:
-  0154e	8b 85 94 02 00
+  01495	e8 00 00 00 00	 call	 _RTC_UninitUse
+$LN139@main:
+  0149a	8b 85 94 02 00
 	00		 mov	 eax, DWORD PTR kwota_zak³adu$[rbp]
-  01554	8b 8d 74 02 00
+  014a0	8b 8d 74 02 00
 	00		 mov	 ecx, DWORD PTR iloœæ_pieniêdzy$[rbp]
-  0155a	03 c8		 add	 ecx, eax
-  0155c	8b c1		 mov	 eax, ecx
-  0155e	89 85 74 02 00
+  014a6	03 c8		 add	 ecx, eax
+  014a8	8b c1		 mov	 eax, ecx
+  014aa	89 85 74 02 00
 	00		 mov	 DWORD PTR iloœæ_pieniêdzy$[rbp], eax
 
-; 262  : #endif // styl_liczenia_wygranej
-; 263  : 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
+; 260  : #endif // styl_liczenia_wygranej
+; 261  : 
+; 262  : 				log << " Wygrywasz " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie wygranej zak³adu
 
-  01564	48 8d 85 40 01
+  014b0	48 8d 85 40 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  0156b	48 85 c0	 test	 rax, rax
-  0156e	74 14		 je	 SHORT $LN106@main
-  01570	48 8d 85 40 01
+  014b7	48 85 c0	 test	 rax, rax
+  014ba	74 14		 je	 SHORT $LN104@main
+  014bc	48 8d 85 40 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  01577	48 83 c0 10	 add	 rax, 16
-  0157b	48 89 85 08 0a
-	00 00		 mov	 QWORD PTR tv947[rbp], rax
-  01582	eb 0b		 jmp	 SHORT $LN107@main
-$LN106@main:
-  01584	48 c7 85 08 0a
+  014c3	48 83 c0 10	 add	 rax, 16
+  014c7	48 89 85 08 0a
+	00 00		 mov	 QWORD PTR tv921[rbp], rax
+  014ce	eb 0b		 jmp	 SHORT $LN105@main
+$LN104@main:
+  014d0	48 c7 85 08 0a
 	00 00 00 00 00
-	00		 mov	 QWORD PTR tv947[rbp], 0
-$LN107@main:
-  0158f	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
-  01596	48 8b 8d 08 0a
-	00 00		 mov	 rcx, QWORD PTR tv947[rbp]
-  0159d	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  015a2	8b 95 74 02 00
-	00		 mov	 edx, DWORD PTR iloœæ_pieniêdzy$[rbp]
-  015a8	48 8b c8	 mov	 rcx, rax
-  015ab	ff 15 00 00 00
+	00		 mov	 QWORD PTR tv921[rbp], 0
+$LN105@main:
+  014db	80 bd d4 09 00
+	00 00		 cmp	 BYTE PTR $T36[rbp], 0
+  014e2	75 0c		 jne	 SHORT $LN140@main
+  014e4	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
+  014eb	e8 00 00 00 00	 call	 _RTC_UninitUse
+$LN140@main:
+  014f0	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GPFIMODH@?5Wygrywasz?5?$AA@
+  014f7	48 8b 8d 08 0a
+	00 00		 mov	 rcx, QWORD PTR tv921[rbp]
+  014fe	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  01503	8b 95 d4 02 00
+	00		 mov	 edx, DWORD PTR wygrana$[rbp]
+  01509	48 8b c8	 mov	 rcx, rax
+  0150c	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
-  015b1	48 8d 15 00 00
+  01512	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  015b8	48 8b c8	 mov	 rcx, rax
-  015bb	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  015c0	48 8d 15 00 00
+  01519	48 8b c8	 mov	 rcx, rax
+  0151c	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+
+; 263  : 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+
+  01521	48 8d 85 40 01
+	00 00		 lea	 rax, QWORD PTR log$[rbp]
+  01528	48 85 c0	 test	 rax, rax
+  0152b	74 14		 je	 SHORT $LN106@main
+  0152d	48 8d 85 40 01
+	00 00		 lea	 rax, QWORD PTR log$[rbp]
+  01534	48 83 c0 10	 add	 rax, 16
+  01538	48 89 85 08 0a
+	00 00		 mov	 QWORD PTR tv935[rbp], rax
+  0153f	eb 0b		 jmp	 SHORT $LN107@main
+$LN106@main:
+  01541	48 c7 85 08 0a
+	00 00 00 00 00
+	00		 mov	 QWORD PTR tv935[rbp], 0
+$LN107@main:
+  0154c	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
+  01553	48 8b 8d 08 0a
+	00 00		 mov	 rcx, QWORD PTR tv935[rbp]
+  0155a	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  0155f	8b 95 74 02 00
+	00		 mov	 edx, DWORD PTR iloœæ_pieniêdzy$[rbp]
+  01565	48 8b c8	 mov	 rcx, rax
+  01568	ff 15 00 00 00
+	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+  0156e	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
+  01575	48 8b c8	 mov	 rcx, rax
+  01578	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  0157d	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z ; std::endl<char,std::char_traits<char> >
-  015c7	48 8b c8	 mov	 rcx, rax
-  015ca	ff 15 00 00 00
+  01584	48 8b c8	 mov	 rcx, rax
+  01587	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 264  : 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
+; 264  : 				log_ogólny << " Wygrywasz " << wygrana << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie wygranej zak³adu
+
+  0158d	80 bd d4 09 00
+	00 00		 cmp	 BYTE PTR $T36[rbp], 0
+  01594	75 0c		 jne	 SHORT $LN141@main
+  01596	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
+  0159d	e8 00 00 00 00	 call	 _RTC_UninitUse
+$LN141@main:
+  015a2	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GPFIMODH@?5Wygrywasz?5?$AA@
+  015a9	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
+  015ad	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  015b2	8b 95 d4 02 00
+	00		 mov	 edx, DWORD PTR wygrana$[rbp]
+  015b8	48 8b c8	 mov	 rcx, rax
+  015bb	ff 15 00 00 00
+	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+  015c1	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
+  015c8	48 8b c8	 mov	 rcx, rax
+  015cb	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+
+; 265  : 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
 
   015d0	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
@@ -25818,7 +25819,7 @@ $LN107@main:
   01608	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 265  : 				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych //Zapisanie do plik wpisanych do bufora danych
+; 266  : 				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 
   0160e	48 8d 85 50 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp+16]
@@ -25826,14 +25827,14 @@ $LN107@main:
   01618	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 266  : 				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+; 267  : 				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 
   0161e	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
   01622	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 267  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 268  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 268  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+; 269  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   01628	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -25841,17 +25842,13 @@ $LN107@main:
 	00 00		 mov	 rcx, QWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
   01636	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 269  : #endif // stan_dŸwiêków
-; 270  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 271  : 				Sleep(czas_przerwy_dzwiêku);
+; 270  : 				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
 
   0163b	b9 f4 01 00 00	 mov	 ecx, 500		; 000001f4H
   01640	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_Sleep
 
-; 272  : #endif // stan_dŸwiêków
-; 273  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 274  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 271  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   01646	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -25859,17 +25856,13 @@ $LN107@main:
 	00 00		 mov	 rcx, QWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
   01654	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 275  : #endif // stan_dŸwiêków
-; 276  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 277  : 				Sleep(czas_przerwy_dzwiêku);
+; 272  : 				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
 
   01659	b9 f4 01 00 00	 mov	 ecx, 500		; 000001f4H
   0165e	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_Sleep
 
-; 278  : #endif // stan_dŸwiêków
-; 279  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 280  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 273  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   01664	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -25879,9 +25872,9 @@ $LN107@main:
   01677	e9 c7 03 00 00	 jmp	 $LN78@main
 $LN80@main:
 
-; 281  : #endif // stan_dŸwiêków
-; 282  : 			}
-; 283  : 			else if (wygrana == (kwota_zak³adu / 2))
+; 274  : #endif // stan_dŸwiêków
+; 275  : 			}
+; 276  : 			else if (wygrana == (kwota_zak³adu / 2)) //Je¿eli wygrana jest równa po³owie kwocie zak³adu to znaczy, ¿e dostaje siê zwrot po³owy kwoty zak³adu
 
   0167c	80 bd b4 09 00
 	00 00		 cmp	 BYTE PTR $T35[rbp], 0
@@ -25907,8 +25900,8 @@ $LN143@main:
   016b7	0f 85 d9 01 00
 	00		 jne	 $LN82@main
 
-; 284  : 			{
-; 285  : 				log_ogólny << " Dostajesz polowe zak³adu " << wygrana << "$";
+; 277  : 			{
+; 278  : 				iloœæ_pieniêdzy += wygrana; //Dopisanie do salda kwoty zwrotu z zak³adu
 
   016bd	80 bd d4 09 00
 	00 00		 cmp	 BYTE PTR $T36[rbp], 0
@@ -25917,115 +25910,115 @@ $LN143@main:
 	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
   016cd	e8 00 00 00 00	 call	 _RTC_UninitUse
 $LN144@main:
-  016d2	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@
-  016d9	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
-  016dd	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  016e2	8b 95 d4 02 00
-	00		 mov	 edx, DWORD PTR wygrana$[rbp]
-  016e8	48 8b c8	 mov	 rcx, rax
-  016eb	ff 15 00 00 00
-	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
-  016f1	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  016f8	48 8b c8	 mov	 rcx, rax
-  016fb	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-
-; 286  : 				log << " Dostajesz polowe zak³adu " << wygrana << "$";
-
-  01700	48 8d 85 40 01
-	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  01707	48 85 c0	 test	 rax, rax
-  0170a	74 14		 je	 SHORT $LN108@main
-  0170c	48 8d 85 40 01
-	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  01713	48 83 c0 10	 add	 rax, 16
-  01717	48 89 85 08 0a
-	00 00		 mov	 QWORD PTR tv1011[rbp], rax
-  0171e	eb 0b		 jmp	 SHORT $LN109@main
-$LN108@main:
-  01720	48 c7 85 08 0a
-	00 00 00 00 00
-	00		 mov	 QWORD PTR tv1011[rbp], 0
-$LN109@main:
-  0172b	80 bd d4 09 00
-	00 00		 cmp	 BYTE PTR $T36[rbp], 0
-  01732	75 0c		 jne	 SHORT $LN145@main
-  01734	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
-  0173b	e8 00 00 00 00	 call	 _RTC_UninitUse
-$LN145@main:
-  01740	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@
-  01747	48 8b 8d 08 0a
-	00 00		 mov	 rcx, QWORD PTR tv1011[rbp]
-  0174e	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  01753	8b 95 d4 02 00
-	00		 mov	 edx, DWORD PTR wygrana$[rbp]
-  01759	48 8b c8	 mov	 rcx, rax
-  0175c	ff 15 00 00 00
-	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
-  01762	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  01769	48 8b c8	 mov	 rcx, rax
-  0176c	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-
-; 287  : 				iloœæ_pieniêdzy += wygrana;
-
-  01771	80 bd d4 09 00
-	00 00		 cmp	 BYTE PTR $T36[rbp], 0
-  01778	75 0c		 jne	 SHORT $LN146@main
-  0177a	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
-  01781	e8 00 00 00 00	 call	 _RTC_UninitUse
-$LN146@main:
-  01786	8b 85 d4 02 00
+  016d2	8b 85 d4 02 00
 	00		 mov	 eax, DWORD PTR wygrana$[rbp]
-  0178c	8b 8d 74 02 00
+  016d8	8b 8d 74 02 00
 	00		 mov	 ecx, DWORD PTR iloœæ_pieniêdzy$[rbp]
-  01792	03 c8		 add	 ecx, eax
-  01794	8b c1		 mov	 eax, ecx
-  01796	89 85 74 02 00
+  016de	03 c8		 add	 ecx, eax
+  016e0	8b c1		 mov	 eax, ecx
+  016e2	89 85 74 02 00
 	00		 mov	 DWORD PTR iloœæ_pieniêdzy$[rbp], eax
 
-; 288  : 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
+; 279  : 				log << " Dostajesz polowe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie zwrotu zak³adu
 
-  0179c	48 8d 85 40 01
+  016e8	48 8d 85 40 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  017a3	48 85 c0	 test	 rax, rax
-  017a6	74 14		 je	 SHORT $LN110@main
-  017a8	48 8d 85 40 01
+  016ef	48 85 c0	 test	 rax, rax
+  016f2	74 14		 je	 SHORT $LN108@main
+  016f4	48 8d 85 40 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  017af	48 83 c0 10	 add	 rax, 16
-  017b3	48 89 85 08 0a
-	00 00		 mov	 QWORD PTR tv1026[rbp], rax
-  017ba	eb 0b		 jmp	 SHORT $LN111@main
-$LN110@main:
-  017bc	48 c7 85 08 0a
+  016fb	48 83 c0 10	 add	 rax, 16
+  016ff	48 89 85 08 0a
+	00 00		 mov	 QWORD PTR tv1000[rbp], rax
+  01706	eb 0b		 jmp	 SHORT $LN109@main
+$LN108@main:
+  01708	48 c7 85 08 0a
 	00 00 00 00 00
-	00		 mov	 QWORD PTR tv1026[rbp], 0
-$LN111@main:
-  017c7	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
-  017ce	48 8b 8d 08 0a
-	00 00		 mov	 rcx, QWORD PTR tv1026[rbp]
-  017d5	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  017da	8b 95 74 02 00
-	00		 mov	 edx, DWORD PTR iloœæ_pieniêdzy$[rbp]
-  017e0	48 8b c8	 mov	 rcx, rax
-  017e3	ff 15 00 00 00
+	00		 mov	 QWORD PTR tv1000[rbp], 0
+$LN109@main:
+  01713	80 bd d4 09 00
+	00 00		 cmp	 BYTE PTR $T36[rbp], 0
+  0171a	75 0c		 jne	 SHORT $LN145@main
+  0171c	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
+  01723	e8 00 00 00 00	 call	 _RTC_UninitUse
+$LN145@main:
+  01728	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@
+  0172f	48 8b 8d 08 0a
+	00 00		 mov	 rcx, QWORD PTR tv1000[rbp]
+  01736	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  0173b	8b 95 d4 02 00
+	00		 mov	 edx, DWORD PTR wygrana$[rbp]
+  01741	48 8b c8	 mov	 rcx, rax
+  01744	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
-  017e9	48 8d 15 00 00
+  0174a	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  017f0	48 8b c8	 mov	 rcx, rax
-  017f3	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  017f8	48 8d 15 00 00
+  01751	48 8b c8	 mov	 rcx, rax
+  01754	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+
+; 280  : 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+
+  01759	48 8d 85 40 01
+	00 00		 lea	 rax, QWORD PTR log$[rbp]
+  01760	48 85 c0	 test	 rax, rax
+  01763	74 14		 je	 SHORT $LN110@main
+  01765	48 8d 85 40 01
+	00 00		 lea	 rax, QWORD PTR log$[rbp]
+  0176c	48 83 c0 10	 add	 rax, 16
+  01770	48 89 85 08 0a
+	00 00		 mov	 QWORD PTR tv1014[rbp], rax
+  01777	eb 0b		 jmp	 SHORT $LN111@main
+$LN110@main:
+  01779	48 c7 85 08 0a
+	00 00 00 00 00
+	00		 mov	 QWORD PTR tv1014[rbp], 0
+$LN111@main:
+  01784	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
+  0178b	48 8b 8d 08 0a
+	00 00		 mov	 rcx, QWORD PTR tv1014[rbp]
+  01792	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  01797	8b 95 74 02 00
+	00		 mov	 edx, DWORD PTR iloœæ_pieniêdzy$[rbp]
+  0179d	48 8b c8	 mov	 rcx, rax
+  017a0	ff 15 00 00 00
+	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+  017a6	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
+  017ad	48 8b c8	 mov	 rcx, rax
+  017b0	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  017b5	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z ; std::endl<char,std::char_traits<char> >
-  017ff	48 8b c8	 mov	 rcx, rax
-  01802	ff 15 00 00 00
+  017bc	48 8b c8	 mov	 rcx, rax
+  017bf	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 289  : 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
+; 281  : 				log_ogólny << " Dostajesz polowe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie zwrotu zak³adu
+
+  017c5	80 bd d4 09 00
+	00 00		 cmp	 BYTE PTR $T36[rbp], 0
+  017cc	75 0c		 jne	 SHORT $LN146@main
+  017ce	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$2
+  017d5	e8 00 00 00 00	 call	 _RTC_UninitUse
+$LN146@main:
+  017da	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@
+  017e1	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
+  017e5	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  017ea	8b 95 d4 02 00
+	00		 mov	 edx, DWORD PTR wygrana$[rbp]
+  017f0	48 8b c8	 mov	 rcx, rax
+  017f3	ff 15 00 00 00
+	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+  017f9	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
+  01800	48 8b c8	 mov	 rcx, rax
+  01803	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+
+; 282  : 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
 
   01808	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
@@ -26046,7 +26039,7 @@ $LN111@main:
   01840	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 290  : 				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+; 283  : 				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 
   01846	48 8d 85 50 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp+16]
@@ -26054,14 +26047,14 @@ $LN111@main:
   01850	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 291  : 				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+; 284  : 				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 
   01856	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
   0185a	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 292  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 293  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 285  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+; 286  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   01860	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -26069,17 +26062,13 @@ $LN111@main:
 	00 00		 mov	 rcx, QWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
   0186e	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 294  : #endif // stan_dŸwiêków
-; 295  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 296  : 				Sleep(czas_przerwy_dzwiêku);
+; 287  : 				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
 
   01873	b9 f4 01 00 00	 mov	 ecx, 500		; 000001f4H
   01878	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_Sleep
 
-; 297  : #endif // stan_dŸwiêków
-; 298  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 299  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 288  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   0187e	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -26089,9 +26078,9 @@ $LN111@main:
   01891	e9 ad 01 00 00	 jmp	 $LN78@main
 $LN82@main:
 
-; 300  : #endif // stan_dŸwiêków
-; 301  : 			}
-; 302  : 			else if (wygrana == 0)
+; 289  : #endif // stan_dŸwiêków
+; 290  : 			}
+; 291  : 			else if (wygrana == 0) //Je¿eli wygrana jest równa 0 to znaczy, ¿e siê zak³ad przegra³o
 
   01896	80 bd d4 09 00
 	00 00		 cmp	 BYTE PTR $T36[rbp], 0
@@ -26105,107 +26094,107 @@ $LN147@main:
   018b2	0f 85 8b 01 00
 	00		 jne	 $LN78@main
 
-; 303  : 			{
-; 304  : 				log_ogólny << " Przegrales " << kwota_zak³adu << "$";
+; 292  : 			{
+; 293  : 				log << " Przegrales " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o przegranej kwocie
 
-  018b8	80 bd b4 09 00
-	00 00		 cmp	 BYTE PTR $T35[rbp], 0
-  018bf	75 0c		 jne	 SHORT $LN148@main
-  018c1	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$0
-  018c8	e8 00 00 00 00	 call	 _RTC_UninitUse
-$LN148@main:
-  018cd	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@
-  018d4	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
-  018d8	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  018dd	8b 95 94 02 00
-	00		 mov	 edx, DWORD PTR kwota_zak³adu$[rbp]
-  018e3	48 8b c8	 mov	 rcx, rax
-  018e6	ff 15 00 00 00
-	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
-  018ec	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  018f3	48 8b c8	 mov	 rcx, rax
-  018f6	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-
-; 305  : 				log << " Przegrales " << kwota_zak³adu << "$";
-
-  018fb	48 8d 85 40 01
+  018b8	48 8d 85 40 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  01902	48 85 c0	 test	 rax, rax
-  01905	74 14		 je	 SHORT $LN112@main
-  01907	48 8d 85 40 01
+  018bf	48 85 c0	 test	 rax, rax
+  018c2	74 14		 je	 SHORT $LN112@main
+  018c4	48 8d 85 40 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  0190e	48 83 c0 10	 add	 rax, 16
-  01912	48 89 85 08 0a
-	00 00		 mov	 QWORD PTR tv1086[rbp], rax
-  01919	eb 0b		 jmp	 SHORT $LN113@main
+  018cb	48 83 c0 10	 add	 rax, 16
+  018cf	48 89 85 08 0a
+	00 00		 mov	 QWORD PTR tv1074[rbp], rax
+  018d6	eb 0b		 jmp	 SHORT $LN113@main
 $LN112@main:
-  0191b	48 c7 85 08 0a
+  018d8	48 c7 85 08 0a
 	00 00 00 00 00
-	00		 mov	 QWORD PTR tv1086[rbp], 0
+	00		 mov	 QWORD PTR tv1074[rbp], 0
 $LN113@main:
-  01926	80 bd b4 09 00
+  018e3	80 bd b4 09 00
 	00 00		 cmp	 BYTE PTR $T35[rbp], 0
-  0192d	75 0c		 jne	 SHORT $LN149@main
-  0192f	48 8d 0d 00 00
+  018ea	75 0c		 jne	 SHORT $LN148@main
+  018ec	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$0
-  01936	e8 00 00 00 00	 call	 _RTC_UninitUse
-$LN149@main:
-  0193b	48 8d 15 00 00
+  018f3	e8 00 00 00 00	 call	 _RTC_UninitUse
+$LN148@main:
+  018f8	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@
-  01942	48 8b 8d 08 0a
-	00 00		 mov	 rcx, QWORD PTR tv1086[rbp]
-  01949	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  0194e	8b 95 94 02 00
+  018ff	48 8b 8d 08 0a
+	00 00		 mov	 rcx, QWORD PTR tv1074[rbp]
+  01906	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  0190b	8b 95 94 02 00
 	00		 mov	 edx, DWORD PTR kwota_zak³adu$[rbp]
-  01954	48 8b c8	 mov	 rcx, rax
-  01957	ff 15 00 00 00
+  01911	48 8b c8	 mov	 rcx, rax
+  01914	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
-  0195d	48 8d 15 00 00
+  0191a	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  01964	48 8b c8	 mov	 rcx, rax
-  01967	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  01921	48 8b c8	 mov	 rcx, rax
+  01924	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 306  : 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
+; 294  : 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
 
-  0196c	48 8d 85 40 01
+  01929	48 8d 85 40 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  01973	48 85 c0	 test	 rax, rax
-  01976	74 14		 je	 SHORT $LN114@main
-  01978	48 8d 85 40 01
+  01930	48 85 c0	 test	 rax, rax
+  01933	74 14		 je	 SHORT $LN114@main
+  01935	48 8d 85 40 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp]
-  0197f	48 83 c0 10	 add	 rax, 16
-  01983	48 89 85 08 0a
-	00 00		 mov	 QWORD PTR tv1100[rbp], rax
-  0198a	eb 0b		 jmp	 SHORT $LN115@main
+  0193c	48 83 c0 10	 add	 rax, 16
+  01940	48 89 85 08 0a
+	00 00		 mov	 QWORD PTR tv1088[rbp], rax
+  01947	eb 0b		 jmp	 SHORT $LN115@main
 $LN114@main:
-  0198c	48 c7 85 08 0a
+  01949	48 c7 85 08 0a
 	00 00 00 00 00
-	00		 mov	 QWORD PTR tv1100[rbp], 0
+	00		 mov	 QWORD PTR tv1088[rbp], 0
 $LN115@main:
-  01997	48 8d 15 00 00
+  01954	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
-  0199e	48 8b 8d 08 0a
-	00 00		 mov	 rcx, QWORD PTR tv1100[rbp]
-  019a5	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  019aa	8b 95 74 02 00
+  0195b	48 8b 8d 08 0a
+	00 00		 mov	 rcx, QWORD PTR tv1088[rbp]
+  01962	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  01967	8b 95 74 02 00
 	00		 mov	 edx, DWORD PTR iloœæ_pieniêdzy$[rbp]
-  019b0	48 8b c8	 mov	 rcx, rax
-  019b3	ff 15 00 00 00
+  0196d	48 8b c8	 mov	 rcx, rax
+  01970	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
-  019b9	48 8d 15 00 00
+  01976	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  019c0	48 8b c8	 mov	 rcx, rax
-  019c3	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  019c8	48 8d 15 00 00
+  0197d	48 8b c8	 mov	 rcx, rax
+  01980	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  01985	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z ; std::endl<char,std::char_traits<char> >
-  019cf	48 8b c8	 mov	 rcx, rax
-  019d2	ff 15 00 00 00
+  0198c	48 8b c8	 mov	 rcx, rax
+  0198f	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 307  : 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl;
+; 295  : 				log_ogólny << " Przegrales " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o przegranej kwocie
+
+  01995	80 bd b4 09 00
+	00 00		 cmp	 BYTE PTR $T35[rbp], 0
+  0199c	75 0c		 jne	 SHORT $LN149@main
+  0199e	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:main$rtcName$0
+  019a5	e8 00 00 00 00	 call	 _RTC_UninitUse
+$LN149@main:
+  019aa	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@
+  019b1	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
+  019b5	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  019ba	8b 95 94 02 00
+	00		 mov	 edx, DWORD PTR kwota_zak³adu$[rbp]
+  019c0	48 8b c8	 mov	 rcx, rax
+  019c3	ff 15 00 00 00
+	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+  019c9	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
+  019d0	48 8b c8	 mov	 rcx, rax
+  019d3	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+
+; 296  : 				log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
 
   019d8	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
@@ -26226,7 +26215,7 @@ $LN115@main:
   01a10	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 308  : 				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+; 297  : 				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 
   01a16	48 8d 85 50 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp+16]
@@ -26234,14 +26223,14 @@ $LN115@main:
   01a20	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 309  : 				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+; 298  : 				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 
   01a26	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
   01a2a	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 310  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 311  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 299  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+; 300  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   01a30	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -26250,14 +26239,14 @@ $LN115@main:
   01a3e	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 $LN78@main:
 
-; 312  : #endif // stan_dŸwiêków
-; 313  : 			}
-; 314  : 		co_kontynuowaæ = 'n';
+; 301  : #endif // stan_dŸwiêków
+; 302  : 			}
+; 303  : 		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
 
   01a43	c6 85 34 03 00
 	00 6e		 mov	 BYTE PTR co_kontynuowaæ$[rbp], 110 ; 0000006eH
 
-; 315  : 	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy));
+; 304  : 	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy)); //Pêtla dza³aj¹ca do czasu wartoœci fa³sz zwróconej przez funkcjê Czy_kontynuowaæ
 
   01a4a	48 8d 8d 74 02
 	00 00		 lea	 rcx, QWORD PTR iloœæ_pieniêdzy$[rbp]
@@ -26267,8 +26256,8 @@ $LN78@main:
   01a5b	0f 85 fe f3 ff
 	ff		 jne	 $LN26@main
 
-; 316  : 
-; 317  : 	cout << endl << "Koñczysz gre z wynikiem " << iloœæ_pieniêdzy << "$" << endl;
+; 305  : 
+; 306  : 	cout << endl << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Poinformowanie u¿ytkownika o saldzie konta
 
   01a61	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z ; std::endl<char,std::char_traits<char> >
@@ -26277,7 +26266,7 @@ $LN78@main:
   01a6f	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
   01a75	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BJ@LHJPAEHG@Ko?qczysz?5gre?5z?5wynikiem?5?$AA@
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@
   01a7c	48 8b c8	 mov	 rcx, rax
   01a7f	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
   01a84	8b 95 74 02 00
@@ -26295,7 +26284,7 @@ $LN78@main:
   01aac	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 318  : 	log << endl << "Koñczysz gre z wynikiem " << iloœæ_pieniêdzy << "$" << endl;
+; 307  : 	log << endl << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
 
   01ab2	48 8d 85 50 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp+16]
@@ -26305,7 +26294,7 @@ $LN78@main:
   01ac3	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
   01ac9	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BJ@LHJPAEHG@Ko?qczysz?5gre?5z?5wynikiem?5?$AA@
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@
   01ad0	48 8b c8	 mov	 rcx, rax
   01ad3	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
   01ad8	8b 95 74 02 00
@@ -26323,10 +26312,10 @@ $LN78@main:
   01b00	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 319  : 	log_ogólny << "Koñczysz gre z wynikiem " << iloœæ_pieniêdzy << "$" << endl;
+; 308  : 	log_ogólny << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
 
   01b06	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BJ@LHJPAEHG@Ko?qczysz?5gre?5z?5wynikiem?5?$AA@
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@
   01b0d	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
   01b11	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
   01b16	8b 95 74 02 00
@@ -26344,7 +26333,7 @@ $LN78@main:
   01b3e	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 320  : 	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+; 309  : 	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 
   01b44	48 8d 85 50 01
 	00 00		 lea	 rax, QWORD PTR log$[rbp+16]
@@ -26352,33 +26341,33 @@ $LN78@main:
   01b4e	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 321  : 	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+; 310  : 	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 
   01b54	48 8d 4d 10	 lea	 rcx, QWORD PTR log_ogólny$[rbp]
   01b58	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 
-; 322  : 	log.close();
+; 311  : 	log.close();
 
   01b5e	48 8d 8d 40 01
 	00 00		 lea	 rcx, QWORD PTR log$[rbp]
   01b65	e8 00 00 00 00	 call	 ?close@?$basic_fstream@DU?$char_traits@D@std@@@std@@QEAAXXZ ; std::basic_fstream<char,std::char_traits<char> >::close
 
-; 323  : 	remove("log_aktualny.txt");
+; 312  : 	remove("log_aktualny.txt"); //Usuniêcie pliku log aktualny poniewa¿ skoñczy³o siê grê
 
   01b6a	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:??_C@_0BB@KLDNCCFE@log_aktualny?4txt?$AA@
   01b71	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_remove
 
-; 324  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 325  : 	if (iloœæ_pieniêdzy == 0)
+; 313  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+; 314  : 	if (iloœæ_pieniêdzy == 0) //Je¿eli bud¿et jest równy 0 to
 
   01b77	83 bd 74 02 00
 	00 00		 cmp	 DWORD PTR iloœæ_pieniêdzy$[rbp], 0
   01b7e	75 43		 jne	 SHORT $LN85@main
 
-; 326  : 		for (int i = 0; i < 5; ++i)
+; 315  : 		for (int i = 0; i < 5; ++i) //Rozpoczêcie pêtli która wykona 5 obrotów
 
   01b80	c7 85 b4 05 00
 	00 00 00 00 00	 mov	 DWORD PTR i$29[rbp], 0
@@ -26394,8 +26383,8 @@ $LN29@main:
 	00 05		 cmp	 DWORD PTR i$29[rbp], 5
   01ba1	7d 20		 jge	 SHORT $LN85@main
 
-; 327  : 		{
-; 328  : 			cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 316  : 		{
+; 317  : 			cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   01ba3	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -26403,20 +26392,20 @@ $LN29@main:
 	00 00		 mov	 rcx, QWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
   01bb1	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 329  : 			Sleep(czas_przerwy_dzwiêku);
+; 318  : 			Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem //Przerwa przed kolejnym pikniêciem
 
   01bb6	b9 f4 01 00 00	 mov	 ecx, 500		; 000001f4H
   01bbb	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_Sleep
 
-; 330  : 		}
+; 319  : 		}
 
   01bc1	eb c9		 jmp	 SHORT $LN27@main
 $LN85@main:
 
-; 331  : #endif // stan_dŸwiêków
-; 332  : 
-; 333  : 	if (iloœæ_pieniêdzy > kwota_pocz¹tkowa && iloœæ_pieniêdzy < kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl;
+; 320  : #endif // stan_dŸwiêków
+; 321  : 
+; 322  : 	if (iloœæ_pieniêdzy > kwota_pocz¹tkowa && iloœæ_pieniêdzy < kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwiêkszenia bud¿etu
 
   01bc3	81 bd 74 02 00
 	00 e8 03 00 00	 cmp	 DWORD PTR iloœæ_pieniêdzy$[rbp], 1000 ; 000003e8H
@@ -26437,7 +26426,7 @@ $LN85@main:
   01bfe	eb 63		 jmp	 SHORT $LN87@main
 $LN86@main:
 
-; 334  : 	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl;
+; 323  : 	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwielokrotnienia przynajmniej 2 razy bud¿etu
 
   01c00	81 bd 74 02 00
 	00 d0 07 00 00	 cmp	 DWORD PTR iloœæ_pieniêdzy$[rbp], 2000 ; 000007d0H
@@ -26471,14 +26460,14 @@ $LN86@main:
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 $LN87@main:
 
-; 335  : 	system("pause");
+; 324  : 	system("pause"); //Wywo³anie funkcji wymagaj¹cej do zamkniêcia naciœniêcie dowolnego klawisza
 
   01c63	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:??_C@_05PDJBBECF@pause?$AA@
   01c6a	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_system
 
-; 336  : 	return 0;
+; 325  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
 
   01c70	c7 85 74 09 00
 	00 00 00 00 00	 mov	 DWORD PTR $T33[rbp], 0
@@ -26495,7 +26484,7 @@ $LN87@main:
   01c9d	8b 85 74 09 00
 	00		 mov	 eax, DWORD PTR $T33[rbp]
 
-; 337  : }
+; 326  : }
 
   01ca3	8b f8		 mov	 edi, eax
   01ca5	48 8d 4d e0	 lea	 rcx, QWORD PTR [rbp-32]
@@ -26549,12 +26538,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -26616,12 +26605,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -26684,12 +26673,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -26752,12 +26741,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -26820,12 +26809,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -26888,12 +26877,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -26956,12 +26945,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27024,12 +27013,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27092,12 +27081,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27164,12 +27153,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27235,12 +27224,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27307,12 +27296,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27379,12 +27368,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27451,12 +27440,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27523,12 +27512,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27595,12 +27584,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27667,12 +27656,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27739,12 +27728,12 @@ $T37 = 2552
 tv1220 = 2564
 tv1238 = 2568
 tv1236 = 2568
-tv1100 = 2568
-tv1086 = 2568
-tv1026 = 2568
-tv1011 = 2568
-tv947 = 2568
-tv931 = 2568
+tv1088 = 2568
+tv1074 = 2568
+tv1014 = 2568
+tv1000 = 2568
+tv935 = 2568
+tv921 = 2568
 tv851 = 2568
 tv775 = 2568
 tv715 = 2568
@@ -27784,7 +27773,7 @@ hCCI$ = 40
 __$ArrayPad$ = 248
 ?ShowCursor@@YAXXZ PROC					; ShowCursor, COMDAT
 
-; 592  : {
+; 581  : {
 
 $LN4:
   00000	40 55		 push	 rbp
@@ -27802,33 +27791,33 @@ $LN4:
   00028	48 89 85 f8 00
 	00 00		 mov	 QWORD PTR __$ArrayPad$[rbp], rax
 
-; 593  : 	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE);
+; 582  : 	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
   0002f	b9 f5 ff ff ff	 mov	 ecx, -11		; fffffff5H
   00034	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_GetStdHandle
   0003a	48 89 45 08	 mov	 QWORD PTR hConsoleOut$[rbp], rax
 
-; 594  : 	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
-; 595  : 	GetConsoleCursorInfo(hConsoleOut, &hCCI); //Przypisanie do zmiennej informacji o kursorze tekstowym w konsoli
+; 583  : 	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
+; 584  : 	GetConsoleCursorInfo(hConsoleOut, &hCCI); //Przypisanie do zmiennej informacji o kursorze tekstowym w konsoli
 
   0003e	48 8d 55 28	 lea	 rdx, QWORD PTR hCCI$[rbp]
   00042	48 8b 4d 08	 mov	 rcx, QWORD PTR hConsoleOut$[rbp]
   00046	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_GetConsoleCursorInfo
 
-; 596  : 	if (hCCI.bVisible != TRUE) //Sprawdzenie czy wartoœæ widocznoœci kursorsora tekstego w konsoli jest ró¿na od prawdy
+; 585  : 	if (hCCI.bVisible != TRUE) //Sprawdzenie czy wartoœæ widocznoœci kursorsora tekstego w konsoli jest ró¿na od prawdy
 
   0004c	83 7d 2c 01	 cmp	 DWORD PTR hCCI$[rbp+4], 1
   00050	74 15		 je	 SHORT $LN2@ShowCursor
 
-; 597  : 	{
-; 598  : 		hCCI.bVisible = TRUE;//Je¿eli tak, to zmiena widocznoœci kursora na widoczny
+; 586  : 	{
+; 587  : 		hCCI.bVisible = TRUE;//Je¿eli tak, to zmiena widocznoœci kursora na widoczny
 
   00052	c7 45 2c 01 00
 	00 00		 mov	 DWORD PTR hCCI$[rbp+4], 1
 
-; 599  : 		SetConsoleCursorInfo(hConsoleOut, &hCCI); //I ustawienie widocznoœci kursora zgodnie z poprzedni¹ zmienn¹
+; 588  : 		SetConsoleCursorInfo(hConsoleOut, &hCCI); //I ustawienie widocznoœci kursora zgodnie z poprzedni¹ zmienn¹
 
   00059	48 8d 55 28	 lea	 rdx, QWORD PTR hCCI$[rbp]
   0005d	48 8b 4d 08	 mov	 rcx, QWORD PTR hConsoleOut$[rbp]
@@ -27836,8 +27825,8 @@ $LN4:
 	00		 call	 QWORD PTR __imp_SetConsoleCursorInfo
 $LN2@ShowCursor:
 
-; 600  : 	}
-; 601  : }
+; 589  : 	}
+; 590  : }
 
   00067	48 8d 4d e0	 lea	 rcx, QWORD PTR [rbp-32]
   0006b	48 8d 15 00 00
@@ -27863,7 +27852,7 @@ hCCI$ = 40
 __$ArrayPad$ = 248
 ?HideCursor@@YAXXZ PROC					; HideCursor, COMDAT
 
-; 583  : {
+; 572  : {
 
 $LN3:
   00000	40 55		 push	 rbp
@@ -27881,34 +27870,34 @@ $LN3:
   00028	48 89 85 f8 00
 	00 00		 mov	 QWORD PTR __$ArrayPad$[rbp], rax
 
-; 584  : 	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
+; 573  : 	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
 
   0002f	b9 f5 ff ff ff	 mov	 ecx, -11		; fffffff5H
   00034	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_GetStdHandle
   0003a	48 89 45 08	 mov	 QWORD PTR hConsoleOut$[rbp], rax
 
-; 585  : 	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
-; 586  : 	GetConsoleCursorInfo(hConsoleOut, &hCCI); //Przypisanie do zmiennej informacji o kursorze tekstowym w konsoli
+; 574  : 	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
+; 575  : 	GetConsoleCursorInfo(hConsoleOut, &hCCI); //Przypisanie do zmiennej informacji o kursorze tekstowym w konsoli
 
   0003e	48 8d 55 28	 lea	 rdx, QWORD PTR hCCI$[rbp]
   00042	48 8b 4d 08	 mov	 rcx, QWORD PTR hConsoleOut$[rbp]
   00046	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_GetConsoleCursorInfo
 
-; 587  : 	hCCI.bVisible = FALSE; //Zmiena widocznoœci kursora na niewidoczny
+; 576  : 	hCCI.bVisible = FALSE; //Zmiena widocznoœci kursora na niewidoczny
 
   0004c	c7 45 2c 00 00
 	00 00		 mov	 DWORD PTR hCCI$[rbp+4], 0
 
-; 588  : 	SetConsoleCursorInfo(hConsoleOut, &hCCI); //Ustawienie widocznoœci kursora zgodnie z poprzedni¹ zmienn¹
+; 577  : 	SetConsoleCursorInfo(hConsoleOut, &hCCI); //Ustawienie widocznoœci kursora zgodnie z poprzedni¹ zmienn¹
 
   00053	48 8d 55 28	 lea	 rdx, QWORD PTR hCCI$[rbp]
   00057	48 8b 4d 08	 mov	 rcx, QWORD PTR hConsoleOut$[rbp]
   0005b	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_SetConsoleCursorInfo
 
-; 589  : }
+; 578  : }
 
   00061	48 8d 4d e0	 lea	 rcx, QWORD PTR [rbp-32]
   00065	48 8d 15 00 00
@@ -27933,7 +27922,7 @@ h_wyj$ = 8
 num_of_col$ = 256
 ?Change_Col@@YAXH@Z PROC				; Change_Col, COMDAT
 
-; 577  : {
+; 566  : {
 
 $LN3:
   00000	89 4c 24 08	 mov	 DWORD PTR [rsp+8], ecx
@@ -27949,14 +27938,14 @@ $LN3:
   00021	8b 8c 24 28 01
 	00 00		 mov	 ecx, DWORD PTR [rsp+296]
 
-; 578  : 	HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
+; 567  : 	HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
 
   00028	b9 f5 ff ff ff	 mov	 ecx, -11		; fffffff5H
   0002d	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_GetStdHandle
   00033	48 89 45 08	 mov	 QWORD PTR h_wyj$[rbp], rax
 
-; 579  : 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
+; 568  : 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
 
   00037	0f b7 95 00 01
 	00 00		 movzx	 edx, WORD PTR num_of_col$[rbp]
@@ -27964,7 +27953,7 @@ $LN3:
   00042	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_SetConsoleTextAttribute
 
-; 580  : }
+; 569  : }
 
   00048	48 8d a5 e8 00
 	00 00		 lea	 rsp, QWORD PTR [rbp+232]
@@ -27987,7 +27976,7 @@ od_liczby$ = 6768
 do_liczby$ = 6776
 ?Wylosuj@@YAHHH@Z PROC					; Wylosuj, COMDAT
 
-; 604  : {
+; 593  : {
 
 $LN6:
   00000	89 54 24 10	 mov	 DWORD PTR [rsp+16], edx
@@ -28013,7 +28002,7 @@ $LN6:
   00047	48 89 85 48 1a
 	00 00		 mov	 QWORD PTR __$ArrayPad$[rbp], rax
 
-; 605  : 	random_device generator; //Generator liczb losowych, który generuje niedeterministyczne liczby losowe, jeœli s¹ obs³ugiwane.
+; 594  : 	random_device generator; //Generator liczb losowych, który generuje niedeterministyczne liczby losowe, jeœli s¹ obs³ugiwane.
 
   0004e	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_00CNPNBAHC@?$AA@
@@ -28030,7 +28019,7 @@ $LN6:
 	00 00		 lea	 rcx, QWORD PTR $T7[rbp]
   0007a	e8 00 00 00 00	 call	 ??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::~basic_string<char,std::char_traits<char>,std::allocator<char> >
 
-; 606  : 	if (generator.entropy() != 32) //Je¿eli entropia jest mniejsza od 32 oznacza, ¿e komputer nie dysponuje mo¿liwoœci¹ u¿ycia tego generatora liczb losowy
+; 595  : 	if (generator.entropy() != 32) //Je¿eli entropia jest mniejsza od 32 oznacza, ¿e komputer nie dysponuje mo¿liwoœci¹ u¿ycia tego generatora liczb losowy
 
   0007f	48 8d 4d 04	 lea	 rcx, QWORD PTR generator$[rbp]
   00083	e8 00 00 00 00	 call	 ?entropy@random_device@std@@QEAANXZ ; std::random_device::entropy
@@ -28040,9 +28029,9 @@ $LN6:
   00092	74 14		 je	 SHORT $LN2@Wylosuj
 $LN5@Wylosuj:
 
-; 607  : 	{
-; 608  : #if defined(__x86_64__) || defined(_M_X64) || defined(__x86_64) || defined(__amd64) || defined(__amd64__) || defined(_M_AMD64) //Sprawdzenie czy sytem operacyjny jest 64-bitowy
-; 609  : 		mt19937_64 generator((unsigned int)time(NULL)); //Dla 64 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 64 bitowej
+; 596  : 	{
+; 597  : #if defined(__x86_64__) || defined(_M_X64) || defined(__x86_64) || defined(__amd64) || defined(__amd64__) || defined(_M_AMD64) //Sprawdzenie czy sytem operacyjny jest 64-bitowy
+; 598  : 		mt19937_64 generator((unsigned int)time(NULL)); //Dla 64 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 64 bitowej
 
   00094	33 c9		 xor	 ecx, ecx
   00096	e8 00 00 00 00	 call	 time
@@ -28052,11 +28041,11 @@ $LN5@Wylosuj:
   000a3	e8 00 00 00 00	 call	 ??0?$mersenne_twister_engine@_K$0EA@$0BDI@$0JM@$0BP@$0?EKPNJAKFFGJJOGBH@$0BN@$0FFFFFFFFFFFFFFFF@$0BB@$0HBNGHPPPONKGAAAA@$0CF@$0?IBBCAAAAAAAAA@$0CL@$0FIFBPECNEMJFHPCN@@std@@QEAA@_K@Z ; std::mersenne_twister_engine<unsigned __int64,64,312,156,31,-5403634167711393303,29,6148914691236517205,17,8202884508482404352,37,-2270628950310912,43,6364136223846793005>::mersenne_twister_engine<unsigned __int64,64,312,156,31,-5403634167711393303,29,6148914691236517205,17,8202884508482404352,37,-2270628950310912,43,6364136223846793005>
 $LN2@Wylosuj:
 
-; 610  : #else
-; 611  : 		mt19937 generator((unsigned int)time(NULL)); //Dla 32 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 32 bitowej
-; 612  : #endif
-; 613  : 	}
-; 614  : 	uniform_int_distribution<int> distribution(od_liczby, do_liczby); //Wsazuje zakres generowanych liczb
+; 599  : #else
+; 600  : 		mt19937 generator((unsigned int)time(NULL)); //Dla 32 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 32 bitowej
+; 601  : #endif
+; 602  : 	}
+; 603  : 	uniform_int_distribution<int> distribution(od_liczby, do_liczby); //Wsazuje zakres generowanych liczb
 
   000a8	44 8b 85 78 1a
 	00 00		 mov	 r8d, DWORD PTR do_liczby$[rbp]
@@ -28066,14 +28055,14 @@ $LN2@Wylosuj:
 	00 00		 lea	 rcx, QWORD PTR distribution$[rbp]
   000bc	e8 00 00 00 00	 call	 ??0?$uniform_int_distribution@H@std@@QEAA@HH@Z ; std::uniform_int_distribution<int>::uniform_int_distribution<int>
 
-; 615  : 	return distribution(generator); //Zwraca wygenerowan¹ liczbê
+; 604  : 	return distribution(generator); //Zwraca wygenerowan¹ liczbê
 
   000c1	48 8d 55 04	 lea	 rdx, QWORD PTR generator$[rbp]
   000c5	48 8d 8d d8 13
 	00 00		 lea	 rcx, QWORD PTR distribution$[rbp]
   000cc	e8 00 00 00 00	 call	 ??$?RVrandom_device@std@@@?$uniform_int@H@std@@QEBAHAEAVrandom_device@1@@Z ; std::uniform_int<int>::operator()<std::random_device>
 
-; 616  : }
+; 605  : }
 
   000d1	48 8b f8	 mov	 rdi, rax
   000d4	48 8d 4d e0	 lea	 rcx, QWORD PTR [rbp-32]
@@ -28158,7 +28147,7 @@ __$ArrayPad$ = 376
 iloœæ_pieniêdzy$ = 416
 ?Czy_Kontynuowaæ@@YA_NAEAH@Z PROC			; Czy_Kontynuowaæ, COMDAT
 
-; 557  : {
+; 546  : {
 
 $LN12:
   00000	48 89 4c 24 08	 mov	 QWORD PTR [rsp+8], rcx
@@ -28182,22 +28171,22 @@ $LN12:
   0003f	48 89 85 78 01
 	00 00		 mov	 QWORD PTR __$ArrayPad$[rbp], rax
 
-; 558  : 	string tak_nie; //Zadeklarowanie zmiennej typu string
+; 547  : 	string tak_nie; //Zadeklarowanie zmiennej typu string
 
   00046	48 8d 4d 08	 lea	 rcx, QWORD PTR tak_nie$[rbp]
   0004a	e8 00 00 00 00	 call	 ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::basic_string<char,std::char_traits<char>,std::allocator<char> >
   0004f	90		 npad	 1
 
-; 559  : 
-; 560  : 	if (iloœæ_pieniêdzy == 0) //Je¿eli posiadana iloœæ gotówki jest róna 0
+; 548  : 
+; 549  : 	if (iloœæ_pieniêdzy == 0) //Je¿eli posiadana iloœæ gotówki jest róna 0
 
   00050	48 8b 85 a0 01
 	00 00		 mov	 rax, QWORD PTR iloœæ_pieniêdzy$[rbp]
   00057	83 38 00	 cmp	 DWORD PTR [rax], 0
   0005a	75 3f		 jne	 SHORT $LN2@Czy_Kontyn
 
-; 561  : 	{
-; 562  : 		cout << "Nie mo¿esz kontynuowaæ, przegra³eœ wszystko" << endl; //Poinformowanie u¿ytkownika, ¿e jest bankrutem
+; 550  : 	{
+; 551  : 		cout << "Nie mo¿esz kontynuowaæ, przegra³eœ wszystko" << endl; //Poinformowanie u¿ytkownika, ¿e jest bankrutem
 
   0005c	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CM@BIICBBPD@Nie?5mo?$LPesz?5kontynuowa?f?0?5przegra?$LD@
@@ -28210,7 +28199,7 @@ $LN12:
   00079	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 563  : 		return 0; //Zwrot wartoœci 0, co oznacza, ¿e kolejna runda siê nie odbêdzie
+; 552  : 		return 0; //Zwrot wartoœci 0, co oznacza, ¿e kolejna runda siê nie odbêdzie
 
   0007f	c6 85 04 01 00
 	00 00		 mov	 BYTE PTR $T4[rbp], 0
@@ -28221,17 +28210,17 @@ $LN12:
   00096	e9 87 01 00 00	 jmp	 $LN1@Czy_Kontyn
 $LN2@Czy_Kontyn:
 
-; 564  : 	}
-; 565  : 
-; 566  : 	while (true) //Rozpoczêcie pêtli nieskoñczonej
+; 553  : 	}
+; 554  : 
+; 555  : 	while (true) //Rozpoczêcie pêtli nieskoñczonej
 
   0009b	33 c0		 xor	 eax, eax
   0009d	83 f8 01	 cmp	 eax, 1
   000a0	0f 84 73 01 00
 	00		 je	 $LN3@Czy_Kontyn
 
-; 567  : 	{
-; 568  : 		cout << "Na koncie masz " << iloœæ_pieniêdzy << "$, czy chcesz grac dalej('t' - tak, 'n' - nie) ?" << endl; //Pointormowanie o stanie konta i zapytanie o to czy gra dalej
+; 556  : 	{
+; 557  : 		cout << "Na koncie masz " << iloœæ_pieniêdzy << "$, czy chcesz grac dalej('t' - tak, 'n' - nie) ?" << endl; //Pointormowanie o stanie konta i zapytanie o to czy gra dalej
 
   000a6	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BA@KCLBOCHC@Na?5koncie?5masz?5?$AA@
@@ -28254,14 +28243,14 @@ $LN2@Czy_Kontyn:
   000e4	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 569  : 		cin >> tak_nie; //Pobranie od u¿ytkownika odpowiedzi na powy¿sze pytanie
+; 558  : 		cin >> tak_nie; //Pobranie od u¿ytkownika odpowiedzi na powy¿sze pytanie
 
   000ea	48 8d 55 08	 lea	 rdx, QWORD PTR tak_nie$[rbp]
   000ee	48 8b 0d 00 00
 	00 00		 mov	 rcx, QWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
   000f5	e8 00 00 00 00	 call	 ??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAEAV?$basic_istream@DU?$char_traits@D@std@@@0@AEAV10@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z ; std::operator>><char,std::char_traits<char>,std::allocator<char> >
 
-; 570  : 		if (tak_nie != "t" || tak_nie == "tak" || tak_nie == "Tak" || tak_nie == "TAK" || tak_nie == "n" || tak_nie == "nie" || tak_nie == "Nie" || tak_nie == "NIE") //Sprawdzenie czy odpowiedŸ pasuje do mo¿liwoœci
+; 559  : 		if (tak_nie != "t" || tak_nie == "tak" || tak_nie == "Tak" || tak_nie == "TAK" || tak_nie == "n" || tak_nie == "nie" || tak_nie == "Nie" || tak_nie == "NIE") //Sprawdzenie czy odpowiedŸ pasuje do mo¿liwoœci
 
   000fa	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PFHFFBPC@t?$AA@
@@ -28323,7 +28312,7 @@ $LN2@Czy_Kontyn:
   001b8	74 5a		 je	 SHORT $LN5@Czy_Kontyn
 $LN6@Czy_Kontyn:
 
-; 571  : 			if (tak_nie[0] == 't' || tak_nie[0] == 'T') return 1; //Je¿eli pasuje to sprawdzam czy pierwsza litera to t i zwracam wartoœæ 1
+; 560  : 			if (tak_nie[0] == 't' || tak_nie[0] == 'T') return 1; //Je¿eli pasuje to sprawdzam czy pierwsza litera to t i zwracam wartoœæ 1
 
   001ba	33 d2		 xor	 edx, edx
   001bc	48 8d 4d 08	 lea	 rcx, QWORD PTR tak_nie$[rbp]
@@ -28348,7 +28337,7 @@ $LN9@Czy_Kontyn:
   001f9	eb 19		 jmp	 SHORT $LN5@Czy_Kontyn
 $LN7@Czy_Kontyn:
 
-; 572  : 			else return 0; //W przeciwym wypadku zwracam wartoœæ 0
+; 561  : 			else return 0; //W przeciwym wypadku zwracam wartoœæ 0
 
   001fb	c6 85 44 01 00
 	00 00		 mov	 BYTE PTR $T6[rbp], 0
@@ -28359,12 +28348,12 @@ $LN7@Czy_Kontyn:
   00212	eb 0e		 jmp	 SHORT $LN1@Czy_Kontyn
 $LN5@Czy_Kontyn:
 
-; 573  : 	}
+; 562  : 	}
 
   00214	e9 82 fe ff ff	 jmp	 $LN2@Czy_Kontyn
 $LN3@Czy_Kontyn:
 
-; 574  : }
+; 563  : }
 
   00219	48 8d 4d 08	 lea	 rcx, QWORD PTR tak_nie$[rbp]
   0021d	e8 00 00 00 00	 call	 ??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::~basic_string<char,std::char_traits<char>,std::allocator<char> >
@@ -28449,7 +28438,7 @@ typ_zak³adu$ = 328
 wylosowana_liczba$ = 336
 ?SprawdŸ_Zak³ad@@YAHAEAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z PROC ; SprawdŸ_Zak³ad, COMDAT
 
-; 504  : {
+; 493  : {
 
 $LN61:
   00000	44 89 44 24 18	 mov	 DWORD PTR [rsp+24], r8d
@@ -28470,23 +28459,23 @@ $LN61:
 	00 00 fe ff ff
 	ff		 mov	 QWORD PTR $T2[rbp], -2
 
-; 505  : 	int wygrana = kwota; //Deklaracja zmiennej przechowywuj¹ca kwotê wygran¹ lub zwrócon¹ przy wylosowaniu 0
+; 494  : 	int wygrana = kwota; //Deklaracja zmiennej przechowywuj¹ca kwotê wygran¹ lub zwrócon¹ przy wylosowaniu 0
 
   0003f	48 8b 85 40 01
 	00 00		 mov	 rax, QWORD PTR kwota$[rbp]
   00046	8b 00		 mov	 eax, DWORD PTR [rax]
   00048	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
 
-; 506  : 
-; 507  : 	if (wylosowana_liczba == 0) //Warunek sprawdzaj¹cy czy wylosowano 0
+; 495  : 
+; 496  : 	if (wylosowana_liczba == 0) //Warunek sprawdzaj¹cy czy wylosowano 0
 
   0004b	83 bd 50 01 00
 	00 00		 cmp	 DWORD PTR wylosowana_liczba$[rbp], 0
   00052	0f 85 59 01 00
 	00		 jne	 $LN2@SprawdŸ_Z
 
-; 508  : 	{ //Je¿eli tak to
-; 509  : 		if (typ_zak³adu == "p") wygrana /= 2; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+; 497  : 	{ //Je¿eli tak to
+; 498  : 		if (typ_zak³adu == "p") wygrana /= 2; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
 
   00058	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01JBBJJEPG@p?$AA@
@@ -28504,7 +28493,7 @@ $LN61:
   0007d	e9 2a 01 00 00	 jmp	 $LN5@SprawdŸ_Z
 $LN4@SprawdŸ_Z:
 
-; 510  : 		else if (typ_zak³adu == "n") wygrana /= 2; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+; 499  : 		else if (typ_zak³adu == "n") wygrana /= 2; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
 
   00082	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EFFIKLCJ@n?$AA@
@@ -28522,7 +28511,7 @@ $LN4@SprawdŸ_Z:
   000a7	e9 00 01 00 00	 jmp	 $LN5@SprawdŸ_Z
 $LN6@SprawdŸ_Z:
 
-; 511  : 		else if (typ_zak³adu == "r") wygrana /= 2; //Je¿eli typ zak³adu by³ r to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+; 500  : 		else if (typ_zak³adu == "r") wygrana /= 2; //Je¿eli typ zak³adu by³ r to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
 
   000ac	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01KDCPPGHE@r?$AA@
@@ -28540,7 +28529,7 @@ $LN6@SprawdŸ_Z:
   000d1	e9 d6 00 00 00	 jmp	 $LN5@SprawdŸ_Z
 $LN8@SprawdŸ_Z:
 
-; 512  : 		else if (typ_zak³adu == "b") wygrana /= 2; //Je¿eli typ zak³adu by³ b to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+; 501  : 		else if (typ_zak³adu == "b") wygrana /= 2; //Je¿eli typ zak³adu by³ b to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
 
   000d6	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01OJONOECF@b?$AA@
@@ -28558,7 +28547,7 @@ $LN8@SprawdŸ_Z:
   000fb	e9 ac 00 00 00	 jmp	 $LN5@SprawdŸ_Z
 $LN10@SprawdŸ_Z:
 
-; 513  : 		else if (typ_zak³adu == "g") wygrana /= 2; //Je¿eli typ zak³adu by³ g to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+; 502  : 		else if (typ_zak³adu == "g") wygrana /= 2; //Je¿eli typ zak³adu by³ g to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
 
   00100	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01JEJKBAGA@g?$AA@
@@ -28576,7 +28565,7 @@ $LN10@SprawdŸ_Z:
   00125	e9 82 00 00 00	 jmp	 $LN5@SprawdŸ_Z
 $LN12@SprawdŸ_Z:
 
-; 514  : 		else if (typ_zak³adu == "d") wygrana /= 2; //Je¿eli typ zak³adu by³ d to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+; 503  : 		else if (typ_zak³adu == "d") wygrana /= 2; //Je¿eli typ zak³adu by³ d to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
 
   0012a	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01LPLHEDKD@d?$AA@
@@ -28594,7 +28583,7 @@ $LN12@SprawdŸ_Z:
   0014f	eb 5b		 jmp	 SHORT $LN5@SprawdŸ_Z
 $LN14@SprawdŸ_Z:
 
-; 515  : 		else if (typ_zak³adu[0] == 'k') wygrana *= 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
+; 504  : 		else if (typ_zak³adu[0] == 'k') wygrana *= 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
 
   00151	33 d2		 xor	 edx, edx
   00153	48 8b 8d 48 01
@@ -28608,7 +28597,7 @@ $LN14@SprawdŸ_Z:
   0016e	eb 3c		 jmp	 SHORT $LN5@SprawdŸ_Z
 $LN16@SprawdŸ_Z:
 
-; 516  : 		else if (typ_zak³adu[0] == 'w') wygrana *= 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
+; 505  : 		else if (typ_zak³adu[0] == 'w') wygrana *= 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
 
   00170	33 d2		 xor	 edx, edx
   00172	48 8b 8d 48 01
@@ -28622,7 +28611,7 @@ $LN16@SprawdŸ_Z:
   0018d	eb 1d		 jmp	 SHORT $LN5@SprawdŸ_Z
 $LN18@SprawdŸ_Z:
 
-; 517  : 		else if (typ_zak³adu[0] == '0') wygrana *= 35; //Je¿eli typ zak³adu by³ 0 to przegra³o siê zak³ad
+; 506  : 		else if (typ_zak³adu[0] == '0') wygrana *= 35; //Je¿eli typ zak³adu by³ 0 to przegra³o siê zak³ad
 
   0018f	33 d2		 xor	 edx, edx
   00191	48 8b 8d 48 01
@@ -28635,14 +28624,14 @@ $LN18@SprawdŸ_Z:
   001a9	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
 $LN5@SprawdŸ_Z:
 
-; 518  : 	}
-; 519  : 	else //Je¿eli wylosowana liczba nie jest zerem to
+; 507  : 	}
+; 508  : 	else //Je¿eli wylosowana liczba nie jest zerem to
 
   001ac	e9 7a 02 00 00	 jmp	 $LN3@SprawdŸ_Z
 $LN2@SprawdŸ_Z:
 
-; 520  : 	{
-; 521  : 		if (typ_zak³adu == "p") //Je¿eli typ zak³adu to p
+; 509  : 	{
+; 510  : 		if (typ_zak³adu == "p") //Je¿eli typ zak³adu to p
 
   001b1	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01JBBJJEPG@p?$AA@
@@ -28653,7 +28642,7 @@ $LN2@SprawdŸ_Z:
   001c7	85 c0		 test	 eax, eax
   001c9	74 26		 je	 SHORT $LN21@SprawdŸ_Z
 
-; 522  : 			if (wylosowana_liczba % 2 == 0) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest parzysta, je¿eli tak to wygrana jest 1:1
+; 511  : 			if (wylosowana_liczba % 2 == 0) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest parzysta, je¿eli tak to wygrana jest 1:1
 
   001cb	8b 85 50 01 00
 	00		 mov	 eax, DWORD PTR wylosowana_liczba$[rbp]
@@ -28668,7 +28657,7 @@ $LN2@SprawdŸ_Z:
   001e3	eb 07		 jmp	 SHORT $LN24@SprawdŸ_Z
 $LN23@SprawdŸ_Z:
 
-; 523  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest parzysta to przegra³o siê zak³ad
+; 512  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest parzysta to przegra³o siê zak³ad
 
   001e5	6b 45 04 00	 imul	 eax, DWORD PTR wygrana$[rbp], 0
   001e9	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
@@ -28676,7 +28665,7 @@ $LN24@SprawdŸ_Z:
   001ec	e9 3a 02 00 00	 jmp	 $LN3@SprawdŸ_Z
 $LN21@SprawdŸ_Z:
 
-; 524  : 		else if (typ_zak³adu == "n") //Je¿eli typ zak³adu to n
+; 513  : 		else if (typ_zak³adu == "n") //Je¿eli typ zak³adu to n
 
   001f1	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EFFIKLCJ@n?$AA@
@@ -28687,7 +28676,7 @@ $LN21@SprawdŸ_Z:
   00207	85 c0		 test	 eax, eax
   00209	74 27		 je	 SHORT $LN25@SprawdŸ_Z
 
-; 525  : 			if (wylosowana_liczba % 2 == 1) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest nieparzysta, je¿eli tak to wygrana jest 1:1
+; 514  : 			if (wylosowana_liczba % 2 == 1) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest nieparzysta, je¿eli tak to wygrana jest 1:1
 
   0020b	8b 85 50 01 00
 	00		 mov	 eax, DWORD PTR wylosowana_liczba$[rbp]
@@ -28702,7 +28691,7 @@ $LN21@SprawdŸ_Z:
   00224	eb 07		 jmp	 SHORT $LN28@SprawdŸ_Z
 $LN27@SprawdŸ_Z:
 
-; 526  : 			else wygrana *= 0; //Je¿eli obstawiony numer nie jest nieparzysta to przegra³o siê zak³ad
+; 515  : 			else wygrana *= 0; //Je¿eli obstawiony numer nie jest nieparzysta to przegra³o siê zak³ad
 
   00226	6b 45 04 00	 imul	 eax, DWORD PTR wygrana$[rbp], 0
   0022a	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
@@ -28710,7 +28699,7 @@ $LN28@SprawdŸ_Z:
   0022d	e9 f9 01 00 00	 jmp	 $LN3@SprawdŸ_Z
 $LN25@SprawdŸ_Z:
 
-; 527  : 		else if (typ_zak³adu == "r") //Je¿eli typ zak³adu to n
+; 516  : 		else if (typ_zak³adu == "r") //Je¿eli typ zak³adu to n
 
   00232	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01KDCPPGHE@r?$AA@
@@ -28721,7 +28710,7 @@ $LN25@SprawdŸ_Z:
   00248	85 c0		 test	 eax, eax
   0024a	74 2b		 je	 SHORT $LN29@SprawdŸ_Z
 
-; 528  : 			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') wygrana *= 1; //To sprawdzam czy wylosowana liczba jest czerwona, je¿eli tak to wygrana jest 1:1
+; 517  : 			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') wygrana *= 1; //To sprawdzam czy wylosowana liczba jest czerwona, je¿eli tak to wygrana jest 1:1
 
   0024c	48 63 85 50 01
 	00 00		 movsxd	 rax, DWORD PTR wylosowana_liczba$[rbp]
@@ -28735,7 +28724,7 @@ $LN25@SprawdŸ_Z:
   00269	eb 07		 jmp	 SHORT $LN32@SprawdŸ_Z
 $LN31@SprawdŸ_Z:
 
-; 529  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest czerwony to przegra³o siê zak³ad
+; 518  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest czerwony to przegra³o siê zak³ad
 
   0026b	6b 45 04 00	 imul	 eax, DWORD PTR wygrana$[rbp], 0
   0026f	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
@@ -28743,7 +28732,7 @@ $LN32@SprawdŸ_Z:
   00272	e9 b4 01 00 00	 jmp	 $LN3@SprawdŸ_Z
 $LN29@SprawdŸ_Z:
 
-; 530  : 		else if (typ_zak³adu == "b") //Je¿eli typ zak³adu to n
+; 519  : 		else if (typ_zak³adu == "b") //Je¿eli typ zak³adu to n
 
   00277	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01OJONOECF@b?$AA@
@@ -28754,7 +28743,7 @@ $LN29@SprawdŸ_Z:
   0028d	85 c0		 test	 eax, eax
   0028f	74 2b		 je	 SHORT $LN33@SprawdŸ_Z
 
-; 531  : 			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'b') wygrana *= 1; //To sprawdzam czy wylosowana liczba jest czarna, je¿eli tak to wygrana jest 1:1
+; 520  : 			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'b') wygrana *= 1; //To sprawdzam czy wylosowana liczba jest czarna, je¿eli tak to wygrana jest 1:1
 
   00291	48 63 85 50 01
 	00 00		 movsxd	 rax, DWORD PTR wylosowana_liczba$[rbp]
@@ -28768,7 +28757,7 @@ $LN29@SprawdŸ_Z:
   002ae	eb 07		 jmp	 SHORT $LN36@SprawdŸ_Z
 $LN35@SprawdŸ_Z:
 
-; 532  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest czarny to przegra³o siê zak³ad
+; 521  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest czarny to przegra³o siê zak³ad
 
   002b0	6b 45 04 00	 imul	 eax, DWORD PTR wygrana$[rbp], 0
   002b4	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
@@ -28776,7 +28765,7 @@ $LN36@SprawdŸ_Z:
   002b7	e9 6f 01 00 00	 jmp	 $LN3@SprawdŸ_Z
 $LN33@SprawdŸ_Z:
 
-; 533  : 		else if (typ_zak³adu == "g") //Je¿eli typ zak³adu to g
+; 522  : 		else if (typ_zak³adu == "g") //Je¿eli typ zak³adu to g
 
   002bc	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01JEJKBAGA@g?$AA@
@@ -28787,7 +28776,7 @@ $LN33@SprawdŸ_Z:
   002d2	85 c0		 test	 eax, eax
   002d4	74 1d		 je	 SHORT $LN37@SprawdŸ_Z
 
-; 534  : 			if (wylosowana_liczba < 19) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest od 1 do 18, je¿eli tak to wygrana jest 1:1
+; 523  : 			if (wylosowana_liczba < 19) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest od 1 do 18, je¿eli tak to wygrana jest 1:1
 
   002d6	83 bd 50 01 00
 	00 13		 cmp	 DWORD PTR wylosowana_liczba$[rbp], 19
@@ -28797,7 +28786,7 @@ $LN33@SprawdŸ_Z:
   002e5	eb 07		 jmp	 SHORT $LN40@SprawdŸ_Z
 $LN39@SprawdŸ_Z:
 
-; 535  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie nale¿y do przedzia³u [1,18] to przegra³o siê zak³ad
+; 524  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie nale¿y do przedzia³u [1,18] to przegra³o siê zak³ad
 
   002e7	6b 45 04 00	 imul	 eax, DWORD PTR wygrana$[rbp], 0
   002eb	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
@@ -28805,7 +28794,7 @@ $LN40@SprawdŸ_Z:
   002ee	e9 38 01 00 00	 jmp	 $LN3@SprawdŸ_Z
 $LN37@SprawdŸ_Z:
 
-; 536  : 		else if (typ_zak³adu == "d") //Je¿eli typ zak³adu to d
+; 525  : 		else if (typ_zak³adu == "d") //Je¿eli typ zak³adu to d
 
   002f3	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01LPLHEDKD@d?$AA@
@@ -28816,7 +28805,7 @@ $LN37@SprawdŸ_Z:
   00309	85 c0		 test	 eax, eax
   0030b	74 1d		 je	 SHORT $LN41@SprawdŸ_Z
 
-; 537  : 			if (wylosowana_liczba > 18) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest od 19 do 36, je¿eli tak to wygrana jest 1:1
+; 526  : 			if (wylosowana_liczba > 18) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest od 19 do 36, je¿eli tak to wygrana jest 1:1
 
   0030d	83 bd 50 01 00
 	00 12		 cmp	 DWORD PTR wylosowana_liczba$[rbp], 18
@@ -28826,7 +28815,7 @@ $LN37@SprawdŸ_Z:
   0031c	eb 07		 jmp	 SHORT $LN44@SprawdŸ_Z
 $LN43@SprawdŸ_Z:
 
-; 538  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie nale¿y do przedzia³u [19,36] to przegra³o siê zak³ad
+; 527  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie nale¿y do przedzia³u [19,36] to przegra³o siê zak³ad
 
   0031e	6b 45 04 00	 imul	 eax, DWORD PTR wygrana$[rbp], 0
   00322	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
@@ -28834,7 +28823,7 @@ $LN44@SprawdŸ_Z:
   00325	e9 01 01 00 00	 jmp	 $LN3@SprawdŸ_Z
 $LN41@SprawdŸ_Z:
 
-; 539  : 		else if (typ_zak³adu[0] == 'k') //Je¿eli typ zak³adu to k
+; 528  : 		else if (typ_zak³adu[0] == 'k') //Je¿eli typ zak³adu to k
 
   0032a	33 d2		 xor	 edx, edx
   0032c	48 8b 8d 48 01
@@ -28844,7 +28833,7 @@ $LN41@SprawdŸ_Z:
   0033b	83 f8 6b	 cmp	 eax, 107		; 0000006bH
   0033e	75 4f		 jne	 SHORT $LN45@SprawdŸ_Z
 
-; 540  : 			if ((wylosowana_liczba - 1) % 3 == typ_zak³adu[1] - 49) wygrana *= 2; //To sprawdzam czy wylosowana liczba jest z obstawionej kolumny, je¿eli tak to wygrana jest 2:1
+; 529  : 			if ((wylosowana_liczba - 1) % 3 == typ_zak³adu[1] - 49) wygrana *= 2; //To sprawdzam czy wylosowana liczba jest z obstawionej kolumny, je¿eli tak to wygrana jest 2:1
 
   00340	8b 85 50 01 00
 	00		 mov	 eax, DWORD PTR wylosowana_liczba$[rbp]
@@ -28871,7 +28860,7 @@ $LN41@SprawdŸ_Z:
   00381	eb 07		 jmp	 SHORT $LN48@SprawdŸ_Z
 $LN47@SprawdŸ_Z:
 
-; 541  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest z obstawionej kolumny to przegra³o siê zak³ad
+; 530  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest z obstawionej kolumny to przegra³o siê zak³ad
 
   00383	6b 45 04 00	 imul	 eax, DWORD PTR wygrana$[rbp], 0
   00387	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
@@ -28879,7 +28868,7 @@ $LN48@SprawdŸ_Z:
   0038a	e9 9c 00 00 00	 jmp	 $LN3@SprawdŸ_Z
 $LN45@SprawdŸ_Z:
 
-; 542  : 		else if (typ_zak³adu[0] == 'w') //Je¿eli typ zak³adu to w
+; 531  : 		else if (typ_zak³adu[0] == 'w') //Je¿eli typ zak³adu to w
 
   0038f	33 d2		 xor	 edx, edx
   00391	48 8b 8d 48 01
@@ -28889,7 +28878,7 @@ $LN45@SprawdŸ_Z:
   003a0	83 f8 77	 cmp	 eax, 119		; 00000077H
   003a3	75 59		 jne	 SHORT $LN49@SprawdŸ_Z
 
-; 543  : 			if (((wylosowana_liczba - 1) / 3 + 1) == atoi(typ_zak³adu.erase(0, 1).c_str())) wygrana *= 11; //To sprawdzam czy wylosowana liczba jest z obstawionego wiersza, je¿eli tak to wygrana jest 11:1
+; 532  : 			if (((wylosowana_liczba - 1) / 3 + 1) == atoi(typ_zak³adu.erase(0, 1).c_str())) wygrana *= 11; //To sprawdzam czy wylosowana liczba jest z obstawionego wiersza, je¿eli tak to wygrana jest 11:1
 
   003a5	8b 85 50 01 00
 	00		 mov	 eax, DWORD PTR wylosowana_liczba$[rbp]
@@ -28920,7 +28909,7 @@ $LN45@SprawdŸ_Z:
   003f3	eb 07		 jmp	 SHORT $LN52@SprawdŸ_Z
 $LN51@SprawdŸ_Z:
 
-; 544  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest z obstawionego wiersza to przegra³o siê zak³ad
+; 533  : 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest z obstawionego wiersza to przegra³o siê zak³ad
 
   003f5	6b 45 04 00	 imul	 eax, DWORD PTR wygrana$[rbp], 0
   003f9	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
@@ -28928,7 +28917,7 @@ $LN52@SprawdŸ_Z:
   003fc	eb 2d		 jmp	 SHORT $LN3@SprawdŸ_Z
 $LN49@SprawdŸ_Z:
 
-; 545  : 		else if (wylosowana_liczba == atoi(typ_zak³adu.c_str())) wygrana *= 35; //Je¿eli typ zak³adu to liczba, to sprawdzam czy wylosowana liczba jest równa obstawionej liczbie, je¿eli tak to wygrana jest 35:1
+; 534  : 		else if (wylosowana_liczba == atoi(typ_zak³adu.c_str())) wygrana *= 35; //Je¿eli typ zak³adu to liczba, to sprawdzam czy wylosowana liczba jest równa obstawionej liczbie, je¿eli tak to wygrana jest 35:1
 
   003fe	48 8b 8d 48 01
 	00 00		 mov	 rcx, QWORD PTR typ_zak³adu$[rbp]
@@ -28944,15 +28933,15 @@ $LN49@SprawdŸ_Z:
   00422	eb 07		 jmp	 SHORT $LN3@SprawdŸ_Z
 $LN53@SprawdŸ_Z:
 
-; 546  : 		else wygrana *= 0; //Je¿eli wylosowana liczba nie jest równa obstawionej liczbie to przegra³o siê zak³ad
+; 535  : 		else wygrana *= 0; //Je¿eli wylosowana liczba nie jest równa obstawionej liczbie to przegra³o siê zak³ad
 
   00424	6b 45 04 00	 imul	 eax, DWORD PTR wygrana$[rbp], 0
   00428	89 45 04	 mov	 DWORD PTR wygrana$[rbp], eax
 $LN3@SprawdŸ_Z:
 
-; 547  : 	}
-; 548  : 
-; 549  : 	if (wygrana >= kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
+; 536  : 	}
+; 537  : 
+; 538  : 	if (wygrana >= kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
 
   0042b	48 8b 85 40 01
 	00 00		 mov	 rax, QWORD PTR kwota$[rbp]
@@ -28980,7 +28969,7 @@ $LN3@SprawdŸ_Z:
   00477	e9 97 00 00 00	 jmp	 $LN56@SprawdŸ_Z
 $LN55@SprawdŸ_Z:
 
-; 550  : 	else if (wygrana == kwota / 2) cout << "Obstawiles niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
+; 539  : 	else if (wygrana == kwota / 2) cout << "Obstawiles niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
 
   0047c	48 8b 85 40 01
 	00 00		 mov	 rax, QWORD PTR kwota$[rbp]
@@ -29011,7 +29000,7 @@ $LN55@SprawdŸ_Z:
   004cd	eb 44		 jmp	 SHORT $LN56@SprawdŸ_Z
 $LN57@SprawdŸ_Z:
 
-; 551  : 	else cout << "Obstawiles niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
+; 540  : 	else cout << "Obstawiles niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
 
   004cf	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CF@EMPIFKEH@Obstawiles?5niepoprawnie?0?5przegra@
@@ -29035,8 +29024,8 @@ $LN57@SprawdŸ_Z:
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 $LN56@SprawdŸ_Z:
 
-; 552  : 
-; 553  : 	return wygrana; //Zwracam wartoœ wygranej lub zwrotu
+; 541  : 
+; 542  : 	return wygrana; //Zwracam wartoœ wygranej lub zwrotu
 
   00513	8b 45 04	 mov	 eax, DWORD PTR wygrana$[rbp]
   00516	89 85 e4 00 00
@@ -29047,7 +29036,7 @@ $LN56@SprawdŸ_Z:
   00528	8b 85 e4 00 00
 	00		 mov	 eax, DWORD PTR $T1[rbp]
 
-; 554  : }
+; 543  : }
 
   0052e	48 8d a5 28 01
 	00 00		 lea	 rsp, QWORD PTR [rbp+296]
@@ -29122,7 +29111,7 @@ czas_przeskoku_kulki_wolny_przyspieszenie$ = 168
 i$3 = 196
 ?Zakrêæ_Ruletk¹@@YAHXZ PROC				; Zakrêæ_Ruletk¹, COMDAT
 
-; 470  : {
+; 459  : {
 
 $LN12:
   00000	40 55		 push	 rbp
@@ -29135,7 +29124,7 @@ $LN12:
   00017	b8 cc cc cc cc	 mov	 eax, -858993460		; ccccccccH
   0001c	f3 ab		 rep stosd
 
-; 471  : 	int iloœæ_zakrêceñ = rand() % (iloœæ_max_dodatkowych_obrotów_ruletki + 1) + iloœæ_minimalna_obrotów_ruletki; //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ pseudolosow¹ (o niskiej pseoudolosowoœci) iloœæ obrotów ruletk¹ ((od 0 do max dodatkowych obrotów ruletki) + minimalna iloœæ obrotów ruletki) zanim nastêpi finalny obrót
+; 460  : 	int iloœæ_zakrêceñ = rand() % (iloœæ_max_dodatkowych_obrotów_ruletki + 1) + iloœæ_minimalna_obrotów_ruletki; //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ pseudolosow¹ (o niskiej pseoudolosowoœci) iloœæ obrotów ruletk¹ ((od 0 do max dodatkowych obrotów ruletki) + minimalna iloœæ obrotów ruletki) zanim nastêpi finalny obrót
 
   0001e	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_rand
@@ -29147,7 +29136,7 @@ $LN12:
   0002f	83 c0 02	 add	 eax, 2
   00032	89 45 04	 mov	 DWORD PTR iloœæ_zakrêceñ$[rbp], eax
 
-; 472  : 	double czas_przeskoku_kulki_szybki_opóŸnienie = czas_przeskoku_kulki_szybki / (iloœæ_zakrêceñ * 37.0); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
+; 461  : 	double czas_przeskoku_kulki_szybki_opóŸnienie = czas_przeskoku_kulki_szybki / (iloœæ_zakrêceñ * 37.0); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
 
   00035	f2 0f 2a 45 04	 cvtsi2sd xmm0, DWORD PTR iloœæ_zakrêceñ$[rbp]
   0003a	f2 0f 59 05 00
@@ -29158,11 +29147,11 @@ $LN12:
   0004e	0f 28 c1	 movaps	 xmm0, xmm1
   00051	f2 0f 11 45 28	 movsd	 QWORD PTR czas_przeskoku_kulki_szybki_opóŸnienie$[rbp], xmm0
 
-; 473  : 	HideCursor(); //Ukrycie kursora tekstowego w konsoli
+; 462  : 	HideCursor(); //Ukrycie kursora tekstowego w konsoli
 
   00056	e8 00 00 00 00	 call	 ?HideCursor@@YAXXZ	; HideCursor
 
-; 474  : 	for (int i = 0; i < iloœæ_zakrêceñ; ++i) //Wykonanie iloœæ_zakrêceñ obrotów ruletk¹
+; 463  : 	for (int i = 0; i < iloœæ_zakrêceñ; ++i) //Wykonanie iloœæ_zakrêceñ obrotów ruletk¹
 
   0005b	c7 45 44 00 00
 	00 00		 mov	 DWORD PTR i$1[rbp], 0
@@ -29177,7 +29166,7 @@ $LN4@Zakr?:
   00072	0f 8d c8 00 00
 	00		 jge	 $LN3@Zakr?
 
-; 475  : 		for (int ii = 0; ii < 37; ++ii) //Przejœcie przez wszystkie pozycje ruletki
+; 464  : 		for (int ii = 0; ii < 37; ++ii) //Przejœcie przez wszystkie pozycje ruletki
 
   00078	c7 45 64 00 00
 	00 00		 mov	 DWORD PTR ii$2[rbp], 0
@@ -29191,8 +29180,8 @@ $LN7@Zakr?:
   0008d	0f 8d a8 00 00
 	00		 jge	 $LN6@Zakr?
 
-; 476  : 		{
-; 477  : 			Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
+; 465  : 		{
+; 466  : 			Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 
   00093	48 63 45 64	 movsxd	 rax, DWORD PTR ii$2[rbp]
   00097	48 8d 0d 00 00
@@ -29203,7 +29192,7 @@ $LN7@Zakr?:
   000a9	8b 0c 81	 mov	 ecx, DWORD PTR [rcx+rax*4]
   000ac	e8 00 00 00 00	 call	 ?Change_Col@@YAXH@Z	; Change_Col
 
-; 478  : 			cout << Ruletka_ko³o[ii]; //Wypisanie numeru na kole ruletki na którym znajduje siê pêtla
+; 467  : 			cout << Ruletka_ko³o[ii]; //Wypisanie numeru na kole ruletki na którym znajduje siê pêtla
 
   000b1	48 63 45 64	 movsxd	 rax, DWORD PTR ii$2[rbp]
   000b5	48 8d 0d 00 00
@@ -29214,7 +29203,7 @@ $LN7@Zakr?:
   000c6	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
 
-; 479  : 			Sleep((DWORD)(czas_przeskoku_kulki_szybki_opóŸnienie*((double)i*37.0 + (double)ii))); //Przestój który zwiêksza siê co zmianê pozycji pêtli
+; 468  : 			Sleep((DWORD)(czas_przeskoku_kulki_szybki_opóŸnienie*((double)i*37.0 + (double)ii))); //Przestój który zwiêksza siê co zmianê pozycji pêtli
 
   000cc	f2 0f 2a 45 44	 cvtsi2sd xmm0, DWORD PTR i$1[rbp]
   000d1	f2 0f 59 05 00
@@ -29229,12 +29218,12 @@ $LN7@Zakr?:
   000f5	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_Sleep
 
-; 480  : 			Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
+; 469  : 			Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 
   000fb	b9 07 00 00 00	 mov	 ecx, 7
   00100	e8 00 00 00 00	 call	 ?Change_Col@@YAXH@Z	; Change_Col
 
-; 481  : 			cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
+; 470  : 			cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 
   00105	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02MGHEPNFN@?$AI?$AI?$AA@
@@ -29250,14 +29239,14 @@ $LN7@Zakr?:
   0012e	48 8b c8	 mov	 rcx, rax
   00131	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 482  : 		}
+; 471  : 		}
 
   00136	e9 46 ff ff ff	 jmp	 $LN5@Zakr?
 $LN6@Zakr?:
   0013b	e9 24 ff ff ff	 jmp	 $LN2@Zakr?
 $LN3@Zakr?:
 
-; 483  : 	int wylosowana_pozycja = Wylosuj(0, 36); //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ losow¹ lub pseudolosow¹ liczbê (o wysokiej pseoudolosowoœci) pozycjê na ruletce
+; 472  : 	int wylosowana_pozycja = Wylosuj(0, 36); //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ losow¹ lub pseudolosow¹ liczbê (o wysokiej pseoudolosowoœci) pozycjê na ruletce
 
   00140	ba 24 00 00 00	 mov	 edx, 36			; 00000024H
   00145	33 c9		 xor	 ecx, ecx
@@ -29265,7 +29254,7 @@ $LN3@Zakr?:
   0014c	89 85 84 00 00
 	00		 mov	 DWORD PTR wylosowana_pozycja$[rbp], eax
 
-; 484  : 	double czas_przeskoku_kulki_wolny_przyspieszenie = (czas_przeskoku_kulki_wolny - czas_przeskoku_kulki_szybki) / (double)(wylosowana_pozycja); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
+; 473  : 	double czas_przeskoku_kulki_wolny_przyspieszenie = (czas_przeskoku_kulki_wolny - czas_przeskoku_kulki_szybki) / (double)(wylosowana_pozycja); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
 
   00152	f2 0f 2a 85 84
 	00 00 00	 cvtsi2sd xmm0, DWORD PTR wylosowana_pozycja$[rbp]
@@ -29276,7 +29265,7 @@ $LN3@Zakr?:
   00169	f2 0f 11 85 a8
 	00 00 00	 movsd	 QWORD PTR czas_przeskoku_kulki_wolny_przyspieszenie$[rbp], xmm0
 
-; 485  : 	for (int i = 0; i < wylosowana_pozycja; ++i) //Przejœcie przez pozycje do pozycji o 1 mniejszej od wylosowanej pozyji na ruletce
+; 474  : 	for (int i = 0; i < wylosowana_pozycja; ++i) //Przejœcie przez pozycje do pozycji o 1 mniejszej od wylosowanej pozyji na ruletce
 
   00171	c7 85 c4 00 00
 	00 00 00 00 00	 mov	 DWORD PTR i$3[rbp], 0
@@ -29295,8 +29284,8 @@ $LN10@Zakr?:
   00197	0f 8d b2 00 00
 	00		 jge	 $LN9@Zakr?
 
-; 486  : 	{
-; 487  : 		Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[i]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
+; 475  : 	{
+; 476  : 		Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[i]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 
   0019d	48 63 85 c4 00
 	00 00		 movsxd	 rax, DWORD PTR i$3[rbp]
@@ -29308,7 +29297,7 @@ $LN10@Zakr?:
   001b6	8b 0c 81	 mov	 ecx, DWORD PTR [rcx+rax*4]
   001b9	e8 00 00 00 00	 call	 ?Change_Col@@YAXH@Z	; Change_Col
 
-; 488  : 		cout << Ruletka_ko³o[i]; //Wypisanie numeru na kole ruletki na którym znajduje siê pêtla
+; 477  : 		cout << Ruletka_ko³o[i]; //Wypisanie numeru na kole ruletki na którym znajduje siê pêtla
 
   001be	48 63 85 c4 00
 	00 00		 movsxd	 rax, DWORD PTR i$3[rbp]
@@ -29320,7 +29309,7 @@ $LN10@Zakr?:
   001d6	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
 
-; 489  : 		Sleep((DWORD)(czas_przeskoku_kulki_szybki + (czas_przeskoku_kulki_wolny_przyspieszenie*i))); //Przestój który zwiêksza siê co zmianê pozycji pêtli
+; 478  : 		Sleep((DWORD)(czas_przeskoku_kulki_szybki + (czas_przeskoku_kulki_wolny_przyspieszenie*i))); //Przestój który zwiêksza siê co zmianê pozycji pêtli
 
   001dc	f2 0f 2a 85 c4
 	00 00 00	 cvtsi2sd xmm0, DWORD PTR i$3[rbp]
@@ -29337,12 +29326,12 @@ $LN10@Zakr?:
   00209	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_Sleep
 
-; 490  : 		Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
+; 479  : 		Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 
   0020f	b9 07 00 00 00	 mov	 ecx, 7
   00214	e8 00 00 00 00	 call	 ?Change_Col@@YAXH@Z	; Change_Col
 
-; 491  : 		cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
+; 480  : 		cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 
   00219	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02MGHEPNFN@?$AI?$AI?$AA@
@@ -29358,12 +29347,12 @@ $LN10@Zakr?:
   00242	48 8b c8	 mov	 rcx, rax
   00245	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 492  : 	}
+; 481  : 	}
 
   0024a	e9 2e ff ff ff	 jmp	 $LN8@Zakr?
 $LN9@Zakr?:
 
-; 493  : 	cout << "Wylosowano numer "; //Poinformowanie o zakoñczeniu (wyœwietlania) losowania
+; 482  : 	cout << "Wylosowano numer "; //Poinformowanie o zakoñczeniu (wyœwietlania) losowania
 
   0024f	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BC@IEHJKDDM@Wylosowano?5numer?5?$AA@
@@ -29371,7 +29360,7 @@ $LN9@Zakr?:
 	00 00		 mov	 rcx, QWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
   0025d	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 494  : 	Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[wylosowana_pozycja]]);//Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
+; 483  : 	Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[wylosowana_pozycja]]);//Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 
   00262	48 63 85 84 00
 	00 00		 movsxd	 rax, DWORD PTR wylosowana_pozycja$[rbp]
@@ -29383,7 +29372,7 @@ $LN9@Zakr?:
   0027b	8b 0c 81	 mov	 ecx, DWORD PTR [rcx+rax*4]
   0027e	e8 00 00 00 00	 call	 ?Change_Col@@YAXH@Z	; Change_Col
 
-; 495  : 	cout << Ruletka_ko³o[wylosowana_pozycja]; //Wypisanie liczby na wylosowanej pozycji ruletki
+; 484  : 	cout << Ruletka_ko³o[wylosowana_pozycja]; //Wypisanie liczby na wylosowanej pozycji ruletki
 
   00283	48 63 85 84 00
 	00 00		 movsxd	 rax, DWORD PTR wylosowana_pozycja$[rbp]
@@ -29395,12 +29384,12 @@ $LN9@Zakr?:
   0029b	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
 
-; 496  : 	Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
+; 485  : 	Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 
   002a1	b9 07 00 00 00	 mov	 ecx, 7
   002a6	e8 00 00 00 00	 call	 ?Change_Col@@YAXH@Z	; Change_Col
 
-; 497  : 	cout << ". "; //Zakoñczenie tekstu kropk¹
+; 486  : 	cout << ". "; //Zakoñczenie tekstu kropk¹
 
   002ab	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02KHOJGJKF@?4?5?$AA@
@@ -29408,12 +29397,12 @@ $LN9@Zakr?:
 	00 00		 mov	 rcx, QWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
   002b9	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 498  : 	ShowCursor(); //Pokazanie kursora tekstowego w konsoli
+; 487  : 	ShowCursor(); //Pokazanie kursora tekstowego w konsoli
 
   002be	e8 00 00 00 00	 call	 ?ShowCursor@@YAXXZ	; ShowCursor
 
-; 499  : 
-; 500  : 	return Ruletka_ko³o[wylosowana_pozycja]; //Zwracam wartoœæ bêd¹c¹ na wylosowanym polu ruletki
+; 488  : 
+; 489  : 	return Ruletka_ko³o[wylosowana_pozycja]; //Zwracam wartoœæ bêd¹c¹ na wylosowanym polu ruletki
 
   002c3	48 63 85 84 00
 	00 00		 movsxd	 rax, DWORD PTR wylosowana_pozycja$[rbp]
@@ -29421,7 +29410,7 @@ $LN9@Zakr?:
 	00 00		 lea	 rcx, OFFSET FLAT:?Ruletka_ko³o@@3QBHB
   002d1	8b 04 81	 mov	 eax, DWORD PTR [rcx+rax*4]
 
-; 501  : }
+; 490  : }
 
   002d4	48 8d a5 a8 01
 	00 00		 lea	 rsp, QWORD PTR [rbp+424]
@@ -29444,7 +29433,7 @@ kwota_zak³adu$ = 384
 iloœæ_pieniêdzy$ = 392
 ?Wczytaj_Kwotê_Zak³adu@@YAXAEAH0@Z PROC			; Wczytaj_Kwotê_Zak³adu, COMDAT
 
-; 420  : {
+; 409  : {
 
 $LN18:
   00000	48 89 54 24 10	 mov	 QWORD PTR [rsp+16], rdx
@@ -29469,23 +29458,23 @@ $LN18:
   00044	48 89 85 58 01
 	00 00		 mov	 QWORD PTR __$ArrayPad$[rbp], rax
 
-; 421  : 	string kwota_zak³adu_s; //Deklaracja zmiennej typu string do wczytywania kwoty aby zabezpieczyæ siê przed b³êdem wpisania do zmiennej liczbowej litery
+; 410  : 	string kwota_zak³adu_s; //Deklaracja zmiennej typu string do wczytywania kwoty aby zabezpieczyæ siê przed b³êdem wpisania do zmiennej liczbowej litery
 
   0004b	48 8d 4d 08	 lea	 rcx, QWORD PTR kwota_zak³adu_s$[rbp]
   0004f	e8 00 00 00 00	 call	 ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::basic_string<char,std::char_traits<char>,std::allocator<char> >
   00054	90		 npad	 1
 $LN2@Wczytaj_Kw:
 
-; 422  : 
-; 423  : 	while (true) //Rozpoczêcie pêtli nieskoñczonej
+; 411  : 
+; 412  : 	while (true) //Rozpoczêcie pêtli nieskoñczonej
 
   00055	33 c0		 xor	 eax, eax
   00057	83 f8 01	 cmp	 eax, 1
   0005a	0f 84 0a 02 00
 	00		 je	 $LN3@Wczytaj_Kw
 
-; 424  : 	{
-; 425  : 		cout << "Masz " << iloœæ_pieniêdzy << "$, jak¹ kwotê chcesz obstawiæ wynik?" << endl; //Podanie akualnego stanu konta i zadanie pytania o kwotê zak³adu
+; 413  : 	{
+; 414  : 		cout << "Masz " << iloœæ_pieniêdzy << "$, jak¹ kwotê chcesz obstawiæ wynik?" << endl; //Podanie akualnego stanu konta i zadanie pytania o kwotê zak³adu
 
   00060	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_05OMMBNPEF@Masz?5?$AA@
@@ -29508,14 +29497,14 @@ $LN2@Wczytaj_Kw:
   0009e	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 426  : 		cin >> kwota_zak³adu_s; //Pobranie w tekœcie kwoty zak³¹du
+; 415  : 		cin >> kwota_zak³adu_s; //Pobranie w tekœcie kwoty zak³¹du
 
   000a4	48 8d 55 08	 lea	 rdx, QWORD PTR kwota_zak³adu_s$[rbp]
   000a8	48 8b 0d 00 00
 	00 00		 mov	 rcx, QWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
   000af	e8 00 00 00 00	 call	 ??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAEAV?$basic_istream@DU?$char_traits@D@std@@@0@AEAV10@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z ; std::operator>><char,std::char_traits<char>,std::allocator<char> >
 
-; 427  : 		kwota_zak³adu = atoi(kwota_zak³adu_s.c_str()); //Zmiana stringaa na inta i wpisanie do zmiennej kwota_zak³adu
+; 416  : 		kwota_zak³adu = atoi(kwota_zak³adu_s.c_str()); //Zmiana stringaa na inta i wpisanie do zmiennej kwota_zak³adu
 
   000b4	48 8d 4d 08	 lea	 rcx, QWORD PTR kwota_zak³adu_s$[rbp]
   000b8	e8 00 00 00 00	 call	 ?c_str@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBAPEBDXZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::c_str
@@ -29526,7 +29515,7 @@ $LN2@Wczytaj_Kw:
 	00 00		 mov	 rcx, QWORD PTR kwota_zak³adu$[rbp]
   000cd	89 01		 mov	 DWORD PTR [rcx], eax
 
-; 428  : 		if (kwota_zak³adu > 0 && kwota_zak³adu <= iloœæ_pieniêdzy) //Sprawdzenie czy kwota zak³¹du jest wiêksza od zeri i mniejsza lub równa dostêpnej gotówce
+; 417  : 		if (kwota_zak³adu > 0 && kwota_zak³adu <= iloœæ_pieniêdzy) //Sprawdzenie czy kwota zak³¹du jest wiêksza od zeri i mniejsza lub równa dostêpnej gotówce
 
   000cf	48 8b 85 80 01
 	00 00		 mov	 rax, QWORD PTR kwota_zak³adu$[rbp]
@@ -29540,16 +29529,16 @@ $LN2@Wczytaj_Kw:
   000eb	39 08		 cmp	 DWORD PTR [rax], ecx
   000ed	7f 0a		 jg	 SHORT $LN7@Wczytaj_Kw
 
-; 429  : 			break; //Je¿eli tak to zatrzymuje pêtle
+; 418  : 			break; //Je¿eli tak to zatrzymuje pêtle
 
   000ef	e9 76 01 00 00	 jmp	 $LN3@Wczytaj_Kw
 
-; 430  : 		else //W przeciwym wypadku
+; 419  : 		else //W przeciwym wypadku
 
   000f4	e9 6c 01 00 00	 jmp	 $LN8@Wczytaj_Kw
 $LN7@Wczytaj_Kw:
 
-; 431  : 			if (kwota_zak³adu == 0) //Je¿eli wynikiem zamiany na liczbê jest zero (wynikiem zamiany jest zero kiedy tekst to zero lub kiedy jest b³¹d zamiany) to
+; 420  : 			if (kwota_zak³adu == 0) //Je¿eli wynikiem zamiany na liczbê jest zero (wynikiem zamiany jest zero kiedy tekst to zero lub kiedy jest b³¹d zamiany) to
 
   000f9	48 8b 85 80 01
 	00 00		 mov	 rax, QWORD PTR kwota_zak³adu$[rbp]
@@ -29557,12 +29546,12 @@ $LN7@Wczytaj_Kw:
   00103	0f 85 ce 00 00
 	00		 jne	 $LN9@Wczytaj_Kw
 
-; 432  : 			{
-; 433  : 				bool czy_zero = 1; //Utworzenie zmiennej informuj¹cej czy znaleziono zero w tekœcie i przypisanie jej wartoœci 1
+; 421  : 			{
+; 422  : 				bool czy_zero = 1; //Utworzenie zmiennej informuj¹cej czy znaleziono zero w tekœcie i przypisanie jej wartoœci 1
 
   00109	c6 45 44 01	 mov	 BYTE PTR czy_zero$4[rbp], 1
 
-; 434  : 				for (short i = 0; i < (int)kwota_zak³adu_s.size(); ++i) //Rozpoczêcie pêtli numerowanej przez zmienn¹ i przez wszystkie znaki wczytanego tekst
+; 423  : 				for (short i = 0; i < (int)kwota_zak³adu_s.size(); ++i) //Rozpoczêcie pêtli numerowanej przez zmienn¹ i przez wszystkie znaki wczytanego tekst
 
   0010d	33 c0		 xor	 eax, eax
   0010f	66 89 45 64	 mov	 WORD PTR i$5[rbp], ax
@@ -29582,7 +29571,7 @@ $LN6@Wczytaj_Kw:
   00139	3b c8		 cmp	 ecx, eax
   0013b	7d 57		 jge	 SHORT $LN5@Wczytaj_Kw
 
-; 435  : 					if (kwota_zak³adu_s[i] != '0') //Je¿eli znak na i-tej pozycji
+; 424  : 					if (kwota_zak³adu_s[i] != '0') //Je¿eli znak na i-tej pozycji
 
   0013d	48 0f bf 45 64	 movsx	 rax, WORD PTR i$5[rbp]
   00142	48 8b d0	 mov	 rdx, rax
@@ -29592,8 +29581,8 @@ $LN6@Wczytaj_Kw:
   00151	83 f8 30	 cmp	 eax, 48			; 00000030H
   00154	74 3c		 je	 SHORT $LN11@Wczytaj_Kw
 
-; 436  : 					{
-; 437  : 						cout << "Wprowadzi³eæ nieprawid³ow¹ wartoœæ" << endl; //Poinformowanie u¿ytkownika, ¿e nie mo¿e obstawiæ tekstowego
+; 425  : 					{
+; 426  : 						cout << "Wprowadzi³eæ nieprawid³ow¹ wartoœæ" << endl; //Poinformowanie u¿ytkownika, ¿e nie mo¿e obstawiæ tekstowego
 
   00156	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CD@OGNPPNBN@Wprowadzi?$LDe?f?5nieprawid?$LDow?$LJ?5warto@
@@ -29606,8 +29595,8 @@ $LN6@Wczytaj_Kw:
   00173	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 438  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 439  : 						cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 427  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+; 428  : 						cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   00179	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -29615,29 +29604,29 @@ $LN6@Wczytaj_Kw:
 	00 00		 mov	 rcx, QWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
   00187	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 
-; 440  : #endif // stan_dŸwiêków
-; 441  : 						czy_zero = 0; //Zmiana wartoœci zmiennej czy znaleziono zero w tekœcie na 0
+; 429  : #endif // stan_dŸwiêków
+; 430  : 						czy_zero = 0; //Zmiana wartoœci zmiennej czy znaleziono zero w tekœcie na 0
 
   0018c	c6 45 44 00	 mov	 BYTE PTR czy_zero$4[rbp], 0
 
-; 442  : 						break; //Zatrzymanie pêtli
+; 431  : 						break; //Zatrzymanie pêtli
 
   00190	eb 02		 jmp	 SHORT $LN5@Wczytaj_Kw
 $LN11@Wczytaj_Kw:
 
-; 443  : 					}
+; 432  : 					}
 
   00192	eb 81		 jmp	 SHORT $LN4@Wczytaj_Kw
 $LN5@Wczytaj_Kw:
 
-; 444  : 				if (czy_zero) //Sprawdzenie czy znaleziono same zera w tekœcie, je¿eli tak to
+; 433  : 				if (czy_zero) //Sprawdzenie czy znaleziono same zera w tekœcie, je¿eli tak to
 
   00194	0f b6 45 44	 movzx	 eax, BYTE PTR czy_zero$4[rbp]
   00198	85 c0		 test	 eax, eax
   0019a	74 36		 je	 SHORT $LN12@Wczytaj_Kw
 
-; 445  : 				{
-; 446  : 					cout << "Nie mo¿esz obstawiæ zerowego zak³adu" << endl; //Poinformowanie u¿ytkownika, ¿e nie mo¿e obstawiæ zerowego zak³adu
+; 434  : 				{
+; 435  : 					cout << "Nie mo¿esz obstawiæ zerowego zak³adu" << endl; //Poinformowanie u¿ytkownika, ¿e nie mo¿e obstawiæ zerowego zak³adu
 
   0019c	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CF@LJDHNEHM@Nie?5mo?$LPesz?5obstawi?f?5zerowego?5zak@
@@ -29650,8 +29639,8 @@ $LN5@Wczytaj_Kw:
   001b9	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 447  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 448  : 					cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 436  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+; 437  : 					cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   001bf	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -29660,14 +29649,14 @@ $LN5@Wczytaj_Kw:
   001cd	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 $LN12@Wczytaj_Kw:
 
-; 449  : #endif // stan_dŸwiêków
-; 450  : 				}
-; 451  : 			}
+; 438  : #endif // stan_dŸwiêków
+; 439  : 				}
+; 440  : 			}
 
   001d2	e9 8e 00 00 00	 jmp	 $LN8@Wczytaj_Kw
 $LN9@Wczytaj_Kw:
 
-; 452  : 			else if (kwota_zak³adu > iloœæ_pieniêdzy) //Je¿eli u¿ytkownik chce obstawiæ za wiêcej ni¿ ma, to
+; 441  : 			else if (kwota_zak³adu > iloœæ_pieniêdzy) //Je¿eli u¿ytkownik chce obstawiæ za wiêcej ni¿ ma, to
 
   001d7	48 8b 85 80 01
 	00 00		 mov	 rax, QWORD PTR kwota_zak³adu$[rbp]
@@ -29677,8 +29666,8 @@ $LN9@Wczytaj_Kw:
   001e7	39 08		 cmp	 DWORD PTR [rax], ecx
   001e9	7e 38		 jle	 SHORT $LN13@Wczytaj_Kw
 
-; 453  : 			{
-; 454  : 				cout << "Nie masz tyle pieniêdzy" << endl; //Poinformowanie go o tym
+; 442  : 			{
+; 443  : 				cout << "Nie masz tyle pieniêdzy" << endl; //Poinformowanie go o tym
 
   001eb	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BI@CMKDFAEK@Nie?5masz?5tyle?5pieni?jdzy?$AA@
@@ -29691,8 +29680,8 @@ $LN9@Wczytaj_Kw:
   00208	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 455  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 456  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 444  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+; 445  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   0020e	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -29702,17 +29691,17 @@ $LN9@Wczytaj_Kw:
   00221	eb 42		 jmp	 SHORT $LN8@Wczytaj_Kw
 $LN13@Wczytaj_Kw:
 
-; 457  : #endif // stan_dŸwiêków
-; 458  : 			}
-; 459  : 			else if (kwota_zak³adu < 0) //Je¿eli u¿ytkownik chce obstawiæ za ujemn¹ kwotê, to
+; 446  : #endif // stan_dŸwiêków
+; 447  : 			}
+; 448  : 			else if (kwota_zak³adu < 0) //Je¿eli u¿ytkownik chce obstawiæ za ujemn¹ kwotê, to
 
   00223	48 8b 85 80 01
 	00 00		 mov	 rax, QWORD PTR kwota_zak³adu$[rbp]
   0022a	83 38 00	 cmp	 DWORD PTR [rax], 0
   0022d	7d 36		 jge	 SHORT $LN8@Wczytaj_Kw
 
-; 460  : 			{
-; 461  : 				cout << "Nie mo¿esz obstawiæ ujemn¹ kwot¹ zak³adu" << endl; //Poinformowanie go o tym
+; 449  : 			{
+; 450  : 				cout << "Nie mo¿esz obstawiæ ujemn¹ kwot¹ zak³adu" << endl; //Poinformowanie go o tym
 
   0022f	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CJ@PMIHJCIC@Nie?5mo?$LPesz?5obstawi?f?5ujemn?$LJ?5kwot?$LJ@
@@ -29725,8 +29714,8 @@ $LN13@Wczytaj_Kw:
   0024c	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 462  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-; 463  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+; 451  : #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+; 452  : 				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 
   00252	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01PBGHHLMH@?$AH?$AA@
@@ -29735,14 +29724,14 @@ $LN13@Wczytaj_Kw:
   00260	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
 $LN8@Wczytaj_Kw:
 
-; 464  : #endif // stan_dŸwiêków
-; 465  : 			}
-; 466  : 	}
+; 453  : #endif // stan_dŸwiêków
+; 454  : 			}
+; 455  : 	}
 
   00265	e9 eb fd ff ff	 jmp	 $LN2@Wczytaj_Kw
 $LN3@Wczytaj_Kw:
 
-; 467  : }
+; 456  : }
 
   0026a	48 8d 4d 08	 lea	 rcx, QWORD PTR kwota_zak³adu_s$[rbp]
   0026e	e8 00 00 00 00	 call	 ??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::~basic_string<char,std::char_traits<char>,std::allocator<char> >
@@ -29823,7 +29812,7 @@ __$ArrayPad$ = 312
 __$ReturnUdt$ = 352
 ?Obstaw@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ PROC ; Obstaw, COMDAT
 
-; 340  : {
+; 329  : {
 
 $LN10:
   00000	48 89 4c 24 08	 mov	 QWORD PTR [rsp+8], rcx
@@ -29849,16 +29838,16 @@ $LN10:
   00046	c7 85 04 01 00
 	00 00 00 00 00	 mov	 DWORD PTR $T4[rbp], 0
 
-; 341  : 	string zaklad_typ; //Deklaracja zmiennej typu string przechowywuj¹cej typ zak³adu
+; 330  : 	string zaklad_typ; //Deklaracja zmiennej typu string przechowywuj¹cej typ zak³adu
 
   00050	48 8d 4d 08	 lea	 rcx, QWORD PTR zaklad_typ$[rbp]
   00054	e8 00 00 00 00	 call	 ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::basic_string<char,std::char_traits<char>,std::allocator<char> >
   00059	90		 npad	 1
 $LN4@Obstaw:
 
-; 342  : 
-; 343  : 	do { //Pêtla do aby wykona³a siê conajmniej raz
-; 344  : 		cout << "Jak¹ opcje chcesz obstawic ? (zgodnie z poni¿szym opisem) :" << endl; //Zadanie pytania u¿ytkownikowi
+; 331  : 
+; 332  : 	do { //Pêtla do aby wykona³a siê conajmniej raz
+; 333  : 		cout << "Jak¹ opcje chcesz obstawic ? (zgodnie z poni¿szym opisem) :" << endl; //Zadanie pytania u¿ytkownikowi
 
   0005a	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0DM@FGCBIOFJ@Jak?$LJ?5opcje?5chcesz?5obstawic?5?$DP?5?$CIzg@
@@ -29871,7 +29860,7 @@ $LN4@Obstaw:
   00077	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 345  : 		cout << "p - parzyste" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+; 334  : 		cout << "p - parzyste" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 
   0007d	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0N@KLINIBPG@p?5?9?5parzyste?$AA@
@@ -29884,7 +29873,7 @@ $LN4@Obstaw:
   0009a	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 346  : 		cout << "n - nieparzyste" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+; 335  : 		cout << "n - nieparzyste" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 
   000a0	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BA@GNAADEAG@n?5?9?5nieparzyste?$AA@
@@ -29897,7 +29886,7 @@ $LN4@Obstaw:
   000bd	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 347  : 		cout << "r - czerwone(red)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+; 336  : 		cout << "r - czerwone(red)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 
   000c3	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BC@GOMOHEMO@r?5?9?5czerwone?$CIred?$CJ?$AA@
@@ -29910,7 +29899,7 @@ $LN4@Obstaw:
   000e0	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 348  : 		cout << "b - czarne(black)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+; 337  : 		cout << "b - czarne(black)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 
   000e6	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BC@LKBFHLDI@b?5?9?5czarne?$CIblack?$CJ?$AA@
@@ -29923,7 +29912,7 @@ $LN4@Obstaw:
   00103	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 349  : 		cout << "g - górna po³owa" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+; 338  : 		cout << "g - górna po³owa" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 
   00109	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BB@FMNKHOJE@g?5?9?5g?srna?5po?$LDowa?$AA@
@@ -29936,7 +29925,7 @@ $LN4@Obstaw:
   00126	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 350  : 		cout << "d - dolna po³owa" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+; 339  : 		cout << "d - dolna po³owa" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 
   0012c	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BB@CHNPGJIO@d?5?9?5dolna?5po?$LDowa?$AA@
@@ -29949,7 +29938,7 @@ $LN4@Obstaw:
   00149	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 351  : 		cout << "k1, k2, k3 - kolumna 1, kolumna 2, kolumna 3" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+; 340  : 		cout << "k1, k2, k3 - kolumna 1, kolumna 2, kolumna 3" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 
   0014f	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CN@EJBDEIIK@k1?0?5k2?0?5k3?5?9?5kolumna?51?0?5kolumna?5@
@@ -29962,7 +29951,7 @@ $LN4@Obstaw:
   0016c	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 352  : 		cout << "w1, w2, ..., w12 - wiersz trzech numerów" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+; 341  : 		cout << "w1, w2, ..., w12 - wiersz trzech numerów" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 
   00172	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CJ@KMEGGBFA@w1?0?5w2?0?5?4?4?4?0?5w12?5?9?5wiersz?5trzech@
@@ -29975,7 +29964,7 @@ $LN4@Obstaw:
   0018f	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 353  : 		cout << "0 - 36 - pojedyncze pole o odpowiednim numerze" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+; 342  : 		cout << "0 - 36 - pojedyncze pole o odpowiednim numerze" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 
   00195	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CP@FOKBNGLG@0?5?9?536?5?9?5pojedyncze?5pole?5o?5odpow@
@@ -29988,71 +29977,71 @@ $LN4@Obstaw:
   001b2	ff 15 00 00 00
 	00		 call	 QWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
 
-; 354  : 		cin >> zaklad_typ; //Pobranie od u¿ytkownika odpowiedzi na pytanie
+; 343  : 		cin >> zaklad_typ; //Pobranie od u¿ytkownika odpowiedzi na pytanie
 
   001b8	48 8d 55 08	 lea	 rdx, QWORD PTR zaklad_typ$[rbp]
   001bc	48 8b 0d 00 00
 	00 00		 mov	 rcx, QWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
   001c3	e8 00 00 00 00	 call	 ??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAEAV?$basic_istream@DU?$char_traits@D@std@@@0@AEAV10@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z ; std::operator>><char,std::char_traits<char>,std::allocator<char> >
 
-; 355  : 	} while ( //U¿ywam takiej sk³adni poniewa¿ jeœli masz wyra¿enie z logicznymi operatorami && lub ||, to w momencie gdy wynik wyra¿enia ju¿ jest znany, to nie jest wyliczany dalej. (Poniewa¿ C++ jest "leniwe", co zarazem jest optymalne)
-; 356  : 		zaklad_typ != "p" && //Sprawdzanie czy wprowadzono zak³ad na liczby parzyste
-; 357  : 		zaklad_typ != "n" && //Sprawdzanie czy wprowadzono zak³ad na liczby nieparzyste
-; 358  : 		zaklad_typ != "r" && //Sprawdzanie czy wprowadzono zak³ad na czerwone liczby
-; 359  : 		zaklad_typ != "b" && //Sprawdzanie czy wprowadzono zak³ad na czarne liczby
-; 360  : 		zaklad_typ != "g" && //Sprawdzanie czy wprowadzono zak³ad na liczby z górnej po³ówki
-; 361  : 		zaklad_typ != "d" && //Sprawdzanie czy wprowadzono zak³ad na liczby z dolnej po³ówki
-; 362  : 		zaklad_typ != "k1" && //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 1
-; 363  : 		zaklad_typ != "k2" && //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 2
-; 364  : 		zaklad_typ != "k3" && //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 3
-; 365  : 		zaklad_typ != "w1" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 1
-; 366  : 		zaklad_typ != "w2" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 2
-; 367  : 		zaklad_typ != "w3" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 3
-; 368  : 		zaklad_typ != "w4" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 4
-; 369  : 		zaklad_typ != "w5" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 5
-; 370  : 		zaklad_typ != "w6" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 6
-; 371  : 		zaklad_typ != "w7" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 7
-; 372  : 		zaklad_typ != "w8" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 8
-; 373  : 		zaklad_typ != "w9" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 9
-; 374  : 		zaklad_typ != "w10" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 10
-; 375  : 		zaklad_typ != "w11" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 11
-; 376  : 		zaklad_typ != "w12" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 12
-; 377  : 		zaklad_typ != "0" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 0
-; 378  : 		zaklad_typ != "1" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 1
-; 379  : 		zaklad_typ != "2" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 2
-; 380  : 		zaklad_typ != "3" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 3
-; 381  : 		zaklad_typ != "4" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 4
-; 382  : 		zaklad_typ != "5" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 5
-; 383  : 		zaklad_typ != "6" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 6
-; 384  : 		zaklad_typ != "7" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 7
-; 385  : 		zaklad_typ != "8" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 8
-; 386  : 		zaklad_typ != "9" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 9
-; 387  : 		zaklad_typ != "10" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 10
-; 388  : 		zaklad_typ != "11" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 11
-; 389  : 		zaklad_typ != "12" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 12
-; 390  : 		zaklad_typ != "13" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 13
-; 391  : 		zaklad_typ != "14" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 14
-; 392  : 		zaklad_typ != "15" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 15
-; 393  : 		zaklad_typ != "16" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 16
-; 394  : 		zaklad_typ != "17" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 17
-; 395  : 		zaklad_typ != "18" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 18
-; 396  : 		zaklad_typ != "19" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 19
-; 397  : 		zaklad_typ != "20" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 20
-; 398  : 		zaklad_typ != "21" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 21
-; 399  : 		zaklad_typ != "22" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 22
-; 400  : 		zaklad_typ != "23" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 23
-; 401  : 		zaklad_typ != "24" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 24
-; 402  : 		zaklad_typ != "25" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 25
-; 403  : 		zaklad_typ != "26" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 26
-; 404  : 		zaklad_typ != "27" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 27
-; 405  : 		zaklad_typ != "28" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 28
-; 406  : 		zaklad_typ != "29" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 29
-; 407  : 		zaklad_typ != "30" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 30
-; 408  : 		zaklad_typ != "31" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 31
-; 409  : 		zaklad_typ != "32" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 32
-; 410  : 		zaklad_typ != "33" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 33
-; 411  : 		zaklad_typ != "34" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 34
-; 412  : 		zaklad_typ != "35" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 35
+; 344  : 	} while ( //U¿ywam takiej sk³adni poniewa¿ jeœli masz wyra¿enie z logicznymi operatorami && lub ||, to w momencie gdy wynik wyra¿enia ju¿ jest znany, to nie jest wyliczany dalej. (Poniewa¿ C++ jest "leniwe", co zarazem jest optymalne)
+; 345  : 		zaklad_typ != "p" && //Sprawdzanie czy wprowadzono zak³ad na liczby parzyste
+; 346  : 		zaklad_typ != "n" && //Sprawdzanie czy wprowadzono zak³ad na liczby nieparzyste
+; 347  : 		zaklad_typ != "r" && //Sprawdzanie czy wprowadzono zak³ad na czerwone liczby
+; 348  : 		zaklad_typ != "b" && //Sprawdzanie czy wprowadzono zak³ad na czarne liczby
+; 349  : 		zaklad_typ != "g" && //Sprawdzanie czy wprowadzono zak³ad na liczby z górnej po³ówki
+; 350  : 		zaklad_typ != "d" && //Sprawdzanie czy wprowadzono zak³ad na liczby z dolnej po³ówki
+; 351  : 		zaklad_typ != "k1" && //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 1
+; 352  : 		zaklad_typ != "k2" && //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 2
+; 353  : 		zaklad_typ != "k3" && //Sprawdzanie czy wprowadzono zak³ad na liczby z kolumny 3
+; 354  : 		zaklad_typ != "w1" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 1
+; 355  : 		zaklad_typ != "w2" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 2
+; 356  : 		zaklad_typ != "w3" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 3
+; 357  : 		zaklad_typ != "w4" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 4
+; 358  : 		zaklad_typ != "w5" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 5
+; 359  : 		zaklad_typ != "w6" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 6
+; 360  : 		zaklad_typ != "w7" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 7
+; 361  : 		zaklad_typ != "w8" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 8
+; 362  : 		zaklad_typ != "w9" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 9
+; 363  : 		zaklad_typ != "w10" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 10
+; 364  : 		zaklad_typ != "w11" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 11
+; 365  : 		zaklad_typ != "w12" && //Sprawdzanie czy wprowadzono zak³ad na liczby z wiersza 12
+; 366  : 		zaklad_typ != "0" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 0
+; 367  : 		zaklad_typ != "1" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 1
+; 368  : 		zaklad_typ != "2" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 2
+; 369  : 		zaklad_typ != "3" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 3
+; 370  : 		zaklad_typ != "4" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 4
+; 371  : 		zaklad_typ != "5" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 5
+; 372  : 		zaklad_typ != "6" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 6
+; 373  : 		zaklad_typ != "7" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 7
+; 374  : 		zaklad_typ != "8" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 8
+; 375  : 		zaklad_typ != "9" && //Sprawdzanie czy wprowadzono zak³ad na cyfrê 9
+; 376  : 		zaklad_typ != "10" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 10
+; 377  : 		zaklad_typ != "11" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 11
+; 378  : 		zaklad_typ != "12" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 12
+; 379  : 		zaklad_typ != "13" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 13
+; 380  : 		zaklad_typ != "14" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 14
+; 381  : 		zaklad_typ != "15" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 15
+; 382  : 		zaklad_typ != "16" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 16
+; 383  : 		zaklad_typ != "17" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 17
+; 384  : 		zaklad_typ != "18" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 18
+; 385  : 		zaklad_typ != "19" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 19
+; 386  : 		zaklad_typ != "20" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 20
+; 387  : 		zaklad_typ != "21" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 21
+; 388  : 		zaklad_typ != "22" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 22
+; 389  : 		zaklad_typ != "23" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 23
+; 390  : 		zaklad_typ != "24" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 24
+; 391  : 		zaklad_typ != "25" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 25
+; 392  : 		zaklad_typ != "26" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 26
+; 393  : 		zaklad_typ != "27" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 27
+; 394  : 		zaklad_typ != "28" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 28
+; 395  : 		zaklad_typ != "29" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 29
+; 396  : 		zaklad_typ != "30" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 30
+; 397  : 		zaklad_typ != "31" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 31
+; 398  : 		zaklad_typ != "32" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 32
+; 399  : 		zaklad_typ != "33" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 33
+; 400  : 		zaklad_typ != "34" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 34
+; 401  : 		zaklad_typ != "35" && //Sprawdzanie czy wprowadzono zak³ad na liczbê 35
 
   001c8	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01JBBJJEPG@p?$AA@
@@ -30515,10 +30504,10 @@ $LN4@Obstaw:
 	ff		 jne	 $LN4@Obstaw
 $LN5@Obstaw:
 
-; 413  : 		zaklad_typ != "36" //Sprawdzanie czy wprowadzono zak³ad na liczbê 36
-; 414  : 		); //Je¿eli któryœ z warunków siê niezgadza to pêtla nie jest kontynuowana
-; 415  : 
-; 416  : 	return zaklad_typ; //Zwracam typ zak³adu podany przez u¿ytkownika
+; 402  : 		zaklad_typ != "36" //Sprawdzanie czy wprowadzono zak³ad na liczbê 36
+; 403  : 		); //Je¿eli któryœ z warunków siê niezgadza to pêtla nie jest kontynuowana
+; 404  : 
+; 405  : 	return zaklad_typ; //Zwracam typ zak³adu podany przez u¿ytkownika
 
   007d2	48 8d 55 08	 lea	 rdx, QWORD PTR zaklad_typ$[rbp]
   007d6	48 8b 8d 60 01
@@ -30534,7 +30523,7 @@ $LN5@Obstaw:
   007fa	48 8b 85 60 01
 	00 00		 mov	 rax, QWORD PTR __$ReturnUdt$[rbp]
 
-; 417  : }
+; 406  : }
 
   00801	48 8b f8	 mov	 rdi, rax
   00804	48 8d 4d e0	 lea	 rcx, QWORD PTR [rbp-32]
@@ -38668,7 +38657,7 @@ _TEXT	SEGMENT
 __formal$ = 224
 ?__empty_global_delete@@YAXPEAX@Z PROC			; __empty_global_delete, COMDAT
 
-; 617  : }
+; 606  : }
 
 $LN3:
   00000	48 89 4c 24 08	 mov	 QWORD PTR [rsp+8], rcx
