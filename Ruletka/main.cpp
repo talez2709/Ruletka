@@ -220,6 +220,14 @@ int main()
 			buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
 			iloœæ_pieniêdzy = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 		}
+		else if (buf.find("Gra rozpoczeta dnia") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o rozpoczêciu nowej gry
+		{
+			co_kontynuowaæ = 'n'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od pocz¹tku
+		}
+		else //Je¿eli coœ pójdzie nie tak, to warunek aby gra siê niewysypa³a
+		{
+			co_kontynuowaæ = 'n'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od pocz¹tku
+		}
 		log.close(); //Zamkniêcie pliku logu ogólnego
 		log.open("log_aktualny.txt", ios::out | ios::app); //Ponowne wczytanie pliku, teraz tylko do odczytu i ustawienie kursora zapisu na koniec pliku
 	}
@@ -625,4 +633,13 @@ int Wylosuj(int od_liczby, int do_liczby)
 	}
 	uniform_int_distribution<int> distribution(od_liczby, do_liczby); //Wsazuje zakres generowanych liczb
 	return distribution(generator); //Zwraca wygenerowan¹ liczbê
-	}
+}
+
+/*
+* Wykona³ Krzysztof Truszkiewicz
+Politechnika Poznañska
+Wydzia³ Elektryczny
+studia niestacjonarne
+Automatyka i Robotyka
+Grupa 4
+*/
