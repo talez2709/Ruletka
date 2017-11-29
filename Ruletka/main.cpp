@@ -13,7 +13,7 @@
 #define iloœæ_minimalna_obrotów_ruletki 2 // Minimalna iloœæ obrotów ruletki przed podaniem wartoœci wylosowanej
 #define iloœæ_max_dodatkowych_obrotów_ruletki 3 // Maksymalna iloœæ dodatkowych obrotów ruletki przed podaniem wartoœci wylosowanej
 #define czas_przeskoku_kulki_szybki 100 //Czas w ms przerwy pomiêdzy przeskokami na pocz¹tek losowania na kolejn¹ liczbê na kole ruletki
-#define czas_przeskoku_kulki_wolny 200 //Czas w ms przerwy pomiêdzy przeskokami pod koniec losowania na kolejn¹ liczbê na kole ruletki
+#define czas_przeskoku_kulki_wolny 150 //Czas w ms przerwy pomiêdzy przeskokami pod koniec losowania na kolejn¹ liczbê na kole ruletki
 #define czas_przerwy_dzwiêku 500 //Czas w ms przerwy pomiêdzy pikniêciami oznaczaj¹cymi wynik zak³adu
 #define styl_liczenia_wygranej 1 //0 dla odejmowania w³o¿onych w zak³ad pieniêdzy (przy tym zak³ady 1:1 nie zwiêkszaj¹ iloœæ_pieniêdzy), 1 dla nie odejmowania (przy tym zak³ady 1:1 zwiêkszaj¹ iloœæ_pieniêdzy)
 #define kwota_pocz¹tkowa 1000 //Iloœæ $ z którymi zaczyna siê grê
@@ -93,11 +93,12 @@ int main()
 	fstream log; //Utworzenie typu do celu zapisu i/lub odczytu do i/lub z pliku
 	int iloœæ_pieniêdzy = kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funkcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
 	string typ_zak³adu; //Przechowuje typ zak³adu wprowadzony przez u¿ytkownika
-	char co_kontynuowaæ = 'n'; //Deklaracja znaku który przechowuje nazwany znakiem punkt od którego kontynuowaæ runde
+	char co_kontynuowaæ; //Deklaracja znaku który przechowuje nazwany znakiem punkt od którego kontynuowaæ runde
 
 #if czy_kontynuowaæ_grê == 0 //Kompilacja je¿eli czy_kontynuowaæ_grê == 0
 	if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 	{
+		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
 		remove("log_aktualny.txt"); //Usuniêcie pliku log aktualny poniewa¿ rozpoczyna siê now¹ grê
 		log_ogólny << endl << "Uruchomiono ponownie grê z wy³¹czon¹ opcj¹ kontynuowania" << endl; //Wpisanie do buforu logu ogólnego informacje o rozpoczêciu nowej gry spowodowane ustawieniem gry
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
@@ -107,17 +108,18 @@ int main()
 	if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 	{
 		log.open("log_aktualny.txt", ios::in); //Otworzenie pliku w trybie odczytu z pliku
-		string buf, buf2; //Uworzenie 2 buforów na tekst, pierwszy na ostatni¹ linie tekst, drugi na przedostani¹ nie pust¹ linie tekstu lub ostani¹ w przypadku gdy ostania jest pusta
+		string buf, bufor2; //Uworzenie 2 buforów na tekst, pierwszy na ostatni¹ linie tekst, drugi na przedostani¹ nie pust¹ linie tekstu lub ostani¹ w przypadku gdy ostania jest pusta
+		getline(log, buf); //Odczyt ca³ej lini z pliku
 		while (!log.eof()) //Pêtla dzia³j¹ca do czasu kiedy kursor odczytu z pliku nie bêdzie na koñcu pliku
 		{
+			if (buf != "") bufor2 = buf; //Sprawdzenie czy odczytana linia nie jest pusta, je¿eli nie jest pusta to skopiowanie do drugiego bufora celem posiadania dwóch ostatnich linijek tekstu bêd¹cego w pliku
 			getline(log, buf); //Odczyt ca³ej lini z pliku
-			if (buf != "") buf2 = buf; //Sprawdzenie czy odczytana linia nie jest pusta, je¿eli nie jest pusta to skopiowanie do drugiego bufora celem posiadania dwóch ostatnich linijek tekstu bêd¹cego w pliku
 		}
-		if (buf == "") buf = buf2; //Sprawdzenie czy linia w buforze jest pusta, je¿eli jest pusta to zastopienie jej poprzedni¹ lini¹ tekstu z pliku
-		if (buf.find("Posiadasz") != string::npos || buf.find("Przegrales") != string::npos || buf.find("Wygrywasz") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o skoñczeniu rundy
+		if (buf == "") buf = bufor2; //Sprawdzenie czy linia w buforze jest pusta, je¿eli jest pusta to zastopienie jej poprzedni¹ lini¹ tekstu z pliku
+		if (buf.find("Posiadasz") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o skoñczeniu rundy
 		{
 			co_kontynuowaæ = 'n'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od pocz¹tku
-			int pocz¹tek = (int)buf.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			int pocz¹tek = (int)buf.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst pozycji ostatniego znaku tekstu o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (buf[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
 			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
@@ -125,83 +127,105 @@ int main()
 			buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
 			iloœæ_pieniêdzy = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 		}
-		else if (buf.find("Wylosowano") != string::npos)
+		else if (buf.find("Wylosowano") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o wylosowaniu liczby
 		{
-			co_kontynuowaæ = 'w';
-			int pocz¹tek = 0;
-			while (buf[pocz¹tek] != 'y' && pocz¹tek < (int)buf.size()) ++pocz¹tek;
-			pocz¹tek += 10;
-			string buf2 = buf;
-			buf2.erase(0, pocz¹tek);
-			wylosowana_liczba = atoi(buf2.c_str());
-			pocz¹tek = 0;
+			co_kontynuowaæ = 'w'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od sprawdzenia wygranej
+			int pocz¹tek = 0; //Utworzenie i przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o wylosowanej liczbie
+			while (buf[pocz¹tek] != 'y' && pocz¹tek < (int)buf.size()) ++pocz¹tek; //Poszukiwanie od pocz¹tku litery y która wystêpuje w wyrazie po którym jest wylosowana liczba
+			pocz¹tek += 10; //Przesuniêcie o +10 pozycji pocz¹tku tekstu o po której jest wylosowana liczba
+			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+			wylosowana_liczba = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			pocz¹tek = 0; //Przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o typie zak³adu
 			while (buf[pocz¹tek] != 'd' && pocz¹tek < (int)buf.size()) ++pocz¹tek;
-			pocz¹tek += 2;
-			buf2 = buf;
-			buf2.erase(0, pocz¹tek);
+			pocz¹tek += 2;  //Przesuniêcie o +2 pozycji pocz¹tku tekstu o po której jest typ zak³adu
+			buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			buf2.erase(buf2.find(" Wylosowano"), buf2.size() - buf2.find(" Wylosowano"));
-			typ_zak³adu = buf2;
+			typ_zak³adu = buf2; //Przypisanie do zmiennej przechowywuj¹cej typ zak³adu wczytanego typu zak³adu
 			buf.erase(buf.find("Obstawiono zaklad"), buf.size() - buf.find("Obstawiono zaklad"));
-			pocz¹tek = 0;
-			if (buf[12] == 'a') { pocz¹tek = 14; }
-			else
+			pocz¹tek = 0; //Przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie zak³adu
+			if (buf[12] == 'a') { pocz¹tek = 14; } //Sprawdzenie czy na pozycji 12 teksty znajduje siê litera a œwiadcz¹ca o wyrazie po którym jest kwota zak³adu, je¿eli tak to pozycja pocz¹tkowa tekstu wynosi 14
+			else //Je¿eli nie to
 			{
-				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek;
-				pocz¹tek += 3;
+				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek; //Poszukanie litery z œwiadcz¹cej o wyrazie po którym jest kwota zak³adu
+				pocz¹tek += 3; //Po znalezienu z przesuwamy pozycje +3
 			}
-			int koniec = pocz¹tek + 1;
-			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec;
-			buf2 = buf;
-			buf2.erase(koniec, buf2.size() - koniec);
-			buf2.erase(0, pocz¹tek);
-			kwota_zak³adu = atoi(buf2.c_str());
+			int koniec = pocz¹tek + 1; //Przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
+			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec; //Poszukujemy znaku dolara przed którym jest kwota zak³adu
+			buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
+			buf2.erase(koniec, buf2.size() - koniec); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+			kwota_zak³adu = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			pocz¹tek = (int)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
+			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
+			buf2 = bufor2; //Przypisanie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+			buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
+			iloœæ_pieniêdzy = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 		}
-		else if (buf.find("Obstawiono zaklad") != string::npos)
+		else if (buf.find("Obstawiono zaklad") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o typie obstawionego zak³adu
 		{
-			co_kontynuowaæ = 't';
-			int pocz¹tek = 0;
+			co_kontynuowaæ = 't'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od wylosowania liczby
+			int pocz¹tek = 0; //Utworzenie i przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o typie zak³adu
 			while (buf[pocz¹tek] != 'd' && pocz¹tek < (int)buf.size()) ++pocz¹tek;
-			pocz¹tek += 2;
-			string buf2 = buf;
-			buf2.erase(0, pocz¹tek);
-			typ_zak³adu = buf2;
+			pocz¹tek += 2; //Przesuniêcie pozycji pocz¹tku tekstu o 2 po której jest typ zak³adu
+			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+			typ_zak³adu = buf2; //Przypisanie do zmiennej przechowywuj¹cej typ zak³adu wczytanego typu zak³adu
 			buf.erase(buf.find("Obstawiono zaklad"), buf.size() - buf.find("Obstawiono zaklad"));
-			pocz¹tek = 0;
-			if (buf[12] == 'a') pocz¹tek = 14;
-			else
+			pocz¹tek = 0; //Przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie zak³adu
+			if (buf[12] == 'a') pocz¹tek = 14; //Sprawdzenie czy na pozycji 12 teksty znajduje siê litera a œwiadcz¹ca o wyrazie po którym jest kwota zak³adu, je¿eli tak to pozycja pocz¹tkowa tekstu wynosi 14
+			else //Je¿eli nie to
 			{
-				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek;
-				pocz¹tek += 3;
+				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek; //Poszukanie litery z œwiadcz¹cej o wyrazie po którym jest kwota zak³adu
+				pocz¹tek += 3; //Po znalezienu z przesuwamy pozycje +3
 			}
-			int koniec = pocz¹tek + 1;
-			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec;
-			buf2 = buf;
-			buf2.erase(koniec, buf2.size() - koniec);
-			buf2.erase(0, pocz¹tek);
-			kwota_zak³adu = atoi(buf2.c_str());
+			int koniec = pocz¹tek + 1; //Przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
+			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec; //Pêtla poszukuj¹ca znaku dolara, pêtla koñczy siê znalezieniem znaku dolara
+			buf2 = buf; //W³o¿enie do bufora pomocniczego do ciêcia tekstu wczeœniej odczytanego tekstu
+			buf2.erase(koniec, buf2.size() - koniec); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+			kwota_zak³adu = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			pocz¹tek = (int)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
+			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
+			buf2 = bufor2; //Przypisanie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+			buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
+			iloœæ_pieniêdzy = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 		}
-		else if (buf.find("Obstawiono za") != string::npos)
+		else if (buf.find("Obstawiono za") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o kwocie obstawionego zak³adu
 		{
-			co_kontynuowaæ = 'k';
-			int pocz¹tek = 0;
-			if (buf[12] == 'a') { pocz¹tek = 14; }
-			else
+			co_kontynuowaæ = 'k';  //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od zapytania o typ zak³adu
+			int pocz¹tek = 0; //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			if (buf[12] == 'a') { pocz¹tek = 14; } //Sprawdzenie czy na pozycji 12 teksty znajduje siê litera a œwiadcz¹ca o wyrazie po którym jest kwota zak³adu, je¿eli tak to pozycja pocz¹tkowa tekstu wynosi 14
+			else //Je¿eli nie to
 			{
-				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek;
-				pocz¹tek += 3;
+				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek; //Poszukanie litery z œwiadcz¹cej o wyrazie po którym jest kwota zak³adu
+				pocz¹tek += 3; //Po znalezienu z przesuwamy pozycje +3
 			}
-			int koniec = pocz¹tek + 1;
+			int koniec = pocz¹tek + 1; //Utworzenie i przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
 			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec;
-			string buf2 = buf;
-			buf2.erase(koniec, buf2.size() - koniec);
-			buf2.erase(0, pocz¹tek);
-			kwota_zak³adu = atoi(buf2.c_str());
+			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
+			buf2.erase(koniec, buf2.size() - koniec); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+			kwota_zak³adu = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			pocz¹tek = (int)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
+			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
+			buf2 = bufor2; //Przypisanie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
+			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+			buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
+			iloœæ_pieniêdzy = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 		}
-		log.close();
-		log.open("log_aktualny.txt", ios::out | ios::app);
+		log.close(); //Zamkniêcie pliku logu ogólnego
+		log.open("log_aktualny.txt", ios::out | ios::app); //Ponowne wczytanie pliku, teraz tylko do odczytu i ustawienie kursora zapisu na koniec pliku
 	}
 	else
 	{
+		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
 		log.open("log_aktualny.txt", ios::out);
 		GetSystemTime(&Czas); //Pobieranie aktualnej daty i czasu z zegara systemowego
 		log << "Gra rozpoczeta dnia " << Czas.wDay << "." << Czas.wMonth << "." << Czas.wYear << " o godzinie "; //Wpisanie do bufora zapisu danych o dniu,miesi¹cu i roku do pliku log_aktualny.txt
@@ -220,7 +244,6 @@ int main()
 		log_ogólny << Czas.wSecond << endl; // Wpisanie do bufora zapisu danych o sekundzie do pliku log_ogólny.txt
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
 	}
 	do
 	{
@@ -579,7 +602,7 @@ void HideCursor()
 
 void ShowCursor()
 {
-	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
 	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
 	GetConsoleCursorInfo(hConsoleOut, &hCCI); //Przypisanie do zmiennej informacji o kursorze tekstowym w konsoli
 	if (hCCI.bVisible != TRUE) //Sprawdzenie czy wartoœæ widocznoœci kursorsora tekstego w konsoli jest ró¿na od prawdy
@@ -602,4 +625,4 @@ int Wylosuj(int od_liczby, int do_liczby)
 	}
 	uniform_int_distribution<int> distribution(od_liczby, do_liczby); //Wsazuje zakres generowanych liczb
 	return distribution(generator); //Zwraca wygenerowan¹ liczbê
-}
+	}

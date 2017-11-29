@@ -29,3 +29,6 @@ Obstawiono za 1000$ Obstawiono zaklad n Wylosowano 7 Wygrywasz 1000$ Posiadasz 2
 Obstawiono za 2000$ Obstawiono zaklad p Wylosowano 29 Przegrales 2000$ Posiadasz 400$
 Obstawiono za 400$ Obstawiono zaklad p Wylosowano 33 Przegrales 400$ Posiadasz 0$
 Koñczysz gre z wynikiem 0$
+Nowa gra rozpoczeta dnia 29.11.2017 o godzinie 09:25:49
+Obstawiono za 100$ Obstawiono zaklad p Wylosowano 22 Wygrywasz 100$ Posiadasz 1100$
+Obstawiono za 100$ Obstawiono zaklad p Wylosowano 34
