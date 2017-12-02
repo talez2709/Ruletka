@@ -5,8 +5,10 @@
 #include <iostream> //Obs³uga strumenia cout,cin
 #include <locale.h> //setlocale()
 #include <random> //random_device,distribution()
+#include <sstream> //stringstream, zamiana liczby na string
 #include <string> //Obs³uga stringów
 #include <windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),HANDLE,GetStdHandle(),SetConsoleTextAttribute()
+#include <MMsystem.h> //PlaySound() (Aby dzia³a³o trzeba dodaæ winmm.lib do linkera (konsolidatora))
 //-------------------------------------------------------------------------------------
 
 //------ deklaracje definicji preprocesora do zmian funcjonowania programu ------------
@@ -19,6 +21,7 @@
 #define kwota_pocz¹tkowa 1000 //Iloœæ $ z którymi zaczyna siê grê
 #define stan_dŸwiêków 1 //Czy w³¹czone dŸwiêki 1 <-tak 0 <-nie
 #define czy_kontynuowaæ_grê 1 //Czy w³¹czone kontynuowanie gry od skoñczonej poprzednio pozycji 1 <-tak 0 <-nie
+#define g³os_odczytu_numeru 1 //Wybór g³osu który odczyta wylosowany numer 0 <- Brak 1 <- Jacek (Ivona) 2 <- Ewa (Ivona) 3 <- Maja (Ivona) 4 <- Jan (Ivona) 5 <- Jacek (Ivona 2) 6 <- Ewa (Ivona 2) 7 <- Maja (Ivona 2) 8 <- Jan (Ivona 2) 9 <- Agata (Scansoft)
 //-------------------------------------------------------------------------------------
 
 //sprawdzanie poprawnoœci deklaracji definicji preprocesora do zmian funcjonowania programu
@@ -35,7 +38,7 @@
 #if (iloœæ_minimalna_obrotów_ruletki == 0) && (iloœæ_max_dodatkowych_obrotów_ruletki == 0)
 #error Jedna z deklaracji w sprawie obrotów ruletki musi byæ wiêksza od zera
 #endif
-#if (styl_liczenia_wygranej > 1) || (styl_liczenia_wygranej < 0)
+#if ((styl_liczenia_wygranej > 1) || (styl_liczenia_wygranej < 0))
 #error Styl liczeia wygranej przyjmuje wartoœci tylko 0 lub 1
 #endif
 #if czas_przerwy_dzwiêku <0
@@ -50,6 +53,9 @@
 #if (czy_kontynuowaæ_grê > 1) || (czy_kontynuowaæ_grê < 0)
 #error Opcja kontynuowania gry przyjmuje wartoœci tylko 0 lub 1
 #endif
+#if (g³os_odczytu_numeru > 10) || (g³os_odczytu_numeru < 0)
+#error Opcja g³os odczytu numeru przyjmuje wartoœci tylko 0 lub 1
+#endif
 //-----------------------------------------------------------------------------------------
 
 //-------------------------- deklaracja wyboru przestrzeni nazw std -------------------
@@ -60,15 +66,16 @@ using namespace std;
 string Obstaw(); //Funkcja wczytywania typu zak³ad, do string aby mieæ tak¿e zak³ady sk³adaj¹ce siê z liter i cyfr
 void Wczytaj_Kwotê_Zak³adu(int & kwota, int & iloœæ_pieniêdzy); //Funkcja wczytywania kwoty zak³adu aby uchroniæ siê przed problemem wpisania znaku,litery zamiast liczby i osbstawienie za wiêksz¹ kwotê ni¿ siê ma
 int Zakrêæ_Ruletk¹(); //Funkcja losuje liczbê z ko³a ruletki
-int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba); //Funcja sprawdza czy wygraliœmy i podaje kwote wygranej/przegranej/odzysku czêœci w³o¿onych pieniêdzy
+int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, const int & wylosowana_liczba); //Funcja sprawdza czy wygraliœmy i podaje kwote wygranej/przegranej/odzysku czêœci w³o¿onych pieniêdzy
 bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy); //Funkcja sprawdzj¹ca czy ma siê œrodki do gry, je¿eli ma siê to pyta czy chce siê graæ dalej
-int Wylosuj(int od_liczy, int do_liczby); //Funkcja która losuje liczby od liczby do liczby losowo lub psudolosowo metod¹ MT
+int Wylosuj(const int & od_liczby, const int & do_liczby); //Funkcja która losuje liczby od liczby do liczby losowo lub psudolosowo metod¹ MT
+void Odczytaj_liczbê(int & wylosowana_liczba, string & typ_zak³adu);
 //-------------------------------------------------------------------------------------
 
 //------------------------------- deklaracje funkcji obcych ---------------------------
-void Change_Col(int num_of_col); //Funkcja zmieniaj¹ca kolor tekstu 0 - czarny 1 - niebieski 2 - zielony 3 - b³êkitny 4 - czerwony 5 - purpurowy 6 - ¿ó³ty 7 - bia³y 8 - szary 9 - jasnoniebieski 10 - jasnozielony 11 - jasnob³êkitny 12 - jasnoczerwony 13 - jasnopurpurowy 14 - jasno¿ó³ty 15 - jaskrawobia³y
-void HideCursor(); //Funkcja w³¹cza pokazanie kursora tekstowego
-void ShowCursor(); //Funkcja wy³¹cza pokazanie kursora tekstowego
+void Change_Col(const int & num_of_col); //Funkcja zmieniaj¹ca kolor tekstu 0 - czarny 1 - niebieski 2 - zielony 3 - b³êkitny 4 - czerwony 5 - purpurowy 6 - ¿ó³ty 7 - bia³y 8 - szary 9 - jasnoniebieski 10 - jasnozielony 11 - jasnob³êkitny 12 - jasnoczerwony 13 - jasnopurpurowy 14 - jasno¿ó³ty 15 - jaskrawobia³y
+void Hide_Cursor(); //Funkcja w³¹cza pokazanie kursora tekstowego
+void Show_Cursor(); //Funkcja wy³¹cza pokazanie kursora tekstowego
 //-------------------------------------------------------------------------------------
 
 //----------------------------- deklaracje tablic pomocniczych ------------------------
@@ -79,14 +86,108 @@ int Ruletka_plansza_kolor_col[] = { 2,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,
 
 //---------------------------- deklaracje zmiennych globalnych ------------------------
 SYSTEMTIME Czas; //Struktura do której zapisywana jest aktualna data i czas
+#if (g³os_odczytu_numeru < 10) && (g³os_odczytu_numeru > 0)
+bool G³osyKompletne = true;
+#endif
+#if (g³os_odczytu_numeru < 10) && (g³os_odczytu_numeru > 0)
+bool EfektyKompletne = true;
+#endif
 //-------------------------------------------------------------------------------------
 
 int main()
 {
 	//Inicjowanie funkcji
 	setlocale(LC_ALL, "polish"); // W celu polskich liter w konsoli
-	srand((unsigned int)time(NULL)); //Zainicjowanie generatorza LCG (Liniowy Generator Kongruentny) dla ma³o wa¿nych liczb
-	ShowCursor(); //Pokazanie kursora tekstowego w konsoli
+	srand((unsigned int)time(nullptr)); //Zainicjowanie generatorza LCG (Liniowy Generator Kongruentny) dla ma³o wa¿nych liczb
+	Show_Cursor(); //Pokazanie kursora tekstowego w konsoli
+
+#if g³os_odczytu_numeru == 1
+	if ((_access("Jacek/p.wav", 0)) || (_access("Jacek/n.wav", 0)) || (_access("Jacek/r.wav", 0)) || (_access("Jacek/b.wav", 0)) || (_access("Jacek/g.wav", 0)) || (_access("Jacek/d.wav", 0)) || (_access("Jacek/k1.wav", 0)) || (_access("Jacek/k2.wav", 0)) || (_access("Jacek/k3.wav", 0)) || (_access("Jacek/w1.wav", 0)) || (_access("Jacek/w2.wav", 0)) || (_access("Jacek/w3.wav", 0)) || (_access("Jacek/w4.wav", 0)) || (_access("Jacek/w5.wav", 0)) || (_access("Jacek/w6.wav", 0)) || (_access("Jacek/w7.wav", 0)) || (_access("Jacek/w8.wav", 0)) || (_access("Jacek/w9.wav", 0)) || (_access("Jacek/w10.wav", 0)) || (_access("Jacek/w11.wav", 0)) || (_access("Jacek/w12.wav", 0)) || (_access("Jacek/0.wav", 0)) || (_access("Jacek/1.wav", 0)) || (_access("Jacek/2.wav", 0)) || (_access("Jacek/3.wav", 0)) || (_access("Jacek/4.wav", 0)) || (_access("Jacek/5.wav", 0)) || (_access("Jacek/6.wav", 0)) || (_access("Jacek/7.wav", 0)) || (_access("Jacek/8.wav", 0)) || (_access("Jacek/9.wav", 0)) || (_access("Jacek/10.wav", 0)) || (_access("Jacek/11.wav", 0)) || (_access("Jacek/12.wav", 0)) || (_access("Jacek/13.wav", 0)) || (_access("Jacek/14.wav", 0)) || (_access("Jacek/15.wav", 0)) || (_access("Jacek/16.wav", 0)) || (_access("Jacek/17.wav", 0)) || (_access("Jacek/18.wav", 0)) || (_access("Jacek/19.wav", 0)) || (_access("Jacek/20.wav", 0)) || (_access("Jacek/21.wav", 0)) || (_access("Jacek/22.wav", 0)) || (_access("Jacek/23.wav", 0)) || (_access("Jacek/24.wav", 0)) || (_access("Jacek/25.wav", 0)) || (_access("Jacek/26.wav", 0)) || (_access("Jacek/27.wav", 0)) || (_access("Jacek/28.wav", 0)) || (_access("Jacek/29.wav", 0)) || (_access("Jacek/30.wav", 0)) || (_access("Jacek/31.wav", 0)) || (_access("Jacek/32.wav", 0)) || (_access("Jacek/33.wav", 0)) || (_access("Jacek/34.wav", 0)) || (_access("Jacek/35.wav", 0)) || (_access("Jacek/36.wav", 0)) || (_access("Jacek/win.wav", 0)))
+	{
+		cout << "Brak plików dla g³osu Jacek, wy³¹czono odczytywanie wyniku" << endl;
+		G³osyKompletne = false;
+	}
+#endif
+#if g³os_odczytu_numeru == 2
+	if ((_access("Ewa/p.wav", 0)) || (_access("Ewa/n.wav", 0)) || (_access("Ewa/r.wav", 0)) || (_access("Ewa/b.wav", 0)) || (_access("Ewa/g.wav", 0)) || (_access("Ewa/d.wav", 0)) || (_access("Ewa/k1.wav", 0)) || (_access("Ewa/k2.wav", 0)) || (_access("Ewa/k3.wav", 0)) || (_access("Ewa/w1.wav", 0)) || (_access("Ewa/w2.wav", 0)) || (_access("Ewa/w3.wav", 0)) || (_access("Ewa/w4.wav", 0)) || (_access("Ewa/w5.wav", 0)) || (_access("Ewa/w6.wav", 0)) || (_access("Ewa/w7.wav", 0)) || (_access("Ewa/w8.wav", 0)) || (_access("Ewa/w9.wav", 0)) || (_access("Ewa/w10.wav", 0)) || (_access("Ewa/w11.wav", 0)) || (_access("Ewa/w12.wav", 0)) || (_access("Ewa/0.wav", 0)) || (_access("Ewa/1.wav", 0)) || (_access("Ewa/2.wav", 0)) || (_access("Ewa/3.wav", 0)) || (_access("Ewa/4.wav", 0)) || (_access("Ewa/5.wav", 0)) || (_access("Ewa/6.wav", 0)) || (_access("Ewa/7.wav", 0)) || (_access("Ewa/8.wav", 0)) || (_access("Ewa/9.wav", 0)) || (_access("Ewa/10.wav", 0)) || (_access("Ewa/11.wav", 0)) || (_access("Ewa/12.wav", 0)) || (_access("Ewa/13.wav", 0)) || (_access("Ewa/14.wav", 0)) || (_access("Ewa/15.wav", 0)) || (_access("Ewa/16.wav", 0)) || (_access("Ewa/17.wav", 0)) || (_access("Ewa/18.wav", 0)) || (_access("Ewa/19.wav", 0)) || (_access("Ewa/20.wav", 0)) || (_access("Ewa/21.wav", 0)) || (_access("Ewa/22.wav", 0)) || (_access("Ewa/23.wav", 0)) || (_access("Ewa/24.wav", 0)) || (_access("Ewa/25.wav", 0)) || (_access("Ewa/26.wav", 0)) || (_access("Ewa/27.wav", 0)) || (_access("Ewa/28.wav", 0)) || (_access("Ewa/29.wav", 0)) || (_access("Ewa/30.wav", 0)) || (_access("Ewa/31.wav", 0)) || (_access("Ewa/32.wav", 0)) || (_access("Ewa/33.wav", 0)) || (_access("Ewa/34.wav", 0)) || (_access("Ewa/35.wav", 0)) || (_access("Ewa/36.wav", 0)) || (_access("Ewa/win.wav", 0)))
+	{
+		cout << "Brak plików dla g³osu Ewa, wy³¹czono odczytywanie wyniku" << endl;
+		G³osyKompletne = false;
+	}
+#endif
+#if g³os_odczytu_numeru == 3
+	if ((_access("Maja/p.wav", 0)) || (_access("Maja/n.wav", 0)) || (_access("Maja/r.wav", 0)) || (_access("Maja/b.wav", 0)) || (_access("Maja/g.wav", 0)) || (_access("Maja/d.wav", 0)) || (_access("Maja/k1.wav", 0)) || (_access("Maja/k2.wav", 0)) || (_access("Maja/k3.wav", 0)) || (_access("Maja/w1.wav", 0)) || (_access("Maja/w2.wav", 0)) || (_access("Maja/w3.wav", 0)) || (_access("Maja/w4.wav", 0)) || (_access("Maja/w5.wav", 0)) || (_access("Maja/w6.wav", 0)) || (_access("Maja/w7.wav", 0)) || (_access("Maja/w8.wav", 0)) || (_access("Maja/w9.wav", 0)) || (_access("Maja/w10.wav", 0)) || (_access("Maja/w11.wav", 0)) || (_access("Maja/w12.wav", 0)) || (_access("Maja/0.wav", 0)) || (_access("Maja/1.wav", 0)) || (_access("Maja/2.wav", 0)) || (_access("Maja/3.wav", 0)) || (_access("Maja/4.wav", 0)) || (_access("Maja/5.wav", 0)) || (_access("Maja/6.wav", 0)) || (_access("Maja/7.wav", 0)) || (_access("Maja/8.wav", 0)) || (_access("Maja/9.wav", 0)) || (_access("Maja/10.wav", 0)) || (_access("Maja/11.wav", 0)) || (_access("Maja/12.wav", 0)) || (_access("Maja/13.wav", 0)) || (_access("Maja/14.wav", 0)) || (_access("Maja/15.wav", 0)) || (_access("Maja/16.wav", 0)) || (_access("Maja/17.wav", 0)) || (_access("Maja/18.wav", 0)) || (_access("Maja/19.wav", 0)) || (_access("Maja/20.wav", 0)) || (_access("Maja/21.wav", 0)) || (_access("Maja/22.wav", 0)) || (_access("Maja/23.wav", 0)) || (_access("Maja/24.wav", 0)) || (_access("Maja/25.wav", 0)) || (_access("Maja/26.wav", 0)) || (_access("Maja/27.wav", 0)) || (_access("Maja/28.wav", 0)) || (_access("Maja/29.wav", 0)) || (_access("Maja/30.wav", 0)) || (_access("Maja/31.wav", 0)) || (_access("Maja/32.wav", 0)) || (_access("Maja/33.wav", 0)) || (_access("Maja/34.wav", 0)) || (_access("Maja/35.wav", 0)) || (_access("Maja/36.wav", 0)) || (_access("Maja/win.wav", 0)))
+	{
+		cout << "Brak plików dla g³osu Maja, wy³¹czono odczytywanie wyniku" << endl;
+		G³osyKompletne = false;
+	}
+#endif
+#if g³os_odczytu_numeru == 4
+	if ((_access("Jan/p.wav", 0)) || (_access("Jan/n.wav", 0)) || (_access("Jan/r.wav", 0)) || (_access("Jan/b.wav", 0)) || (_access("Jan/g.wav", 0)) || (_access("Jan/d.wav", 0)) || (_access("Jan/k1.wav", 0)) || (_access("Jan/k2.wav", 0)) || (_access("Jan/k3.wav", 0)) || (_access("Jan/w1.wav", 0)) || (_access("Jan/w2.wav", 0)) || (_access("Jan/w3.wav", 0)) || (_access("Jan/w4.wav", 0)) || (_access("Jan/w5.wav", 0)) || (_access("Jan/w6.wav", 0)) || (_access("Jan/w7.wav", 0)) || (_access("Jan/w8.wav", 0)) || (_access("Jan/w9.wav", 0)) || (_access("Jan/w10.wav", 0)) || (_access("Jan/w11.wav", 0)) || (_access("Jan/w12.wav", 0)) || (_access("Jan/0.wav", 0)) || (_access("Jan/1.wav", 0)) || (_access("Jan/2.wav", 0)) || (_access("Jan/3.wav", 0)) || (_access("Jan/4.wav", 0)) || (_access("Jan/5.wav", 0)) || (_access("Jan/6.wav", 0)) || (_access("Jan/7.wav", 0)) || (_access("Jan/8.wav", 0)) || (_access("Jan/9.wav", 0)) || (_access("Jan/10.wav", 0)) || (_access("Jan/11.wav", 0)) || (_access("Jan/12.wav", 0)) || (_access("Jan/13.wav", 0)) || (_access("Jan/14.wav", 0)) || (_access("Jan/15.wav", 0)) || (_access("Jan/16.wav", 0)) || (_access("Jan/17.wav", 0)) || (_access("Jan/18.wav", 0)) || (_access("Jan/19.wav", 0)) || (_access("Jan/20.wav", 0)) || (_access("Jan/21.wav", 0)) || (_access("Jan/22.wav", 0)) || (_access("Jan/23.wav", 0)) || (_access("Jan/24.wav", 0)) || (_access("Jan/25.wav", 0)) || (_access("Jan/26.wav", 0)) || (_access("Jan/27.wav", 0)) || (_access("Jan/28.wav", 0)) || (_access("Jan/29.wav", 0)) || (_access("Jan/30.wav", 0)) || (_access("Jan/31.wav", 0)) || (_access("Jan/32.wav", 0)) || (_access("Jan/33.wav", 0)) || (_access("Jan/34.wav", 0)) || (_access("Jan/35.wav", 0)) || (_access("Jan/36.wav", 0)) || (_access("Jan/win.wav", 0)))
+	{
+		cout << "Brak plików dla g³osu Jan, wy³¹czono odczytywanie wyniku" << endl;
+		G³osyKompletne = false;
+	}
+#endif
+#if g³os_odczytu_numeru == 5
+	if ((_access("Jacek 2/p.wav", 0)) || (_access("Jacek 2/n.wav", 0)) || (_access("Jacek 2/r.wav", 0)) || (_access("Jacek 2/b.wav", 0)) || (_access("Jacek 2/g.wav", 0)) || (_access("Jacek 2/d.wav", 0)) || (_access("Jacek 2/k1.wav", 0)) || (_access("Jacek 2/k2.wav", 0)) || (_access("Jacek 2/k3.wav", 0)) || (_access("Jacek 2/w1.wav", 0)) || (_access("Jacek 2/w2.wav", 0)) || (_access("Jacek 2/w3.wav", 0)) || (_access("Jacek 2/w4.wav", 0)) || (_access("Jacek 2/w5.wav", 0)) || (_access("Jacek 2/w6.wav", 0)) || (_access("Jacek 2/w7.wav", 0)) || (_access("Jacek 2/w8.wav", 0)) || (_access("Jacek 2/w9.wav", 0)) || (_access("Jacek 2/w10.wav", 0)) || (_access("Jacek 2/w11.wav", 0)) || (_access("Jacek 2/w12.wav", 0)) || (_access("Jacek 2/0.wav", 0)) || (_access("Jacek 2/1.wav", 0)) || (_access("Jacek 2/2.wav", 0)) || (_access("Jacek 2/3.wav", 0)) || (_access("Jacek 2/4.wav", 0)) || (_access("Jacek 2/5.wav", 0)) || (_access("Jacek 2/6.wav", 0)) || (_access("Jacek 2/7.wav", 0)) || (_access("Jacek 2/8.wav", 0)) || (_access("Jacek 2/9.wav", 0)) || (_access("Jacek 2/10.wav", 0)) || (_access("Jacek 2/11.wav", 0)) || (_access("Jacek 2/12.wav", 0)) || (_access("Jacek 2/13.wav", 0)) || (_access("Jacek 2/14.wav", 0)) || (_access("Jacek 2/15.wav", 0)) || (_access("Jacek 2/16.wav", 0)) || (_access("Jacek 2/17.wav", 0)) || (_access("Jacek 2/18.wav", 0)) || (_access("Jacek 2/19.wav", 0)) || (_access("Jacek 2/20.wav", 0)) || (_access("Jacek 2/21.wav", 0)) || (_access("Jacek 2/22.wav", 0)) || (_access("Jacek 2/23.wav", 0)) || (_access("Jacek 2/24.wav", 0)) || (_access("Jacek 2/25.wav", 0)) || (_access("Jacek 2/26.wav", 0)) || (_access("Jacek 2/27.wav", 0)) || (_access("Jacek 2/28.wav", 0)) || (_access("Jacek 2/29.wav", 0)) || (_access("Jacek 2/30.wav", 0)) || (_access("Jacek 2/31.wav", 0)) || (_access("Jacek 2/32.wav", 0)) || (_access("Jacek 2/33.wav", 0)) || (_access("Jacek 2/34.wav", 0)) || (_access("Jacek 2/35.wav", 0)) || (_access("Jacek 2/36.wav", 0)) || (_access("Jacek 2/win.wav", 0)))
+	{
+		cout << "Brak plików dla g³osu Jacek, wy³¹czono odczytywanie wyniku" << endl;
+		G³osyKompletne = false;
+	}
+#endif
+#if g³os_odczytu_numeru == 6
+	if ((_access("Ewa 2/p.wav", 0)) || (_access("Ewa 2/n.wav", 0)) || (_access("Ewa 2/r.wav", 0)) || (_access("Ewa 2/b.wav", 0)) || (_access("Ewa 2/g.wav", 0)) || (_access("Ewa 2/d.wav", 0)) || (_access("Ewa 2/k1.wav", 0)) || (_access("Ewa 2/k2.wav", 0)) || (_access("Ewa 2/k3.wav", 0)) || (_access("Ewa 2/w1.wav", 0)) || (_access("Ewa 2/w2.wav", 0)) || (_access("Ewa 2/w3.wav", 0)) || (_access("Ewa 2/w4.wav", 0)) || (_access("Ewa 2/w5.wav", 0)) || (_access("Ewa 2/w6.wav", 0)) || (_access("Ewa 2/w7.wav", 0)) || (_access("Ewa 2/w8.wav", 0)) || (_access("Ewa 2/w9.wav", 0)) || (_access("Ewa 2/w10.wav", 0)) || (_access("Ewa 2/w11.wav", 0)) || (_access("Ewa 2/w12.wav", 0)) || (_access("Ewa 2/0.wav", 0)) || (_access("Ewa 2/1.wav", 0)) || (_access("Ewa 2/2.wav", 0)) || (_access("Ewa 2/3.wav", 0)) || (_access("Ewa 2/4.wav", 0)) || (_access("Ewa 2/5.wav", 0)) || (_access("Ewa 2/6.wav", 0)) || (_access("Ewa 2/7.wav", 0)) || (_access("Ewa 2/8.wav", 0)) || (_access("Ewa 2/9.wav", 0)) || (_access("Ewa 2/10.wav", 0)) || (_access("Ewa 2/11.wav", 0)) || (_access("Ewa 2/12.wav", 0)) || (_access("Ewa 2/13.wav", 0)) || (_access("Ewa 2/14.wav", 0)) || (_access("Ewa 2/15.wav", 0)) || (_access("Ewa 2/16.wav", 0)) || (_access("Ewa 2/17.wav", 0)) || (_access("Ewa 2/18.wav", 0)) || (_access("Ewa 2/19.wav", 0)) || (_access("Ewa 2/20.wav", 0)) || (_access("Ewa 2/21.wav", 0)) || (_access("Ewa 2/22.wav", 0)) || (_access("Ewa 2/23.wav", 0)) || (_access("Ewa 2/24.wav", 0)) || (_access("Ewa 2/25.wav", 0)) || (_access("Ewa 2/26.wav", 0)) || (_access("Ewa 2/27.wav", 0)) || (_access("Ewa 2/28.wav", 0)) || (_access("Ewa 2/29.wav", 0)) || (_access("Ewa 2/30.wav", 0)) || (_access("Ewa 2/31.wav", 0)) || (_access("Ewa 2/32.wav", 0)) || (_access("Ewa 2/33.wav", 0)) || (_access("Ewa 2/34.wav", 0)) || (_access("Ewa 2/35.wav", 0)) || (_access("Ewa 2/36.wav", 0)) || (_access("Ewa 2/win.wav", 0)))
+	{
+		cout << "Brak plików dla g³osu Ewa, wy³¹czono odczytywanie wyniku" << endl;
+		G³osyKompletne = false;
+	}
+#endif
+#if g³os_odczytu_numeru == 7
+	if ((_access("Maja 2/p.wav", 0)) || (_access("Maja 2/n.wav", 0)) || (_access("Maja 2/r.wav", 0)) || (_access("Maja 2/b.wav", 0)) || (_access("Maja 2/g.wav", 0)) || (_access("Maja 2/d.wav", 0)) || (_access("Maja 2/k1.wav", 0)) || (_access("Maja 2/k2.wav", 0)) || (_access("Maja 2/k3.wav", 0)) || (_access("Maja 2/w1.wav", 0)) || (_access("Maja 2/w2.wav", 0)) || (_access("Maja 2/w3.wav", 0)) || (_access("Maja 2/w4.wav", 0)) || (_access("Maja 2/w5.wav", 0)) || (_access("Maja 2/w6.wav", 0)) || (_access("Maja 2/w7.wav", 0)) || (_access("Maja 2/w8.wav", 0)) || (_access("Maja 2/w9.wav", 0)) || (_access("Maja 2/w10.wav", 0)) || (_access("Maja 2/w11.wav", 0)) || (_access("Maja 2/w12.wav", 0)) || (_access("Maja 2/0.wav", 0)) || (_access("Maja 2/1.wav", 0)) || (_access("Maja 2/2.wav", 0)) || (_access("Maja 2/3.wav", 0)) || (_access("Maja 2/4.wav", 0)) || (_access("Maja 2/5.wav", 0)) || (_access("Maja 2/6.wav", 0)) || (_access("Maja 2/7.wav", 0)) || (_access("Maja 2/8.wav", 0)) || (_access("Maja 2/9.wav", 0)) || (_access("Maja 2/10.wav", 0)) || (_access("Maja 2/11.wav", 0)) || (_access("Maja 2/12.wav", 0)) || (_access("Maja 2/13.wav", 0)) || (_access("Maja 2/14.wav", 0)) || (_access("Maja 2/15.wav", 0)) || (_access("Maja 2/16.wav", 0)) || (_access("Maja 2/17.wav", 0)) || (_access("Maja 2/18.wav", 0)) || (_access("Maja 2/19.wav", 0)) || (_access("Maja 2/20.wav", 0)) || (_access("Maja 2/21.wav", 0)) || (_access("Maja 2/22.wav", 0)) || (_access("Maja 2/23.wav", 0)) || (_access("Maja 2/24.wav", 0)) || (_access("Maja 2/25.wav", 0)) || (_access("Maja 2/26.wav", 0)) || (_access("Maja 2/27.wav", 0)) || (_access("Maja 2/28.wav", 0)) || (_access("Maja 2/29.wav", 0)) || (_access("Maja 2/30.wav", 0)) || (_access("Maja 2/31.wav", 0)) || (_access("Maja 2/32.wav", 0)) || (_access("Maja 2/33.wav", 0)) || (_access("Maja 2/34.wav", 0)) || (_access("Maja 2/35.wav", 0)) || (_access("Maja 2/36.wav", 0)) || (_access("Maja 2/win.wav", 0)))
+	{
+		cout << "Brak plików dla g³osu Maja, wy³¹czono odczytywanie wyniku" << endl;
+		G³osyKompletne = false;
+	}
+#endif
+#if g³os_odczytu_numeru == 8
+	if ((_access("Jan 2/p.wav", 0)) || (_access("Jan 2/n.wav", 0)) || (_access("Jan 2/r.wav", 0)) || (_access("Jan 2/b.wav", 0)) || (_access("Jan 2/g.wav", 0)) || (_access("Jan 2/d.wav", 0)) || (_access("Jan 2/k1.wav", 0)) || (_access("Jan 2/k2.wav", 0)) || (_access("Jan 2/k3.wav", 0)) || (_access("Jan 2/w1.wav", 0)) || (_access("Jan 2/w2.wav", 0)) || (_access("Jan 2/w3.wav", 0)) || (_access("Jan 2/w4.wav", 0)) || (_access("Jan 2/w5.wav", 0)) || (_access("Jan 2/w6.wav", 0)) || (_access("Jan 2/w7.wav", 0)) || (_access("Jan 2/w8.wav", 0)) || (_access("Jan 2/w9.wav", 0)) || (_access("Jan 2/w10.wav", 0)) || (_access("Jan 2/w11.wav", 0)) || (_access("Jan 2/w12.wav", 0)) || (_access("Jan 2/0.wav", 0)) || (_access("Jan 2/1.wav", 0)) || (_access("Jan 2/2.wav", 0)) || (_access("Jan 2/3.wav", 0)) || (_access("Jan 2/4.wav", 0)) || (_access("Jan 2/5.wav", 0)) || (_access("Jan 2/6.wav", 0)) || (_access("Jan 2/7.wav", 0)) || (_access("Jan 2/8.wav", 0)) || (_access("Jan 2/9.wav", 0)) || (_access("Jan 2/10.wav", 0)) || (_access("Jan 2/11.wav", 0)) || (_access("Jan 2/12.wav", 0)) || (_access("Jan 2/13.wav", 0)) || (_access("Jan 2/14.wav", 0)) || (_access("Jan 2/15.wav", 0)) || (_access("Jan 2/16.wav", 0)) || (_access("Jan 2/17.wav", 0)) || (_access("Jan 2/18.wav", 0)) || (_access("Jan 2/19.wav", 0)) || (_access("Jan 2/20.wav", 0)) || (_access("Jan 2/21.wav", 0)) || (_access("Jan 2/22.wav", 0)) || (_access("Jan 2/23.wav", 0)) || (_access("Jan 2/24.wav", 0)) || (_access("Jan 2/25.wav", 0)) || (_access("Jan 2/26.wav", 0)) || (_access("Jan 2/27.wav", 0)) || (_access("Jan 2/28.wav", 0)) || (_access("Jan 2/29.wav", 0)) || (_access("Jan 2/30.wav", 0)) || (_access("Jan 2/31.wav", 0)) || (_access("Jan 2/32.wav", 0)) || (_access("Jan 2/33.wav", 0)) || (_access("Jan 2/34.wav", 0)) || (_access("Jan 2/35.wav", 0)) || (_access("Jan 2/36.wav", 0)) || (_access("Jan 2/win.wav", 0)))
+	{
+		cout << "Brak plików dla g³osu Jan, wy³¹czono odczytywanie wyniku" << endl;
+		G³osyKompletne = false;
+	}
+#endif
+#if g³os_odczytu_numeru == 9
+	if ((_access("Agata/p.wav", 0)) || (_access("Agata/n.wav", 0)) || (_access("Agata/r.wav", 0)) || (_access("Agata/b.wav", 0)) || (_access("Agata/g.wav", 0)) || (_access("Agata/d.wav", 0)) || (_access("Agata/k1.wav", 0)) || (_access("Agata/k2.wav", 0)) || (_access("Agata/k3.wav", 0)) || (_access("Agata/w1.wav", 0)) || (_access("Agata/w2.wav", 0)) || (_access("Agata/w3.wav", 0)) || (_access("Agata/w4.wav", 0)) || (_access("Agata/w5.wav", 0)) || (_access("Agata/w6.wav", 0)) || (_access("Agata/w7.wav", 0)) || (_access("Agata/w8.wav", 0)) || (_access("Agata/w9.wav", 0)) || (_access("Agata/w10.wav", 0)) || (_access("Agata/w11.wav", 0)) || (_access("Agata/w12.wav", 0)) || (_access("Agata/0.wav", 0)) || (_access("Agata/1.wav", 0)) || (_access("Agata/2.wav", 0)) || (_access("Agata/3.wav", 0)) || (_access("Agata/4.wav", 0)) || (_access("Agata/5.wav", 0)) || (_access("Agata/6.wav", 0)) || (_access("Agata/7.wav", 0)) || (_access("Agata/8.wav", 0)) || (_access("Agata/9.wav", 0)) || (_access("Agata/10.wav", 0)) || (_access("Agata/11.wav", 0)) || (_access("Agata/12.wav", 0)) || (_access("Agata/13.wav", 0)) || (_access("Agata/14.wav", 0)) || (_access("Agata/15.wav", 0)) || (_access("Agata/16.wav", 0)) || (_access("Agata/17.wav", 0)) || (_access("Agata/18.wav", 0)) || (_access("Agata/19.wav", 0)) || (_access("Agata/20.wav", 0)) || (_access("Agata/21.wav", 0)) || (_access("Agata/22.wav", 0)) || (_access("Agata/23.wav", 0)) || (_access("Agata/24.wav", 0)) || (_access("Agata/25.wav", 0)) || (_access("Agata/26.wav", 0)) || (_access("Agata/27.wav", 0)) || (_access("Agata/28.wav", 0)) || (_access("Agata/29.wav", 0)) || (_access("Agata/30.wav", 0)) || (_access("Agata/31.wav", 0)) || (_access("Agata/32.wav", 0)) || (_access("Agata/33.wav", 0)) || (_access("Agata/34.wav", 0)) || (_access("Agata/35.wav", 0)) || (_access("Agata/36.wav", 0)) || (_access("Agata/win.wav", 0)))
+	{
+		cout << "Brak plików dla g³osu Agata, wy³¹czono odczytywanie wyniku" << endl;
+		G³osyKompletne = false;
+	}
+#endif
+
+#if stan_dŸwiêków == 1
+	if ((_access("Efekty dzwiêkowe/bankrut.wav", 0)) || (_access("Efekty dzwiêkowe/wygrana1.wav", 0)) || (_access("Efekty dzwiêkowe/wygrana2.wav", 0)) || (_access("Efekty dzwiêkowe/zwielokrotnenie.wav", 0)))
+	{
+		cout << "Brak plików dla efektów dŸwiêkowych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl;
+		EfektyKompletne = false;
+	}
+#endif
+
+	//int a = 10;
+	//string b = "10";
+	//Odczytaj_liczbê(a, b);
+	//b = "p";
+	//Odczytaj_liczbê(a, b);
+	//b = "r";
+	//Odczytaj_liczbê(a, b);
+	//b = "g";
+	//Odczytaj_liczbê(a, b);
+	//b = "k1";
+	//Odczytaj_liczbê(a, b);
+	//b = "w1";
+	//Odczytaj_liczbê(a, b);
+
+	//	PlaySound(TEXT("FAIL SOUND EFFECT.wav"), nullptr, SND_SYNC);
 
 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
 	log_ogólny.open("log_ogólny.txt", ios::app); //Otworzenie pliku z ustawieniem kursora zapisu do pliku
@@ -119,7 +220,7 @@ int main()
 		if (buf.find("Posiadasz") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o skoñczeniu rundy
 		{
 			co_kontynuowaæ = 'n'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od pocz¹tku
-			int pocz¹tek = (int)buf.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst pozycji ostatniego znaku tekstu o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			auto pocz¹tek = (unsigned short)buf.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst pozycji ostatniego znaku tekstu o kwocie pieniêdzy któr¹ posiada jeszcze gracz, typ zmiennej auto wsazuje, ¿e kompilator sam wybierze typ zmiennej
 			while (buf[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
 			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
@@ -130,7 +231,7 @@ int main()
 		else if (buf.find("Wylosowano") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o wylosowaniu liczby
 		{
 			co_kontynuowaæ = 'w'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od sprawdzenia wygranej
-			int pocz¹tek = 0; //Utworzenie i przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o wylosowanej liczbie
+			unsigned short pocz¹tek = 0; //Utworzenie i przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o wylosowanej liczbie
 			while (buf[pocz¹tek] != 'y' && pocz¹tek < (int)buf.size()) ++pocz¹tek; //Poszukiwanie od pocz¹tku litery y która wystêpuje w wyrazie po którym jest wylosowana liczba
 			pocz¹tek += 10; //Przesuniêcie o +10 pozycji pocz¹tku tekstu o po której jest wylosowana liczba
 			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
@@ -148,16 +249,16 @@ int main()
 			if (buf[12] == 'a') { pocz¹tek = 14; } //Sprawdzenie czy na pozycji 12 teksty znajduje siê litera a œwiadcz¹ca o wyrazie po którym jest kwota zak³adu, je¿eli tak to pozycja pocz¹tkowa tekstu wynosi 14
 			else //Je¿eli nie to
 			{
-				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek; //Poszukanie litery z œwiadcz¹cej o wyrazie po którym jest kwota zak³adu
+				while (buf[pocz¹tek] != 'z' && pocz¹tek < (unsigned short)buf.size()) ++pocz¹tek; //Poszukanie litery z œwiadcz¹cej o wyrazie po którym jest kwota zak³adu
 				pocz¹tek += 3; //Po znalezienu z przesuwamy pozycje +3
 			}
 			int koniec = pocz¹tek + 1; //Przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
-			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec; //Poszukujemy znaku dolara przed którym jest kwota zak³adu
+			while (buf[koniec] != '$' && koniec < (unsigned short)buf.size()) ++koniec; //Poszukujemy znaku dolara przed którym jest kwota zak³adu
 			buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
 			buf2.erase(koniec, buf2.size() - koniec); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			kwota_zak³adu = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
-			pocz¹tek = (int)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			pocz¹tek = (unsigned short)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
 			buf2 = bufor2; //Przypisanie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
@@ -168,8 +269,8 @@ int main()
 		else if (buf.find("Obstawiono zaklad") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o typie obstawionego zak³adu
 		{
 			co_kontynuowaæ = 't'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od wylosowania liczby
-			int pocz¹tek = 0; //Utworzenie i przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o typie zak³adu
-			while (buf[pocz¹tek] != 'd' && pocz¹tek < (int)buf.size()) ++pocz¹tek;
+			unsigned short pocz¹tek = 0; //Utworzenie i przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o typie zak³adu
+			while (buf[pocz¹tek] != 'd' && pocz¹tek < (unsigned short)buf.size()) ++pocz¹tek;
 			pocz¹tek += 2; //Przesuniêcie pozycji pocz¹tku tekstu o 2 po której jest typ zak³adu
 			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
@@ -182,13 +283,13 @@ int main()
 				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek; //Poszukanie litery z œwiadcz¹cej o wyrazie po którym jest kwota zak³adu
 				pocz¹tek += 3; //Po znalezienu z przesuwamy pozycje +3
 			}
-			int koniec = pocz¹tek + 1; //Przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
-			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec; //Pêtla poszukuj¹ca znaku dolara, pêtla koñczy siê znalezieniem znaku dolara
+			unsigned short koniec = pocz¹tek + 1; //Przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
+			while (buf[koniec] != '$' && koniec < (unsigned short)buf.size()) ++koniec; //Pêtla poszukuj¹ca znaku dolara, pêtla koñczy siê znalezieniem znaku dolara
 			buf2 = buf; //W³o¿enie do bufora pomocniczego do ciêcia tekstu wczeœniej odczytanego tekstu
 			buf2.erase(koniec, buf2.size() - koniec); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			kwota_zak³adu = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
-			pocz¹tek = (int)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			pocz¹tek = (unsigned short)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
 			buf2 = bufor2; //Przypisanie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
@@ -199,20 +300,20 @@ int main()
 		else if (buf.find("Obstawiono za") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o kwocie obstawionego zak³adu
 		{
 			co_kontynuowaæ = 'k';  //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od zapytania o typ zak³adu
-			int pocz¹tek = 0; //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			unsigned short pocz¹tek = 0; //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			if (buf[12] == 'a') { pocz¹tek = 14; } //Sprawdzenie czy na pozycji 12 teksty znajduje siê litera a œwiadcz¹ca o wyrazie po którym jest kwota zak³adu, je¿eli tak to pozycja pocz¹tkowa tekstu wynosi 14
 			else //Je¿eli nie to
 			{
-				while (buf[pocz¹tek] != 'z' && pocz¹tek < (int)buf.size()) ++pocz¹tek; //Poszukanie litery z œwiadcz¹cej o wyrazie po którym jest kwota zak³adu
+				while (buf[pocz¹tek] != 'z' && pocz¹tek < (unsigned short)buf.size()) ++pocz¹tek; //Poszukanie litery z œwiadcz¹cej o wyrazie po którym jest kwota zak³adu
 				pocz¹tek += 3; //Po znalezienu z przesuwamy pozycje +3
 			}
-			int koniec = pocz¹tek + 1; //Utworzenie i przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
+			unsigned short koniec = pocz¹tek + 1; //Utworzenie i przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
 			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec;
 			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
 			buf2.erase(koniec, buf2.size() - koniec); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			kwota_zak³adu = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
-			pocz¹tek = (int)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
+			pocz¹tek = (unsigned short)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
 			buf2 = bufor2; //Przypisanie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
@@ -281,6 +382,7 @@ int main()
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log_ogólny << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu ogólnego informacji o wylosowanej liczbie
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') Odczytaj_liczbê(wylosowana_liczba, typ_zak³adu);
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba);
 		if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w')
 			if (wygrana >= kwota_zak³adu) //Je¿eli wygrana jest wiêksza lub równa kwocie zak³adu to znaczy, ¿e siê wygra³o zak³ad
@@ -289,7 +391,6 @@ int main()
 #if styl_liczenia_wygranej == 1 //Kompilacja je¿eli styl_liczenia_wygranej == 1
 				iloœæ_pieniêdzy += kwota_zak³adu; //Dopisanie do salda kwoty zak³adu
 #endif // styl_liczenia_wygranej
-
 				log << " Wygrywasz " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie wygranej zak³adu
 				log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
 				log_ogólny << " Wygrywasz " << wygrana << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie wygranej zak³adu
@@ -297,11 +398,48 @@ int main()
 				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+#if g³os_odczytu_numeru == 1
+				if (G³osyKompletne)
+					PlaySound("Jacek/win.wav", nullptr, SND_SYNC);
+				else
+#elif g³os_odczytu_numeru == 2
+				if (G³osyKompletne)
+					PlaySound("Ewa/win.wav", nullptr, SND_SYNC);
+				else
+#elif g³os_odczytu_numeru == 3
+				if (G³osyKompletne)
+					PlaySound("Maja/win.wav", nullptr, SND_SYNC);
+				else
+#elif g³os_odczytu_numeru == 4
+				if (G³osyKompletne)
+					PlaySound("Jan/win.wav", nullptr, SND_SYNC);
+#elif g³os_odczytu_numeru == 5
+				if (G³osyKompletne)
+					PlaySound("Jacek 2/win.wav", nullptr, SND_SYNC);
+				else
+#elif g³os_odczytu_numeru == 6
+				if (G³osyKompletne)
+					PlaySound("Ewa 2/win.wav", nullptr, SND_SYNC);
+				else
+#elif g³os_odczytu_numeru == 7
+				if (G³osyKompletne)
+					PlaySound("Maja 2/win.wav", nullptr, SND_SYNC);
+				else
+#elif g³os_odczytu_numeru == 8
+				if (G³osyKompletne)
+					PlaySound("Jan 2/win.wav", nullptr, SND_SYNC);
+#elif g³os_odczytu_numeru == 9
+				if (G³osyKompletne)
+					PlaySound("Agata/win.wav", nullptr, SND_SYNC);
+				else
+#endif // g³os_odczytu_numeru
+				{
+					cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+					Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
+					cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+					Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
+					cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				}
 #endif // stan_dŸwiêków
 			}
 			else if (wygrana == (kwota_zak³adu / 2)) //Je¿eli wygrana jest równa po³owie kwocie zak³adu to znaczy, ¿e dostaje siê zwrot po³owy kwoty zak³adu
@@ -314,9 +452,12 @@ int main()
 				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				if (!G³osyKompletne)
+				{
+					cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+					Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
+					cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				}
 #endif // stan_dŸwiêków
 			}
 			else if (wygrana == 0) //Je¿eli wygrana jest równa 0 to znaczy, ¿e siê zak³ad przegra³o
@@ -328,7 +469,7 @@ int main()
 				log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 				log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				if (!G³osyKompletne) cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
 			}
 		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
@@ -341,17 +482,34 @@ int main()
 	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 	log.close();
 	remove("log_aktualny.txt"); //Usuniêcie pliku log aktualny poniewa¿ skoñczy³o siê grê
+
 #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
 	if (iloœæ_pieniêdzy == 0) //Je¿eli bud¿et jest równy 0 to
-		for (int i = 0; i < 5; ++i) //Rozpoczêcie pêtli która wykona 5 obrotów
-		{
-			cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-			Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem //Przerwa przed kolejnym pikniêciem
-		}
+		if (EfektyKompletne) PlaySound("Efekty dzwiêkowe/bankrut.wav", nullptr, SND_SYNC);
+		else
+			for (int i = 0; i < 5; ++i) //Rozpoczêcie pêtli która wykona 5 obrotów
+			{
+				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem //Przerwa przed kolejnym pikniêciem
+			}
 #endif // stan_dŸwiêków
 
-	if (iloœæ_pieniêdzy > kwota_pocz¹tkowa && iloœæ_pieniêdzy < kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwiêkszenia bud¿etu
-	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2) cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwielokrotnienia przynajmniej 2 razy bud¿etu
+	if (iloœæ_pieniêdzy > kwota_pocz¹tkowa && iloœæ_pieniêdzy < kwota_pocz¹tkowa * 2)
+	{
+		cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwiêkszenia bud¿etu
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+		if (EfektyKompletne)
+			if (rand() % 1) PlaySound("Efekty dzwiêkowe/wygrana1.wav", nullptr, SND_SYNC);
+			else PlaySound("Efekty dzwiêkowe/wygrana2.wav", nullptr, SND_SYNC);
+#endif
+	}
+	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2)
+	{
+		cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwielokrotnienia przynajmniej 2 razy bud¿etu
+#if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
+		if (EfektyKompletne) PlaySound("Efekty dzwiêkowe/zwielokrotnenie.wav", nullptr, SND_SYNC);
+#endif
+	}
 	system("pause"); //Wywo³anie funkcji wymagaj¹cej do zamkniêcia naciœniêcie dowolnego klawisza
 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
 }
@@ -450,15 +608,15 @@ void Wczytaj_Kwotê_Zak³adu(int & kwota_zak³adu, int & iloœæ_pieniêdzy)
 		else //W przeciwym wypadku
 			if (kwota_zak³adu == 0) //Je¿eli wynikiem zamiany na liczbê jest zero (wynikiem zamiany jest zero kiedy tekst to zero lub kiedy jest b³¹d zamiany) to
 			{
-				bool czy_zero = 1; //Utworzenie zmiennej informuj¹cej czy znaleziono zero w tekœcie i przypisanie jej wartoœci 1
-				for (short i = 0; i < (int)kwota_zak³adu_s.size(); ++i) //Rozpoczêcie pêtli numerowanej przez zmienn¹ i przez wszystkie znaki wczytanego tekst
+				bool czy_zero = true; //Utworzenie zmiennej informuj¹cej czy znaleziono zero w tekœcie i przypisanie jej wartoœci true
+				for (short i = 0; i < (short)kwota_zak³adu_s.size(); ++i) //Rozpoczêcie pêtli numerowanej przez zmienn¹ i przez wszystkie znaki wczytanego tekst
 					if (kwota_zak³adu_s[i] != '0') //Je¿eli znak na i-tej pozycji
 					{
 						cout << "Wprowadzi³eæ nieprawid³ow¹ wartoœæ" << endl; //Poinformowanie u¿ytkownika, ¿e nie mo¿e obstawiæ tekstowego
 #if stan_dŸwiêków == 1 //Kompilacja je¿eli stan_dŸwiêków == 1
 						cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
 #endif // stan_dŸwiêków
-						czy_zero = 0; //Zmiana wartoœci zmiennej czy znaleziono zero w tekœcie na 0
+						czy_zero = false; //Zmiana wartoœci zmiennej czy znaleziono zero w tekœcie na false
 						break; //Zatrzymanie pêtli
 					}
 				if (czy_zero) //Sprawdzenie czy znaleziono same zera w tekœcie, je¿eli tak to
@@ -490,7 +648,7 @@ int Zakrêæ_Ruletk¹()
 {
 	int iloœæ_zakrêceñ = rand() % (iloœæ_max_dodatkowych_obrotów_ruletki + 1) + iloœæ_minimalna_obrotów_ruletki; //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ pseudolosow¹ (o niskiej pseoudolosowoœci) iloœæ obrotów ruletk¹ ((od 0 do max dodatkowych obrotów ruletki) + minimalna iloœæ obrotów ruletki) zanim nastêpi finalny obrót
 	double czas_przeskoku_kulki_szybki_opóŸnienie = czas_przeskoku_kulki_szybki / (iloœæ_zakrêceñ * 37.0); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
-	HideCursor(); //Ukrycie kursora tekstowego w konsoli
+	Hide_Cursor(); //Ukrycie kursora tekstowego w konsoli
 	for (int i = 0; i < iloœæ_zakrêceñ; ++i) //Wykonanie iloœæ_zakrêceñ obrotów ruletk¹
 		for (int ii = 0; ii < 37; ++ii) //Przejœcie przez wszystkie pozycje ruletki
 		{
@@ -515,12 +673,12 @@ int Zakrêæ_Ruletk¹()
 	cout << Ruletka_ko³o[wylosowana_pozycja]; //Wypisanie liczby na wylosowanej pozycji ruletki
 	Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 	cout << ". "; //Zakoñczenie tekstu kropk¹
-	ShowCursor(); //Pokazanie kursora tekstowego w konsoli
+	Show_Cursor(); //Pokazanie kursora tekstowego w konsoli
 
 	return Ruletka_ko³o[wylosowana_pozycja]; //Zwracam wartoœæ bêd¹c¹ na wylosowanym polu ruletki
 }
 
-int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, int wylosowana_liczba)
+int SprawdŸ_Zak³ad(int & kwota, string typ_zak³adu, const int & wylosowana_liczba)
 {
 	int wygrana = kwota; //Deklaracja zmiennej przechowywuj¹ca kwotê wygran¹ lub zwrócon¹ przy wylosowaniu 0
 
@@ -580,7 +738,7 @@ bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy)
 	if (iloœæ_pieniêdzy == 0) //Je¿eli posiadana iloœæ gotówki jest róna 0
 	{
 		cout << "Nie mo¿esz kontynuowaæ, przegra³eœ wszystko" << endl; //Poinformowanie u¿ytkownika, ¿e jest bankrutem
-		return 0; //Zwrot wartoœci 0, co oznacza, ¿e kolejna runda siê nie odbêdzie
+		return false; //Zwrot wartoœci false, co oznacza, ¿e kolejna runda siê nie odbêdzie
 	}
 
 	while (true) //Rozpoczêcie pêtli nieskoñczonej
@@ -588,18 +746,18 @@ bool Czy_Kontynuowaæ(int & iloœæ_pieniêdzy)
 		cout << "Na koncie masz " << iloœæ_pieniêdzy << "$, czy chcesz grac dalej('t' - tak, 'n' - nie) ?" << endl; //Pointormowanie o stanie konta i zapytanie o to czy gra dalej
 		cin >> tak_nie; //Pobranie od u¿ytkownika odpowiedzi na powy¿sze pytanie
 		if (tak_nie != "t" || tak_nie == "tak" || tak_nie == "Tak" || tak_nie == "TAK" || tak_nie == "n" || tak_nie == "nie" || tak_nie == "Nie" || tak_nie == "NIE") //Sprawdzenie czy odpowiedŸ pasuje do mo¿liwoœci
-			if (tak_nie[0] == 't' || tak_nie[0] == 'T') return 1; //Je¿eli pasuje to sprawdzam czy pierwsza litera to t i zwracam wartoœæ 1
-			else return 0; //W przeciwym wypadku zwracam wartoœæ 0
+			if (tak_nie[0] == 't' || tak_nie[0] == 'T') return true; //Je¿eli pasuje to sprawdzam czy pierwsza litera to t i zwracam wartoœæ true
+			else return false; //W przeciwym wypadku zwracam wartoœæ false
 	}
 }
 
-void Change_Col(int num_of_col)
+void Change_Col(const int & num_of_col)
 {
 	HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
 }
 
-void HideCursor()
+void Hide_Cursor()
 {
 	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
 	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
@@ -608,7 +766,7 @@ void HideCursor()
 	SetConsoleCursorInfo(hConsoleOut, &hCCI); //Ustawienie widocznoœci kursora zgodnie z poprzedni¹ zmienn¹
 }
 
-void ShowCursor()
+void Show_Cursor()
 {
 	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
 	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
@@ -620,19 +778,240 @@ void ShowCursor()
 	}
 }
 
-int Wylosuj(int od_liczby, int do_liczby)
+int Wylosuj(const int & od_liczby, const int & do_liczby)
 {
 	random_device generator; //Generator liczb losowych, który generuje niedeterministyczne liczby losowe, jeœli s¹ obs³ugiwane.
 	if (generator.entropy() != 32) //Je¿eli entropia jest mniejsza od 32 oznacza, ¿e komputer nie dysponuje mo¿liwoœci¹ u¿ycia tego generatora liczb losowy
 	{
 #if defined(__x86_64__) || defined(_M_X64) || defined(__x86_64) || defined(__amd64) || defined(__amd64__) || defined(_M_AMD64) //Sprawdzenie czy sytem operacyjny jest 64-bitowy
-		mt19937_64 generator((unsigned int)time(NULL)); //Dla 64 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 64 bitowej
+		mt19937_64 generator((unsigned int)time(nullptr)); //Dla 64 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 64 bitowej
 #else
-		mt19937 generator((unsigned int)time(NULL)); //Dla 32 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 32 bitowej
+		mt19937 generator((unsigned int)time(nullptr)); //Dla 32 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 32 bitowej
 #endif
 	}
 	uniform_int_distribution<int> distribution(od_liczby, do_liczby); //Wsazuje zakres generowanych liczb
 	return distribution(generator); //Zwraca wygenerowan¹ liczbê
+}
+
+void Odczytaj_liczbê(int & wylosowana_liczba, string & typ_zak³adu) {
+#if  g³os_odczytu_numeru == 0
+	return;
+#endif
+#if (g³os_odczytu_numeru < 10) && (g³os_odczytu_numeru > 0)
+	if (!G³osyKompletne) return;
+#endif
+#if g³os_odczytu_numeru == 1
+	stringstream numers;
+	numers << wylosowana_liczba;
+	string wynik = "Jacek/" + numers.str() + ".wav";
+	PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	wynik.clear();
+	if (typ_zak³adu == "p" || typ_zak³adu == "n")
+		if (wylosowana_liczba % 2 == 0)
+		{
+			wynik = "Jacek/p.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else
+		{
+			wynik = "Jacek/n.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu == "r" || typ_zak³adu == "b")
+		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') {
+			wynik = "Jacek/r.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else {
+			wynik = "Jacek/b.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu == "g" || typ_zak³adu == "d")
+		if (wylosowana_liczba < 19)
+		{
+			wynik = "Jacek/g.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else {
+			wynik = "Jacek/d.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu[0] == 'k')
+	{
+		wynik = "Jacek/k";
+		wynik += (((wylosowana_liczba - 1) % 3) + 49);
+		wynik += ".wav";
+		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	}
+	else if (typ_zak³adu[0] == 'w')
+	{
+		wynik = "Jacek/w";
+		stringstream numers;
+		numers << ((wylosowana_liczba - 1) / 3 + 1);
+		wynik += numers.str();
+		wynik += ".wav";
+		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	}
+#endif
+#if g³os_odczytu_numeru == 2
+	stringstream numers;
+	numers << wylosowana_liczba;
+	string wynik = "Ewa/" + numers.str() + ".wav";
+	PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	wynik.clear();
+	if (typ_zak³adu == "p" || typ_zak³adu == "n")
+		if (wylosowana_liczba % 2 == 0)
+		{
+			wynik = "Ewa/p.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else
+		{
+			wynik = "Ewa/n.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu == "r" || typ_zak³adu == "b")
+		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') {
+			wynik = "Ewa/r.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else {
+			wynik = "Ewa/b.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu == "g" || typ_zak³adu == "d")
+		if (wylosowana_liczba < 19)
+		{
+			wynik = "Ewa/g.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else {
+			wynik = "Ewa/d.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu[0] == 'k')
+	{
+		wynik = "Ewa/k";
+		wynik += (((wylosowana_liczba - 1) % 3) + 49);
+		wynik += ".wav";
+		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	}
+	else if (typ_zak³adu[0] == 'w')
+	{
+		wynik = "Ewa/w";
+		stringstream numers;
+		numers << ((wylosowana_liczba - 1) / 3 + 1);
+		wynik += numers.str();
+		wynik += ".wav";
+		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	}
+#endif
+#if g³os_odczytu_numeru == 3
+	stringstream numers;
+	numers << wylosowana_liczba;
+	string wynik = "Maja/" + numers.str() + ".wav";
+	PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	wynik.clear();
+	if (typ_zak³adu == "p" || typ_zak³adu == "n")
+		if (wylosowana_liczba % 2 == 0)
+		{
+			wynik = "Maja/p.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else
+		{
+			wynik = "Maja/n.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu == "r" || typ_zak³adu == "b")
+		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') {
+			wynik = "Maja/r.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else {
+			wynik = "Maja/b.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu == "g" || typ_zak³adu == "d")
+		if (wylosowana_liczba < 19)
+		{
+			wynik = "Maja/g.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else {
+			wynik = "Maja/d.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu[0] == 'k')
+	{
+		wynik = "Maja/k";
+		wynik += (((wylosowana_liczba - 1) % 3) + 49);
+		wynik += ".wav";
+		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	}
+	else if (typ_zak³adu[0] == 'w')
+	{
+		wynik = "Maja/w";
+		stringstream numers;
+		numers << ((wylosowana_liczba - 1) / 3 + 1);
+		wynik += numers.str();
+		wynik += ".wav";
+		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	}
+#endif
+#if g³os_odczytu_numeru == 4
+	stringstream numers;
+	numers << wylosowana_liczba;
+	string wynik = "Jan/" + numers.str() + ".wav";
+	PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	wynik.clear();
+	if (typ_zak³adu == "p" || typ_zak³adu == "n")
+		if (wylosowana_liczba % 2 == 0)
+		{
+			wynik = "Jan/p.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else
+		{
+			wynik = "Jan/n.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu == "r" || typ_zak³adu == "b")
+		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') {
+			wynik = "Jan/r.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else {
+			wynik = "Jan/b.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu == "g" || typ_zak³adu == "d")
+		if (wylosowana_liczba < 19)
+		{
+			wynik = "Jan/g.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+		else {
+			wynik = "Jan/d.wav";
+			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		}
+	else if (typ_zak³adu[0] == 'k')
+	{
+		wynik = "Jan/k";
+		wynik += (((wylosowana_liczba - 1) % 3) + 49);
+		wynik += ".wav";
+		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	}
+	else if (typ_zak³adu[0] == 'w')
+	{
+		wynik = "Jan/w";
+		stringstream numers;
+		numers << ((wylosowana_liczba - 1) / 3 + 1);
+		wynik += numers.str();
+		wynik += ".wav";
+		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+	}
+#endif
 }
 
 /*
