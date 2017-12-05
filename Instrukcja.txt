@@ -1,3 +1,9 @@
+Aby dzia³a³y efekty dŸwiêkowe folder Efekty dzwiêkowe trzeba skopiowaæ do folderu gdzie znajduje siê plik exe
+Aby dzia³a³y odczyt g³osowy numeru folder G³os trzeba skopiowaæ do folderu gdzie znajduje siê plik exe
+
+Po pierwszym uruchomieniu zostanie wygenerowany plik z ustawieniami
+
+Domyœlne ustawienia programu
 iloœæ_minimalna_obrotów_ruletki 2 // Minimalna iloœæ obrotów ruletki przed podaniem wartoœci wylosowanej
 iloœæ_max_dodatkowych_obrotów_ruletki 3 // Maksymalna iloœæ dodatkowych obrotów ruletki przed podaniem wartoœci wylosowanej
 czas_przeskoku_kulki_szybki 100 //Czas w ms przerwy pomiêdzy przeskokami na pocz¹tek losowania na kolejn¹ liczbê na kole ruletki

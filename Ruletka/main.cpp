@@ -22,13 +22,14 @@ int Zakrêæ_Ruletk¹(); //Funkcja losuje liczbê z ko³a ruletki
 int SprawdŸ_Zak³ad(const int & kwota, string typ_zak³adu, const int & wylosowana_liczba); //Funcja sprawdza czy wygraliœmy i podaje kwote wygranej/przegranej/odzysku czêœci w³o¿onych pieniêdzy
 bool Czy_Kontynuowaæ(const int & iloœæ_pieniêdzy); //Funkcja sprawdzj¹ca czy ma siê œrodki do gry, je¿eli ma siê to pyta czy chce siê graæ dalej
 int Wylosuj(const int & od_liczby, const int & do_liczby); //Funkcja która losuje liczby od liczby do liczby losowo lub psudolosowo metod¹ MT
-void Odczytaj_liczbê(const int & wylosowana_liczba, const string & typ_zak³adu);
-void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, int & iloœæ_pieniêdzy, int & kwota_zak³adu, int & wylosowana_liczba, string & typ_zak³adu);
-void SprawdŸ_Pliki();
+void Odczytaj_liczbê(const int & wylosowana_liczba, const string & typ_zak³adu); //Funkcja do odczytu wylosowanej liczby i jej po³o¿enia
+void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, int & iloœæ_pieniêdzy, int & kwota_zak³adu, int & wylosowana_liczba, string & typ_zak³adu); //Funkcja wczytuj¹ca z pliku ostatnie ruchy gracza
+void SprawdŸ_Pliki(); //Funkcja sprawdzaj¹ca czy wszystkie pliki dŸwiêkowe s¹ na miejscu
 void SprawdŸ_ustawienia(); //sprawdzanie poprawnoœci deklaracji definicji preprocesora do zmian funcjonowania programu
-void Og³oœ_wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log);
-void Koniec_gry(ofstream & log_ogólny, fstream & log, int & iloœæ_pieniêdzy);
-void Pêtla_g³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, string & typ_zak³adu, int & wylosowana_liczba);
+void Og³oœ_wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log); //Funkcja informuj¹ca gracza o wyniku zak³adu
+void Koniec_gry(ofstream & log_ogólny, fstream & log, int & iloœæ_pieniêdzy); //Funkcja informuj¹ca o wynikach gracza jak skoñczy³ grê
+void Pêtla_g³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, string & typ_zak³adu, int & wylosowana_liczba); //Funkcja wywo³uj¹ca funkcje obs³uguj¹ce wszystkie elementy ruletki
+void Ustaw_ustawienia(string & tekst); //Funkcja zamieniaj¹ca wczytan¹ linijkê z ustawieniami na zmianê ustawieñ programu
 //-------------------------------------------------------------------------------------
 
 //------------------------------- deklaracje funkcji obcych ---------------------------
@@ -54,7 +55,7 @@ int kwota_pocz¹tkowa = 1000; //Iloœæ $ z którymi zaczyna siê grê
 short stan_dŸwiêków = 1; //Czy w³¹czone dŸwiêki 1 <-tak 0 <-nie
 short czy_kontynuowaæ_grê = 1; //Czy w³¹czone kontynuowanie gry od skoñczonej poprzednio pozycji 1 <-tak 0 <-nie
 short g³os_odczytu_numeru = 1; //Wybór g³osu który odczyta wylosowany numer 0 <- Brak 1 <- Jacek (Ivona) 2 <- Ewa (Ivona) 3 <- Maja (Ivona) 4 <- Jan (Ivona) 5 <- Jacek (Ivona 2) 6 <- Ewa (Ivona 2) 7 <- Maja (Ivona 2) 8 <- Jan (Ivona 2) 9 <- Agata (Scansoft)
-short g³os_szybkoœæ_odczytu_numeru = 4;
+short g³os_szybkoœæ_odczytu_numeru = 4; //Wybór szybkoœci mowy, skala od 1 do 5
 //-------------------------------------------------------------------------------------
 
 //---------------------------- deklaracje zmiennych globalnych ------------------------
@@ -71,22 +72,25 @@ int main()
 	srand((unsigned int)time(nullptr)); //Zainicjowanie generatorza LCG (Liniowy Generator Kongruentny) dla ma³o wa¿nych liczb
 	Show_Cursor(); //Pokazanie kursora tekstowego w konsoli
 
-	SprawdŸ_Pliki();
 	SprawdŸ_ustawienia();
+	SprawdŸ_Pliki();
 
-	int a = 10;
-	string b = "10";
-	Odczytaj_liczbê(a, b);
-	b = "p";
-	Odczytaj_liczbê(a, b);
-	b = "r";
-	Odczytaj_liczbê(a, b);
-	b = "g";
-	Odczytaj_liczbê(a, b);
-	b = "k1";
-	Odczytaj_liczbê(a, b);
-	b = "w1";
-	Odczytaj_liczbê(a, b);
+	//int a = 10;
+	//string b = "10";
+	//Odczytaj_liczbê(a, b);
+	//b = "p";
+	//Odczytaj_liczbê(a, b);
+	//b = "r";
+	//Odczytaj_liczbê(a, b);
+	//b = "g";
+	//Odczytaj_liczbê(a, b);
+	//b = "k1";
+	//Odczytaj_liczbê(a, b);
+	//b = "w1";
+	//Odczytaj_liczbê(a, b);
+
+	//string c = "iloœæ_minimalna_obrotów_ruletki 000";
+	//Ustaw_ustawienia(c);
 
 	//Inicjowanie zmiennych lokalnych
 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
@@ -388,54 +392,29 @@ void Odczytaj_liczbê(const int & wylosowana_liczba, const string & typ_zak³adu) 
 
 	stringstream numers;
 	numers << wylosowana_liczba;
-	string wynik = G³os + numers.str() + ".wav";
-	PlaySound(wynik.c_str(), nullptr, SND_SYNC);
-	wynik.clear();
+	PlaySound((G³os + numers.str() + ".wav").c_str(), nullptr, SND_SYNC);
 	if (typ_zak³adu == "p" || typ_zak³adu == "n")
 		if (wylosowana_liczba % 2 == 0)
-		{
-			wynik = G³os + "p.wav";
-			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
-		}
+			PlaySound((G³os + "p.wav").c_str(), nullptr, SND_SYNC);
 		else
-		{
-			wynik = G³os + "n.wav";
-			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
-		}
+			PlaySound((G³os + "n.wav").c_str(), nullptr, SND_SYNC);
 	else if (typ_zak³adu == "r" || typ_zak³adu == "b")
-		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') {
-			wynik = G³os + "r.wav";
-			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
-		}
-		else {
-			wynik = G³os + "b.wav";
-			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
-		}
+		if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r')
+			PlaySound((G³os + "r.wav").c_str(), nullptr, SND_SYNC);
+		else
+			PlaySound((G³os + "b.wav").c_str(), nullptr, SND_SYNC);
 	else if (typ_zak³adu == "g" || typ_zak³adu == "d")
 		if (wylosowana_liczba < 19)
-		{
-			wynik = G³os + "g.wav";
-			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
-		}
-		else {
-			wynik = G³os + "d.wav";
-			PlaySound(wynik.c_str(), nullptr, SND_SYNC);
-		}
+			PlaySound((G³os + "g.wav").c_str(), nullptr, SND_SYNC);
+		else
+			PlaySound((G³os + "d.wav").c_str(), nullptr, SND_SYNC);
 	else if (typ_zak³adu[0] == 'k')
-	{
-		wynik = G³os + "k";
-		wynik += (((wylosowana_liczba - 1) % 3) + 49);
-		wynik += ".wav";
-		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
-	}
+		PlaySound((G³os + "k" + (char)(((wylosowana_liczba - 1) % 3) + 49) + ".wav").c_str(), nullptr, SND_SYNC);
 	else if (typ_zak³adu[0] == 'w')
 	{
-		wynik = G³os + "w";
 		stringstream numers;
 		numers << ((wylosowana_liczba - 1) / 3 + 1);
-		wynik += numers.str();
-		wynik += ".wav";
-		PlaySound(wynik.c_str(), nullptr, SND_SYNC);
+		PlaySound((G³os + "w" + numers.str() + ".wav").c_str(), nullptr, SND_SYNC);
 	}
 }
 
@@ -602,165 +581,141 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 
 void SprawdŸ_Pliki()
 {
-	string g³os_nazwa;
-	string buf;
+	string buf; //Utworzenie bufora tekstowego do celu sprawdzania plików z g³osem
 
-	switch (g³os_odczytu_numeru)
-	{
-	case 1:
-	{
-		g³os_nazwa = "Jacek ";
-		break;
-	}
-	case 2:
-	{
-		g³os_nazwa = "Ewa ";
-		break;
-	}
-	case 3:
-	{
-		g³os_nazwa = "Maja ";
-		break;
-	}
-	case 4:
-	{
-		g³os_nazwa = "Jan ";
-		break;
-	}
-	case 5:
-	{
-		g³os_nazwa = "Jacek 2";
-		break;
-	}
+	G³os = "G³os/"; //Wpisanie do zmiennej G³os pocz¹tku œcie¿ki do pliku z g³osem
 
-	case 6:
+	switch (g³os_odczytu_numeru) //U¿ycie warunku wielokrotnego wyboru do wpisania odpowiedniej nazwy g³osu do zmiennej g³os_nazwa
 	{
-		g³os_nazwa = "Ewa 2";
-		break;
-	}
-	case 7:
+	case 1: //Gdy g³os_odczytu_numeru==1
 	{
-		g³os_nazwa = "Maja 2";
-		break;
+		G³os += "Jacek "; //Dodanie do zmiennej nazwy wybranego g³osu Jacek
+		break; //Wyjœcie z instrukcji case //Wyjœcie z instrukcji case
 	}
-	case 8:
+	case 2: //Gdy g³os_odczytu_numeru==2
 	{
-		g³os_nazwa = "Jan 2";
-		break;
+		G³os += "Ewa "; //Dodanie do zmiennej nazwy wybranego g³osu Ewa
+		break; //Wyjœcie z instrukcji case
 	}
-	case 9:
+	case 3: //Gdy g³os_odczytu_numeru==3
 	{
-		g³os_nazwa = "Agata ";
-		break;
+		G³os += "Maja "; //Dodanie do zmiennej nazwy wybranego g³osu Maja
+		break; //Wyjœcie z instrukcji case
 	}
-	default:
-		break;
+	case 4: //Gdy g³os_odczytu_numeru==4
+	{
+		G³os += "Jan "; //Dodanie do zmiennej nazwy wybranego g³osu Jan
+		break; //Wyjœcie z instrukcji case
+	}
+	case 5: //Gdy g³os_odczytu_numeru==5
+	{
+		G³os += "Jacek 2"; //Dodanie do zmiennej nazwy wybranego g³osu Jacek 2
+		break; //Wyjœcie z instrukcji case
 	}
 
-	G³os = "G³os/";
-	G³os += g³os_nazwa;
-	G³os += "_";
-	G³os += '0' + g³os_szybkoœæ_odczytu_numeru;
-	G³os += "/";
+	case 6: //Gdy g³os_odczytu_numeru==6
+	{
+		G³os += "Ewa 2"; //Dodanie do zmiennej nazwy wybranego g³osu Ewa 2
+		break; //Wyjœcie z instrukcji case
+	}
+	case 7: //Gdy g³os_odczytu_numeru==7
+	{
+		G³os += "Maja 2"; //Dodanie do zmiennej nazwy wybranego g³osu Maja 2
+		break; //Wyjœcie z instrukcji case
+	}
+	case 8: //Gdy g³os_odczytu_numeru==8
+	{
+		G³os += "Jan 2"; //Dodanie do zmiennej nazwy wybranego g³osu Jan 2
+		break; //Wyjœcie z instrukcji case
+	}
+	case 9: //Gdy g³os_odczytu_numeru==9
+	{
+		G³os += "Agata "; //Dodanie do zmiennej nazwy wybranego g³osu Agata
+		break; //Wyjœcie z instrukcji case
+	}
+	default: //Je¿eli ¿aden warunek nie jest spe³niony to
+		break; //Wyjœcie z instrukcji case
+	}
 
-	buf = G³os;
-	buf += "p.wav";
-	if ((_access(buf.c_str(), 0)))
+	G³os += "_"; //Dodanie do zmiennej podkreœlenia odzielaj¹cego nazwê od szybkoœci
+	G³os += '0' + g³os_szybkoœæ_odczytu_numeru; //Dodanie do zmiennej szybkoœci mowy
+	G³os += "/"; //Dodanie do zmiennej ukoœnika który odziela nazwê folderu od pliku
+
+	if ((_access((G³os + "p.wav").c_str(), 0)))
 	{
 		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false;
-		return;
+		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
 	}
 
-	buf = G³os;
-	buf += "n.wav";
-	if ((_access(buf.c_str(), 0)))
+	if ((_access((G³os + "n.wav").c_str(), 0)))
 	{
 		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false;
-		return;
+		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
 	}
 
-	buf = G³os;
-	buf += "r.wav";
-	if ((_access(buf.c_str(), 0)))
+	if ((_access((G³os + "r.wav").c_str(), 0)))
 	{
 		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false;
-		return;
+		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
 	}
 
-	buf = G³os;
-	buf += "b.wav";
-	if ((_access(buf.c_str(), 0)))
+	if ((_access((G³os + "b.wav").c_str(), 0)))
 	{
 		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false;
-		return;
+		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
 	}
 
-	buf = G³os;
-	buf += "g.wav";
-	if ((_access(buf.c_str(), 0)))
+	if ((_access((G³os + "g.wav").c_str(), 0)))
 	{
 		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false;
-		return;
+		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
 	}
 
-	buf = G³os;
-	buf += "d.wav";
-	if ((_access(buf.c_str(), 0)))
+	if ((_access((G³os + "d.wav").c_str(), 0)))
 	{
 		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false;
-		return;
+		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
 	}
 
 	for (unsigned short i = 1; i <= 3; ++i)
 	{
-		buf = G³os;
-		buf += "k";
 		stringstream numers;
 		numers << i;
-		buf += numers.str();
-		buf += ".wav";
-		if ((_access(buf.c_str(), 0)))
+		if ((_access((G³os + "k" + numers.str() + ".wav").c_str(), 0)))
 		{
 			cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-			G³osyKompletne = false;
-			return;
+			G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+			return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
 		}
 	}
 
 	for (unsigned short i = 1; i <= 12; ++i)
 	{
-		buf = G³os;
-		buf += "w";
 		stringstream numers;
 		numers << i;
-		buf += numers.str();
-		buf += ".wav";
-		if ((_access(buf.c_str(), 0)))
+		if ((_access((G³os + "w" + numers.str() + ".wav").c_str(), 0)))
 		{
 			cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-			G³osyKompletne = false;
-			return;
+			G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+			return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
 		}
 	}
 
 	for (unsigned short i = 0; i <= 36; ++i)
 	{
-		buf = G³os;
 		stringstream numers;
 		numers << i;
-		buf += numers.str();
-		buf += ".wav";
-		if ((_access(buf.c_str(), 0)))
+		if ((_access((G³os + numers.str() + ".wav").c_str(), 0)))
 		{
 			cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-			G³osyKompletne = false;
-			return;
+			G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+			return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
 		}
 	}
 
@@ -776,80 +731,99 @@ void SprawdŸ_ustawienia()
 {
 	if (!_access("setting.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 	{
-		ifstream ustawienia;
-		ustawienia.open("setting.txt");
+		ifstream ustawienia; //Utworzenie typu do celu odczytu z pliku
+		ustawienia.open("setting.txt"); //Otwarcie pliku z ustawieniami
+		string buf; //Utworzenie buforu do odczytu z pliku
+		while (!ustawienia.eof()) //Pêtla trwaj¹ca do koñca pliku
+		{
+			getline(ustawienia, buf); //Wczytanie ca³ej lini tekstu z pliku
+			Ustaw_ustawienia(buf); //Zamiana wczytanej lini na ustawienie programu
+		}
 	}
 	else
 	{
-		ofstream ustawienia;
-		ustawienia.open("setting.txt");
-		ustawienia << "iloœæ_minimalna_obrotów_ruletki 2" << endl;
-		ustawienia << "iloœæ_max_dodatkowych_obrotów_ruletki 3" << endl;
-		ustawienia << "czas_przeskoku_kulki_szybki 50" << endl;
-		ustawienia << "czas_przeskoku_kulki_wolny 75" << endl;
-		ustawienia << "czas_przerwy_dzwiêku 500" << endl;
-		ustawienia << "styl_liczenia_wygranej 1" << endl;
-		ustawienia << "kwota_pocz¹tkowa 1000" << endl;
-		ustawienia << "stan_dŸwiêków 1" << endl;
-		ustawienia << "czy_kontynuowaæ_grê 1" << endl;
-		ustawienia << "g³os_odczytu_numeru 1" << endl;
-		ustawienia << "g³os_szybkoœæ_odczytu_numeru 4" << endl;
+		ofstream ustawienia; //Utworzenie typu do celu zapisu do pliku
+		ustawienia.open("setting.txt"); //Otwarcie pliku do wygenerowania ustawieñ domyœlnych
+		ustawienia << "iloœæ_minimalna_obrotów_ruletki 2" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych iloœæ_minimalna_obrotów_ruletki
+		ustawienia << "iloœæ_max_dodatkowych_obrotów_ruletki 3" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych iloœæ_max_dodatkowych_obrotów_ruletki
+		ustawienia << "czas_przeskoku_kulki_szybki 50" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czas_przeskoku_kulki_szybki
+		ustawienia << "czas_przeskoku_kulki_wolny 75" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czas_przeskoku_kulki_wolny
+		ustawienia << "czas_przerwy_dzwiêku 500" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czas_przerwy_dzwiêku
+		ustawienia << "styl_liczenia_wygranej 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych styl_liczenia_wygranej
+		ustawienia << "kwota_pocz¹tkowa 1000" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych kwota_pocz¹tkowa
+		ustawienia << "stan_dŸwiêków 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych stan_dŸwiêków
+		ustawienia << "czy_kontynuowaæ_grê 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czy_kontynuowaæ_grê
+		ustawienia << "g³os_odczytu_numeru 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych g³os_odczytu_numeru
+		ustawienia << "g³os_szybkoœæ_odczytu_numeru 4" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych g³os_szybkoœæ_odczytu_numeru
 	}
 
 	if (czas_przeskoku_kulki_wolny < czas_przeskoku_kulki_szybki)
 	{
 		cout << "Wartoœæ wolnego czasu przeskoku kulki musi byæ ni¿sza ni¿ wartoœæ szybkiego czasu przeskoku kulki" << endl; //(Wartoœci tych zmiennych to czas opóŸnienia wiêc im jest wy¿szy tym d³u¿sza przerwa)
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		czas_przeskoku_kulki_szybki = 50;
+		czas_przeskoku_kulki_wolny = 75;
 	}
 	if (iloœæ_minimalna_obrotów_ruletki < 0)
 	{
 		cout << "Iloœæ minimalna obrotów ruletki nie mo¿e byæ mniejsza od 0" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		iloœæ_minimalna_obrotów_ruletki = 2;
 	}
 	if (iloœæ_max_dodatkowych_obrotów_ruletki < 0)
 	{
 		cout << "Iloœæ max obrotów ruletki nie mo¿e byæ mniejsza od 0" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		iloœæ_max_dodatkowych_obrotów_ruletki = 3;
 	}
 	if ((iloœæ_minimalna_obrotów_ruletki == 0) && (iloœæ_max_dodatkowych_obrotów_ruletki == 0))
 	{
 		cout << "Jedna z deklaracji w sprawie obrotów ruletki musi byæ wiêksza od zera" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		iloœæ_minimalna_obrotów_ruletki = 2;
+		iloœæ_max_dodatkowych_obrotów_ruletki = 3;
 	}
 	if (((styl_liczenia_wygranej > 1) || (styl_liczenia_wygranej < 0)))
 	{
 		cout << "Styl liczeia wygranej przyjmuje wartoœci tylko 0 lub 1" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		styl_liczenia_wygranej = 1;
 	}
 	if (czas_przerwy_dzwiêku < 0)
 	{
 		cout << "Czas przerwy dŸwiêku nie mo¿e byæ mniejszy od zera" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		czas_przerwy_dzwiêku = 500;
 	}
 	if (kwota_pocz¹tkowa < 0)
 	{
 		cout << "Kwota pocz¹tkowa nie mo¿e byæ mniejsza od zera" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		kwota_pocz¹tkowa = 1000;
 	}
 	if ((stan_dŸwiêków > 1) || (stan_dŸwiêków < 0))
 	{
 		cout << "Stan dŸwiêków przyjmuje wartoœci tylko 0 lub 1" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		stan_dŸwiêków = 1;
 	}
 	if ((czy_kontynuowaæ_grê > 1) || (czy_kontynuowaæ_grê < 0))
 	{
 		cout << "Opcja kontynuowania gry przyjmuje wartoœci tylko 0 lub 1" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		czy_kontynuowaæ_grê = 1;
 	}
 	if ((g³os_odczytu_numeru > 10) || (g³os_odczytu_numeru < 0))
 	{
-		cout << "Opcja g³os odczytu numeru przyjmuje wartoœci w przedziale <0;10>" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Opcja g³os odczytu numeru przyjmuje wartoœci w przedziale [0;10]" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		g³os_odczytu_numeru = 1;
 	}
-	if ((g³os_szybkoœæ_odczytu_numeru > 5) || (g³os_szybkoœæ_odczytu_numeru < 0))
+	if ((g³os_szybkoœæ_odczytu_numeru > 5) || (g³os_szybkoœæ_odczytu_numeru < 1))
 	{
-		cout << "Opcja szybkoœæ g³osu odczytu przyjmuje wartoœci w przedziale <0;5>" << endl;
-		cout << "Ustawiam domyœne ustawienie" << endl;
+		cout << "Opcja szybkoœæ g³osu odczytu przyjmuje wartoœci w przedziale [1;5]" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		g³os_szybkoœæ_odczytu_numeru = 4;
 	}
 }
 
@@ -869,8 +843,7 @@ void Og³oœ_wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pie
 		{
 			if (G³osyKompletne)
 			{
-				string buf = G³os + "win.wav";
-				PlaySound(buf.c_str(), nullptr, SND_SYNC);
+				PlaySound((G³os + "win.wav").c_str(), nullptr, SND_SYNC);
 			}
 			else
 			{
@@ -975,6 +948,119 @@ void Pêtla_g³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofs
 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') Odczytaj_liczbê(wylosowana_liczba, typ_zak³adu);
 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba);
 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') Og³oœ_wynik(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log);
+}
+void Ustaw_ustawienia(string & tekst)
+{
+	if (tekst.find("iloœæ_minimalna_obrotów_ruletki") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("iloœæ_minimalna_obrotów_ruletki")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) iloœæ_minimalna_obrotów_ruletki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			g³os_szybkoœæ_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("iloœæ_max_dodatkowych_obrotów_ruletki") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("iloœæ_max_dodatkowych_obrotów_ruletki")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) iloœæ_max_dodatkowych_obrotów_ruletki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			iloœæ_max_dodatkowych_obrotów_ruletki = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("czas_przeskoku_kulki_szybki") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("czas_przeskoku_kulki_szybki")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) czas_przeskoku_kulki_szybki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			czas_przeskoku_kulki_szybki = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("czas_przeskoku_kulki_wolny") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("czas_przeskoku_kulki_wolny")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) czas_przeskoku_kulki_wolny = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			czas_przeskoku_kulki_wolny = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("styl_liczenia_wygranej") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("styl_liczenia_wygranej")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) styl_liczenia_wygranej = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			styl_liczenia_wygranej = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("kwota_pocz¹tkowa") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("kwota_pocz¹tkowa")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) kwota_pocz¹tkowa = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			kwota_pocz¹tkowa = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("stan_dŸwiêków") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("stan_dŸwiêków")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) stan_dŸwiêków = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			stan_dŸwiêków = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("czy_kontynuowaæ_grê") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("czy_kontynuowaæ_grê")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) czy_kontynuowaæ_grê = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			czy_kontynuowaæ_grê = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("g³os_odczytu_numeru") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("g³os_odczytu_numeru")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) g³os_odczytu_numeru = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			g³os_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("g³os_szybkoœæ_odczytu_numeru") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("g³os_szybkoœæ_odczytu_numeru")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) g³os_szybkoœæ_odczytu_numeru = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			g³os_szybkoœæ_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
 }
 
 /*

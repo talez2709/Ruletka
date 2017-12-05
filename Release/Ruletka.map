@@ -1,0 +1,1226 @@
+ Ruletka
+
+ Timestamp is 5a26b2fa (Tue Dec  5 15:53:46 2017)
+
+ Preferred load address is 00400000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000020H .text$di                CODE
+ 0001:00000020 000099c0H .text$mn                CODE
+ 0001:000099e0 00000710H .text$x                 CODE
+ 0001:0000a0f0 00000070H .text$yd                CODE
+ 0002:00000000 00000260H .idata$5                DATA
+ 0002:00000260 00000004H .00cfg                  DATA
+ 0002:00000264 00000004H .CRT$XCA                DATA
+ 0002:00000268 00000004H .CRT$XCAA               DATA
+ 0002:0000026c 00000004H .CRT$XCL                DATA
+ 0002:00000270 00000004H .CRT$XCU                DATA
+ 0002:00000274 00000004H .CRT$XCZ                DATA
+ 0002:00000278 00000004H .CRT$XIA                DATA
+ 0002:0000027c 00000004H .CRT$XIAA               DATA
+ 0002:00000280 00000004H .CRT$XIAC               DATA
+ 0002:00000284 00000004H .CRT$XIZ                DATA
+ 0002:00000288 00000004H .CRT$XPA                DATA
+ 0002:0000028c 00000004H .CRT$XPZ                DATA
+ 0002:00000290 00000004H .CRT$XTA                DATA
+ 0002:00000294 0000000cH .CRT$XTZ                DATA
+ 0002:00000298 00000000H .gfids$y                DATA
+ 0002:000002a0 000011b8H .rdata                  DATA
+ 0002:00001458 000005d8H .rdata$r                DATA
+ 0002:00001a30 00000060H .rdata$sxdata           DATA
+ 0002:00001a90 00000368H .rdata$zzzdbg           DATA
+ 0002:00001df8 00000004H .rtc$IAA                DATA
+ 0002:00001dfc 00000004H .rtc$IZZ                DATA
+ 0002:00001e00 00000004H .rtc$TAA                DATA
+ 0002:00001e04 00000004H .rtc$TZZ                DATA
+ 0002:00001e08 00000774H .xdata$x                DATA
+ 0002:0000257c 00000000H .edata                  DATA
+ 0002:0000257c 00000104H .idata$2                DATA
+ 0002:00002680 00000014H .idata$3                DATA
+ 0002:00002694 00000260H .idata$4                DATA
+ 0002:000028f4 00001446H .idata$6                DATA
+ 0003:00000000 00000068H .data                   DATA
+ 0003:00000068 00000390H .data$r                 DATA
+ 0003:000003f8 00000398H .bss                    DATA
+ 0004:00000000 00000060H .rsrc$01                DATA
+ 0004:00000060 00000180H .rsrc$02                DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___guard_longjmp_table     00000000     <absolute>
+ 0000:00000000       ___guard_iat_table         00000000     <absolute>
+ 0000:00000000       ___guard_iat_count         00000000     <absolute>
+ 0000:00000000       ___hybrid_auxiliary_iat    00000000     <absolute>
+ 0000:00000000       ___hybrid_code_map         00000000     <absolute>
+ 0000:00000000       ___guard_fids_table        00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
+ 0000:00000000       ___hybrid_code_map_count   00000000     <absolute>
+ 0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
+ 0000:00000000       ___guard_fids_count        00000000     <absolute>
+ 0000:00000000       ___enclave_config          00000000     <absolute>
+ 0000:00000018       ___safe_se_handler_count   00000018     <absolute>
+ 0000:00000100       ___guard_flags             00000100     <absolute>
+ 0000:00000000       ___ImageBase               00400000     <linker-defined>
+ 0001:00000020       ??0exception@std@@QAE@ABV01@@Z 00401020 f i main.obj
+ 0001:00000050       ?what@exception@std@@UBEPBDXZ 00401050 f i main.obj
+ 0001:00000060       ??_Gexception@std@@UAEPAXI@Z 00401060 f i main.obj
+ 0001:00000060       ??_Ebad_cast@std@@UAEPAXI@Z 00401060 f i * CIL library *:* CIL module *
+ 0001:00000060       ??_Eexception@std@@UAEPAXI@Z 00401060 f i * CIL library *:* CIL module *
+ 0001:00000060       ??_Gbad_cast@std@@UAEPAXI@Z 00401060 f i main.obj
+ 0001:000000a0       ??0bad_cast@std@@QAE@XZ    004010a0 f i main.obj
+ 0001:000000c0       ??1bad_cast@std@@UAE@XZ    004010c0 f i main.obj
+ 0001:000000e0       ??1locale@std@@QAE@XZ      004010e0 f i main.obj
+ 0001:00000130       _main                      00401130 f   main.obj
+ 0001:000004f0       ??_D?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAEXXZ 004014f0 f i main.obj
+ 0001:00000530       ??_D?$basic_fstream@DU?$char_traits@D@std@@@std@@QAEXXZ 00401530 f i main.obj
+ 0001:00000570       ?Obstaw@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ 00401570 f   main.obj
+ 0001:00000ba0       ?Wczytaj_Kwotê_Zak³adu@@YAXAAHABH@Z 00401ba0 f   main.obj
+ 0001:00000d90       ?Zakrêæ_Ruletk¹@@YAHXZ     00401d90 f   main.obj
+ 0001:00001130       ?SprawdŸ_Zak³ad@@YAHABHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z 00402130 f   main.obj
+ 0001:000014b0       ?Czy_Kontynuowaæ@@YA_NABH@Z 004024b0 f   main.obj
+ 0001:000016e0       ?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z 004026e0 f   main.obj
+ 0001:00001e40       ??_D?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXXZ 00402e40 f i main.obj
+ 0001:00001e80       ?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z 00402e80 f   main.obj
+ 0001:00002ac0       ?SprawdŸ_Pliki@@YAXXZ      00403ac0 f   main.obj
+ 0001:00003a00       ?SprawdŸ_ustawienia@@YAXXZ 00404a00 f   main.obj
+ 0001:00004250       ??_D?$basic_ifstream@DU?$char_traits@D@std@@@std@@QAEXXZ 00405250 f i main.obj
+ 0001:00004290       ?Og³oœ_wynik@@YAXABH0AAHAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@@Z 00405290 f   main.obj
+ 0001:00004670       ?Koniec_gry@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AAH@Z 00405670 f   main.obj
+ 0001:00004890       ?Pêtla_g³ówna@@YAXAAH00AAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z 00405890 f   main.obj
+ 0001:00004cd0       ?Ustaw_ustawienia@@YAXAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z 00405cd0 f   main.obj
+ 0001:00005260       ?find@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIQBDI@Z 00406260 f i main.obj
+ 0001:00005370       ?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@II@Z 00406370 f i main.obj
+ 0001:000053d0       ??Y?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@D@Z 004063d0 f i main.obj
+ 0001:00005420       ??Y?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@QBD@Z 00406420 f i main.obj
+ 0001:00005490       ??Y?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@ABV01@@Z 00406490 f i main.obj
+ 0001:00005500       ??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ 00406500 f i main.obj
+ 0001:00005560       ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@ABV01@@Z 00406560 f i main.obj
+ 0001:00005630       ?close@?$basic_fstream@DU?$char_traits@D@std@@@std@@QAEXXZ 00406630 f i main.obj
+ 0001:000056b0       ??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ 004066b0 f i main.obj
+ 0001:00005790       ?imbue@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEXABVlocale@2@@Z 00406790 f i main.obj
+ 0001:000057d0       ?sync@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ 004067d0 f i main.obj
+ 0001:00005800       ?setbuf@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEPAV?$basic_streambuf@DU?$char_traits@D@std@@@2@PAD_J@Z 00406800 f i main.obj
+ 0001:000058f0       ?seekpos@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAE?AV?$fpos@U_Mbstatet@@@2@V32@H@Z 004068f0 f i main.obj
+ 0001:00005a00       ?seekoff@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAE?AV?$fpos@U_Mbstatet@@@2@_JHH@Z 00406a00 f i main.obj
+ 0001:00005b20       ?uflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ 00406b20 f i main.obj
+ 0001:00005dc0       ?underflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ 00406dc0 f i main.obj
+ 0001:00005e00       ?pbackfail@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHH@Z 00406e00 f i main.obj
+ 0001:00005eb0       ?overflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHH@Z 00406eb0 f i main.obj
+ 0001:00006120       ?_Unlock@?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEXXZ 00407120 f i main.obj
+ 0001:00006130       ?_Lock@?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEXXZ 00407130 f i main.obj
+ 0001:00006140       ??1?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAE@XZ 00407140 f i main.obj
+ 0001:00006200       ?seekpos@?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MAE?AV?$fpos@U_Mbstatet@@@2@V32@H@Z 00407200 f i main.obj
+ 0001:00006340       ?seekoff@?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MAE?AV?$fpos@U_Mbstatet@@@2@_JHH@Z 00407340 f i main.obj
+ 0001:00006510       ?underflow@?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MAEHXZ 00407510 f i main.obj
+ 0001:00006570       ?pbackfail@?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MAEHH@Z 00407570 f i main.obj
+ 0001:000065d0       ?overflow@?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MAEHH@Z 004075d0 f i main.obj
+ 0001:000067a0       ??1?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAE@XZ 004077a0 f i main.obj
+ 0001:00006850       __initialize_invalid_parameter_handler 00407850 f i MSVCRT:invalid_parameter_handler.obj
+ 0001:00006850       ??1?$_String_alloc@U?$_String_base_types@DV?$allocator@D@std@@@std@@@std@@QAE@XZ 00407850 f i main.obj
+ 0001:00006850       __initialize_denormal_control 00407850 f i MSVCRT:denormal_control.obj
+ 0001:00006850       ?_Orphan_all@?$_String_alloc@U?$_String_base_types@DV?$allocator@D@std@@@std@@@std@@QAEXXZ 00407850 f i main.obj
+ 0001:00006850       @_guard_check_icall_nop@4  00407850 f i MSVCRT:guard_support.obj
+ 0001:00006860       ??_E?$basic_fstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 00407860 f i * CIL library *:* CIL module *
+ 0001:00006860       ??_G?$basic_fstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 00407860 f i main.obj
+ 0001:000068c0       ??_G?$basic_ofstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 004078c0 f i main.obj
+ 0001:000068c0       ??_E?$basic_ofstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 004078c0 f i * CIL library *:* CIL module *
+ 0001:00006920       ??_G?$basic_ifstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 00407920 f i main.obj
+ 0001:00006920       ??_E?$basic_ifstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 00407920 f i * CIL library *:* CIL module *
+ 0001:00006980       ??_G?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 00407980 f i main.obj
+ 0001:00006980       ??_E?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 00407980 f i * CIL library *:* CIL module *
+ 0001:000069b0       ??_E?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAEPAXI@Z 004079b0 f i * CIL library *:* CIL module *
+ 0001:000069b0       ??_G?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAEPAXI@Z 004079b0 f i main.obj
+ 0001:00006a10       ??_G?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAEPAXI@Z 00407a10 f i main.obj
+ 0001:00006a10       ??_E?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAEPAXI@Z 00407a10 f i * CIL library *:* CIL module *
+ 0001:00006a40       ??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ 00407a40 f i main.obj
+ 0001:00006ab0       ?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ID@Z 00407ab0 f i main.obj
+ 0001:00006bd0       ?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBDI@Z 00407bd0 f i main.obj
+ 0001:00006d20       ?_Reset_back@?$basic_filebuf@DU?$char_traits@D@std@@@std@@AAEXXZ 00407d20 f i main.obj
+ 0001:00006d50       ?_Endwrite@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IAE_NXZ 00407d50 f i main.obj
+ 0001:00006f10       ?open@?$basic_filebuf@DU?$char_traits@D@std@@@std@@QAEPAV12@PBDHH@Z 00407f10 f i main.obj
+ 0001:00007060       ?str@?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@XZ 00408060 f i main.obj
+ 0001:00007180       ?allocate@?$allocator@D@std@@QAEPADI@Z 00408180 f i main.obj
+ 0001:000071e0       ?deallocate@?$allocator@D@std@@QAEXQADI@Z 004081e0 f i main.obj
+ 0001:00007220       ??1_Sentry_base@?$basic_istream@DU?$char_traits@D@std@@@std@@QAE@XZ 00408220 f i main.obj
+ 0001:00007220       ??1_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ 00408220 f i main.obj
+ 0001:00007270       ?_Xran@?$_String_val@U?$_Simple_types@D@std@@@std@@SAXXZ 00408270 f i main.obj
+ 0001:00007280       ??$use_facet@V?$ctype@D@std@@@std@@YAABV?$ctype@D@0@ABVlocale@0@@Z 00408280 f i main.obj
+ 0001:00007380       ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z 00408380 f i main.obj
+ 0001:000075a0       ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z 004085a0 f i main.obj
+ 0001:000075d0       ??$?8DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBD@Z 004085d0 f i main.obj
+ 0001:00007660       ??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@$$QAV10@0@Z 00408660 f i main.obj
+ 0001:00007750       ??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@QBD@Z 00408750 f i main.obj
+ 0001:00007920       ??$use_facet@V?$codecvt@DDU_Mbstatet@@@std@@@std@@YAABV?$codecvt@DDU_Mbstatet@@@0@ABVlocale@0@@Z 00408920 f i main.obj
+ 0001:00007e40       ??0bad_cast@std@@QAE@ABV01@@Z 00408e40 f i main.obj
+ 0001:00007e80       ?_Xlen@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@SAXXZ 00408e80 f i main.obj
+ 0001:00007e90       ?insert@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@IABV12@@Z 00408e90 f i main.obj
+ 0001:00007f50       ??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z 00408f50 f i main.obj
+ 0001:00008170       ??$getline@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@D@Z 00409170 f i main.obj
+ 0001:00008320       ??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z 00409320 f i main.obj
+ 0001:000087a0       ??1sentry@?$basic_istream@DU?$char_traits@D@std@@@std@@QAE@XZ 004097a0 f i main.obj
+ 0001:000087ec       ??_E?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@$4PPPPPPPM@A@AEPAXI@Z 004097ec f i main.obj
+ 0001:000087f4       ??_E?$basic_ifstream@DU?$char_traits@D@std@@@std@@$4PPPPPPPM@A@AEPAXI@Z 004097f4 f i main.obj
+ 0001:000087fc       ??_E?$basic_ofstream@DU?$char_traits@D@std@@@std@@$4PPPPPPPM@A@AEPAXI@Z 004097fc f i main.obj
+ 0001:00008804       ??_E?$basic_fstream@DU?$char_traits@D@std@@@std@@$4PPPPPPPM@A@AEPAXI@Z 00409804 f i main.obj
+ 0001:0000880c       ??1_Fac_node@std@@QAE@XZ   0040980c f i msvcprt:locale0_implib.obj
+ 0001:0000886b       ??1_Fac_tidy_reg_t@std@@QAE@XZ 0040986b f i msvcprt:locale0_implib.obj
+ 0001:00008892       ?_Facet_Register@std@@YAXPAV_Facet_base@1@@Z 00409892 f   msvcprt:locale0_implib.obj
+ 0001:000088c0       ?_Lock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UAEXXZ 004098c0 f   msvcprt:MSVCP140.dll
+ 0001:000088c6       ?_Unlock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UAEXXZ 004098c6 f   msvcprt:MSVCP140.dll
+ 0001:000088cc       ?showmanyc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAE_JXZ 004098cc f   msvcprt:MSVCP140.dll
+ 0001:000088d2       ?uflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAEHXZ 004098d2 f   msvcprt:MSVCP140.dll
+ 0001:000088d8       ?xsgetn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAE_JPAD_J@Z 004098d8 f   msvcprt:MSVCP140.dll
+ 0001:000088de       ?xsputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAE_JPBD_J@Z 004098de f   msvcprt:MSVCP140.dll
+ 0001:000088e4       ?setbuf@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAEPAV12@PAD_J@Z 004098e4 f   msvcprt:MSVCP140.dll
+ 0001:000088ea       ?sync@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAEHXZ 004098ea f   msvcprt:MSVCP140.dll
+ 0001:000088f0       ?imbue@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAEXABVlocale@2@@Z 004098f0 f   msvcprt:MSVCP140.dll
+ 0001:000088f6       @__security_check_cookie@4 004098f6 f   MSVCRT:_secchk_.obj
+ 0001:00008907       ??2@YAPAXI@Z               00409907 f   MSVCRT:new_scalar.obj
+ 0001:0000897b       ___scrt_acquire_startup_lock 0040997b f   MSVCRT:utility.obj
+ 0001:000089b0       ___scrt_initialize_crt     004099b0 f   MSVCRT:utility.obj
+ 0001:000089e9       ___scrt_initialize_onexit_tables 004099e9 f   MSVCRT:utility.obj
+ 0001:00008a93       ___scrt_is_nonwritable_in_current_image 00409a93 f   MSVCRT:utility.obj
+ 0001:00008b1d       ___scrt_release_startup_lock 00409b1d f   MSVCRT:utility.obj
+ 0001:00008b3a       ___scrt_uninitialize_crt   00409b3a f   MSVCRT:utility.obj
+ 0001:00008b62       __onexit                   00409b62 f   MSVCRT:utility.obj
+ 0001:00008b9d       _atexit                    00409b9d f   MSVCRT:utility.obj
+ 0001:00008bb2       ??3@YAXPAX@Z               00409bb2 f   MSVCRT:delete_scalar.obj
+ 0001:00008bb7       ??3@YAXPAXI@Z              00409bb7 f   MSVCRT:delete_scalar_size.obj
+ 0001:00008bc5       ??_Etype_info@@UAEPAXI@Z   00409bc5 f i MSVCRT:std_type_info_static.obj
+ 0001:00008bc5       ??_Gtype_info@@UAEPAXI@Z   00409bc5 f i MSVCRT:std_type_info_static.obj
+ 0001:00008e14       _mainCRTStartup            00409e14 f   MSVCRT:exe_main.obj
+ 0001:00008e1e       @_guard_check_icall@4      00409e1e f i MSVCRT:checkcfg.obj
+ 0001:00008e24       ___raise_securityfailure   00409e24 f   MSVCRT:gs_report.obj
+ 0001:00008e4c       ___report_gsfailure        00409e4c f   MSVCRT:gs_report.obj
+ 0001:00008f47       ??0bad_alloc@std@@QAE@ABV01@@Z 00409f47 f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008f62       ??0bad_alloc@std@@QAE@XZ   00409f62 f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008f7a       ??0bad_array_new_length@std@@QAE@ABV01@@Z 00409f7a f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008f95       ??0bad_array_new_length@std@@QAE@XZ 00409f95 f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008fad       ??1bad_alloc@std@@UAE@XZ   00409fad f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008fad       ??1bad_array_new_length@std@@UAE@XZ 00409fad f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008fbe       ??_Ebad_alloc@std@@UAEPAXI@Z 00409fbe f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008fbe       ??_Gbad_array_new_length@std@@UAEPAXI@Z 00409fbe f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008fbe       ??_Gbad_alloc@std@@UAEPAXI@Z 00409fbe f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008fbe       ??_Ebad_array_new_length@std@@UAEPAXI@Z 00409fbe f i MSVCRT:throw_bad_alloc.obj
+ 0001:00008feb       ?__scrt_throw_std_bad_alloc@@YAXXZ 00409feb f   MSVCRT:throw_bad_alloc.obj
+ 0001:00009008       ?__scrt_throw_std_bad_array_new_length@@YAXXZ 0040a008 f   MSVCRT:throw_bad_alloc.obj
+ 0001:00009025       ___isa_available_init      0040a025 f   MSVCRT:_cpu_disp_.obj
+ 0001:000091c4       __get_startup_argv_mode    0040a1c4 f   MSVCRT:argv_mode.obj
+ 0001:000091c8       ___scrt_is_ucrt_dll_in_use 0040a1c8 f   MSVCRT:ucrt_detection.obj
+ 0001:000091d4       ___scrt_fastfail           0040a1d4 f   MSVCRT:utility_desktop.obj
+ 0001:000092f0       ___scrt_is_managed_app     0040a2f0 f   MSVCRT:utility_desktop.obj
+ 0001:00009334       ___scrt_set_unhandled_exception_filter 0040a334 f   MSVCRT:utility_desktop.obj
+ 0001:00009340       ___scrt_unhandled_exception_filter@4 0040a340 f   MSVCRT:utility_desktop.obj
+ 0001:00009381       __crt_debugger_hook        0040a381 f   MSVCRT:utility_desktop.obj
+ 0001:00009390       __SEH_prolog4              0040a390 f   MSVCRT:_sehprolg4_.obj
+ 0001:000093d6       __SEH_epilog4              0040a3d6 f   MSVCRT:_sehprolg4_.obj
+ 0001:000093eb       __except_handler4          0040a3eb f   MSVCRT:_chandler4gs_.obj
+ 0001:0000945d       ___security_init_cookie    0040a45d f   MSVCRT:gs_support.obj
+ 0001:000094b0       __get_startup_file_mode    0040a4b0 f   MSVCRT:file_mode.obj
+ 0001:000094b6       __matherr                  0040a4b6 f   MSVCRT:matherr.obj
+ 0001:000094b6       ___scrt_initialize_winrt   0040a4b6 f   MSVCRT:utility_desktop.obj
+ 0001:000094b6       __get_startup_commit_mode  0040a4b6 f   MSVCRT:commit_mode.obj
+ 0001:000094b6       __get_startup_new_mode     0040a4b6 f   MSVCRT:new_mode.obj
+ 0001:000094b6       __get_startup_thread_locale_mode 0040a4b6 f   MSVCRT:thread_locale.obj
+ 0001:000094b9       ?__scrt_initialize_type_info@@YAXXZ 0040a4b9 f   MSVCRT:tncleanup.obj
+ 0001:000094c5       __initialize_default_precision 0040a4c5 f   MSVCRT:default_precision.obj
+ 0001:000094e6       ___local_stdio_printf_options 0040a4e6 f i MSVCRT:default_local_stdio_options.obj
+ 0001:000094ec       ___local_stdio_scanf_options 0040a4ec f i MSVCRT:default_local_stdio_options.obj
+ 0001:000094f2       ___scrt_initialize_default_local_stdio_options 0040a4f2 f   MSVCRT:default_local_stdio_options.obj
+ 0001:0000950f       ___scrt_is_user_matherr_present 0040a50f f   MSVCRT:matherr_detection.obj
+ 0001:0000951b       ___scrt_get_dyn_tls_init_callback 0040a51b f   MSVCRT:dyn_tls_init.obj
+ 0001:00009521       ___scrt_get_dyn_tls_dtor_callback 0040a521 f   MSVCRT:dyn_tls_dtor.obj
+ 0001:00009527       __RTC_Initialize           0040a527 f   MSVCRT:_initsect_.obj
+ 0001:00009552       __RTC_Terminate            0040a552 f   MSVCRT:_initsect_.obj
+ 0001:0000957d       ___CxxFrameHandler3        0040a57d f   vcruntime:VCRUNTIME140.dll
+ 0001:00009583       ___std_exception_destroy   0040a583 f   vcruntime:VCRUNTIME140.dll
+ 0001:00009589       ___std_terminate           0040a589 f   vcruntime:VCRUNTIME140.dll
+ 0001:0000958f       __CxxThrowException@8      0040a58f f   vcruntime:VCRUNTIME140.dll
+ 0001:00009595       _memset                    0040a595 f   vcruntime:VCRUNTIME140.dll
+ 0001:0000959b       __except_handler4_common   0040a59b f   vcruntime:VCRUNTIME140.dll
+ 0001:000095a1       __callnewh                 0040a5a1 f   ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0001:000095a7       _malloc                    0040a5a7 f   ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0001:000095ad       __configure_narrow_argv    0040a5ad f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095b3       __initialize_narrow_environment 0040a5b3 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095b9       __initialize_onexit_table  0040a5b9 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095bf       __register_onexit_function 0040a5bf f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095c5       __crt_atexit               0040a5c5 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095cb       __cexit                    0040a5cb f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095d1       _free                      0040a5d1 f   ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0001:000095d7       __seh_filter_exe           0040a5d7 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095dd       __set_app_type             0040a5dd f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095e3       ___setusermatherr          0040a5e3 f   ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0001:000095e9       __get_initial_narrow_environment 0040a5e9 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095ef       __initterm                 0040a5ef f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095f5       __initterm_e               0040a5f5 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000095fb       _exit                      0040a5fb f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00009601       __exit                     0040a601 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00009607       __set_fmode                0040a607 f   ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0001:0000960d       ___p___argc                0040a60d f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00009613       ___p___argv                0040a613 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00009619       __c_exit                   0040a619 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0000961f       __register_thread_local_exe_atexit_callback 0040a61f f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00009625       __configthreadlocale       0040a625 f   ucrt:api-ms-win-crt-locale-l1-1-0.dll
+ 0001:0000962b       __set_new_mode             0040a62b f   ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0001:00009631       ___p__commode              0040a631 f   ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0001:00009637       _terminate                 0040a637 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0000963d       __controlfp_s              0040a63d f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00009643       _IsProcessorFeaturePresent@4 0040a643 f   kernel32:KERNEL32.dll
+ 0001:00009649       ___acrt_uninitialize       0040a649 f   MSVCRT:ucrt_stubs.obj
+ 0001:00009649       ___vcrt_uninitialize       0040a649 f   MSVCRT:ucrt_stubs.obj
+ 0001:00009649       __should_initialize_environment 0040a649 f   MSVCRT:env_mode.obj
+ 0001:00009649       ___scrt_stub_for_acrt_uninitialize 0040a649 f   MSVCRT:ucrt_stubs.obj
+ 0001:00009649       ___acrt_initialize         0040a649 f   MSVCRT:ucrt_stubs.obj
+ 0001:00009649       ___vcrt_initialize         0040a649 f   MSVCRT:ucrt_stubs.obj
+ 0001:00009649       ___scrt_stub_for_acrt_initialize 0040a649 f   MSVCRT:ucrt_stubs.obj
+ 0001:00009650       __ftoui3                   0040a650 f   MSVCRT:_ftol3_.obj
+ 0001:0000965f       __ftoul3                   0040a65f f   MSVCRT:_ftol3_.obj
+ 0001:0000966e       __ftol3                    0040a66e f   MSVCRT:_ftol3_.obj
+ 0001:0000967b       __ftol3_NaN                0040a67b f   MSVCRT:_ftol3_.obj
+ 0001:00009693       __ftol3_work               0040a693 f   MSVCRT:_ftol3_.obj
+ 0001:00009719       __ftol3_common             0040a719 f   MSVCRT:_ftol3_.obj
+ 0001:000097db       __ftol3_arg_error          0040a7db f   MSVCRT:_ftol3_.obj
+ 0001:000097ed       __ftol3_except             0040a7ed f   MSVCRT:_ftol3_.obj
+ 0001:00009831       __dtoui3                   0040a831 f   MSVCRT:_ftol3_.obj
+ 0001:00009840       __dtoul3                   0040a840 f   MSVCRT:_ftol3_.obj
+ 0001:0000984f       __dtol3                    0040a84f f   MSVCRT:_ftol3_.obj
+ 0001:0000985c       __dtol3_NaN                0040a85c f   MSVCRT:_ftol3_.obj
+ 0001:00009879       __dtol3_work               0040a879 f   MSVCRT:_ftol3_.obj
+ 0001:00009960       __ultod3                   0040a960 f   MSVCRT:_ftol3_.obj
+ 0001:000099a0       __ltod3                    0040a9a0 f   MSVCRT:_ftol3_.obj
+ 0001:000099c7       _memcpy                    0040a9c7 f   vcruntime:VCRUNTIME140.dll
+ 0001:000099cd       __except1                  0040a9cd f   ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:00000000       __imp__UnhandledExceptionFilter@4 0040c000     kernel32:KERNEL32.dll
+ 0002:00000004       __imp__SetUnhandledExceptionFilter@4 0040c004     kernel32:KERNEL32.dll
+ 0002:00000008       __imp__SetConsoleTextAttribute@8 0040c008     kernel32:KERNEL32.dll
+ 0002:0000000c       __imp__GetStdHandle@4      0040c00c     kernel32:KERNEL32.dll
+ 0002:00000010       __imp__GetConsoleCursorInfo@8 0040c010     kernel32:KERNEL32.dll
+ 0002:00000014       __imp__Sleep@4             0040c014     kernel32:KERNEL32.dll
+ 0002:00000018       __imp__SetConsoleCursorInfo@8 0040c018     kernel32:KERNEL32.dll
+ 0002:0000001c       __imp__GetSystemTime@4     0040c01c     kernel32:KERNEL32.dll
+ 0002:00000020       __imp__GetSystemTimeAsFileTime@4 0040c020     kernel32:KERNEL32.dll
+ 0002:00000024       __imp__GetCurrentThreadId@0 0040c024     kernel32:KERNEL32.dll
+ 0002:00000028       __imp__GetCurrentProcessId@0 0040c028     kernel32:KERNEL32.dll
+ 0002:0000002c       __imp__QueryPerformanceCounter@4 0040c02c     kernel32:KERNEL32.dll
+ 0002:00000030       __imp__GetModuleHandleW@4  0040c030     kernel32:KERNEL32.dll
+ 0002:00000034       __imp__IsDebuggerPresent@0 0040c034     kernel32:KERNEL32.dll
+ 0002:00000038       __imp__IsProcessorFeaturePresent@4 0040c038     kernel32:KERNEL32.dll
+ 0002:0000003c       __imp__TerminateProcess@8  0040c03c     kernel32:KERNEL32.dll
+ 0002:00000040       __imp__GetCurrentProcess@0 0040c040     kernel32:KERNEL32.dll
+ 0002:00000044       __imp__InitializeSListHead@4 0040c044     kernel32:KERNEL32.dll
+ 0002:00000048       \177KERNEL32_NULL_THUNK_DATA 0040c048     kernel32:KERNEL32.dll
+ 0002:0000004c       __imp_?id@?$ctype@D@std@@2V0locale@2@A 0040c04c     msvcprt:MSVCP140.dll
+ 0002:00000050       __imp_?_Random_device@std@@YAIXZ 0040c050     msvcprt:MSVCP140.dll
+ 0002:00000054       __imp_?_Xlength_error@std@@YAXPBD@Z 0040c054     msvcprt:MSVCP140.dll
+ 0002:00000058       __imp_?_Ipfx@?$basic_istream@DU?$char_traits@D@std@@@std@@QAE_N_N@Z 0040c058     msvcprt:MSVCP140.dll
+ 0002:0000005c       __imp_?snextc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHXZ 0040c05c     msvcprt:MSVCP140.dll
+ 0002:00000060       __imp_?sputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAE_JPBD_J@Z 0040c060     msvcprt:MSVCP140.dll
+ 0002:00000064       __imp_?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@D@Z 0040c064     msvcprt:MSVCP140.dll
+ 0002:00000068       __imp_?_Getcat@?$codecvt@DDU_Mbstatet@@@std@@SAIPAPBVfacet@locale@2@PBV42@@Z 0040c068     msvcprt:MSVCP140.dll
+ 0002:0000006c       __imp_?sbumpc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHXZ 0040c06c     msvcprt:MSVCP140.dll
+ 0002:00000070       __imp_?sgetc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHXZ 0040c070     msvcprt:MSVCP140.dll
+ 0002:00000074       __imp_?widen@?$basic_ios@DU?$char_traits@D@std@@@std@@QBEDD@Z 0040c074     msvcprt:MSVCP140.dll
+ 0002:00000078       __imp_?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHD@Z 0040c078     msvcprt:MSVCP140.dll
+ 0002:0000007c       __imp_??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IAE@XZ 0040c07c     msvcprt:MSVCP140.dll
+ 0002:00000080       __imp_?getloc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QBE?AVlocale@2@XZ 0040c080     msvcprt:MSVCP140.dll
+ 0002:00000084       __imp_?_Init@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IAEXXZ 0040c084     msvcprt:MSVCP140.dll
+ 0002:00000088       __imp_?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEXXZ 0040c088     msvcprt:MSVCP140.dll
+ 0002:0000008c       __imp_?unshift@?$codecvt@DDU_Mbstatet@@@std@@QBEHAAU_Mbstatet@@PAD1AAPAD@Z 0040c08c     msvcprt:MSVCP140.dll
+ 0002:00000090       __imp_?clear@?$basic_ios@DU?$char_traits@D@std@@@std@@QAEXH_N@Z 0040c090     msvcprt:MSVCP140.dll
+ 0002:00000094       __imp_?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QAEXH_N@Z 0040c094     msvcprt:MSVCP140.dll
+ 0002:00000098       __imp_??0?$basic_ios@DU?$char_traits@D@std@@@std@@IAE@XZ 0040c098     msvcprt:MSVCP140.dll
+ 0002:0000009c       __imp_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A 0040c09c     msvcprt:MSVCP140.dll
+ 0002:000000a0       __imp_??0?$basic_istream@DU?$char_traits@D@std@@@std@@QAE@PAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z 0040c0a0     msvcprt:MSVCP140.dll
+ 0002:000000a4       __imp_??0?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@PAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z 0040c0a4     msvcprt:MSVCP140.dll
+ 0002:000000a8       __imp_??0?$basic_iostream@DU?$char_traits@D@std@@@std@@QAE@PAV?$basic_streambuf@DU?$char_traits@D@std@@@1@@Z 0040c0a8     msvcprt:MSVCP140.dll
+ 0002:000000ac       __imp_?in@?$codecvt@DDU_Mbstatet@@@std@@QBEHAAU_Mbstatet@@PBD1AAPBDPAD3AAPAD@Z 0040c0ac     msvcprt:MSVCP140.dll
+ 0002:000000b0       __imp_?out@?$codecvt@DDU_Mbstatet@@@std@@QBEHAAU_Mbstatet@@PBD1AAPBDPAD3AAPAD@Z 0040c0b0     msvcprt:MSVCP140.dll
+ 0002:000000b4       __imp_??1?$basic_ios@DU?$char_traits@D@std@@@std@@UAE@XZ 0040c0b4     msvcprt:MSVCP140.dll
+ 0002:000000b8       __imp_??1?$basic_streambuf@DU?$char_traits@D@std@@@std@@UAE@XZ 0040c0b8     msvcprt:MSVCP140.dll
+ 0002:000000bc       __imp_?_Lock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UAEXXZ 0040c0bc     msvcprt:MSVCP140.dll
+ 0002:000000c0       __imp_?_Unlock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UAEXXZ 0040c0c0     msvcprt:MSVCP140.dll
+ 0002:000000c4       __imp_?showmanyc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAE_JXZ 0040c0c4     msvcprt:MSVCP140.dll
+ 0002:000000c8       __imp_?uflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAEHXZ 0040c0c8     msvcprt:MSVCP140.dll
+ 0002:000000cc       __imp_?xsgetn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAE_JPAD_J@Z 0040c0cc     msvcprt:MSVCP140.dll
+ 0002:000000d0       __imp_?xsputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAE_JPBD_J@Z 0040c0d0     msvcprt:MSVCP140.dll
+ 0002:000000d4       __imp_?setbuf@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAEPAV12@PAD_J@Z 0040c0d4     msvcprt:MSVCP140.dll
+ 0002:000000d8       __imp_?sync@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAEHXZ 0040c0d8     msvcprt:MSVCP140.dll
+ 0002:000000dc       __imp_?imbue@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MAEXABVlocale@2@@Z 0040c0dc     msvcprt:MSVCP140.dll
+ 0002:000000e0       __imp_??1?$basic_istream@DU?$char_traits@D@std@@@std@@UAE@XZ 0040c0e0     msvcprt:MSVCP140.dll
+ 0002:000000e4       __imp_??1?$basic_ostream@DU?$char_traits@D@std@@@std@@UAE@XZ 0040c0e4     msvcprt:MSVCP140.dll
+ 0002:000000e8       __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z 0040c0e8     msvcprt:MSVCP140.dll
+ 0002:000000ec       __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@G@Z 0040c0ec     msvcprt:MSVCP140.dll
+ 0002:000000f0       __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z 0040c0f0     msvcprt:MSVCP140.dll
+ 0002:000000f4       __imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@XZ 0040c0f4     msvcprt:MSVCP140.dll
+ 0002:000000f8       __imp_??1?$basic_iostream@DU?$char_traits@D@std@@@std@@UAE@XZ 0040c0f8     msvcprt:MSVCP140.dll
+ 0002:000000fc       __imp_?getloc@ios_base@std@@QBE?AVlocale@2@XZ 0040c0fc     msvcprt:MSVCP140.dll
+ 0002:00000100       __imp_?_Getcat@?$ctype@D@std@@SAIPAPBVfacet@locale@2@PBV42@@Z 0040c100     msvcprt:MSVCP140.dll
+ 0002:00000104       __imp_?always_noconv@codecvt_base@std@@QBE_NXZ 0040c104     msvcprt:MSVCP140.dll
+ 0002:00000108       __imp_?_BADOFF@std@@3_JB   0040c108     msvcprt:MSVCP140.dll
+ 0002:0000010c       __imp_?_Xout_of_range@std@@YAXPBD@Z 0040c10c     msvcprt:MSVCP140.dll
+ 0002:00000110       __imp_?_Xbad_alloc@std@@YAXXZ 0040c110     msvcprt:MSVCP140.dll
+ 0002:00000114       __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A 0040c114     msvcprt:MSVCP140.dll
+ 0002:00000118       __imp_?uncaught_exception@std@@YA_NXZ 0040c118     msvcprt:MSVCP140.dll
+ 0002:0000011c       __imp_?_Getgloballocale@locale@std@@CAPAV_Locimp@12@XZ 0040c11c     msvcprt:MSVCP140.dll
+ 0002:00000120       __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A 0040c120     msvcprt:MSVCP140.dll
+ 0002:00000124       __imp_??0_Lockit@std@@QAE@H@Z 0040c124     msvcprt:MSVCP140.dll
+ 0002:00000128       __imp_??1_Lockit@std@@QAE@XZ 0040c128     msvcprt:MSVCP140.dll
+ 0002:0000012c       __imp_?_Fiopen@std@@YAPAU_iobuf@@PBDHH@Z 0040c12c     msvcprt:MSVCP140.dll
+ 0002:00000130       __imp_??Bid@locale@std@@QAEIXZ 0040c130     msvcprt:MSVCP140.dll
+ 0002:00000134       \177MSVCP140_NULL_THUNK_DATA 0040c134     msvcprt:MSVCP140.dll
+ 0002:00000138       __imp___except_handler4_common 0040c138     vcruntime:VCRUNTIME140.dll
+ 0002:0000013c       __imp__memset              0040c13c     vcruntime:VCRUNTIME140.dll
+ 0002:00000140       __imp___CxxThrowException@8 0040c140     vcruntime:VCRUNTIME140.dll
+ 0002:00000144       __imp____std_terminate     0040c144     vcruntime:VCRUNTIME140.dll
+ 0002:00000148       __imp__memcpy              0040c148     vcruntime:VCRUNTIME140.dll
+ 0002:0000014c       __imp____std_exception_copy 0040c14c     vcruntime:VCRUNTIME140.dll
+ 0002:00000150       __imp__memmove             0040c150     vcruntime:VCRUNTIME140.dll
+ 0002:00000154       __imp____std_exception_destroy 0040c154     vcruntime:VCRUNTIME140.dll
+ 0002:00000158       __imp____CxxFrameHandler3  0040c158     vcruntime:VCRUNTIME140.dll
+ 0002:0000015c       __imp__memchr              0040c15c     vcruntime:VCRUNTIME140.dll
+ 0002:00000160       \177VCRUNTIME140_NULL_THUNK_DATA 0040c160     vcruntime:VCRUNTIME140.dll
+ 0002:00000164       __imp__PlaySoundA@12       0040c164     winmm:WINMM.dll
+ 0002:00000168       \177WINMM_NULL_THUNK_DATA  0040c168     winmm:WINMM.dll
+ 0002:0000016c       __imp__atoi                0040c16c     ucrt:api-ms-win-crt-convert-l1-1-0.dll
+ 0002:00000170       \177api-ms-win-crt-convert-l1-1-0_NULL_THUNK_DATA 0040c170     ucrt:api-ms-win-crt-convert-l1-1-0.dll
+ 0002:00000174       __imp___access             0040c174     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0002:00000178       __imp__remove              0040c178     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0002:0000017c       __imp___unlock_file        0040c17c     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0002:00000180       __imp___lock_file          0040c180     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0002:00000184       \177api-ms-win-crt-filesystem-l1-1-0_NULL_THUNK_DATA 0040c184     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0002:00000188       __imp__malloc              0040c188     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:0000018c       __imp___set_new_mode       0040c18c     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00000190       __imp__free                0040c190     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00000194       __imp___callnewh           0040c194     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00000198       \177api-ms-win-crt-heap-l1-1-0_NULL_THUNK_DATA 0040c198     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:0000019c       __imp__setlocale           0040c19c     ucrt:api-ms-win-crt-locale-l1-1-0.dll
+ 0002:000001a0       __imp___configthreadlocale 0040c1a0     ucrt:api-ms-win-crt-locale-l1-1-0.dll
+ 0002:000001a4       \177api-ms-win-crt-locale-l1-1-0_NULL_THUNK_DATA 0040c1a4     ucrt:api-ms-win-crt-locale-l1-1-0.dll
+ 0002:000001a8       __imp___except1            0040c1a8     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:000001ac       __imp____setusermatherr    0040c1ac     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:000001b0       \177api-ms-win-crt-math-l1-1-0_NULL_THUNK_DATA 0040c1b0     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:000001b4       __imp___crt_atexit         0040c1b4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001b8       __imp___cexit              0040c1b8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001bc       __imp__system              0040c1bc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001c0       __imp___seh_filter_exe     0040c1c0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001c4       __imp___set_app_type       0040c1c4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001c8       __imp___register_onexit_function 0040c1c8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001cc       __imp___get_initial_narrow_environment 0040c1cc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001d0       __imp___initialize_onexit_table 0040c1d0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001d4       __imp___initterm_e         0040c1d4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001d8       __imp__exit                0040c1d8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001dc       __imp___exit               0040c1dc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001e0       __imp___invalid_parameter_noinfo 0040c1e0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001e4       __imp____p___argc          0040c1e4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001e8       __imp____p___argv          0040c1e8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001ec       __imp___c_exit             0040c1ec     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001f0       __imp___register_thread_local_exe_atexit_callback 0040c1f0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001f4       __imp___initialize_narrow_environment 0040c1f4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001f8       __imp___configure_narrow_argv 0040c1f8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000001fc       __imp__terminate           0040c1fc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:00000200       __imp___controlfp_s        0040c200     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:00000204       __imp___initterm           0040c204     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:00000208       __imp___errno              0040c208     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:0000020c       __imp___invalid_parameter_noinfo_noreturn 0040c20c     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:00000210       \177api-ms-win-crt-runtime-l1-1-0_NULL_THUNK_DATA 0040c210     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:00000214       __imp__fgetpos             0040c214     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000218       __imp__setvbuf             0040c218     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:0000021c       __imp__fputc               0040c21c     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000220       __imp____p__commode        0040c220     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000224       __imp___set_fmode          0040c224     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000228       __imp___get_stream_buffer_pointers 0040c228     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:0000022c       __imp___fseeki64           0040c22c     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000230       __imp__fsetpos             0040c230     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000234       __imp__ungetc              0040c234     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000238       __imp__fgetc               0040c238     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:0000023c       __imp__fflush              0040c23c     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000240       __imp__fclose              0040c240     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000244       __imp__fwrite              0040c244     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00000248       \177api-ms-win-crt-stdio-l1-1-0_NULL_THUNK_DATA 0040c248     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:0000024c       __imp___time64             0040c24c     ucrt:api-ms-win-crt-time-l1-1-0.dll
+ 0002:00000250       \177api-ms-win-crt-time-l1-1-0_NULL_THUNK_DATA 0040c250     ucrt:api-ms-win-crt-time-l1-1-0.dll
+ 0002:00000254       __imp__srand               0040c254     ucrt:api-ms-win-crt-utility-l1-1-0.dll
+ 0002:00000258       __imp__rand                0040c258     ucrt:api-ms-win-crt-utility-l1-1-0.dll
+ 0002:0000025c       \177api-ms-win-crt-utility-l1-1-0_NULL_THUNK_DATA 0040c25c     ucrt:api-ms-win-crt-utility-l1-1-0.dll
+ 0002:00000260       ___guard_check_icall_fptr  0040c260     MSVCRT:guard_support.obj
+ 0002:00000264       ___xc_a                    0040c264     MSVCRT:initializers.obj
+ 0002:00000274       ___xc_z                    0040c274     MSVCRT:initializers.obj
+ 0002:00000278       ___xi_a                    0040c278     MSVCRT:initializers.obj
+ 0002:00000284       ___xi_z                    0040c284     MSVCRT:initializers.obj
+ 0002:00000288       ___xp_a                    0040c288     MSVCRT:initializers.obj
+ 0002:0000028c       ___xp_z                    0040c28c     MSVCRT:initializers.obj
+ 0002:00000290       ___xt_a                    0040c290     MSVCRT:initializers.obj
+ 0002:00000294       ___xt_z                    0040c294     MSVCRT:initializers.obj
+ 0002:000002a4       ??_7type_info@@6B@         0040c2a4     MSVCRT:std_type_info_static.obj
+ 0002:000002b4       ??_7exception@std@@6B@     0040c2b4     MSVCRT:throw_bad_alloc.obj
+ 0002:000002c0       ??_7bad_alloc@std@@6B@     0040c2c0     MSVCRT:throw_bad_alloc.obj
+ 0002:000002c8       ??_C@_0P@GHFPNOJB@bad?5allocation?$AA@ 0040c2c8     MSVCRT:throw_bad_alloc.obj
+ 0002:000002dc       ??_7bad_array_new_length@std@@6B@ 0040c2dc     MSVCRT:throw_bad_alloc.obj
+ 0002:000002e4       ??_C@_0BF@KINCDENJ@bad?5array?5new?5length?$AA@ 0040c2e4     MSVCRT:throw_bad_alloc.obj
+ 0002:000002fc       ??_C@_0BC@EOODALEL@Unknown?5exception?$AA@ 0040c2fc     main.obj
+ 0002:00000310       ??_C@_08EPJLHIJG@bad?5cast?$AA@ 0040c310     main.obj
+ 0002:00000319       ??_C@_00CNPNBAHC@?$AA@     0040c319     main.obj
+ 0002:0000031c       ??_C@_06JGCGFIEG@polish?$AA@ 0040c31c     main.obj
+ 0002:00000324       ??_C@_0P@GMFAENOC@log_og?slny?4txt?$AA@ 0040c324     main.obj
+ 0002:00000334       ??_C@_05PDJBBECF@pause?$AA@ 0040c334     main.obj
+ 0002:0000033c       ??_C@_0DM@FGCBIOFJ@Jak?$LJ?5opcje?5chcesz?5obstawic?5?$DP?5?$CIzg@ 0040c33c     main.obj
+ 0002:00000378       ??_C@_0N@KLINIBPG@p?5?9?5parzyste?$AA@ 0040c378     main.obj
+ 0002:00000388       ??_C@_0BA@GNAADEAG@n?5?9?5nieparzyste?$AA@ 0040c388     main.obj
+ 0002:00000398       ??_C@_0BC@GOMOHEMO@r?5?9?5czerwone?$CIred?$CJ?$AA@ 0040c398     main.obj
+ 0002:000003ac       ??_C@_0BC@LKBFHLDI@b?5?9?5czarne?$CIblack?$CJ?$AA@ 0040c3ac     main.obj
+ 0002:000003c0       ??_C@_0BB@FMNKHOJE@g?5?9?5g?srna?5po?$LDowa?$AA@ 0040c3c0     main.obj
+ 0002:000003d4       ??_C@_0BB@CHNPGJIO@d?5?9?5dolna?5po?$LDowa?$AA@ 0040c3d4     main.obj
+ 0002:000003e8       ??_C@_0CN@EJBDEIIK@k1?0?5k2?0?5k3?5?9?5kolumna?51?0?5kolumna?5@ 0040c3e8     main.obj
+ 0002:00000418       ??_C@_0CJ@KMEGGBFA@w1?0?5w2?0?5?4?4?4?0?5w12?5?9?5wiersz?5trzech@ 0040c418     main.obj
+ 0002:00000444       ??_C@_0CP@FOKBNGLG@0?5?9?536?5?9?5pojedyncze?5pole?5o?5odpow@ 0040c444     main.obj
+ 0002:00000474       ??_C@_01JBBJJEPG@p?$AA@    0040c474     main.obj
+ 0002:00000478       ??_C@_01EFFIKLCJ@n?$AA@    0040c478     main.obj
+ 0002:0000047c       ??_C@_01KDCPPGHE@r?$AA@    0040c47c     main.obj
+ 0002:00000480       ??_C@_01OJONOECF@b?$AA@    0040c480     main.obj
+ 0002:00000484       ??_C@_01JEJKBAGA@g?$AA@    0040c484     main.obj
+ 0002:00000488       ??_C@_01LPLHEDKD@d?$AA@    0040c488     main.obj
+ 0002:0000048c       ??_C@_02ICGBAFJO@k1?$AA@   0040c48c     main.obj
+ 0002:00000490       ??_C@_02KJEMFGFN@k2?$AA@   0040c490     main.obj
+ 0002:00000494       ??_C@_02LAFHGHBM@k3?$AA@   0040c494     main.obj
+ 0002:00000498       ??_C@_02JHFNFPIK@w1?$AA@   0040c498     main.obj
+ 0002:0000049c       ??_C@_02LMHAAMEJ@w2?$AA@   0040c49c     main.obj
+ 0002:000004a0       ??_C@_02KFGLDNAI@w3?$AA@   0040c4a0     main.obj
+ 0002:000004a4       ??_C@_02OKCKKLMP@w4?$AA@   0040c4a4     main.obj
+ 0002:000004a8       ??_C@_02PDDBJKIO@w5?$AA@   0040c4a8     main.obj
+ 0002:000004ac       ??_C@_02NIBMMJEN@w6?$AA@   0040c4ac     main.obj
+ 0002:000004b0       ??_C@_02MBAHPIAM@w7?$AA@   0040c4b0     main.obj
+ 0002:000004b4       ??_C@_02EGJPOEMD@w8?$AA@   0040c4b4     main.obj
+ 0002:000004b8       ??_C@_02FPIENFIC@w9?$AA@   0040c4b8     main.obj
+ 0002:000004bc       ??_C@_03NCLMABJC@w10?$AA@  0040c4bc     main.obj
+ 0002:000004c0       ??_C@_03MLKHDAND@w11?$AA@  0040c4c0     main.obj
+ 0002:000004c4       ??_C@_03OAIKGDBA@w12?$AA@  0040c4c4     main.obj
+ 0002:000004c8       ??_C@_01GBGANLPD@0?$AA@    0040c4c8     main.obj
+ 0002:000004cc       ??_C@_01HIHLOKLC@1?$AA@    0040c4cc     main.obj
+ 0002:000004d0       ??_C@_01FDFGLJHB@2?$AA@    0040c4d0     main.obj
+ 0002:000004d4       ??_C@_01EKENIIDA@3?$AA@    0040c4d4     main.obj
+ 0002:000004d8       ??_C@_01FAMBOPH@4?$AA@     0040c4d8     main.obj
+ 0002:000004dc       ??_C@_01BMBHCPLG@5?$AA@    0040c4dc     main.obj
+ 0002:000004e0       ??_C@_01DHDKHMHF@6?$AA@    0040c4e0     main.obj
+ 0002:000004e4       ??_C@_01COCBENDE@7?$AA@    0040c4e4     main.obj
+ 0002:000004e8       ??_C@_01KJLJFBPL@8?$AA@    0040c4e8     main.obj
+ 0002:000004ec       ??_C@_01LAKCGALK@9?$AA@    0040c4ec     main.obj
+ 0002:000004f0       ??_C@_02PKFBJPLJ@10?$AA@   0040c4f0     main.obj
+ 0002:000004f4       ??_C@_02ODEKKOPI@11?$AA@   0040c4f4     main.obj
+ 0002:000004f8       ??_C@_02MIGHPNDL@12?$AA@   0040c4f8     main.obj
+ 0002:000004fc       ??_C@_02NBHMMMHK@13?$AA@   0040c4fc     main.obj
+ 0002:00000500       ??_C@_02JODNFKLN@14?$AA@   0040c500     main.obj
+ 0002:00000504       ??_C@_02IHCGGLPM@15?$AA@   0040c504     main.obj
+ 0002:00000508       ??_C@_02KMALDIDP@16?$AA@   0040c508     main.obj
+ 0002:0000050c       ??_C@_02LFBAAJHO@17?$AA@   0040c50c     main.obj
+ 0002:00000510       ??_C@_02DCIIBFLB@18?$AA@   0040c510     main.obj
+ 0002:00000514       ??_C@_02CLJDCEPA@19?$AA@   0040c514     main.obj
+ 0002:00000518       ??_C@_02PIBHCBOA@20?$AA@   0040c518     main.obj
+ 0002:0000051c       ??_C@_02OBAMBAKB@21?$AA@   0040c51c     main.obj
+ 0002:00000520       ??_C@_02MKCBEDGC@22?$AA@   0040c520     main.obj
+ 0002:00000524       ??_C@_02NDDKHCCD@23?$AA@   0040c524     main.obj
+ 0002:00000528       ??_C@_02JMHLOEOE@24?$AA@   0040c528     main.obj
+ 0002:0000052c       ??_C@_02IFGANFKF@25?$AA@   0040c52c     main.obj
+ 0002:00000530       ??_C@_02KOENIGGG@26?$AA@   0040c530     main.obj
+ 0002:00000534       ??_C@_02LHFGLHCH@27?$AA@   0040c534     main.obj
+ 0002:00000538       ??_C@_02DAMOKLOI@28?$AA@   0040c538     main.obj
+ 0002:0000053c       ??_C@_02CJNFJKKJ@29?$AA@   0040c53c     main.obj
+ 0002:00000540       ??_C@_02PJNFELNH@30?$AA@   0040c540     main.obj
+ 0002:00000544       ??_C@_02OAMOHKJG@31?$AA@   0040c544     main.obj
+ 0002:00000548       ??_C@_02MLODCJFF@32?$AA@   0040c548     main.obj
+ 0002:0000054c       ??_C@_02NCPIBIBE@33?$AA@   0040c54c     main.obj
+ 0002:00000550       ??_C@_02JNLJIOND@34?$AA@   0040c550     main.obj
+ 0002:00000554       ??_C@_02IEKCLPJC@35?$AA@   0040c554     main.obj
+ 0002:00000558       ??_C@_02KPIPOMFB@36?$AA@   0040c558     main.obj
+ 0002:0000055c       ??_C@_0CF@BGACGNBA@$?0?5jak?$LJ?5kwot?j?5chcesz?5obstawi?f?5wy@ 0040c55c     main.obj
+ 0002:00000584       ??_C@_05OMMBNPEF@Masz?5?$AA@ 0040c584     main.obj
+ 0002:0000058c       ??_C@_0CD@OGNPPNBN@Wprowadzi?$LDe?f?5nieprawid?$LDow?$LJ?5warto@ 0040c58c     main.obj
+ 0002:000005b0       ??_C@_01PBGHHLMH@?$AH?$AA@ 0040c5b0     main.obj
+ 0002:000005b4       ??_C@_0CF@LJDHNEHM@Nie?5mo?$LPesz?5obstawi?f?5zerowego?5zak@ 0040c5b4     main.obj
+ 0002:000005dc       ??_C@_0BI@CMKDFAEK@Nie?5masz?5tyle?5pieni?jdzy?$AA@ 0040c5dc     main.obj
+ 0002:000005f4       ??_C@_0CJ@PMIHJCIC@Nie?5mo?$LPesz?5obstawi?f?5ujemn?$LJ?5kwot?$LJ@ 0040c5f4     main.obj
+ 0002:00000620       ??_C@_02MGHEPNFN@?$AI?$AI?$AA@ 0040c620     main.obj
+ 0002:00000624       ??_C@_02KNHHEEKP@?5?5?$AA@ 0040c624     main.obj
+ 0002:00000628       ??_C@_0BC@IEHJKDDM@Wylosowano?5numer?5?$AA@ 0040c628     main.obj
+ 0002:0000063c       ??_C@_02KHOJGJKF@?4?5?$AA@ 0040c63c     main.obj
+ 0002:00000640       ??_C@_02DEPNMBPN@$?4?$AA@  0040c640     main.obj
+ 0002:00000644       ??_C@_0CB@MBIMKPJH@Obstawiles?5poprawnie?0?5wygrywasz?5@ 0040c644     main.obj
+ 0002:00000668       ??_C@_0EF@FAPGEAPP@Obstawiles?5niepoprawnie?5lecz?5uda@ 0040c668     main.obj
+ 0002:000006b0       ??_C@_0CF@EMPIFKEH@Obstawiles?5niepoprawnie?0?5przegra@ 0040c6b0     main.obj
+ 0002:000006d8       ??_C@_0CM@BIICBBPD@Nie?5mo?$LPesz?5kontynuowa?f?0?5przegra?$LD@ 0040c6d8     main.obj
+ 0002:00000704       ??_C@_0DB@MONJHHJM@$?0?5czy?5chcesz?5grac?5dalej?$CI?8t?8?5?9?5t@ 0040c704     main.obj
+ 0002:00000738       ??_C@_0BA@KCLBOCHC@Na?5koncie?5masz?5?$AA@ 0040c738     main.obj
+ 0002:00000748       ??_C@_04IBLEHOMF@?4wav?$AA@ 0040c748     main.obj
+ 0002:00000750       ??_C@_05PNHGCFLK@p?4wav?$AA@ 0040c750     main.obj
+ 0002:00000758       ??_C@_05MEKKEGFB@n?4wav?$AA@ 0040c758     main.obj
+ 0002:00000760       ??_C@_05LALOIELB@r?4wav?$AA@ 0040c760     main.obj
+ 0002:00000768       ??_C@_05LDGIIGCK@b?4wav?$AA@ 0040c768     main.obj
+ 0002:00000770       ??_C@_05ODKFBHJJ@g?4wav?$AA@ 0040c770     main.obj
+ 0002:00000778       ??_C@_05GFDBGFDH@d?4wav?$AA@ 0040c778     main.obj
+ 0002:00000780       ??_C@_01DICPFPGM@k?$AA@    0040c780     main.obj
+ 0002:00000784       ??_C@_01NOFIACDB@w?$AA@    0040c784     main.obj
+ 0002:00000788       ??_C@_0BB@KLDNCCFE@log_aktualny?4txt?$AA@ 0040c788     main.obj
+ 0002:0000079c       ??_C@_0DJ@EFIKGJBI@Uruchomiono?5ponownie?5gr?j?5z?5wy?$LD?$LJc@ 0040c79c     main.obj
+ 0002:000007d8       ??_C@_09LFKNBKJA@Posiadasz?$AA@ 0040c7d8     main.obj
+ 0002:000007e4       ??_C@_0L@DAFLKCID@Wylosowano?$AA@ 0040c7e4     main.obj
+ 0002:000007f0       ??_C@_0M@DIDIAOPI@?5Wylosowano?$AA@ 0040c7f0     main.obj
+ 0002:000007fc       ??_C@_0BC@EAGHPBJK@Obstawiono?5zaklad?$AA@ 0040c7fc     main.obj
+ 0002:00000810       ??_C@_0O@POHKAIHJ@Obstawiono?5za?$AA@ 0040c810     main.obj
+ 0002:00000820       ??_C@_0BE@CILJHICG@Gra?5rozpoczeta?5dnia?$AA@ 0040c820     main.obj
+ 0002:00000834       ??_C@_0N@KHLIPMCA@?5o?5godzinie?5?$AA@ 0040c834     main.obj
+ 0002:00000844       ??_C@_01LFCBOECM@?4?$AA@   0040c844     main.obj
+ 0002:00000848       ??_C@_0BF@EHKBBICH@Gra?5rozpoczeta?5dnia?5?$AA@ 0040c848     main.obj
+ 0002:00000860       ??_C@_01JLIPDDHJ@?3?$AA@   0040c860     main.obj
+ 0002:00000864       ??_C@_0BK@PLEOEKGI@Nowa?5gra?5rozpoczeta?5dnia?5?$AA@ 0040c864     main.obj
+ 0002:00000880       ??_C@_05CMOJBPHN@G?$LDos?1?$AA@ 0040c880     main.obj
+ 0002:00000888       ??_C@_06ECCMNMIG@Jacek?5?$AA@ 0040c888     main.obj
+ 0002:00000890       ??_C@_04IDLHMCEL@Ewa?5?$AA@ 0040c890     main.obj
+ 0002:00000898       ??_C@_05NBKDILMB@Maja?5?$AA@ 0040c898     main.obj
+ 0002:000008a0       ??_C@_04HPMJBKOE@Jan?5?$AA@ 0040c8a0     main.obj
+ 0002:000008a8       ??_C@_07OJOJFOLI@Jacek?52?$AA@ 0040c8a8     main.obj
+ 0002:000008b0       ??_C@_05MPNHLKL@Ewa?52?$AA@ 0040c8b0     main.obj
+ 0002:000008b8       ??_C@_06BMCAFNM@Maja?52?$AA@ 0040c8b8     main.obj
+ 0002:000008c0       ??_C@_05EKGILLAK@Jan?52?$AA@ 0040c8c0     main.obj
+ 0002:000008c8       ??_C@_06JIAINCN@Agata?5?$AA@ 0040c8c8     main.obj
+ 0002:000008d0       ??_C@_01IDAFKMJL@_?$AA@    0040c8d0     main.obj
+ 0002:000008d4       ??_C@_01KMDKNFGN@?1?$AA@   0040c8d4     main.obj
+ 0002:000008d8       ??_C@_0EA@BAJGLA@Brak?5wszystkich?5plik?sw?5dla?5g?$LDosu@ 0040c8d8     main.obj
+ 0002:00000918       ??_C@_0BN@DACGNLHK@Efekty?5dzwi?jkowe?1bankrut?4wav?$AA@ 0040c918     main.obj
+ 0002:00000938       ??_C@_0BO@OAKNDKAH@Efekty?5dzwi?jkowe?1wygrana1?4wav?$AA@ 0040c938     main.obj
+ 0002:00000958       ??_C@_0BO@GGDJEIKJ@Efekty?5dzwi?jkowe?1wygrana2?4wav?$AA@ 0040c958     main.obj
+ 0002:00000978       ??_C@_0CF@DNPALCEH@Efekty?5dzwi?jkowe?1zwielokrotnenie@ 0040c978     main.obj
+ 0002:000009a0       ??_C@_0GE@BGEAJNPD@Brak?5plik?sw?5dla?5efekt?sw?5d?$JPwi?jkow@ 0040c9a0     main.obj
+ 0002:00000a04       ??_C@_0M@COFBHHKL@setting?4txt?$AA@ 0040ca04     main.obj
+ 0002:00000a10       ??_C@_0CC@GBEJJAFD@ilo?$JM?f_minimalna_obrot?sw_ruletki?5@ 0040ca10     main.obj
+ 0002:00000a34       ??_C@_0CI@KGOEKJAK@ilo?$JM?f_max_dodatkowych_obrot?sw_ru@ 0040ca34     main.obj
+ 0002:00000a5c       ??_C@_0BP@NMHFMMDP@czas_przeskoku_kulki_szybki?550?$AA@ 0040ca5c     main.obj
+ 0002:00000a7c       ??_C@_0BO@ELNOLLHD@czas_przeskoku_kulki_wolny?575?$AA@ 0040ca7c     main.obj
+ 0002:00000a9c       ??_C@_0BJ@OHAGCGBG@czas_przerwy_dzwi?jku?5500?$AA@ 0040ca9c     main.obj
+ 0002:00000ab8       ??_C@_0BJ@NJDCNPPC@styl_liczenia_wygranej?51?$AA@ 0040cab8     main.obj
+ 0002:00000ad4       ??_C@_0BG@DNDOADBI@kwota_pocz?$LJtkowa?51000?$AA@ 0040cad4     main.obj
+ 0002:00000aec       ??_C@_0BA@ILKGKHCK@stan_d?$JPwi?jk?sw?51?$AA@ 0040caec     main.obj
+ 0002:00000afc       ??_C@_0BG@EMABALP@czy_kontynuowa?f_gr?j?51?$AA@ 0040cafc     main.obj
+ 0002:00000b14       ??_C@_0BG@COMBOMN@g?$LDos_odczytu_numeru?51?$AA@ 0040cb14     main.obj
+ 0002:00000b2c       ??_C@_0BP@CJDLAIMM@g?$LDos_szybko?$JM?f_odczytu_numeru?54?$AA@ 0040cb2c     main.obj
+ 0002:00000b50       ??_C@_0GC@FGDMKFMP@Warto?$JM?f?5wolnego?5czasu?5przeskoku?5@ 0040cb50     main.obj
+ 0002:00000bb4       ??_C@_0BN@KMOICOCN@Ustawiam?5domy?$JMlne?5ustawienie?$AA@ 0040cbb4     main.obj
+ 0002:00000bd4       ??_C@_0DL@EDLBNLFA@Ilo?$JM?f?5minimalna?5obrot?sw?5ruletki?5@ 0040cbd4     main.obj
+ 0002:00000c10       ??_C@_0DF@PACHBLM@Ilo?$JM?f?5max?5obrot?sw?5ruletki?5nie?5mo@ 0040cc10     main.obj
+ 0002:00000c48       ??_C@_0EG@FJFKONPC@Jedna?5z?5deklaracji?5w?5sprawie?5obr@ 0040cc48     main.obj
+ 0002:00000c90       ??_C@_0DH@EDACBMH@Styl?5liczeia?5wygranej?5przyjmuje?5@ 0040cc90     main.obj
+ 0002:00000cc8       ??_C@_0DD@CJFGHGHP@Czas?5przerwy?5d?$JPwi?jku?5nie?5mo?$LPe?5by@ 0040ccc8     main.obj
+ 0002:00000cfc       ??_C@_0CP@ODEFLMCC@Kwota?5pocz?$LJtkowa?5nie?5mo?$LPe?5by?f?5mn@ 0040ccfc     main.obj
+ 0002:00000d2c       ??_C@_0CP@LNDFINPO@Stan?5d?$JPwi?jk?sw?5przyjmuje?5warto?$JMci@ 0040cd2c     main.obj
+ 0002:00000d5c       ??_C@_0DJ@OKKJHGDF@Opcja?5kontynuowania?5gry?5przyjmuj@ 0040cd5c     main.obj
+ 0002:00000d98       ??_C@_0EB@BAPPBOHB@Opcja?5g?$LDos?5odczytu?5numeru?5przyjm@ 0040cd98     main.obj
+ 0002:00000de0       ??_C@_0ED@BNKOADPP@Opcja?5szybko?$JM?f?5g?$LDosu?5odczytu?5prz@ 0040cde0     main.obj
+ 0002:00000e24       ??_C@_01EPMOAMKG@$?$AA@    0040ce24     main.obj
+ 0002:00000e28       ??_C@_0M@GPFIMODH@?5Wygrywasz?5?$AA@ 0040ce28     main.obj
+ 0002:00000e34       ??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@ 0040ce34     main.obj
+ 0002:00000e40       ??_C@_07KIPBKJCE@win?4wav?$AA@ 0040ce40     main.obj
+ 0002:00000e48       ??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@ 0040ce48     main.obj
+ 0002:00000e64       ??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@ 0040ce64     main.obj
+ 0002:00000e74       ??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@ 0040ce74     main.obj
+ 0002:00000e90       ??_C@_0CL@DCKMMPCF@Gratuluje?5zwi?jkszy?$LDe?$JM?5sw?sj?5zas?sb@ 0040ce90     main.obj
+ 0002:00000ebc       ??_C@_0BO@CAHFKDBP@?5krotnie?5sw?sj?5zas?sb?5finansowy?$AA@ 0040cebc     main.obj
+ 0002:00000edc       ??_C@_0BH@GDCLDFHN@Gratuluje?5zwi?jkszy?$LDe?$JM?5?$AA@ 0040cedc     main.obj
+ 0002:00000ef4       ??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@ 0040cef4     main.obj
+ 0002:00000f04       ??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@ 0040cf04     main.obj
+ 0002:00000f18       ??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@ 0040cf18     main.obj
+ 0002:00000f2c       ??_C@_0DA@EJNBAHOM@Kulka?5w?5grze?0?5zaczekaj?5na?5wyloso@ 0040cf2c     main.obj
+ 0002:00000f5c       ??_C@_0N@CGNKGGIC@?5Wylosowano?5?$AA@ 0040cf5c     main.obj
+ 0002:00000f6c       ??_C@_0CA@FGPIEHEM@ilo?$JM?f_minimalna_obrot?sw_ruletki?$AA@ 0040cf6c     main.obj
+ 0002:00000f8c       ??_C@_0CG@KNEPJEMG@ilo?$JM?f_max_dodatkowych_obrot?sw_ru@ 0040cf8c     main.obj
+ 0002:00000fb4       ??_C@_0BM@MMKKMDHC@czas_przeskoku_kulki_szybki?$AA@ 0040cfb4     main.obj
+ 0002:00000fd0       ??_C@_0BL@LHGCEKLG@czas_przeskoku_kulki_wolny?$AA@ 0040cfd0     main.obj
+ 0002:00000fec       ??_C@_0BH@LAIPMCHF@styl_liczenia_wygranej?$AA@ 0040cfec     main.obj
+ 0002:00001004       ??_C@_0BB@KJAOIHBF@kwota_pocz?$LJtkowa?$AA@ 0040d004     main.obj
+ 0002:00001018       ??_C@_0O@JDOJANCO@stan_d?$JPwi?jk?sw?$AA@ 0040d018     main.obj
+ 0002:00001028       ??_C@_0BE@MGBNNKM@czy_kontynuowa?f_gr?j?$AA@ 0040d028     main.obj
+ 0002:0000103c       ??_C@_0BE@ILPCOCN@g?$LDos_odczytu_numeru?$AA@ 0040d03c     main.obj
+ 0002:00001050       ??_C@_0BN@ECEAENDF@g?$LDos_szybko?$JM?f_odczytu_numeru?$AA@ 0040d050     main.obj
+ 0002:00001070       ??_C@_0BI@CFPLBAOH@invalid?5string?5position?$AA@ 0040d070     main.obj
+ 0002:00001088       ??_C@_0BA@JFNIOLAK@string?5too?5long?$AA@ 0040d088     main.obj
+ 0002:000011f0       ??_7?$basic_filebuf@DU?$char_traits@D@std@@@std@@6B@ 0040d1f0     main.obj
+ 0002:0000122c       ??_8?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@7B?$basic_ostream@DU?$char_traits@D@std@@@1@@ 0040d22c     main.obj
+ 0002:00001238       ??_7?$basic_ofstream@DU?$char_traits@D@std@@@std@@6B@ 0040d238     main.obj
+ 0002:00001240       ??_7bad_cast@std@@6B@      0040d240     main.obj
+ 0002:0000124c       ??_7?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@6B@ 0040d24c     main.obj
+ 0002:0000128c       ??_7?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@6B@ 0040d28c     main.obj
+ 0002:00001294       ??_7?$basic_fstream@DU?$char_traits@D@std@@@std@@6B@ 0040d294     main.obj
+ 0002:00001298       ??_8?$basic_ifstream@DU?$char_traits@D@std@@@std@@7B@ 0040d298     main.obj
+ 0002:000012a0       ??_8?$basic_fstream@DU?$char_traits@D@std@@@std@@7B?$basic_istream@DU?$char_traits@D@std@@@1@@ 0040d2a0     main.obj
+ 0002:000012a8       ??_8?$basic_ofstream@DU?$char_traits@D@std@@@std@@7B@ 0040d2a8     main.obj
+ 0002:000012a8       ??_8?$basic_fstream@DU?$char_traits@D@std@@@std@@7B?$basic_ostream@DU?$char_traits@D@std@@@1@@ 0040d2a8     main.obj
+ 0002:000012a8       ??_8?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@7B?$basic_istream@DU?$char_traits@D@std@@@1@@ 0040d2a8     main.obj
+ 0002:000012b4       ??_7?$basic_ifstream@DU?$char_traits@D@std@@@std@@6B@ 0040d2b4     main.obj
+ 0002:000012b8       __real@4042800000000000    0040d2b8     main.obj
+ 0002:000013c0       __load_config_used         0040d3c0     MSVCRT:loadcfg.obj
+ 0002:00001458       ??_R4type_info@@6B@        0040d458     MSVCRT:std_type_info_static.obj
+ 0002:0000146c       ??_R3type_info@@8          0040d46c     MSVCRT:std_type_info_static.obj
+ 0002:0000147c       ??_R2type_info@@8          0040d47c     MSVCRT:std_type_info_static.obj
+ 0002:00001484       ??_R1A@?0A@EA@type_info@@8 0040d484     MSVCRT:std_type_info_static.obj
+ 0002:000014a0       ??_R4bad_alloc@std@@6B@    0040d4a0     MSVCRT:throw_bad_alloc.obj
+ 0002:000014b4       ??_R3bad_alloc@std@@8      0040d4b4     MSVCRT:throw_bad_alloc.obj
+ 0002:000014c4       ??_R2bad_alloc@std@@8      0040d4c4     MSVCRT:throw_bad_alloc.obj
+ 0002:000014d0       ??_R1A@?0A@EA@bad_alloc@std@@8 0040d4d0     MSVCRT:throw_bad_alloc.obj
+ 0002:000014ec       ??_R4bad_array_new_length@std@@6B@ 0040d4ec     MSVCRT:throw_bad_alloc.obj
+ 0002:00001500       ??_R3bad_array_new_length@std@@8 0040d500     MSVCRT:throw_bad_alloc.obj
+ 0002:00001510       ??_R2bad_array_new_length@std@@8 0040d510     MSVCRT:throw_bad_alloc.obj
+ 0002:00001520       ??_R1A@?0A@EA@bad_array_new_length@std@@8 0040d520     MSVCRT:throw_bad_alloc.obj
+ 0002:0000153c       ??_R3?$basic_istream@DU?$char_traits@D@std@@@std@@8 0040d53c     main.obj
+ 0002:0000154c       ??_R3?$basic_iostream@DU?$char_traits@D@std@@@std@@8 0040d54c     main.obj
+ 0002:0000155c       ??_R2?$basic_fstream@DU?$char_traits@D@std@@@std@@8 0040d55c     main.obj
+ 0002:00001588       ??_R4exception@std@@6B@    0040d588     main.obj
+ 0002:0000159c       ??_R4?$basic_ofstream@DU?$char_traits@D@std@@@std@@6B@ 0040d59c     main.obj
+ 0002:000015b0       ??_R3?$basic_ofstream@DU?$char_traits@D@std@@@std@@8 0040d5b0     main.obj
+ 0002:000015c0       ??_R1A@?0A@EA@?$basic_istream@DU?$char_traits@D@std@@@std@@8 0040d5c0     main.obj
+ 0002:000015dc       ??_R1A@?0A@EA@bad_cast@std@@8 0040d5dc     main.obj
+ 0002:000015f8       ??_R3?$basic_ifstream@DU?$char_traits@D@std@@@std@@8 0040d5f8     main.obj
+ 0002:00001608       ??_R2?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@8 0040d608     main.obj
+ 0002:00001614       ??_R1A@?0A@EA@?$basic_ifstream@DU?$char_traits@D@std@@@std@@8 0040d614     main.obj
+ 0002:00001630       ??_R3?$basic_fstream@DU?$char_traits@D@std@@@std@@8 0040d630     main.obj
+ 0002:00001640       ??_R17A@3EA@?$_Iosb@H@std@@8 0040d640     main.obj
+ 0002:0000165c       ??_R1A@?0A@EA@?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@8 0040d65c     main.obj
+ 0002:00001678       ??_R1A@?0A@EA@?$basic_fstream@DU?$char_traits@D@std@@@std@@8 0040d678     main.obj
+ 0002:00001694       ??_R1A@?0A@EA@exception@std@@8 0040d694     main.obj
+ 0002:000016b0       ??_R2?$basic_ofstream@DU?$char_traits@D@std@@@std@@8 0040d6b0     main.obj
+ 0002:000016c8       ??_R1A@?0A@EA@?$basic_streambuf@DU?$char_traits@D@std@@@std@@8 0040d6c8     main.obj
+ 0002:000016e4       ??_R2?$basic_istream@DU?$char_traits@D@std@@@std@@8 0040d6e4     main.obj
+ 0002:000016f8       ??_R3?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@8 0040d6f8     main.obj
+ 0002:00001708       ??_R2bad_cast@std@@8       0040d708     main.obj
+ 0002:00001714       ??_R2exception@std@@8      0040d714     main.obj
+ 0002:0000171c       ??_R2?$basic_ostream@DU?$char_traits@D@std@@@std@@8 0040d71c     main.obj
+ 0002:00001730       ??_R3?$basic_ios@DU?$char_traits@D@std@@@std@@8 0040d730     main.obj
+ 0002:00001740       ??_R1BA@?0A@EA@?$basic_ostream@DU?$char_traits@D@std@@@std@@8 0040d740     main.obj
+ 0002:0000175c       ??_R4?$basic_ifstream@DU?$char_traits@D@std@@@std@@6B@ 0040d75c     main.obj
+ 0002:00001770       ??_R1A@?0A@EA@ios_base@std@@8 0040d770     main.obj
+ 0002:0000178c       ??_R3exception@std@@8      0040d78c     main.obj
+ 0002:0000179c       ??_R1A@?0A@EA@?$basic_ostream@DU?$char_traits@D@std@@@std@@8 0040d79c     main.obj
+ 0002:000017b8       ??_R4?$basic_filebuf@DU?$char_traits@D@std@@@std@@6B@ 0040d7b8     main.obj
+ 0002:000017cc       ??_R2?$basic_streambuf@DU?$char_traits@D@std@@@std@@8 0040d7cc     main.obj
+ 0002:000017d4       ??_R1A@?0A@EA@?$_Iosb@H@std@@8 0040d7d4     main.obj
+ 0002:000017f0       ??_R1A@?0A@EA@?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@8 0040d7f0     main.obj
+ 0002:0000180c       ??_R2?$basic_iostream@DU?$char_traits@D@std@@@std@@8 0040d80c     main.obj
+ 0002:00001834       ??_R3bad_cast@std@@8       0040d834     main.obj
+ 0002:00001844       ??_R2?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@8 0040d844     main.obj
+ 0002:00001870       ??_R4bad_cast@std@@6B@     0040d870     main.obj
+ 0002:00001884       ??_R4?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@6B@ 0040d884     main.obj
+ 0002:00001898       ??_R4?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@6B@ 0040d898     main.obj
+ 0002:000018ac       ??_R1A@?0A@EA@?$basic_ofstream@DU?$char_traits@D@std@@@std@@8 0040d8ac     main.obj
+ 0002:000018c8       ??_R1A@?0A@EA@?$basic_filebuf@DU?$char_traits@D@std@@@std@@8 0040d8c8     main.obj
+ 0002:000018e4       ??_R1A@A@3FA@?$basic_ios@DU?$char_traits@D@std@@@std@@8 0040d8e4     main.obj
+ 0002:00001900       ??_R3?$basic_filebuf@DU?$char_traits@D@std@@@std@@8 0040d900     main.obj
+ 0002:00001910       ??_R2ios_base@std@@8       0040d910     main.obj
+ 0002:0000191c       ??_R3?$basic_ostream@DU?$char_traits@D@std@@@std@@8 0040d91c     main.obj
+ 0002:0000192c       ??_R1A@?0A@EA@?$basic_iostream@DU?$char_traits@D@std@@@std@@8 0040d92c     main.obj
+ 0002:00001948       ??_R3ios_base@std@@8       0040d948     main.obj
+ 0002:00001958       ??_R2?$basic_filebuf@DU?$char_traits@D@std@@@std@@8 0040d958     main.obj
+ 0002:00001964       ??_R3?$basic_streambuf@DU?$char_traits@D@std@@@std@@8 0040d964     main.obj
+ 0002:00001974       ??_R3?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@8 0040d974     main.obj
+ 0002:00001984       ??_R2?$_Iosb@H@std@@8      0040d984     main.obj
+ 0002:0000198c       ??_R1A@A@3EA@ios_base@std@@8 0040d98c     main.obj
+ 0002:000019a8       ??_R1A@?0A@EA@?$basic_ios@DU?$char_traits@D@std@@@std@@8 0040d9a8     main.obj
+ 0002:000019c4       ??_R4?$basic_fstream@DU?$char_traits@D@std@@@std@@6B@ 0040d9c4     main.obj
+ 0002:000019d8       ??_R2?$basic_ifstream@DU?$char_traits@D@std@@@std@@8 0040d9d8     main.obj
+ 0002:000019f0       ??_R3?$_Iosb@H@std@@8      0040d9f0     main.obj
+ 0002:00001a00       ??_R17?0A@EA@?$_Iosb@H@std@@8 0040da00     main.obj
+ 0002:00001a1c       ??_R2?$basic_ios@DU?$char_traits@D@std@@@std@@8 0040da1c     main.obj
+ 0002:00001a30       ___safe_se_handler_table   0040da30     <linker-defined>
+ 0002:00001df8       ___rtc_iaa                 0040ddf8     MSVCRT:_initsect_.obj
+ 0002:00001dfc       ___rtc_izz                 0040ddfc     MSVCRT:_initsect_.obj
+ 0002:00001e00       ___rtc_taa                 0040de00     MSVCRT:_initsect_.obj
+ 0002:00001e04       ___rtc_tzz                 0040de04     MSVCRT:_initsect_.obj
+ 0002:000024b4       __TI2?AVbad_alloc@std@@    0040e4b4     MSVCRT:throw_bad_alloc.obj
+ 0002:000024c4       __CTA2?AVbad_alloc@std@@   0040e4c4     MSVCRT:throw_bad_alloc.obj
+ 0002:000024d0       __CT??_R0?AVbad_alloc@std@@@8??0bad_alloc@std@@QAE@ABV01@@Z12 0040e4d0     MSVCRT:throw_bad_alloc.obj
+ 0002:000024ec       __TI3?AVbad_array_new_length@std@@ 0040e4ec     MSVCRT:throw_bad_alloc.obj
+ 0002:000024fc       __CTA3?AVbad_array_new_length@std@@ 0040e4fc     MSVCRT:throw_bad_alloc.obj
+ 0002:0000250c       __CT??_R0?AVbad_array_new_length@std@@@8??0bad_array_new_length@std@@QAE@ABV01@@Z12 0040e50c     MSVCRT:throw_bad_alloc.obj
+ 0002:00002528       __CT??_R0?AVbad_cast@std@@@8??0bad_cast@std@@QAE@ABV01@@Z12 0040e528     main.obj
+ 0002:00002544       __CTA2?AVbad_cast@std@@    0040e544     main.obj
+ 0002:00002550       __TI2?AVbad_cast@std@@     0040e550     main.obj
+ 0002:00002560       __CT??_R0?AVexception@std@@@8??0exception@std@@QAE@ABV01@@Z12 0040e560     main.obj
+ 0002:0000257c       __IMPORT_DESCRIPTOR_WINMM  0040e57c     winmm:WINMM.dll
+ 0002:00002590       __IMPORT_DESCRIPTOR_KERNEL32 0040e590     kernel32:KERNEL32.dll
+ 0002:000025a4       __IMPORT_DESCRIPTOR_MSVCP140 0040e5a4     msvcprt:MSVCP140.dll
+ 0002:000025b8       __IMPORT_DESCRIPTOR_VCRUNTIME140 0040e5b8     vcruntime:VCRUNTIME140.dll
+ 0002:000025cc       __IMPORT_DESCRIPTOR_api-ms-win-crt-locale-l1-1-0 0040e5cc     ucrt:api-ms-win-crt-locale-l1-1-0.dll
+ 0002:000025e0       __IMPORT_DESCRIPTOR_api-ms-win-crt-stdio-l1-1-0 0040e5e0     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:000025f4       __IMPORT_DESCRIPTOR_api-ms-win-crt-utility-l1-1-0 0040e5f4     ucrt:api-ms-win-crt-utility-l1-1-0.dll
+ 0002:00002608       __IMPORT_DESCRIPTOR_api-ms-win-crt-filesystem-l1-1-0 0040e608     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0002:0000261c       __IMPORT_DESCRIPTOR_api-ms-win-crt-runtime-l1-1-0 0040e61c     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:00002630       __IMPORT_DESCRIPTOR_api-ms-win-crt-time-l1-1-0 0040e630     ucrt:api-ms-win-crt-time-l1-1-0.dll
+ 0002:00002644       __IMPORT_DESCRIPTOR_api-ms-win-crt-convert-l1-1-0 0040e644     ucrt:api-ms-win-crt-convert-l1-1-0.dll
+ 0002:00002658       __IMPORT_DESCRIPTOR_api-ms-win-crt-heap-l1-1-0 0040e658     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:0000266c       __IMPORT_DESCRIPTOR_api-ms-win-crt-math-l1-1-0 0040e66c     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0002:00002680       __NULL_IMPORT_DESCRIPTOR   0040e680     winmm:WINMM.dll
+ 0003:00000000       ___scrt_native_dllmain_reason 00410000     MSVCRT:utility.obj
+ 0003:00000004       ___security_cookie         00410004     MSVCRT:gs_cookie.obj
+ 0003:00000008       ___security_cookie_complement 00410008     MSVCRT:gs_cookie.obj
+ 0003:0000000c       ___isa_enabled             0041000c     MSVCRT:_cpu_disp_.obj
+ 0003:00000010       ___scrt_default_matherr    00410010     MSVCRT:matherr.obj
+ 0003:00000014       ___scrt_ucrt_dll_is_in_use 00410014     MSVCRT:ucrt_stubs.obj
+ 0003:00000018       ?czy_kontynuowaæ_grê@@3FA  00410018     main.obj
+ 0003:0000001a       ?EfektyKompletne@@3_NA     0041001a     main.obj
+ 0003:0000001b       ?G³osyKompletne@@3_NA      0041001b     main.obj
+ 0003:0000001c       ?iloœæ_max_dodatkowych_obrotów_ruletki@@3FA 0041001c     main.obj
+ 0003:00000020       ?iloœæ_minimalna_obrotów_ruletki@@3FA 00410020     main.obj
+ 0003:00000024       ?kwota_pocz¹tkowa@@3HA     00410024     main.obj
+ 0003:00000028       ?g³os_szybkoœæ_odczytu_numeru@@3FA 00410028     main.obj
+ 0003:0000002c       ?stan_dŸwiêków@@3FA        0041002c     main.obj
+ 0003:00000030       ?czas_przeskoku_kulki_wolny@@3FA 00410030     main.obj
+ 0003:00000034       ?styl_liczenia_wygranej@@3FA 00410034     main.obj
+ 0003:00000038       ?czas_przeskoku_kulki_szybki@@3FA 00410038     main.obj
+ 0003:0000003c       ?g³os_odczytu_numeru@@3FA  0041003c     main.obj
+ 0003:00000040       ?czas_przerwy_dzwiêku@@3FA 00410040     main.obj
+ 0003:00000044       ?G³os@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A 00410044     main.obj
+ 0003:00000060       __fltused                  00410060     MSVCRT:fltused.obj
+ 0003:00000068       ??_R0?AVtype_info@@@8      00410068     MSVCRT:std_type_info_static.obj
+ 0003:00000080       ??_R0?AVbad_alloc@std@@@8  00410080     MSVCRT:throw_bad_alloc.obj
+ 0003:0000009c       ??_R0?AVbad_array_new_length@std@@@8 0041009c     MSVCRT:throw_bad_alloc.obj
+ 0003:000000c8       ??_R0?AV?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@8 004100c8     main.obj
+ 0003:00000118       ??_R0?AV?$basic_filebuf@DU?$char_traits@D@std@@@std@@@8 00410118     main.obj
+ 0003:00000154       ??_R0?AV?$basic_fstream@DU?$char_traits@D@std@@@std@@@8 00410154     main.obj
+ 0003:00000190       ??_R0?AV?$basic_ifstream@DU?$char_traits@D@std@@@std@@@8 00410190     main.obj
+ 0003:000001d0       ??_R0?AV?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@8 004101d0     main.obj
+ 0003:00000220       ??_R0?AVios_base@std@@@8   00410220     main.obj
+ 0003:0000023c       ??_R0?AV?$basic_iostream@DU?$char_traits@D@std@@@std@@@8 0041023c     main.obj
+ 0003:00000278       ??_R0?AV?$_Iosb@H@std@@@8  00410278     main.obj
+ 0003:00000294       ??_R0?AV?$basic_ofstream@DU?$char_traits@D@std@@@std@@@8 00410294     main.obj
+ 0003:000002d0       ??_R0?AV?$basic_streambuf@DU?$char_traits@D@std@@@std@@@8 004102d0     main.obj
+ 0003:0000030c       ??_R0?AVbad_cast@std@@@8   0041030c     main.obj
+ 0003:00000328       ??_R0?AV?$basic_istream@DU?$char_traits@D@std@@@std@@@8 00410328     main.obj
+ 0003:00000364       ??_R0?AV?$basic_ios@DU?$char_traits@D@std@@@std@@@8 00410364     main.obj
+ 0003:0000039c       ??_R0?AV?$basic_ostream@DU?$char_traits@D@std@@@std@@@8 0041039c     main.obj
+ 0003:000003d8       ??_R0?AVexception@std@@@8  004103d8     main.obj
+ 0003:00000400       ___scrt_current_native_startup_state 00410400     MSVCRT:utility.obj
+ 0003:00000404       ___scrt_native_startup_lock 00410404     MSVCRT:utility.obj
+ 0003:00000744       ___isa_available           00410744     MSVCRT:_cpu_disp_.obj
+ 0003:00000748       ___favor                   00410748     MSVCRT:_cpu_disp_.obj
+ 0003:0000074c       ___scrt_debugger_hook_flag 0041074c     MSVCRT:utility_desktop.obj
+ 0003:00000750       ?__type_info_root_node@@3U__type_info_node@@A 00410750     MSVCRT:tncleanup.obj
+ 0003:00000758       ?_OptionsStorage@?1??__local_stdio_printf_options@@9@4_KA 00410758     MSVCRT:default_local_stdio_options.obj
+ 0003:00000760       ?_OptionsStorage@?1??__local_stdio_scanf_options@@9@4_KA 00410760     MSVCRT:default_local_stdio_options.obj
+ 0003:00000768       ?_Psave@?$_Facetptr@V?$ctype@D@std@@@std@@2PBVfacet@locale@2@B 00410768     main.obj
+ 0003:0000076c       ?_Psave@?$_Facetptr@V?$codecvt@DDU_Mbstatet@@@std@@@std@@2PBVfacet@locale@2@B 0041076c     main.obj
+ 0003:00000770       ?Czas@@3U_SYSTEMTIME@@A    00410770     main.obj
+ 0003:00000780       ?_Stinit@?1??_Init@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IAEXPAU_iobuf@@W4_Initfl@23@@Z@4U_Mbstatet@@A 00410780     main.obj
+ 0003:00000788       ___dyn_tls_dtor_callback   00410788     <common>
+ 0003:0000078c       ___dyn_tls_init_callback   0041078c     <common>
+
+ entry point at        0001:00008e14
+
+ Static symbols
+
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-convert-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-utility-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     msvcprt:MSVCP140.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     kernel32:KERNEL32.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     winmm:WINMM.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     vcruntime:VCRUNTIME140.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-locale-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-locale-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-time-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0000:fffed000       .debug$S                   00400000     ucrt:api-ms-win-crt-utility-l1-1-0.dll
+ 0001:00000000       ??__EG³os@@YAXXZ           00401000 f   main.obj
+ 0001:0000000c       ??__E_Fac_tidy_reg@std@@YAXXZ 0040100c f   msvcprt:locale0_implib.obj
+ 0001:000039d0       $LN2306                    004049d0     main.obj
+ 0001:00007520       __catch$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z$0 00408520 f i main.obj
+ 0001:00007a20       ??$_Reallocate_grow_by@V<lambda_15711c68e099a15a58f4d77303cb286d>@@D@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@IV<lambda_15711c68e099a15a58f4d77303cb286d>@@D@Z 00408a20 f   main.obj
+ 0001:00007b60       ??$_Reallocate_grow_by@V<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@IV<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@Z 00408b60 f   main.obj
+ 0001:00007cd0       ??$_Reallocate_grow_by@V<lambda_ab246b20b9526e2ef7792587e4298a77>@@PBDI@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@IV<lambda_ab246b20b9526e2ef7792587e4298a77>@@PBDI@Z 00408cd0 f   main.obj
+ 0001:000080e0       __catch$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z$0 004090e0 f i main.obj
+ 0001:0000829c       __catch$??$getline@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@D@Z$0 0040929c f i main.obj
+ 0001:00008486       __catch$??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z$0 00409486 f i main.obj
+ 0001:00008510       ??$_Reallocate_grow_by@V<lambda_67d87d4aa1269033985980465fd1d824>@@$$V@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@IV<lambda_67d87d4aa1269033985980465fd1d824>@@@Z 00409510 f   main.obj
+ 0001:00008640       ??$_Reallocate_grow_by@V<lambda_4d79bb85f269e6e8002a4599002d832c>@@IPBDI@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@IV<lambda_4d79bb85f269e6e8002a4599002d832c>@@IPBDI@Z 00409640 f   main.obj
+ 0001:00008937       ?find_pe_section@@YAPAU_IMAGE_SECTION_HEADER@@QAEI@Z 00409937 f   MSVCRT:utility.obj
+ 0001:00008be8       ?pre_c_initialization@@YAHXZ 00409be8 f   MSVCRT:exe_main.obj
+ 0001:00008c8c       ?post_pgo_initialization@@YAHXZ 00409c8c f   MSVCRT:exe_main.obj
+ 0001:00008c94       ?pre_cpp_initialization@@YAXXZ 00409c94 f   MSVCRT:exe_main.obj
+ 0001:00008ca6       ?__scrt_common_main_seh@@YAHXZ 00409ca6 f   MSVCRT:exe_main.obj
+ 0001:00009390       $$000000                   0040a390     MSVCRT:_sehprolg4_.obj
+ 0001:0000940e       ___get_entropy             0040a40e f   MSVCRT:gs_support.obj
+ 0001:00009650       $$000000                   0040a650     MSVCRT:_ftol3_.obj
+ 0001:000099e0       __ehhandler$??1locale@std@@QAE@XZ 0040a9e0 f   main.obj
+ 0001:000099e0       __ehhandler$??1_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040a9e0 f   main.obj
+ 0001:000099e0       __ehhandler$??1_Sentry_base@?$basic_istream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040a9e0 f   main.obj
+ 0001:00009a00       __unwindfunclet$_main$0    0040aa00 f   main.obj
+ 0001:00009a0b       __unwindfunclet$_main$5    0040aa0b f   main.obj
+ 0001:00009a2b       __unwindfunclet$_main$6    0040aa2b f   main.obj
+ 0001:00009a37       __unwindfunclet$_main$8    0040aa37 f   main.obj
+ 0001:00009a43       __unwindfunclet$_main$1    0040aa43 f   main.obj
+ 0001:00009a4e       __unwindfunclet$_main$2    0040aa4e f   main.obj
+ 0001:00009a56       __ehhandler$_main          0040aa56 f   main.obj
+ 0001:00009a80       __unwindfunclet$?Obstaw@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ$0 0040aa80 f   main.obj
+ 0001:00009a99       __ehhandler$?Obstaw@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ 0040aa99 f   main.obj
+ 0001:00009ac0       __unwindfunclet$?Wczytaj_Kwotê_Zak³adu@@YAXAAHABH@Z$0 0040aac0 f   main.obj
+ 0001:00009ac0       __unwindfunclet$?_Endwrite@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IAE_NXZ$0 0040aac0 f   main.obj
+ 0001:00009ac8       __ehhandler$?_Endwrite@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IAE_NXZ 0040aac8 f   main.obj
+ 0001:00009ac8       __ehhandler$?Wczytaj_Kwotê_Zak³adu@@YAXAAHABH@Z 0040aac8 f   main.obj
+ 0001:00009af0       __unwindfunclet$?Zakrêæ_Ruletk¹@@YAHXZ$0 0040aaf0 f   main.obj
+ 0001:00009af8       __ehhandler$?Zakrêæ_Ruletk¹@@YAHXZ 0040aaf8 f   main.obj
+ 0001:00009b20       __unwindfunclet$?SprawdŸ_Zak³ad@@YAHABHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z$0 0040ab20 f   main.obj
+ 0001:00009b28       __ehhandler$?SprawdŸ_Zak³ad@@YAHABHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z 0040ab28 f   main.obj
+ 0001:00009b50       __unwindfunclet$?Czy_Kontynuowaæ@@YA_NABH@Z$0 0040ab50 f   main.obj
+ 0001:00009b58       __ehhandler$?Czy_Kontynuowaæ@@YA_NABH@Z 0040ab58 f   main.obj
+ 0001:00009b80       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$15 0040ab80 f   main.obj
+ 0001:00009ba0       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$16 0040aba0 f   main.obj
+ 0001:00009bac       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$18 0040abac f   main.obj
+ 0001:00009bb8       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$0 0040abb8 f   main.obj
+ 0001:00009bc3       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 0040abc3 f   main.obj
+ 0001:00009bce       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$2 0040abce f   main.obj
+ 0001:00009bd9       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$3 0040abd9 f   main.obj
+ 0001:00009be1       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$336 0040abe1 f   main.obj
+ 0001:00009c04       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$337 0040ac04 f   main.obj
+ 0001:00009c10       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$339 0040ac10 f   main.obj
+ 0001:00009c1c       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$12 0040ac1c f   main.obj
+ 0001:00009c27       __unwindfunclet$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$13 0040ac27 f   main.obj
+ 0001:00009c32       __ehhandler$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z 0040ac32 f   main.obj
+ 0001:00009c60       __unwindfunclet$?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z$0 0040ac60 f   main.obj
+ 0001:00009c68       __unwindfunclet$?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z$1 0040ac68 f   main.obj
+ 0001:00009c70       __unwindfunclet$?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z$2 0040ac70 f   main.obj
+ 0001:00009c7b       __unwindfunclet$?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z$3 0040ac7b f   main.obj
+ 0001:00009c83       __unwindfunclet$?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z$4 0040ac83 f   main.obj
+ 0001:00009c8b       __unwindfunclet$?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z$5 0040ac8b f   main.obj
+ 0001:00009c96       __ehhandler$?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z 0040ac96 f   main.obj
+ 0001:00009cc0       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$0 0040acc0 f   main.obj
+ 0001:00009ccb       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$74 0040accb f   main.obj
+ 0001:00009ce5       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$75 0040ace5 f   main.obj
+ 0001:00009cf1       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$77 0040acf1 f   main.obj
+ 0001:00009cfd       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$7 0040acfd f   main.obj
+ 0001:00009d08       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$8 0040ad08 f   main.obj
+ 0001:00009d13       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$9 0040ad13 f   main.obj
+ 0001:00009d1e       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$10 0040ad1e f   main.obj
+ 0001:00009d29       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$180 0040ad29 f   main.obj
+ 0001:00009d43       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$181 0040ad43 f   main.obj
+ 0001:00009d4f       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$183 0040ad4f f   main.obj
+ 0001:00009d5b       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$12 0040ad5b f   main.obj
+ 0001:00009d66       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$13 0040ad66 f   main.obj
+ 0001:00009d71       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$14 0040ad71 f   main.obj
+ 0001:00009d7c       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$15 0040ad7c f   main.obj
+ 0001:00009d87       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$318 0040ad87 f   main.obj
+ 0001:00009da6       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$319 0040ada6 f   main.obj
+ 0001:00009db2       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$321 0040adb2 f   main.obj
+ 0001:00009dbe       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$17 0040adbe f   main.obj
+ 0001:00009dc9       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$18 0040adc9 f   main.obj
+ 0001:00009dd4       __unwindfunclet$?SprawdŸ_Pliki@@YAXXZ$19 0040add4 f   main.obj
+ 0001:00009ddf       __ehhandler$?SprawdŸ_Pliki@@YAXXZ 0040addf f   main.obj
+ 0001:00009e10       __unwindfunclet$?SprawdŸ_ustawienia@@YAXXZ$4 0040ae10 f   main.obj
+ 0001:00009e33       __unwindfunclet$?SprawdŸ_ustawienia@@YAXXZ$5 0040ae33 f   main.obj
+ 0001:00009e3f       __unwindfunclet$?SprawdŸ_ustawienia@@YAXXZ$7 0040ae3f f   main.obj
+ 0001:00009e4b       __unwindfunclet$?SprawdŸ_ustawienia@@YAXXZ$0 0040ae4b f   main.obj
+ 0001:00009e56       __unwindfunclet$?SprawdŸ_ustawienia@@YAXXZ$1 0040ae56 f   main.obj
+ 0001:00009e5e       __unwindfunclet$?SprawdŸ_ustawienia@@YAXXZ$2 0040ae5e f   main.obj
+ 0001:00009e69       __ehhandler$?SprawdŸ_ustawienia@@YAXXZ 0040ae69 f   main.obj
+ 0001:00009ea0       __unwindfunclet$??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ$0 0040aea0 f   main.obj
+ 0001:00009ebd       __unwindfunclet$??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ$1 0040aebd f   main.obj
+ 0001:00009ec9       __unwindfunclet$??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ$3 0040aec9 f   main.obj
+ 0001:00009ed2       __ehhandler$??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040aed2 f   main.obj
+ 0001:00009ef0       __unwindfunclet$?uflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ$0 0040aef0 f   main.obj
+ 0001:00009ef0       __unwindfunclet$?overflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHH@Z$0 0040aef0 f   main.obj
+ 0001:00009ef8       __ehhandler$?overflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHH@Z 0040aef8 f   main.obj
+ 0001:00009ef8       __ehhandler$?uflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ 0040aef8 f   main.obj
+ 0001:00009f20       __ehhandler$??1?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAE@XZ 0040af20 f   main.obj
+ 0001:00009f20       __ehhandler$??1_Fac_node@std@@QAE@XZ 0040af20 f   msvcprt:locale0_implib.obj
+ 0001:00009f40       __ehhandler$??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040af40 f   main.obj
+ 0001:00009f60       __unwindfunclet$?open@?$basic_filebuf@DU?$char_traits@D@std@@@std@@QAEPAV12@PBDHH@Z$0 0040af60 f   main.obj
+ 0001:00009f68       __ehhandler$?open@?$basic_filebuf@DU?$char_traits@D@std@@@std@@QAEPAV12@PBDHH@Z 0040af68 f   main.obj
+ 0001:00009f90       __unwindfunclet$??$use_facet@V?$codecvt@DDU_Mbstatet@@@std@@@std@@YAABV?$codecvt@DDU_Mbstatet@@@0@ABVlocale@0@@Z$0 0040af90 f   main.obj
+ 0001:00009f90       __unwindfunclet$??$use_facet@V?$ctype@D@std@@@std@@YAABV?$ctype@D@0@ABVlocale@0@@Z$0 0040af90 f   main.obj
+ 0001:00009f99       __ehhandler$??$use_facet@V?$codecvt@DDU_Mbstatet@@@std@@@std@@YAABV?$codecvt@DDU_Mbstatet@@@0@ABVlocale@0@@Z 0040af99 f   main.obj
+ 0001:00009f99       __ehhandler$??$use_facet@V?$ctype@D@std@@@std@@YAABV?$ctype@D@0@ABVlocale@0@@Z 0040af99 f   main.obj
+ 0001:00009fc0       __unwindfunclet$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z$4 0040afc0 f   main.obj
+ 0001:00009fc8       __unwindfunclet$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z$2 0040afc8 f   main.obj
+ 0001:00009fd0       __ehhandler$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z 0040afd0 f   main.obj
+ 0001:00009ff0       __unwindfunclet$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@QBD@Z$0 0040aff0 f   main.obj
+ 0001:0000a009       __ehhandler$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@QBD@Z 0040b009 f   main.obj
+ 0001:0000a030       __unwindfunclet$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z$4 0040b030 f   main.obj
+ 0001:0000a038       __unwindfunclet$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z$2 0040b038 f   main.obj
+ 0001:0000a040       __unwindfunclet$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z$3 0040b040 f   main.obj
+ 0001:0000a048       __ehhandler$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z 0040b048 f   main.obj
+ 0001:0000a070       __unwindfunclet$??$getline@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@D@Z$3 0040b070 f   main.obj
+ 0001:0000a078       __unwindfunclet$??$getline@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@D@Z$2 0040b078 f   main.obj
+ 0001:0000a080       __ehhandler$??$getline@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@D@Z 0040b080 f   main.obj
+ 0001:0000a0a0       __unwindfunclet$??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z$3 0040b0a0 f   main.obj
+ 0001:0000a0a8       __unwindfunclet$??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z$2 0040b0a8 f   main.obj
+ 0001:0000a0b0       __ehhandler$??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z 0040b0b0 f   main.obj
+ 0001:0000a0d0       __ehhandler$??1sentry@?$basic_istream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040b0d0 f   main.obj
+ 0001:0000a0f0       ??__FG³os@@YAXXZ           0040b0f0 f   main.obj
+ 0001:0000a156       ??__F_Fac_tidy_reg@std@@YAXXZ 0040b156 f   msvcprt:locale0_implib.obj
+ 0002:00000268       ?pre_cpp_initializer@@3P6AXXZA 0040c268     MSVCRT:exe_main.obj
+ 0002:0000026c       ?_Fac_tidy_reg$initializer$@std@@3P6AXXZA 0040c26c     msvcprt:locale0_implib.obj
+ 0002:00000270       ?G³os$initializer$@@3P6AXXZA 0040c270     main.obj
+ 0002:0000027c       ?pre_c_initializer@@3P6AHXZA 0040c27c     MSVCRT:exe_main.obj
+ 0002:00000280       ?post_pgo_initializer@@3P6AHXZA 0040c280     MSVCRT:exe_main.obj
+ 0002:000002a8       _GS_ExceptionPointers      0040c2a8     MSVCRT:gs_report.obj
+ 0002:00001098       ?Ruletka_ko³o@@3QBHB       0040d098     main.obj
+ 0002:00001130       ?Ruletka_plansza_kolor_col@@3QBHB 0040d130     main.obj
+ 0002:000011c4       ?Ruletka_plansza_kolor@@3QBDB 0040d1c4     main.obj
+ 0002:000012c0       _Int32ToUInt32             0040d2c0     MSVCRT:_ftol3_.obj
+ 0002:000012c8       _DP2to32                   0040d2c8     MSVCRT:_ftol3_.obj
+ 0002:000012d0       _MantissaMask              0040d2d0     MSVCRT:_ftol3_.obj
+ 0002:000012d8       _IntegerBit                0040d2d8     MSVCRT:_ftol3_.obj
+ 0002:000012e0       _SignBit64                 0040d2e0     MSVCRT:_ftol3_.obj
+ 0002:000012e8       _MinFP64                   0040d2e8     MSVCRT:_ftol3_.obj
+ 0002:000012f0       _MinInt64                  0040d2f0     MSVCRT:_ftol3_.obj
+ 0002:000012f8       _MaxInt64                  0040d2f8     MSVCRT:_ftol3_.obj
+ 0002:00001300       _MaxUInt64                 0040d300     MSVCRT:_ftol3_.obj
+ 0002:00001308       _MaxFP32                   0040d308     MSVCRT:_ftol3_.obj
+ 0002:00001310       _MinFP32                   0040d310     MSVCRT:_ftol3_.obj
+ 0002:00001318       _MinSubInexact             0040d318     MSVCRT:_ftol3_.obj
+ 0002:00001320       _FpExcptTable              0040d320     MSVCRT:_ftol3_.obj
+ 0002:00001330       _i1075                     0040d330     MSVCRT:_ftol3_.obj
+ 0002:00001334       _i1087                     0040d334     MSVCRT:_ftol3_.obj
+ 0002:00001338       _x0800                     0040d338     MSVCRT:_ftol3_.obj
+ 0002:0000133c       _x17FF                     0040d33c     MSVCRT:_ftol3_.obj
+ 0002:00001340       _CWMask                    0040d340     MSVCRT:_ftol3_.obj
+ 0002:00001e08       __ehfuncinfo$??1_Sentry_base@?$basic_istream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040de08     main.obj
+ 0002:00001e08       __ehfuncinfo$??1_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040de08     main.obj
+ 0002:00001e08       __ehfuncinfo$??1locale@std@@QAE@XZ 0040de08     main.obj
+ 0002:00001e08       __ehfuncinfo$??1_Fac_node@std@@QAE@XZ 0040de08     msvcprt:locale0_implib.obj
+ 0002:00001e08       __ehfuncinfo$??1?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAE@XZ 0040de08     main.obj
+ 0002:00001e2c       __ehfuncinfo$_main         0040de2c     main.obj
+ 0002:00001e50       __unwindtable$_main        0040de50     main.obj
+ 0002:00001e80       __ehfuncinfo$?Obstaw@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ 0040de80     main.obj
+ 0002:00001ea4       __unwindtable$?Obstaw@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ 0040dea4     main.obj
+ 0002:00001eac       __ehfuncinfo$?_Endwrite@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IAE_NXZ 0040deac     main.obj
+ 0002:00001eac       __ehfuncinfo$?Wczytaj_Kwotê_Zak³adu@@YAXAAHABH@Z 0040deac     main.obj
+ 0002:00001ed0       __unwindtable$?_Endwrite@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IAE_NXZ 0040ded0     main.obj
+ 0002:00001ed0       __unwindtable$?Wczytaj_Kwotê_Zak³adu@@YAXAAHABH@Z 0040ded0     main.obj
+ 0002:00001ed8       __ehfuncinfo$?Zakrêæ_Ruletk¹@@YAHXZ 0040ded8     main.obj
+ 0002:00001efc       __unwindtable$?Zakrêæ_Ruletk¹@@YAHXZ 0040defc     main.obj
+ 0002:00001f04       __ehfuncinfo$?SprawdŸ_Zak³ad@@YAHABHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z 0040df04     main.obj
+ 0002:00001f28       __unwindtable$?SprawdŸ_Zak³ad@@YAHABHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z 0040df28     main.obj
+ 0002:00001f30       __ehfuncinfo$?Czy_Kontynuowaæ@@YA_NABH@Z 0040df30     main.obj
+ 0002:00001f54       __unwindtable$?Czy_Kontynuowaæ@@YA_NABH@Z 0040df54     main.obj
+ 0002:00001f60       __ehfuncinfo$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z 0040df60     main.obj
+ 0002:00001f88       __unwindtable$?Odczytaj_liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z 0040df88     main.obj
+ 0002:00001ff8       __ehfuncinfo$?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z 0040dff8     main.obj
+ 0002:0000201c       __unwindtable$?Wczytaj_z_pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z 0040e01c     main.obj
+ 0002:00002050       __ehfuncinfo$?SprawdŸ_Pliki@@YAXXZ 0040e050     main.obj
+ 0002:00002078       __unwindtable$?SprawdŸ_Pliki@@YAXXZ 0040e078     main.obj
+ 0002:00002120       __ehfuncinfo$?SprawdŸ_ustawienia@@YAXXZ 0040e120     main.obj
+ 0002:00002144       __unwindtable$?SprawdŸ_ustawienia@@YAXXZ 0040e144     main.obj
+ 0002:00002174       __ehfuncinfo$??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040e174     main.obj
+ 0002:00002198       __unwindtable$??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040e198     main.obj
+ 0002:000021b0       __ehfuncinfo$?overflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHH@Z 0040e1b0     main.obj
+ 0002:000021b0       __ehfuncinfo$?uflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ 0040e1b0     main.obj
+ 0002:000021d4       __unwindtable$?overflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHH@Z 0040e1d4     main.obj
+ 0002:000021d4       __unwindtable$?uflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ 0040e1d4     main.obj
+ 0002:000021dc       __ehfuncinfo$??1sentry@?$basic_istream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040e1dc     main.obj
+ 0002:000021dc       __ehfuncinfo$??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040e1dc     main.obj
+ 0002:00002200       __unwindtable$??1sentry@?$basic_istream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040e200     main.obj
+ 0002:00002200       __unwindtable$??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ 0040e200     main.obj
+ 0002:00002208       __ehfuncinfo$?open@?$basic_filebuf@DU?$char_traits@D@std@@@std@@QAEPAV12@PBDHH@Z 0040e208     main.obj
+ 0002:0000222c       __unwindtable$?open@?$basic_filebuf@DU?$char_traits@D@std@@@std@@QAEPAV12@PBDHH@Z 0040e22c     main.obj
+ 0002:0000223c       __ehfuncinfo$??$use_facet@V?$codecvt@DDU_Mbstatet@@@std@@@std@@YAABV?$codecvt@DDU_Mbstatet@@@0@ABVlocale@0@@Z 0040e23c     main.obj
+ 0002:0000223c       __ehfuncinfo$??$use_facet@V?$ctype@D@std@@@std@@YAABV?$ctype@D@0@ABVlocale@0@@Z 0040e23c     main.obj
+ 0002:00002260       __unwindtable$??$use_facet@V?$ctype@D@std@@@std@@YAABV?$ctype@D@0@ABVlocale@0@@Z 0040e260     main.obj
+ 0002:00002260       __unwindtable$??$use_facet@V?$codecvt@DDU_Mbstatet@@@std@@@std@@YAABV?$codecvt@DDU_Mbstatet@@@0@ABVlocale@0@@Z 0040e260     main.obj
+ 0002:00002268       __ehfuncinfo$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z 0040e268     main.obj
+ 0002:0000228c       __unwindtable$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z 0040e28c     main.obj
+ 0002:000022bc       __tryblocktable$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z 0040e2bc     main.obj
+ 0002:000022d0       __catchsym$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z$11 0040e2d0     main.obj
+ 0002:000022e0       __ehfuncinfo$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@QBD@Z 0040e2e0     main.obj
+ 0002:00002304       __unwindtable$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@QBD@Z 0040e304     main.obj
+ 0002:0000230c       __ehfuncinfo$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z 0040e30c     main.obj
+ 0002:00002330       __unwindtable$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z 0040e330     main.obj
+ 0002:00002368       __tryblocktable$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z 0040e368     main.obj
+ 0002:0000237c       __catchsym$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z$35 0040e37c     main.obj
+ 0002:0000238c       __ehfuncinfo$??$getline@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@D@Z 0040e38c     main.obj
+ 0002:000023b0       __unwindtable$??$getline@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@D@Z 0040e3b0     main.obj
+ 0002:000023d8       __tryblocktable$??$getline@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@D@Z 0040e3d8     main.obj
+ 0002:000023ec       __catchsym$??$getline@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@D@Z$30 0040e3ec     main.obj
+ 0002:000023fc       __ehfuncinfo$??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z 0040e3fc     main.obj
+ 0002:00002420       __unwindtable$??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z 0040e420     main.obj
+ 0002:00002450       __tryblocktable$??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z 0040e450     main.obj
+ 0002:00002464       __catchsym$??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z$10 0040e464     main.obj
+ 0002:00002478       __sehtable$___scrt_is_nonwritable_in_current_image 0040e478     MSVCRT:utility.obj
+ 0002:00002498       __sehtable$?__scrt_common_main_seh@@YAHXZ 0040e498     MSVCRT:exe_main.obj
+ 0002:00002902       .idata$6                   0040e902     winmm:WINMM.dll
+ 0002:0000297e       .idata$6                   0040e97e     kernel32:KERNEL32.dll
+ 0002:000036fc       .idata$6                   0040f6fc     msvcprt:MSVCP140.dll
+ 0002:000037b2       .idata$6                   0040f7b2     vcruntime:VCRUNTIME140.dll
+ 0002:00003ada       .idata$6                   0040fada     ucrt:api-ms-win-crt-locale-l1-1-0.dll
+ 0002:00003afc       .idata$6                   0040fafc     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
+ 0002:00003b1c       .idata$6                   0040fb1c     ucrt:api-ms-win-crt-utility-l1-1-0.dll
+ 0002:00003b3e       .idata$6                   0040fb3e     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0002:00003b64       .idata$6                   0040fb64     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:00003b86       .idata$6                   0040fb86     ucrt:api-ms-win-crt-time-l1-1-0.dll
+ 0002:00003ba6       .idata$6                   0040fba6     ucrt:api-ms-win-crt-convert-l1-1-0.dll
+ 0002:00003bc8       .idata$6                   0040fbc8     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00003be8       .idata$6                   0040fbe8     ucrt:api-ms-win-crt-math-l1-1-0.dll
+ 0003:000003f8       ?_Fac_head@std@@3PAU_Fac_node@1@A 004103f8     msvcprt:locale0_implib.obj
+ 0003:000003fc       ?_Fac_tidy_reg@std@@3U_Fac_tidy_reg_t@1@B 004103fc     msvcprt:locale0_implib.obj
+ 0003:00000408       ?module_local_atexit_table@@3U_onexit_table_t@@A 00410408     MSVCRT:utility.obj
+ 0003:00000414       ?module_local_at_quick_exit_table@@3U_onexit_table_t@@A 00410414     MSVCRT:utility.obj
+ 0003:00000420       ?module_local_atexit_table_initialized@@3_NA 00410420     MSVCRT:utility.obj
+ 0003:00000421       ?is_initialized_as_dll@@3_NA 00410421     MSVCRT:utility.obj
+ 0003:00000428       _GS_ExceptionRecord        00410428     MSVCRT:gs_report.obj
+ 0003:00000478       _GS_ContextRecord          00410478     MSVCRT:gs_report.obj
+ 0004:00000060       $R000000                   00411060     * linker generated manifest res *
+
+ Exports
+
+  ordinal    name
+

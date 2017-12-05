@@ -1,2 +1,45 @@
 ﻿  main.cpp
-  Ruletka.vcxproj -> F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Debug\Ruletka.exe
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\type_traits(1790): error C2760: błąd składni: oczekiwano „)”, a nie „,”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\type_traits(2074): error C2760: błąd składni: oczekiwano „)”, a nie „,”
+  f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\type_traits(2083): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „std::reference_wrapper<_Ty>” jest kompilowane
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\type_traits(2196): error C2760: błąd składni: oczekiwano „)”, a nie „,”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xmemory0(567): error C2760: błąd składni: oczekiwano „)”, a nie „,”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xmemory0(639): error C2760: błąd składni: oczekiwano „)”, a nie „,”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(1636): warning C4467: korzystanie z atrybutów ATL jest przestarzałe
+  f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(1676): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „std::_String_val<std::_Simple_types<_Ty>>” jest kompilowane
+          with
+          [
+              _Ty=char
+          ]
+  f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(1860): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „std::_String_alloc<std::_String_base_types<_Elem,_Alloc>>” jest kompilowane
+          with
+          [
+              _Elem=char,
+              _Alloc=std::allocator<char>
+          ]
+  f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\stdexcept(22): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „std::basic_string<char,std::char_traits<char>,std::allocator<char>>” jest kompilowane
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(1636): error C2337: "[": nie można odnaleźć atrybutu
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(1636): error C2146: błąd składniowy: brakuje „]” przed identyfikatorem „noreturn”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(1636): error C2143: błąd składniowy: brakuje „;” przed „]”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(1636): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(1637): error C2334: nieoczekiwany(e) token(y) poprzedzające "{"; pomijanie treści widocznych funkcji
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(3724): error C2337: "[": nie można odnaleźć atrybutu
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(3724): error C2146: błąd składniowy: brakuje „]” przed identyfikatorem „noreturn”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(3724): error C2143: błąd składniowy: brakuje „;” przed „]”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(3724): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\xstring(3725): error C2334: nieoczekiwany(e) token(y) poprzedzające "{"; pomijanie treści widocznych funkcji
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2015): error C2337: "[": nie można odnaleźć atrybutu
+  f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\random(308): note: zobacz odwołanie do klasy klasa szablon; wystąpienie „std::vector<std::seed_seq::result_type,std::allocator<_Ty>>” jest kompilowane
+          with
+          [
+              _Ty=std::seed_seq::result_type
+          ]
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2015): error C2146: błąd składniowy: brakuje „]” przed identyfikatorem „noreturn”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2015): error C2143: błąd składniowy: brakuje „;” przed „]”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2015): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2016): error C2334: nieoczekiwany(e) token(y) poprzedzające "{"; pomijanie treści widocznych funkcji
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2020): error C2337: "[": nie można odnaleźć atrybutu
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2020): error C2146: błąd składniowy: brakuje „]” przed identyfikatorem „noreturn”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2020): error C2143: błąd składniowy: brakuje „;” przed „]”
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2020): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.11.25503\include\vector(2021): error C2334: nieoczekiwany(e) token(y) poprzedzające "{"; pomijanie treści widocznych funkcji
