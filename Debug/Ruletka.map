@@ -1,6 +1,6 @@
  Ruletka
 
- Timestamp is 5a27c942 (Wed Dec  6 11:41:06 2017)
+ Timestamp is 5a285970 (Wed Dec  6 21:56:16 2017)
 
  Preferred load address is 00400000
 
@@ -44,7 +44,7 @@
  0005:000009d4 00001ec7H .idata$6                DATA
  0006:00000000 00000104H .00cfg                  DATA
  0007:00000000 00000170H .rsrc$01                DATA
- 0007:00000170 000002ccH .rsrc$02                DATA
+ 0007:00000170 000002e9H .rsrc$02                DATA
 
   Address         Publics by Value              Rva+Base       Lib:Object
 
@@ -58,8 +58,8 @@
  0000:00000000       ___hybrid_code_map         00000000     <absolute>
  0000:00000000       ___hybrid_code_map_count   00000000     <absolute>
  0000:00000000       ___guard_iat_table         00000000     <absolute>
- 0000:00000000       ___enclave_config          00000000     <absolute>
  0000:00000000       ___guard_longjmp_count     00000000     <absolute>
+ 0000:00000000       ___enclave_config          00000000     <absolute>
  0000:00000000       ___guard_fids_count        00000000     <absolute>
  0000:00000100       ___guard_flags             00000100     <absolute>
  0000:00000000       ___ImageBase               00400000     <linker-defined>
@@ -218,14 +218,14 @@
  0002:0000a76a       ??_E?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@$4PPPPPPPM@A@AEPAXI@Z 0041b76a f i main.obj
  0002:0000a780       ??_G?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b780 f i main.obj
  0002:0000a780       ??_E?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b780 f i main.obj
- 0002:0000a7f0       ??_E?$basic_fstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b7f0 f i main.obj
  0002:0000a7f0       ??_G?$basic_fstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b7f0 f i main.obj
+ 0002:0000a7f0       ??_E?$basic_fstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b7f0 f i main.obj
  0002:0000a870       ??_G?$basic_ifstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b870 f i main.obj
  0002:0000a870       ??_E?$basic_ifstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b870 f i main.obj
- 0002:0000a8f0       ??_E?$basic_ofstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b8f0 f i main.obj
  0002:0000a8f0       ??_G?$basic_ofstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b8f0 f i main.obj
- 0002:0000a970       ??_E?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAEPAXI@Z 0041b970 f i main.obj
+ 0002:0000a8f0       ??_E?$basic_ofstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0041b8f0 f i main.obj
  0002:0000a970       ??_G?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAEPAXI@Z 0041b970 f i main.obj
+ 0002:0000a970       ??_E?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAEPAXI@Z 0041b970 f i main.obj
  0002:0000a9e0       ??_G?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAEPAXI@Z 0041b9e0 f i main.obj
  0002:0000a9e0       ??_E?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UAEPAXI@Z 0041b9e0 f i main.obj
  0002:0000aa60       ??_Gbad_cast@std@@UAEPAXI@Z 0041ba60 f i main.obj
@@ -511,8 +511,8 @@
  0002:0001cec0       __CRT_RTC_INITW            0042dec0 f   MSVCRTD:_init_.obj
  0002:0001ced0       __RTC_InitBase             0042ded0 f   MSVCRTD:_init_.obj
  0002:0001cf10       __RTC_Shutdown             0042df10 f   MSVCRTD:_init_.obj
- 0002:0001cf30       __chkstk                   0042df30 f   MSVCRTD:chkstk.obj
  0002:0001cf30       __alloca_probe             0042df30 f   MSVCRTD:chkstk.obj
+ 0002:0001cf30       __chkstk                   0042df30 f   MSVCRTD:chkstk.obj
  0002:0001cf70       __ftoui3                   0042df70 f   MSVCRTD:_ftol3_.obj
  0002:0001cf7f       __ftoul3                   0042df7f f   MSVCRTD:_ftol3_.obj
  0002:0001cf8e       __ftol3                    0042df8e f   MSVCRTD:_ftol3_.obj
@@ -529,8 +529,8 @@
  0002:0001d280       __ultod3                   0042e280 f   MSVCRTD:_ftol3_.obj
  0002:0001d2c0       __ltod3                    0042e2c0 f   MSVCRTD:_ftol3_.obj
  0002:0001d3d0       ??1type_info@@UAE@XZ       0042e3d0 f   MSVCRTD:std_type_info_static.obj
- 0002:0001d3f0       ??_Gtype_info@@UAEPAXI@Z   0042e3f0 f i MSVCRTD:std_type_info_static.obj
  0002:0001d3f0       ??_Etype_info@@UAEPAXI@Z   0042e3f0 f i MSVCRTD:std_type_info_static.obj
+ 0002:0001d3f0       ??_Gtype_info@@UAEPAXI@Z   0042e3f0 f i MSVCRTD:std_type_info_static.obj
  0002:0001d810       ?set_app_type@__scrt_main_policy@@SAXXZ 0042e810 f i MSVCRTD:exe_main.obj
  0002:0001d830       ?set_commode@__scrt_file_policy@@SAXXZ 0042e830 f i MSVCRTD:exe_main.obj
  0002:0001d850       ?set_fmode@__scrt_file_policy@@SAXXZ 0042e850 f i MSVCRTD:exe_main.obj
@@ -543,10 +543,10 @@
  0002:0001d960       ??0bad_array_new_length@std@@QAE@XZ 0042e960 f i MSVCRTD:throw_bad_alloc.obj
  0002:0001d990       ??1bad_alloc@std@@UAE@XZ   0042e990 f i MSVCRTD:throw_bad_alloc.obj
  0002:0001d9b0       ??1bad_array_new_length@std@@UAE@XZ 0042e9b0 f i MSVCRTD:throw_bad_alloc.obj
- 0002:0001d9d0       ??_Gbad_alloc@std@@UAEPAXI@Z 0042e9d0 f i MSVCRTD:throw_bad_alloc.obj
  0002:0001d9d0       ??_Ebad_alloc@std@@UAEPAXI@Z 0042e9d0 f i MSVCRTD:throw_bad_alloc.obj
- 0002:0001da10       ??_Gbad_array_new_length@std@@UAEPAXI@Z 0042ea10 f i MSVCRTD:throw_bad_alloc.obj
+ 0002:0001d9d0       ??_Gbad_alloc@std@@UAEPAXI@Z 0042e9d0 f i MSVCRTD:throw_bad_alloc.obj
  0002:0001da10       ??_Ebad_array_new_length@std@@UAEPAXI@Z 0042ea10 f i MSVCRTD:throw_bad_alloc.obj
+ 0002:0001da10       ??_Gbad_array_new_length@std@@UAEPAXI@Z 0042ea10 f i MSVCRTD:throw_bad_alloc.obj
  0002:0001da50       ?__scrt_throw_std_bad_alloc@@YAXXZ 0042ea50 f   MSVCRTD:throw_bad_alloc.obj
  0002:0001da80       ?__scrt_throw_std_bad_array_new_length@@YAXXZ 0042ea80 f   MSVCRTD:throw_bad_alloc.obj
  0002:0001dab0       ___isa_available_init      0042eab0 f   MSVCRTD:_cpu_disp_.obj
@@ -706,20 +706,20 @@
  0002:0001ffdc       _VirtualQuery@12           00430fdc f   kernel32:KERNEL32.dll
  0002:0001ffe2       _FreeLibrary@4             00430fe2 f   kernel32:KERNEL32.dll
  0002:0001ffe8       _GetProcAddress@8          00430fe8 f   kernel32:KERNEL32.dll
- 0002:0001fff0       ___scrt_stub_for_acrt_initialize 00430ff0 f   MSVCRTD:ucrt_stubs.obj
- 0002:0001fff0       ___acrt_initialize         00430ff0 f   MSVCRTD:ucrt_stubs.obj
  0002:0001fff0       ___vcrt_initialize         00430ff0 f   MSVCRTD:ucrt_stubs.obj
+ 0002:0001fff0       ___acrt_initialize         00430ff0 f   MSVCRTD:ucrt_stubs.obj
+ 0002:0001fff0       ___scrt_stub_for_acrt_initialize 00430ff0 f   MSVCRTD:ucrt_stubs.obj
  0002:00020000       ___acrt_thread_attach      00431000 f   MSVCRTD:ucrt_stubs.obj
  0002:00020000       ___scrt_stub_for_acrt_thread_attach 00431000 f   MSVCRTD:ucrt_stubs.obj
  0002:00020000       ___vcrt_thread_attach      00431000 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00020010       ___vcrt_thread_detach      00431010 f   MSVCRTD:ucrt_stubs.obj
  0002:00020010       ___acrt_thread_detach      00431010 f   MSVCRTD:ucrt_stubs.obj
  0002:00020010       ___scrt_stub_for_acrt_thread_detach 00431010 f   MSVCRTD:ucrt_stubs.obj
- 0002:00020010       ___vcrt_thread_detach      00431010 f   MSVCRTD:ucrt_stubs.obj
- 0002:00020020       ___vcrt_uninitialize       00431020 f   MSVCRTD:ucrt_stubs.obj
- 0002:00020020       ___acrt_uninitialize       00431020 f   MSVCRTD:ucrt_stubs.obj
  0002:00020020       ___scrt_stub_for_acrt_uninitialize 00431020 f   MSVCRTD:ucrt_stubs.obj
- 0002:00020030       ___vcrt_uninitialize_critical 00431030 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00020020       ___acrt_uninitialize       00431020 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00020020       ___vcrt_uninitialize       00431020 f   MSVCRTD:ucrt_stubs.obj
  0002:00020030       ___acrt_uninitialize_critical 00431030 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00020030       ___vcrt_uninitialize_critical 00431030 f   MSVCRTD:ucrt_stubs.obj
  0002:00020030       ___scrt_stub_for_acrt_uninitialize_critical 00431030 f   MSVCRTD:ucrt_stubs.obj
  0002:00020040       ___scrt_stub_for_is_c_termination_complete 00431040 f   MSVCRTD:ucrt_stubs.obj
  0002:00020040       __is_c_termination_complete 00431040 f   MSVCRTD:ucrt_stubs.obj
@@ -731,16 +731,26 @@
  0003:00000a28       ___xp_z                    00436a28     MSVCRTD:initializers.obj
  0003:00000b2c       ___xt_a                    00436b2c     MSVCRTD:initializers.obj
  0003:00000c30       ___xt_z                    00436c30     MSVCRTD:initializers.obj
+ 0003:00000e94       ??_C@_05GFDBGFDH@d?4wav?$AA@ 00436e94     main.obj
+ 0003:00000e9c       ??_C@_0DJ@EFIKGJBI@Uruchomiono?5ponownie?5gr?j?5z?5wy?$LD?$LJc@ 00436e9c     main.obj
  0003:00000edc       ??_7exception@std@@6B@     00436edc     main.obj
  0003:00000ee8       ??_C@_0BC@EOODALEL@Unknown?5exception?$AA@ 00436ee8     main.obj
  0003:00000f00       ??_C@_1NE@JCGKDBDB@?$AAf?$AA?3?$AA?2?$AAp?$AAr?$AAo?$AAg?$AAr?$AAa?$AAm?$AA?5?$AAf?$AAi?$AAl?$AAe?$AAs?$AA?5?$AA?$CI?$AAx?$AA8?$AA6?$AA?$CJ?$AA?2?$AAm?$AAi?$AAc?$AAr?$AAo?$AAs?$AAo?$AAf?$AAt@ 00436f00     main.obj
+ 0003:00000fd4       ??_C@_0BC@EAGHPBJK@Obstawiono?5zaklad?$AA@ 00436fd4     main.obj
+ 0003:00000fe8       ??_C@_0BE@CILJHICG@Gra?5rozpoczeta?5dnia?$AA@ 00436fe8     main.obj
  0003:00001000       ??_C@_1DC@POOIKBAO@?$AAI?$AAT?$AAE?$AAR?$AAA?$AAT?$AAO?$AAR?$AA?5?$AAL?$AAI?$AAS?$AAT?$AA?5?$AAC?$AAO?$AAR?$AAR?$AAU?$AAP?$AAT?$AAE?$AAD?$AA?$CB?$AA?$AA@ 00437000     main.obj
+ 0003:00001034       ??_C@_05KFCKMKOB@Jacek?$AA@ 00437034     main.obj
  0003:00001040       ??_C@_1EE@KLDMFDFL@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AA_?$AAI?$AAt?$AAe?$AAr?$AAa?$AAt?$AAo?$AAr?$AA_?$AAb?$AAa?$AAs?$AAe?$AA1?$AA2?$AA?3?$AA?3?$AA_?$AAO?$AAr?$AAp?$AAh?$AAa?$AAn?$AA_?$AAm@ 00437040     main.obj
+ 0003:00001084       ??_C@_0N@KHLIPMCA@?5o?5godzinie?5?$AA@ 00437084     main.obj
  0003:00001094       ??_C@_1DG@PLBPCAEM@?$AA?$CC?$AAI?$AAT?$AAE?$AAR?$AAA?$AAT?$AAO?$AAR?$AA?5?$AAL?$AAI?$AAS?$AAT?$AA?5?$AAC?$AAO?$AAR?$AAR?$AAU?$AAP?$AAT?$AAE?$AAD?$AA?$CB?$AA?$CC?$AA?$AA@ 00437094     main.obj
+ 0003:000010cc       ??_C@_04CDICBAGM@Maja?$AA@ 004370cc     main.obj
  0003:000010d4       ??_C@_0BE@LMNLACIC@_Ptr_container?5?$CB?$DN?50?$AA@ 004370d4     main.obj
  0003:000010ec       ??_C@_1DG@HGDKEBPG@?$AA?$CC?$AA_?$AAP?$AAt?$AAr?$AA_?$AAc?$AAo?$AAn?$AAt?$AAa?$AAi?$AAn?$AAe?$AAr?$AA?5?$AA?$CB?$AA?$DN?$AA?5?$AA0?$AA?$CC?$AA?5?$AA?$CG?$AA?$CG?$AA?5?$AA0?$AA?$AA@ 004370ec     main.obj
+ 0003:00001124       ??_C@_05NKPCGME@Agata?$AA@ 00437124     main.obj
  0003:0000112c       ??_C@_17CNPHIMPH@?$AA?$CF?$AAl?$AAs?$AA?$AA@ 0043712c     main.obj
  0003:00001138       ??_C@_1NE@GPIBOEJC@?$AAf?$AA?3?$AA?2?$AAp?$AAr?$AAo?$AAg?$AAr?$AAa?$AAm?$AA?5?$AAf?$AAi?$AAl?$AAe?$AAs?$AA?5?$AA?$CI?$AAx?$AA8?$AA6?$AA?$CJ?$AA?2?$AAm?$AAi?$AAc?$AAr?$AAo?$AAs?$AAo?$AAf?$AAt@ 00437138     main.obj
+ 0003:0000120c       ??_C@_0BF@EHKBBICH@Gra?5rozpoczeta?5dnia?5?$AA@ 0043720c     main.obj
+ 0003:00001224       ??_C@_0BB@KJAOIHBF@kwota_pocz?$LJtkowa?$AA@ 00437224     main.obj
  0003:00001238       ??_C@_1BO@NKFMJPA@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AA_?$AAA?$AAl?$AAl?$AAo?$AAc?$AAa?$AAt?$AAe?$AA?$AA@ 00437238     main.obj
  0003:0000125c       ??_C@_1CG@JNLFBNGN@?$AA?$CC?$AAi?$AAn?$AAv?$AAa?$AAl?$AAi?$AAd?$AA?5?$AAa?$AAr?$AAg?$AAu?$AAm?$AAe?$AAn?$AAt?$AA?$CC?$AA?$AA@ 0043725c     main.obj
  0003:0000128c       ??_C@_09GLJCAGLP@_Ptr?5?$CB?$DN?50?$AA@ 0043728c     main.obj
@@ -751,7 +761,10 @@
  0003:000012fc       ??_C@_08EPJLHIJG@bad?5cast?$AA@ 004372fc     main.obj
  0003:00001306       ??_C@_00CNPNBAHC@?$AA@     00437306     main.obj
  0003:00001308       ??_C@_1NA@LJCFENMG@?$AAf?$AA?3?$AA?2?$AAp?$AAr?$AAo?$AAg?$AAr?$AAa?$AAm?$AA?5?$AAf?$AAi?$AAl?$AAe?$AAs?$AA?5?$AA?$CI?$AAx?$AA8?$AA6?$AA?$CJ?$AA?2?$AAm?$AAi?$AAc?$AAr?$AAo?$AAs?$AAo?$AAf?$AAt@ 00437308     main.obj
+ 0003:000013d8       ??_C@_0BK@PLEOEKGI@Nowa?5gra?5rozpoczeta?5dnia?5?$AA@ 004373d8     main.obj
+ 0003:000013f4       ??_C@_0BA@JFNIOLAK@string?5too?5long?$AA@ 004373f4     main.obj
  0003:00001408       ??_7?$basic_filebuf@DU?$char_traits@D@std@@@std@@6B@ 00437408     main.obj
+ 0003:00001448       __real@4042800000000000    00437448     main.obj
  0003:00001454       ??_7?$basic_ofstream@DU?$char_traits@D@std@@@std@@6B@ 00437454     main.obj
  0003:0000145c       ??_8?$basic_ofstream@DU?$char_traits@D@std@@@std@@7B@ 0043745c     main.obj
  0003:0000146c       ??_7?$basic_fstream@DU?$char_traits@D@std@@@std@@6B@ 0043746c     main.obj
@@ -862,125 +875,111 @@
  0003:000019d0       ??_C@_05MEKKEGFB@n?4wav?$AA@ 004379d0     main.obj
  0003:000019d8       ??_C@_05LALOIELB@r?4wav?$AA@ 004379d8     main.obj
  0003:000019e0       ??_C@_05LDGIIGCK@b?4wav?$AA@ 004379e0     main.obj
- 0003:000019e8       ??_C@_05ODKFBHJJ@g?4wav?$AA@ 004379e8     main.obj
- 0003:000019f0       ??_C@_05GFDBGFDH@d?4wav?$AA@ 004379f0     main.obj
- 0003:000019f8       ??_C@_01DICPFPGM@k?$AA@    004379f8     main.obj
- 0003:000019fc       ??_C@_01NOFIACDB@w?$AA@    004379fc     main.obj
- 0003:00001a00       ??_C@_0BB@KLDNCCFE@log_aktualny?4txt?$AA@ 00437a00     main.obj
- 0003:00001a14       ??_C@_0DJ@EFIKGJBI@Uruchomiono?5ponownie?5gr?j?5z?5wy?$LD?$LJc@ 00437a14     main.obj
- 0003:00001a58       ??_C@_09LFKNBKJA@Posiadasz?$AA@ 00437a58     main.obj
- 0003:00001a64       ??_C@_0L@DAFLKCID@Wylosowano?$AA@ 00437a64     main.obj
- 0003:00001a74       ??_C@_0M@DIDIAOPI@?5Wylosowano?$AA@ 00437a74     main.obj
- 0003:00001a84       ??_C@_0BC@EAGHPBJK@Obstawiono?5zaklad?$AA@ 00437a84     main.obj
- 0003:00001a9c       ??_C@_0O@POHKAIHJ@Obstawiono?5za?$AA@ 00437a9c     main.obj
- 0003:00001aac       ??_C@_0BE@CILJHICG@Gra?5rozpoczeta?5dnia?$AA@ 00437aac     main.obj
- 0003:00001ac4       ??_C@_0N@KHLIPMCA@?5o?5godzinie?5?$AA@ 00437ac4     main.obj
- 0003:00001ad4       ??_C@_01LFCBOECM@?4?$AA@   00437ad4     main.obj
- 0003:00001ad8       ??_C@_0BF@EHKBBICH@Gra?5rozpoczeta?5dnia?5?$AA@ 00437ad8     main.obj
- 0003:00001af4       ??_C@_01JLIPDDHJ@?3?$AA@   00437af4     main.obj
- 0003:00001af8       ??_C@_0BK@PLEOEKGI@Nowa?5gra?5rozpoczeta?5dnia?5?$AA@ 00437af8     main.obj
- 0003:00001b18       ??_C@_0BB@GJELGIOA@Efekty_d?$JPwi?jkowe?$AA@ 00437b18     main.obj
- 0003:00001b2c       ??_C@_0BN@JMMCOBLJ@Efekty_d?$JPwi?jkowe?1bankrut?4wav?$AA@ 00437b2c     main.obj
- 0003:00001b50       ??_C@_0DC@DNDHBNPK@Rozpoczynam?5pobieranie?5brakuj?$LJcy@ 00437b50     main.obj
+ 0003:000019e8       ??_C@_05FMONAGNM@z?4wav?$AA@ 004379e8     main.obj
+ 0003:000019f0       ??_C@_05ODKFBHJJ@g?4wav?$AA@ 004379f0     main.obj
+ 0003:000019fc       ??_C@_01DICPFPGM@k?$AA@    004379fc     main.obj
+ 0003:00001a00       ??_C@_01NOFIACDB@w?$AA@    00437a00     main.obj
+ 0003:00001a14       ??_C@_0BB@KLDNCCFE@log_aktualny?4txt?$AA@ 00437a14     main.obj
+ 0003:00001a28       ??_C@_0DC@DNDHBNPK@Rozpoczynam?5pobieranie?5brakuj?$LJcy@ 00437a28     main.obj
+ 0003:00001a64       ??_C@_09LFKNBKJA@Posiadasz?$AA@ 00437a64     main.obj
+ 0003:00001a74       ??_C@_0L@DAFLKCID@Wylosowano?$AA@ 00437a74     main.obj
+ 0003:00001a84       ??_C@_0M@DIDIAOPI@?5Wylosowano?$AA@ 00437a84     main.obj
+ 0003:00001a90       ??_C@_0BG@DNDOADBI@kwota_pocz?$LJtkowa?51000?$AA@ 00437a90     main.obj
+ 0003:00001aac       ??_C@_0O@POHKAIHJ@Obstawiono?5za?$AA@ 00437aac     main.obj
+ 0003:00001abc       ??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@ 00437abc     main.obj
+ 0003:00001ad8       ??_C@_01LFCBOECM@?4?$AA@   00437ad8     main.obj
+ 0003:00001adc       ??_C@_0BH@GDCLDFHN@Gratuluje?5zwi?jkszy?$LDe?$JM?5?$AA@ 00437adc     main.obj
+ 0003:00001af8       ??_C@_01JLIPDDHJ@?3?$AA@   00437af8     main.obj
+ 0003:00001afc       ??_C@_0CA@KILAJOJF@Pobrano?5brakuj?$LJce?5pliki?5efekt?sw?$AA@ 00437afc     main.obj
+ 0003:00001b2c       ??_C@_0BB@GJELGIOA@Efekty_d?$JPwi?jkowe?$AA@ 00437b2c     main.obj
+ 0003:00001b50       ??_C@_0BN@JMMCOBLJ@Efekty_d?$JPwi?jkowe?1bankrut?4wav?$AA@ 00437b50     main.obj
+ 0003:00001b70       ??_C@_0BP@KIMEIPBM@Pobrano?5brakuj?$LJce?5pliki?5g?$LDos?sw?$AA@ 00437b70     main.obj
  0003:00001b90       ??_C@_0FP@HCIMMKGN@https?3?1?1github?4com?1talez2709?1Rul@ 00437b90     main.obj
+ 0003:00001bf0       ??_C@_0BH@LAIPMCHF@styl_liczenia_wygranej?$AA@ 00437bf0     main.obj
  0003:00001c08       ??_C@_0IB@GKCCNHLI@Brak?5plik?sw?5dla?5efekt?sw?5d?$JPwi?jkow@ 00437c08     main.obj
- 0003:00001ca4       ??_C@_0BO@OCGMENDH@Efekty_d?$JPwi?jkowe?1wygrana1?4wav?$AA@ 00437ca4     main.obj
- 0003:00001cc8       ??_C@_0BO@GEPIDPJJ@Efekty_d?$JPwi?jkowe?1wygrana2?4wav?$AA@ 00437cc8     main.obj
- 0003:00001cf0       ??_C@_0GA@OFKIGHHP@https?3?1?1github?4com?1talez2709?1Rul@ 00437cf0     main.obj
- 0003:00001d64       ??_C@_0CF@PNMICDIM@Efekty_d?$JPwi?jkowe?1zwielokrotnenie@ 00437d64     main.obj
- 0003:00001d90       ??_C@_0GH@BAJDCEKO@https?3?1?1github?4com?1talez2709?1Rul@ 00437d90     main.obj
- 0003:00001e0c       ??_C@_0CA@KILAJOJF@Pobrano?5brakuj?$LJce?5pliki?5efekt?sw?$AA@ 00437e0c     main.obj
- 0003:00001e34       ??_C@_05CMOJBPHN@G?$LDos?1?$AA@ 00437e34     main.obj
- 0003:00001e3c       ??_C@_05KFCKMKOB@Jacek?$AA@ 00437e3c     main.obj
- 0003:00001e44       ??_C@_03FPCJKMNP@Ewa?$AA@  00437e44     main.obj
- 0003:00001e48       ??_C@_04CDICBAGM@Maja?$AA@ 00437e48     main.obj
- 0003:00001e50       ??_C@_03JIHJHPIE@Jan?$AA@  00437e50     main.obj
- 0003:00001e54       ??_C@_06DKNIKMFF@Jacek2?$AA@ 00437e54     main.obj
- 0003:00001e5c       ??_C@_04PLEDLCJI@Ewa2?$AA@ 00437e5c     main.obj
- 0003:00001e64       ??_C@_05KJFHPLBC@Maja2?$AA@ 00437e64     main.obj
- 0003:00001e6c       ??_C@_04HDNGKDH@Jan2?$AA@  00437e6c     main.obj
- 0003:00001e74       ??_C@_05NKPCGME@Agata?$AA@ 00437e74     main.obj
- 0003:00001e7c       ??_C@_01IDAFKMJL@_?$AA@    00437e7c     main.obj
- 0003:00001e80       ??_C@_01KMDKNFGN@?1?$AA@   00437e80     main.obj
- 0003:00001e88       ??_C@_0ED@KNLDKMLM@https?3?1?1github?4com?1talez2709?1Rul@ 00437e88     main.obj
- 0003:00001ed8       ??_C@_04JLFAMLOH@G?$LDos?$AA@ 00437ed8     main.obj
- 0003:00001ee0       ??_C@_0DB@JAANGCNE@Rozpoczynam?5pobieranie?5brakuj?$LJcy@ 00437ee0     main.obj
- 0003:00001f20       ??_C@_0FC@DPJNGIHL@Brak?5plik?sw?5dla?5g?$LDosu?5oraz?5nie?5m@ 00437f20     main.obj
- 0003:00001f84       ??_C@_0BP@KIMEIPBM@Pobrano?5brakuj?$LJce?5pliki?5g?$LDos?sw?$AA@ 00437f84     main.obj
- 0003:00001fb0       ??_7?$basic_ifstream@DU?$char_traits@D@std@@@std@@6B@ 00437fb0     main.obj
- 0003:00001fb8       ??_8?$basic_ifstream@DU?$char_traits@D@std@@@std@@7B@ 00437fb8     main.obj
- 0003:00001fc4       ??_C@_0M@COFBHHKL@setting?4txt?$AA@ 00437fc4     main.obj
- 0003:00001fd4       ??_C@_0CC@GBEJJAFD@ilo?$JM?f_minimalna_obrot?sw_ruletki?5@ 00437fd4     main.obj
- 0003:00001ffc       ??_C@_0CI@KGOEKJAK@ilo?$JM?f_max_dodatkowych_obrot?sw_ru@ 00437ffc     main.obj
- 0003:0000202c       ??_C@_0BP@NMHFMMDP@czas_przeskoku_kulki_szybki?550?$AA@ 0043802c     main.obj
- 0003:00002054       ??_C@_0BO@ELNOLLHD@czas_przeskoku_kulki_wolny?575?$AA@ 00438054     main.obj
- 0003:00002078       ??_C@_0BJ@OHAGCGBG@czas_przerwy_dzwi?jku?5500?$AA@ 00438078     main.obj
- 0003:00002098       ??_C@_0BJ@NJDCNPPC@styl_liczenia_wygranej?51?$AA@ 00438098     main.obj
- 0003:000020b8       ??_C@_0BG@DNDOADBI@kwota_pocz?$LJtkowa?51000?$AA@ 004380b8     main.obj
- 0003:000020d4       ??_C@_0BA@ILKGKHCK@stan_d?$JPwi?jk?sw?51?$AA@ 004380d4     main.obj
- 0003:000020e8       ??_C@_0BG@EMABALP@czy_kontynuowa?f_gr?j?51?$AA@ 004380e8     main.obj
- 0003:00002104       ??_C@_0BG@COMBOMN@g?$LDos_odczytu_numeru?51?$AA@ 00438104     main.obj
- 0003:00002120       ??_C@_0BP@CJDLAIMM@g?$LDos_szybko?$JM?f_odczytu_numeru?54?$AA@ 00438120     main.obj
- 0003:00002148       ??_C@_0BD@MFIDEEIL@efekty_d?$JPwi?jkowe?51?$AA@ 00438148     main.obj
- 0003:00002160       ??_C@_0GC@FGDMKFMP@Warto?$JM?f?5wolnego?5czasu?5przeskoku?5@ 00438160     main.obj
- 0003:000021d8       ??_C@_0BN@KMOICOCN@Ustawiam?5domy?$JMlne?5ustawienie?$AA@ 004381d8     main.obj
- 0003:000021fc       ??_C@_0DL@EDLBNLFA@Ilo?$JM?f?5minimalna?5obrot?sw?5ruletki?5@ 004381fc     main.obj
- 0003:00002244       ??_C@_0DF@PACHBLM@Ilo?$JM?f?5max?5obrot?sw?5ruletki?5nie?5mo@ 00438244     main.obj
- 0003:00002288       ??_C@_0EG@FJFKONPC@Jedna?5z?5deklaracji?5w?5sprawie?5obr@ 00438288     main.obj
- 0003:000022dc       ??_C@_0DH@EDACBMH@Styl?5liczeia?5wygranej?5przyjmuje?5@ 004382dc     main.obj
- 0003:00002320       ??_C@_0DD@CJFGHGHP@Czas?5przerwy?5d?$JPwi?jku?5nie?5mo?$LPe?5by@ 00438320     main.obj
- 0003:00002360       ??_C@_0CP@ODEFLMCC@Kwota?5pocz?$LJtkowa?5nie?5mo?$LPe?5by?f?5mn@ 00438360     main.obj
- 0003:00002398       ??_C@_0CP@LNDFINPO@Stan?5d?$JPwi?jk?sw?5przyjmuje?5warto?$JMci@ 00438398     main.obj
- 0003:000023d0       ??_C@_0DJ@OKKJHGDF@Opcja?5kontynuowania?5gry?5przyjmuj@ 004383d0     main.obj
- 0003:00002418       ??_C@_0EB@BAPPBOHB@Opcja?5g?$LDos?5odczytu?5numeru?5przyjm@ 00438418     main.obj
- 0003:00002468       ??_C@_0ED@BNKOADPP@Opcja?5szybko?$JM?f?5g?$LDosu?5odczytu?5prz@ 00438468     main.obj
- 0003:000024b8       ??_C@_0DC@HENMFLLO@Opcja?5efekty?5d?$JPwi?jkowe?5przyjmuje@ 004384b8     main.obj
- 0003:000024f8       ??_C@_0EG@GKBLFIMF@Nie?5mo?$LPesz?5mie?f?5wy?$LD?$LJczonych?5d?$JPwi@ 004384f8     main.obj
- 0003:0000254c       ??_C@_0DF@LJEKJLPK@Nie?5mo?$LPesz?5mie?f?5wy?$LD?$LJczonych?5d?$JPwi@ 0043854c     main.obj
- 0003:0000258c       ??_C@_01EPMOAMKG@$?$AA@    0043858c     main.obj
- 0003:00002590       ??_C@_0M@GPFIMODH@?5Wygrywasz?5?$AA@ 00438590     main.obj
- 0003:000025a0       ??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@ 004385a0     main.obj
- 0003:000025b0       ??_C@_07KIPBKJCE@win?4wav?$AA@ 004385b0     main.obj
- 0003:000025bc       ??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@ 004385bc     main.obj
- 0003:000025dc       ??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@ 004385dc     main.obj
- 0003:000025ec       ??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@ 004385ec     main.obj
- 0003:0000260c       ??_C@_0CL@DCKMMPCF@Gratuluje?5zwi?jkszy?$LDe?$JM?5sw?sj?5zas?sb@ 0043860c     main.obj
- 0003:00002640       ??_C@_0BO@CAHFKDBP@?5krotnie?5sw?sj?5zas?sb?5finansowy?$AA@ 00438640     main.obj
- 0003:00002664       ??_C@_0BH@GDCLDFHN@Gratuluje?5zwi?jkszy?$LDe?$JM?5?$AA@ 00438664     main.obj
- 0003:00002680       ??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@ 00438680     main.obj
- 0003:00002694       ??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@ 00438694     main.obj
- 0003:000026ac       ??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@ 004386ac     main.obj
- 0003:000026c4       ??_C@_0DA@EJNBAHOM@Kulka?5w?5grze?0?5zaczekaj?5na?5wyloso@ 004386c4     main.obj
- 0003:00002700       ??_C@_0N@CGNKGGIC@?5Wylosowano?5?$AA@ 00438700     main.obj
- 0003:00002710       ??_C@_0CA@FGPIEHEM@ilo?$JM?f_minimalna_obrot?sw_ruletki?$AA@ 00438710     main.obj
- 0003:00002738       ??_C@_0CG@KNEPJEMG@ilo?$JM?f_max_dodatkowych_obrot?sw_ru@ 00438738     main.obj
- 0003:00002768       ??_C@_0BM@MMKKMDHC@czas_przeskoku_kulki_szybki?$AA@ 00438768     main.obj
- 0003:0000278c       ??_C@_0BL@LHGCEKLG@czas_przeskoku_kulki_wolny?$AA@ 0043878c     main.obj
- 0003:000027ac       ??_C@_0BH@LAIPMCHF@styl_liczenia_wygranej?$AA@ 004387ac     main.obj
- 0003:000027c8       ??_C@_0BB@KJAOIHBF@kwota_pocz?$LJtkowa?$AA@ 004387c8     main.obj
- 0003:000027dc       ??_C@_0O@JDOJANCO@stan_d?$JPwi?jk?sw?$AA@ 004387dc     main.obj
- 0003:000027ec       ??_C@_0BE@MGBNNKM@czy_kontynuowa?f_gr?j?$AA@ 004387ec     main.obj
- 0003:00002804       ??_C@_0BE@ILPCOCN@g?$LDos_odczytu_numeru?$AA@ 00438804     main.obj
- 0003:0000281c       ??_C@_0BN@ECEAENDF@g?$LDos_szybko?$JM?f_odczytu_numeru?$AA@ 0043881c     main.obj
- 0003:00002840       ??_C@_0BB@EHOIFKBK@efekty_d?$JPwi?jkowe?$AA@ 00438840     main.obj
- 0003:00002858       ??_C@_1NC@MMDHPGIM@?$AAf?$AA?3?$AA?2?$AAp?$AAr?$AAo?$AAg?$AAr?$AAa?$AAm?$AA?5?$AAf?$AAi?$AAl?$AAe?$AAs?$AA?5?$AA?$CI?$AAx?$AA8?$AA6?$AA?$CJ?$AA?2?$AAm?$AAi?$AAc?$AAr?$AAo?$AAs?$AAo?$AAf?$AAt@ 00438858     main.obj
- 0003:00002954       ??_C@_1DM@GMPLOCPK@?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAs?$AAu?$AAb?$AAs?$AAc?$AAr?$AAi?$AAp?$AAt?$AA?5?$AAo?$AAu?$AAt?$AA?5?$AAo?$AAf?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?$AA@ 00438954     main.obj
- 0003:000029a0       ??_C@_1LO@NPPEKPAI@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AAb?$AAa?$AAs?$AAi?$AAc?$AA_?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?$DM?$AAc?$AAh?$AAa?$AAr?$AA?0?$AAs?$AAt?$AAr?$AAu?$AAc?$AAt?$AA?5?$AAs?$AAt@ 004389a0     main.obj
- 0003:00002a88       ??_C@_1EA@OADAPGGK@?$AA?$CC?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAs?$AAu?$AAb?$AAs?$AAc?$AAr?$AAi?$AAp?$AAt?$AA?5?$AAo?$AAu?$AAt?$AA?5?$AAo?$AAf?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?$CC?$AA?$AA@ 00438a88     main.obj
- 0003:00002ad8       ??_C@_1GK@EPFFCEAH@?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAv?$AAa?$AAl?$AAu?$AAe?$AA?9?$AAi?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl@ 00438ad8     main.obj
- 0003:00002b58       ??_C@_1MG@GDGHDIKC@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AA_?$AAS?$AAt?$AAr?$AAi?$AAn?$AAg?$AA_?$AAc?$AAo?$AAn?$AAs?$AAt?$AA_?$AAi?$AAt?$AAe?$AAr?$AAa?$AAt?$AAo?$AAr?$AA?$DM?$AAc?$AAl?$AAa?$AAs@ 00438b58     main.obj
- 0003:00002c48       ??_C@_1GO@PNALIMBD@?$AA?$CC?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAv?$AAa?$AAl?$AAu?$AAe?$AA?9?$AAi?$AAn?$AAi?$AAt?$AAi?$AAa@ 00438c48     main.obj
- 0003:00002cd0       ??_C@_1BAE@HEEJFKO@?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAi?$AAt?$AAe?$AAr?$AAa?$AAt@ 00438cd0     main.obj
- 0003:00002e08       ??_C@_1BAO@BGLBIONH@?$AA?$CC?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAi?$AAt?$AAe?$AAr?$AAa@ 00438e08     main.obj
- 0003:00002f50       ??_C@_1KK@GJPIMLCF@?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAi?$AAt?$AAe?$AAr?$AAa?$AAt@ 00438f50     main.obj
- 0003:00003020       ??_C@_1KO@CMPBFHAM@?$AA?$CC?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAi?$AAt?$AAe?$AAr?$AAa@ 00439020     main.obj
- 0003:000030f0       ??_C@_0BI@CFPLBAOH@invalid?5string?5position?$AA@ 004390f0     main.obj
- 0003:00003110       ??_C@_1FM@PKOPLGBP@?$AAi?$AAn?$AAv?$AAa?$AAl?$AAi?$AAd?$AA?5?$AAm?$AAi?$AAn?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAm?$AAa?$AAx?$AA?5?$AAa?$AAr?$AAg?$AAu?$AAm?$AAe?$AAn?$AAt?$AAs?$AA?5?$AAf?$AAo@ 00439110     main.obj
- 0003:00003180       ??_C@_1FC@FNLBOEA@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AAu?$AAn?$AAi?$AAf?$AAo?$AAr?$AAm?$AA_?$AAi?$AAn?$AAt?$AA?$DM?$AAi?$AAn?$AAt?$AA?$DO?$AA?3?$AA?3?$AAp?$AAa?$AAr?$AAa?$AAm?$AA_?$AAt?$AAy?$AAp@ 00439180     main.obj
- 0003:000031e8       ??_C@_1GA@FJHEAOJP@?$AA?$CC?$AAi?$AAn?$AAv?$AAa?$AAl?$AAi?$AAd?$AA?5?$AAm?$AAi?$AAn?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAm?$AAa?$AAx?$AA?5?$AAa?$AAr?$AAg?$AAu?$AAm?$AAe?$AAn?$AAt?$AAs?$AA?5?$AAf@ 004391e8     main.obj
- 0003:0000325c       ??_C@_0BA@JFNIOLAK@string?5too?5long?$AA@ 0043925c     main.obj
- 0003:00003270       __real@4040000000000000    00439270     main.obj
- 0003:00003280       __real@4042800000000000    00439280     main.obj
+ 0003:00001c8c       ??_C@_0DB@JAANGCNE@Rozpoczynam?5pobieranie?5brakuj?$LJcy@ 00437c8c     main.obj
+ 0003:00001cc8       ??_C@_0BO@OCGMENDH@Efekty_d?$JPwi?jkowe?1wygrana1?4wav?$AA@ 00437cc8     main.obj
+ 0003:00001cf0       ??_C@_0GA@GDDMBFNB@https?3?1?1github?4com?1talez2709?1Rul@ 00437cf0     main.obj
+ 0003:00001d64       ??_C@_0BO@GEPIDPJJ@Efekty_d?$JPwi?jkowe?1wygrana2?4wav?$AA@ 00437d64     main.obj
+ 0003:00001d90       ??_C@_0GA@OFKIGHHP@https?3?1?1github?4com?1talez2709?1Rul@ 00437d90     main.obj
+ 0003:00001df0       ??_C@_0BI@CFPLBAOH@invalid?5string?5position?$AA@ 00437df0     main.obj
+ 0003:00001e0c       ??_C@_0CF@PNMICDIM@Efekty_d?$JPwi?jkowe?1zwielokrotnenie@ 00437e0c     main.obj
+ 0003:00001e3c       ??_C@_05CMOJBPHN@G?$LDos?1?$AA@ 00437e3c     main.obj
+ 0003:00001e48       ??_C@_03FPCJKMNP@Ewa?$AA@  00437e48     main.obj
+ 0003:00001e54       ??_C@_03JIHJHPIE@Jan?$AA@  00437e54     main.obj
+ 0003:00001e5c       ??_C@_06DKNIKMFF@Jacek2?$AA@ 00437e5c     main.obj
+ 0003:00001e64       ??_C@_04PLEDLCJI@Ewa2?$AA@ 00437e64     main.obj
+ 0003:00001e6c       ??_C@_05KJFHPLBC@Maja2?$AA@ 00437e6c     main.obj
+ 0003:00001e74       ??_C@_04HDNGKDH@Jan2?$AA@  00437e74     main.obj
+ 0003:00001e80       ??_C@_01IDAFKMJL@_?$AA@    00437e80     main.obj
+ 0003:00001e84       ??_C@_0BP@CJDLAIMM@g?$LDos_szybko?$JM?f_odczytu_numeru?54?$AA@ 00437e84     main.obj
+ 0003:00001ea4       ??_C@_0CL@DCKMMPCF@Gratuluje?5zwi?jkszy?$LDe?$JM?5sw?sj?5zas?sb@ 00437ea4     main.obj
+ 0003:00001ed8       ??_C@_01KMDKNFGN@?1?$AA@   00437ed8     main.obj
+ 0003:00001ee0       ??_C@_04JLFAMLOH@G?$LDos?$AA@ 00437ee0     main.obj
+ 0003:00001ee8       ??_C@_0DF@LJEKJLPK@Nie?5mo?$LPesz?5mie?f?5wy?$LD?$LJczonych?5d?$JPwi@ 00437ee8     main.obj
+ 0003:00001f20       ??_C@_0ED@KNLDKMLM@https?3?1?1github?4com?1talez2709?1Rul@ 00437f20     main.obj
+ 0003:00001f64       ??_C@_0BO@CAHFKDBP@?5krotnie?5sw?sj?5zas?sb?5finansowy?$AA@ 00437f64     main.obj
+ 0003:00001f84       ??_C@_0DA@EJNBAHOM@Kulka?5w?5grze?0?5zaczekaj?5na?5wyloso@ 00437f84     main.obj
+ 0003:00001fbc       ??_7?$basic_ifstream@DU?$char_traits@D@std@@@std@@6B@ 00437fbc     main.obj
+ 0003:00001fc4       ??_8?$basic_ifstream@DU?$char_traits@D@std@@@std@@7B@ 00437fc4     main.obj
+ 0003:00001fd4       ??_C@_0M@COFBHHKL@setting?4txt?$AA@ 00437fd4     main.obj
+ 0003:00001ffc       ??_C@_0CC@GBEJJAFD@ilo?$JM?f_minimalna_obrot?sw_ruletki?5@ 00437ffc     main.obj
+ 0003:0000202c       ??_C@_0CI@KGOEKJAK@ilo?$JM?f_max_dodatkowych_obrot?sw_ru@ 0043802c     main.obj
+ 0003:00002054       ??_C@_0BP@NMHFMMDP@czas_przeskoku_kulki_szybki?550?$AA@ 00438054     main.obj
+ 0003:00002078       ??_C@_0BO@ELNOLLHD@czas_przeskoku_kulki_wolny?575?$AA@ 00438078     main.obj
+ 0003:00002098       ??_C@_0BJ@OHAGCGBG@czas_przerwy_dzwi?jku?5500?$AA@ 00438098     main.obj
+ 0003:000020b8       ??_C@_0BJ@NJDCNPPC@styl_liczenia_wygranej?51?$AA@ 004380b8     main.obj
+ 0003:000020e8       ??_C@_0BA@ILKGKHCK@stan_d?$JPwi?jk?sw?51?$AA@ 004380e8     main.obj
+ 0003:00002104       ??_C@_0BG@EMABALP@czy_kontynuowa?f_gr?j?51?$AA@ 00438104     main.obj
+ 0003:00002120       ??_C@_0BG@COMBOMN@g?$LDos_odczytu_numeru?51?$AA@ 00438120     main.obj
+ 0003:00002138       ??_C@_0CG@KNEPJEMG@ilo?$JM?f_max_dodatkowych_obrot?sw_ru@ 00438138     main.obj
+ 0003:00002160       ??_C@_0FC@DPJNGIHL@Brak?5plik?sw?5dla?5g?$LDosu?5oraz?5nie?5m@ 00438160     main.obj
+ 0003:000021b4       ??_C@_0BN@ECEAENDF@g?$LDos_szybko?$JM?f_odczytu_numeru?$AA@ 004381b4     main.obj
+ 0003:000021d8       ??_C@_0BD@MFIDEEIL@efekty_d?$JPwi?jkowe?51?$AA@ 004381d8     main.obj
+ 0003:000021fc       ??_C@_0BN@KMOICOCN@Ustawiam?5domy?$JMlne?5ustawienie?$AA@ 004381fc     main.obj
+ 0003:00002244       ??_C@_0DL@EDLBNLFA@Ilo?$JM?f?5minimalna?5obrot?sw?5ruletki?5@ 00438244     main.obj
+ 0003:00002280       ??_C@_1DM@GMPLOCPK@?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAs?$AAu?$AAb?$AAs?$AAc?$AAr?$AAi?$AAp?$AAt?$AA?5?$AAo?$AAu?$AAt?$AA?5?$AAo?$AAf?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?$AA@ 00438280     main.obj
+ 0003:000022dc       ??_C@_0DF@PACHBLM@Ilo?$JM?f?5max?5obrot?sw?5ruletki?5nie?5mo@ 004382dc     main.obj
+ 0003:00002320       ??_C@_0DH@EDACBMH@Styl?5liczeia?5wygranej?5przyjmuje?5@ 00438320     main.obj
+ 0003:00002360       ??_C@_0DD@CJFGHGHP@Czas?5przerwy?5d?$JPwi?jku?5nie?5mo?$LPe?5by@ 00438360     main.obj
+ 0003:00002398       ??_C@_0CP@ODEFLMCC@Kwota?5pocz?$LJtkowa?5nie?5mo?$LPe?5by?f?5mn@ 00438398     main.obj
+ 0003:000023d0       ??_C@_0CP@LNDFINPO@Stan?5d?$JPwi?jk?sw?5przyjmuje?5warto?$JMci@ 004383d0     main.obj
+ 0003:00002418       ??_C@_0EG@FJFKONPC@Jedna?5z?5deklaracji?5w?5sprawie?5obr@ 00438418     main.obj
+ 0003:00002468       ??_C@_0EB@BAPPBOHB@Opcja?5g?$LDos?5odczytu?5numeru?5przyjm@ 00438468     main.obj
+ 0003:000024b8       ??_C@_0DJ@OKKJHGDF@Opcja?5kontynuowania?5gry?5przyjmuj@ 004384b8     main.obj
+ 0003:000024f8       ??_C@_0ED@BNKOADPP@Opcja?5szybko?$JM?f?5g?$LDosu?5odczytu?5prz@ 004384f8     main.obj
+ 0003:0000254c       ??_C@_0DC@HENMFLLO@Opcja?5efekty?5d?$JPwi?jkowe?5przyjmuje@ 0043854c     main.obj
+ 0003:00002590       ??_C@_01EPMOAMKG@$?$AA@    00438590     main.obj
+ 0003:000025a0       ??_C@_0M@GPFIMODH@?5Wygrywasz?5?$AA@ 004385a0     main.obj
+ 0003:000025b0       ??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@ 004385b0     main.obj
+ 0003:000025bc       ??_C@_07KIPBKJCE@win?4wav?$AA@ 004385bc     main.obj
+ 0003:000025ec       ??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@ 004385ec     main.obj
+ 0003:0000260c       ??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@ 0043860c     main.obj
+ 0003:00002628       ??_C@_1GA@FJHEAOJP@?$AA?$CC?$AAi?$AAn?$AAv?$AAa?$AAl?$AAi?$AAd?$AA?5?$AAm?$AAi?$AAn?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAm?$AAa?$AAx?$AA?5?$AAa?$AAr?$AAg?$AAu?$AAm?$AAe?$AAn?$AAt?$AAs?$AA?5?$AAf@ 00438628     main.obj
+ 0003:00002694       ??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@ 00438694     main.obj
+ 0003:000026ac       ??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@ 004386ac     main.obj
+ 0003:000026c4       ??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@ 004386c4     main.obj
+ 0003:00002710       ??_C@_0N@CGNKGGIC@?5Wylosowano?5?$AA@ 00438710     main.obj
+ 0003:00002738       ??_C@_0CA@FGPIEHEM@ilo?$JM?f_minimalna_obrot?sw_ruletki?$AA@ 00438738     main.obj
+ 0003:0000278c       ??_C@_0BM@MMKKMDHC@czas_przeskoku_kulki_szybki?$AA@ 0043878c     main.obj
+ 0003:000027ac       ??_C@_0BL@LHGCEKLG@czas_przeskoku_kulki_wolny?$AA@ 004387ac     main.obj
+ 0003:000027ec       ??_C@_0O@JDOJANCO@stan_d?$JPwi?jk?sw?$AA@ 004387ec     main.obj
+ 0003:00002804       ??_C@_0BE@MGBNNKM@czy_kontynuowa?f_gr?j?$AA@ 00438804     main.obj
+ 0003:0000281c       ??_C@_0BE@ILPCOCN@g?$LDos_odczytu_numeru?$AA@ 0043881c     main.obj
+ 0003:00002858       ??_C@_0EG@GKBLFIMF@Nie?5mo?$LPesz?5mie?f?5wy?$LD?$LJczonych?5d?$JPwi@ 00438858     main.obj
+ 0003:000028a0       ??_C@_1KO@CMPBFHAM@?$AA?$CC?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAi?$AAt?$AAe?$AAr?$AAa@ 004388a0     main.obj
+ 0003:00002954       ??_C@_0BB@EHOIFKBK@efekty_d?$JPwi?jkowe?$AA@ 00438954     main.obj
+ 0003:000029a0       ??_C@_1NC@MMDHPGIM@?$AAf?$AA?3?$AA?2?$AAp?$AAr?$AAo?$AAg?$AAr?$AAa?$AAm?$AA?5?$AAf?$AAi?$AAl?$AAe?$AAs?$AA?5?$AA?$CI?$AAx?$AA8?$AA6?$AA?$CJ?$AA?2?$AAm?$AAi?$AAc?$AAr?$AAo?$AAs?$AAo?$AAf?$AAt@ 004389a0     main.obj
+ 0003:00002ad8       ??_C@_1EA@OADAPGGK@?$AA?$CC?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAs?$AAu?$AAb?$AAs?$AAc?$AAr?$AAi?$AAp?$AAt?$AA?5?$AAo?$AAu?$AAt?$AA?5?$AAo?$AAf?$AA?5?$AAr?$AAa?$AAn?$AAg?$AAe?$AA?$CC?$AA?$AA@ 00438ad8     main.obj
+ 0003:00002b58       ??_C@_1GK@EPFFCEAH@?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAv?$AAa?$AAl?$AAu?$AAe?$AA?9?$AAi?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl@ 00438b58     main.obj
+ 0003:00002bc8       ??_C@_1MG@GDGHDIKC@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AA_?$AAS?$AAt?$AAr?$AAi?$AAn?$AAg?$AA_?$AAc?$AAo?$AAn?$AAs?$AAt?$AA_?$AAi?$AAt?$AAe?$AAr?$AAa?$AAt?$AAo?$AAr?$AA?$DM?$AAc?$AAl?$AAa?$AAs@ 00438bc8     main.obj
+ 0003:00002cd0       ??_C@_1GO@PNALIMBD@?$AA?$CC?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAv?$AAa?$AAl?$AAu?$AAe?$AA?9?$AAi?$AAn?$AAi?$AAt?$AAi?$AAa@ 00438cd0     main.obj
+ 0003:00002e08       ??_C@_1BAE@HEEJFKO@?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAi?$AAt?$AAe?$AAr?$AAa?$AAt@ 00438e08     main.obj
+ 0003:00002f10       ??_C@_1BAO@BGLBIONH@?$AA?$CC?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAi?$AAt?$AAe?$AAr?$AAa@ 00438f10     main.obj
+ 0003:00003020       ??_C@_1KK@GJPIMLCF@?$AAc?$AAa?$AAn?$AAn?$AAo?$AAt?$AA?5?$AAd?$AAe?$AAr?$AAe?$AAf?$AAe?$AAr?$AAe?$AAn?$AAc?$AAe?$AA?5?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?5?$AAi?$AAt?$AAe?$AAr?$AAa?$AAt@ 00439020     main.obj
+ 0003:00003180       ??_C@_1FM@PKOPLGBP@?$AAi?$AAn?$AAv?$AAa?$AAl?$AAi?$AAd?$AA?5?$AAm?$AAi?$AAn?$AA?5?$AAa?$AAn?$AAd?$AA?5?$AAm?$AAa?$AAx?$AA?5?$AAa?$AAr?$AAg?$AAu?$AAm?$AAe?$AAn?$AAt?$AAs?$AA?5?$AAf?$AAo@ 00439180     main.obj
+ 0003:000031e8       ??_C@_1FC@FNLBOEA@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AAu?$AAn?$AAi?$AAf?$AAo?$AAr?$AAm?$AA_?$AAi?$AAn?$AAt?$AA?$DM?$AAi?$AAn?$AAt?$AA?$DO?$AA?3?$AA?3?$AAp?$AAa?$AAr?$AAa?$AAm?$AA_?$AAt?$AAy?$AAp@ 004391e8     main.obj
+ 0003:00003280       __real@4040000000000000    00439280     main.obj
  0003:0000328c       ??_C@_0CM@OKINAFCK@f?3?2dd?2vctools?2crt?2crtw32?2stdcpp?2@ 0043928c     msvcprtd:locale0_implib.obj
  0003:00003360       ??_7type_info@@6B@         00439360     MSVCRTD:std_type_info_static.obj
  0003:0000336c       ??_7bad_alloc@std@@6B@     0043936c     MSVCRTD:throw_bad_alloc.obj
@@ -1025,6 +1024,9 @@
  0003:00003d3c       ??_C@_1BC@JINFINNJ@?$AAM?$AAS?$AAP?$AAD?$AAB?$AA1?$AA4?$AA0?$AA?$AA@ 00439d3c     MSVCRTD:_pdblkup_.obj
  0003:00003d54       ??_C@_0BB@KCIACLNC@PDBOpenValidate5?$AA@ 00439d54     MSVCRTD:_pdblkup_.obj
  0003:00003da8       __load_config_used         00439da8     MSVCRTD:loadcfg.obj
+ 0003:00003e40       ??_C@_0GH@BAJDCEKO@https?3?1?1github?4com?1talez2709?1Rul@ 00439e40     main.obj
+ 0003:00003ea8       ??_C@_0GC@FGDMKFMP@Warto?$JM?f?5wolnego?5czasu?5przeskoku?5@ 00439ea8     main.obj
+ 0003:00003f10       ??_C@_1LO@NPPEKPAI@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AAb?$AAa?$AAs?$AAi?$AAc?$AA_?$AAs?$AAt?$AAr?$AAi?$AAn?$AAg?$AA?$DM?$AAc?$AAh?$AAa?$AAr?$AA?0?$AAs?$AAt?$AAr?$AAu?$AAc?$AAt?$AA?5?$AAs?$AAt@ 00439f10     main.obj
  0003:00004050       ??_R4exception@std@@6B@    0043a050     main.obj
  0003:00004068       ??_R3exception@std@@8      0043a068     main.obj
  0003:0000407c       ??_R2exception@std@@8      0043a07c     main.obj
@@ -1374,8 +1376,3 @@
  0005:00000508       __IMPORT_DESCRIPTOR_ucrtbased 0043e508     ucrtd:ucrtbased.dll
  0005:0000051c       __NULL_IMPORT_DESCRIPTOR   0043e51c     winmm:WINMM.dll
  0006:00000000       ___guard_check_icall_fptr  00441000     MSVCRTD:guard_support.obj
-
- Exports
-
-  ordinal    name
-

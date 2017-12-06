@@ -1,6 +1,8 @@
 # Ruletka
-Aby działały efekty dźwiękowe folder Efekty dzwiękowe trzeba skopiować do folderu gdzie znajduje się plik exe
-Aby działały odczyt głosowy numeru folder Głos trzeba skopiować do folderu gdzie znajduje się plik exe
+Efekty dźwiękowe zostaną samodzienie pobrane po uruchomieniu programu, jeżeli nie zostaną proszę folder Efekty dzwiękowe skopiować do folderu gdzie znajduje się plik exe
+Odczyt głosowy zostanie samodzienie pobrany po uruchomieniu programu, jeżeli nie zostaną proszę folder Głos skopiować do folderu gdzie znajduje się plik exe
+
+Link do pobrania folderów https://github.com/talez2709/Ruletka/tree/master/Ruletka
 
 Po pierwszym uruchomieniu zostanie wygenerowany plik z ustawieniami
 
