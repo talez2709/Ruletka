@@ -9,6 +9,9 @@
 #include <string> //Obs³uga stringów
 #include <windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),HANDLE,GetStdHandle(),SetConsoleTextAttribute()
 #include <MMsystem.h> //PlaySound() (Aby dzia³a³o trzeba dodaæ winmm.lib lub coredll.lib do linkera (konsolidatora))
+#pragma comment(lib, "winmm.lib") //Dodanie winmm.lib do linkera (konsolidatora)
+#include <urlmon.h> //URLDownloadToFileA() (Aby dzia³a³o trzeba dodaæ urlmon.lib do linkera (konsolidatora))
+#pragma comment(lib, "urlmon.lib") //Dodanie urlmon.lib do linkera (konsolidatora)
 //-------------------------------------------------------------------------------------
 
 //-------------------------- deklaracja wyboru przestrzeni nazw std -------------------
@@ -56,6 +59,7 @@ short stan_dŸwiêków = 1; //Czy w³¹czone dŸwiêki 1 <-tak 0 <-nie
 short czy_kontynuowaæ_grê = 1; //Czy w³¹czone kontynuowanie gry od skoñczonej poprzednio pozycji 1 <-tak 0 <-nie
 short g³os_odczytu_numeru = 1; //Wybór g³osu który odczyta wylosowany numer 0 <- Brak 1 <- Jacek (Ivona) 2 <- Ewa (Ivona) 3 <- Maja (Ivona) 4 <- Jan (Ivona) 5 <- Jacek (Ivona 2) 6 <- Ewa (Ivona 2) 7 <- Maja (Ivona 2) 8 <- Jan (Ivona 2) 9 <- Agata (Scansoft)
 short g³os_szybkoœæ_odczytu_numeru = 4; //Wybór szybkoœci mowy, skala od 1 do 5
+short efekty_dŸwiêkowe = 1; //Czy w³¹czone efekty dŸwiêkowe 1 <-tak 0 <-nie
 //-------------------------------------------------------------------------------------
 
 //---------------------------- deklaracje zmiennych globalnych ------------------------
@@ -71,6 +75,15 @@ int main()
 	setlocale(LC_ALL, "polish"); // W celu polskich liter w konsoli
 	srand((unsigned int)time(nullptr)); //Zainicjowanie generatorza LCG (Liniowy Generator Kongruentny) dla ma³o wa¿nych liczb
 	Show_Cursor(); //Pokazanie kursora tekstowego w konsoli
+
+//	string link = "https://github.com/talez2709/Ruletka/raw/master/Ruletka/G%C5%82os/Agata%20_1/0.wav";
+//	string save = "a/bankrut.wav";
+
+	//if (URLDownloadToFileA(nullptr, link.c_str(), save.c_str(), 0, nullptr) == S_OK) {
+	//}
+	//else {
+	//	cout << "B³¹d pobierania" << endl;
+	//}
 
 	SprawdŸ_ustawienia();
 	SprawdŸ_Pliki();
@@ -387,8 +400,7 @@ int Wylosuj(const int & od_liczby, const int & do_liczby)
 }
 
 void Odczytaj_liczbê(const int & wylosowana_liczba, const string & typ_zak³adu) {
-	if (g³os_odczytu_numeru == 0) return;
-	if (!G³osyKompletne) return;
+	if ((g³os_odczytu_numeru == 0) || (!G³osyKompletne)) return;
 
 	stringstream numers;
 	numers << wylosowana_liczba;
@@ -581,149 +593,298 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 
 void SprawdŸ_Pliki()
 {
-	string buf; //Utworzenie bufora tekstowego do celu sprawdzania plików z g³osem
-
-	G³os = "G³os/"; //Wpisanie do zmiennej G³os pocz¹tku œcie¿ki do pliku z g³osem
-
-	switch (g³os_odczytu_numeru) //U¿ycie warunku wielokrotnego wyboru do wpisania odpowiedniej nazwy g³osu do zmiennej g³os_nazwa
-	{
-	case 1: //Gdy g³os_odczytu_numeru==1
-	{
-		G³os += "Jacek "; //Dodanie do zmiennej nazwy wybranego g³osu Jacek
-		break; //Wyjœcie z instrukcji case //Wyjœcie z instrukcji case
-	}
-	case 2: //Gdy g³os_odczytu_numeru==2
-	{
-		G³os += "Ewa "; //Dodanie do zmiennej nazwy wybranego g³osu Ewa
-		break; //Wyjœcie z instrukcji case
-	}
-	case 3: //Gdy g³os_odczytu_numeru==3
-	{
-		G³os += "Maja "; //Dodanie do zmiennej nazwy wybranego g³osu Maja
-		break; //Wyjœcie z instrukcji case
-	}
-	case 4: //Gdy g³os_odczytu_numeru==4
-	{
-		G³os += "Jan "; //Dodanie do zmiennej nazwy wybranego g³osu Jan
-		break; //Wyjœcie z instrukcji case
-	}
-	case 5: //Gdy g³os_odczytu_numeru==5
-	{
-		G³os += "Jacek 2"; //Dodanie do zmiennej nazwy wybranego g³osu Jacek 2
-		break; //Wyjœcie z instrukcji case
-	}
-
-	case 6: //Gdy g³os_odczytu_numeru==6
-	{
-		G³os += "Ewa 2"; //Dodanie do zmiennej nazwy wybranego g³osu Ewa 2
-		break; //Wyjœcie z instrukcji case
-	}
-	case 7: //Gdy g³os_odczytu_numeru==7
-	{
-		G³os += "Maja 2"; //Dodanie do zmiennej nazwy wybranego g³osu Maja 2
-		break; //Wyjœcie z instrukcji case
-	}
-	case 8: //Gdy g³os_odczytu_numeru==8
-	{
-		G³os += "Jan 2"; //Dodanie do zmiennej nazwy wybranego g³osu Jan 2
-		break; //Wyjœcie z instrukcji case
-	}
-	case 9: //Gdy g³os_odczytu_numeru==9
-	{
-		G³os += "Agata "; //Dodanie do zmiennej nazwy wybranego g³osu Agata
-		break; //Wyjœcie z instrukcji case
-	}
-	default: //Je¿eli ¿aden warunek nie jest spe³niony to
-		break; //Wyjœcie z instrukcji case
-	}
-
-	G³os += "_"; //Dodanie do zmiennej podkreœlenia odzielaj¹cego nazwê od szybkoœci
-	G³os += '0' + g³os_szybkoœæ_odczytu_numeru; //Dodanie do zmiennej szybkoœci mowy
-	G³os += "/"; //Dodanie do zmiennej ukoœnika który odziela nazwê folderu od pliku
-
-	if ((_access((G³os + "p.wav").c_str(), 0)))
-	{
-		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
-	}
-
-	if ((_access((G³os + "n.wav").c_str(), 0)))
-	{
-		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
-	}
-
-	if ((_access((G³os + "r.wav").c_str(), 0)))
-	{
-		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
-	}
-
-	if ((_access((G³os + "b.wav").c_str(), 0)))
-	{
-		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
-	}
-
-	if ((_access((G³os + "g.wav").c_str(), 0)))
-	{
-		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
-	}
-
-	if ((_access((G³os + "d.wav").c_str(), 0)))
-	{
-		cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-		G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-		return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
-	}
-
-	for (unsigned short i = 1; i <= 3; ++i)
-	{
-		stringstream numers;
-		numers << i;
-		if ((_access((G³os + "k" + numers.str() + ".wav").c_str(), 0)))
+	if (stan_dŸwiêków == 1)
+		if (efekty_dŸwiêkowe == 1)
 		{
-			cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-			G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-			return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
-		}
-	}
+			if ((_access("Efekty_dŸwiêkowe", 0)))
+			{
+				CreateDirectoryA("Efekty_dŸwiêkowe", nullptr);
+			}
 
-	for (unsigned short i = 1; i <= 12; ++i)
-	{
-		stringstream numers;
-		numers << i;
-		if ((_access((G³os + "w" + numers.str() + ".wav").c_str(), 0)))
-		{
-			cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-			G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-			return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
-		}
-	}
+			bool czy_pobierano = false;
+			bool czy_pobrano = true;
 
-	for (unsigned short i = 0; i <= 36; ++i)
-	{
-		stringstream numers;
-		numers << i;
-		if ((_access((G³os + numers.str() + ".wav").c_str(), 0)))
-		{
-			cout << "Brak wszystkich plików dla g³osu, wy³¹czono odczytywanie wyniku" << endl;
-			G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-			return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+			if ((_access("Efekty_dŸwiêkowe/bankrut.wav", 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/bankrut.wav", "Efekty_dŸwiêkowe/bankrut.wav", 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl;
+					EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			if ((_access("Efekty_dŸwiêkowe/wygrana1.wav", 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/bankrut.wav", "Efekty_dŸwiêkowe/wygrana1.wav", 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl;
+					EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			if ((_access("Efekty_dŸwiêkowe/wygrana2.wav", 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/wygrana2.wav", "Efekty_dŸwiêkowe/wygrana2.wav", 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl;
+					EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			if ((_access("Efekty_dŸwiêkowe/zwielokrotnenie.wav", 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/zwielokrotnenie.wav", "Efekty_dŸwiêkowe/zwielokrotnenie.wav", 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl;
+					EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			if (czy_pobierano) if (czy_pobierano) cout << "Pobrano brakuj¹ce pliki efektów" << endl;
 		}
-	}
 
 	if (stan_dŸwiêków == 1)
-		if ((_access("Efekty dzwiêkowe/bankrut.wav", 0)) || (_access("Efekty dzwiêkowe/wygrana1.wav", 0)) || (_access("Efekty dzwiêkowe/wygrana2.wav", 0)) || (_access("Efekty dzwiêkowe/zwielokrotnenie.wav", 0)))
+		if (g³os_odczytu_numeru > 0)
 		{
-			cout << "Brak plików dla efektów dŸwiêkowych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl;
-			EfektyKompletne = false;
+			string buf; //Utworzenie bufora tekstowego do celu sprawdzania plików z g³osem
+
+			G³os = "G³os/"; //Wpisanie do zmiennej G³os pocz¹tku œcie¿ki do pliku z g³osem
+
+			switch (g³os_odczytu_numeru) //U¿ycie warunku wielokrotnego wyboru do wpisania odpowiedniej nazwy g³osu do zmiennej g³os_nazwa
+			{
+			case 1: //Gdy g³os_odczytu_numeru==1
+			{
+				G³os += "Jacek"; //Dodanie do zmiennej nazwy wybranego g³osu Jacek
+				break; //Wyjœcie z instrukcji case //Wyjœcie z instrukcji case
+			}
+			case 2: //Gdy g³os_odczytu_numeru==2
+			{
+				G³os += "Ewa"; //Dodanie do zmiennej nazwy wybranego g³osu Ewa
+				break; //Wyjœcie z instrukcji case
+			}
+			case 3: //Gdy g³os_odczytu_numeru==3
+			{
+				G³os += "Maja"; //Dodanie do zmiennej nazwy wybranego g³osu Maja
+				break; //Wyjœcie z instrukcji case
+			}
+			case 4: //Gdy g³os_odczytu_numeru==4
+			{
+				G³os += "Jan"; //Dodanie do zmiennej nazwy wybranego g³osu Jan
+				break; //Wyjœcie z instrukcji case
+			}
+			case 5: //Gdy g³os_odczytu_numeru==5
+			{
+				G³os += "Jacek2"; //Dodanie do zmiennej nazwy wybranego g³osu Jacek 2
+				break; //Wyjœcie z instrukcji case
+			}
+
+			case 6: //Gdy g³os_odczytu_numeru==6
+			{
+				G³os += "Ewa2"; //Dodanie do zmiennej nazwy wybranego g³osu Ewa 2
+				break; //Wyjœcie z instrukcji case
+			}
+			case 7: //Gdy g³os_odczytu_numeru==7
+			{
+				G³os += "Maja2"; //Dodanie do zmiennej nazwy wybranego g³osu Maja 2
+				break; //Wyjœcie z instrukcji case
+			}
+			case 8: //Gdy g³os_odczytu_numeru==8
+			{
+				G³os += "Jan2"; //Dodanie do zmiennej nazwy wybranego g³osu Jan 2
+				break; //Wyjœcie z instrukcji case
+			}
+			case 9: //Gdy g³os_odczytu_numeru==9
+			{
+				G³os += "Agata"; //Dodanie do zmiennej nazwy wybranego g³osu Agata
+				break; //Wyjœcie z instrukcji case
+			}
+			default: //Je¿eli ¿aden warunek nie jest spe³niony to
+				break; //Wyjœcie z instrukcji case
+			}
+
+			G³os += "_"; //Dodanie do zmiennej podkreœlenia odzielaj¹cego nazwê od szybkoœci
+			G³os += '0' + g³os_szybkoœæ_odczytu_numeru; //Dodanie do zmiennej szybkoœci mowy
+			G³os += "/"; //Dodanie do zmiennej ukoœnika który odziela nazwê folderu od pliku
+
+			string link = "https://github.com/talez2709/Ruletka/raw/master/Ruletka/G%C5%82os/";
+
+			string g³os2 = G³os;
+			g³os2.erase(0, 5);
+
+			if ((_access("G³os", 0)))
+			{
+				CreateDirectoryA("G³os", nullptr);
+			}
+			if ((_access(("G³os/" + g³os2).c_str(), 0)))
+			{
+				CreateDirectoryA(("G³os/" + g³os2).c_str(), nullptr);
+			}
+
+			bool czy_pobierano = false;
+			bool czy_pobrano = true;
+
+			if ((_access((G³os + "p.wav").c_str(), 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "p.wav").c_str(), ("G³os/" + g³os2 + "p.wav").c_str(), 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl;
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			if ((_access((G³os + "n.wav").c_str(), 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "n.wav").c_str(), ("G³os/" + g³os2 + "n.wav").c_str(), 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl;
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			if ((_access((G³os + "r.wav").c_str(), 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "r.wav").c_str(), ("G³os/" + g³os2 + "r.wav").c_str(), 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl;
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			if ((_access((G³os + "b.wav").c_str(), 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "b.wav").c_str(), ("G³os/" + g³os2 + "b.wav").c_str(), 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl;
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			if ((_access((G³os + "g.wav").c_str(), 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "g.wav").c_str(), ("G³os/" + g³os2 + "g.wav").c_str(), 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl;
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			if ((_access((G³os + "d.wav").c_str(), 0)))
+			{
+				if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl;
+				czy_pobierano = true;
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "d.wav").c_str(), ("G³os/" + g³os2 + "d.wav").c_str(), 0, nullptr);
+				if (res != S_OK)
+				{
+					czy_pobrano = false;
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl;
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
+			}
+
+			for (unsigned short i = 1; i <= 3; ++i)
+			{
+				stringstream numers;
+				numers << i;
+				if ((_access((G³os + "k" + numers.str() + ".wav").c_str(), 0)))
+				{
+					if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl;
+					czy_pobierano = true;
+					auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "k" + numers.str() + ".wav").c_str(), ("G³os/" + g³os2 + "k" + numers.str() + ".wav").c_str(), 0, nullptr);
+					if (res != S_OK)
+					{
+						czy_pobrano = false;
+						cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl;
+						G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+						return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+					}
+				}
+			}
+
+			for (unsigned short i = 1; i <= 12; ++i)
+			{
+				stringstream numers;
+				numers << i;
+				if ((_access((G³os + "w" + numers.str() + ".wav").c_str(), 0)))
+				{
+					if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl;
+					czy_pobierano = true;
+					auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "w" + numers.str() + ".wav").c_str(), ("G³os/" + g³os2 + "w" + numers.str() + ".wav").c_str(), 0, nullptr);
+					if (res != S_OK)
+					{
+						czy_pobrano = false;
+						cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl;
+						G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+						return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+					}
+				}
+			}
+
+			for (unsigned short i = 0; i <= 36; ++i)
+			{
+				stringstream numers;
+				numers << i;
+				if ((_access((G³os + numers.str() + ".wav").c_str(), 0)))
+				{
+					if (!czy_pobierano) cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl;
+					czy_pobierano = true;
+					auto res = URLDownloadToFileA(nullptr, (link + g³os2 + numers.str() + ".wav").c_str(), ("G³os/" + g³os2 + numers.str() + ".wav").c_str(), 0, nullptr);
+					if (res != S_OK)
+					{
+						czy_pobrano = false;
+						cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl;
+						G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+						return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+					}
+				}
+			}
+
+			if (czy_pobierano) if (czy_pobierano) cout << "Pobrano brakuj¹ce pliki g³osów" << endl;
 		}
 }
 
@@ -755,6 +916,7 @@ void SprawdŸ_ustawienia()
 		ustawienia << "czy_kontynuowaæ_grê 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czy_kontynuowaæ_grê
 		ustawienia << "g³os_odczytu_numeru 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych g³os_odczytu_numeru
 		ustawienia << "g³os_szybkoœæ_odczytu_numeru 4" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych g³os_szybkoœæ_odczytu_numeru
+		ustawienia << "efekty_dŸwiêkowe 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych efekty_dŸwiêkowe
 	}
 
 	if (czas_przeskoku_kulki_wolny < czas_przeskoku_kulki_szybki)
@@ -824,6 +986,24 @@ void SprawdŸ_ustawienia()
 		cout << "Opcja szybkoœæ g³osu odczytu przyjmuje wartoœci w przedziale [1;5]" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl;
 		g³os_szybkoœæ_odczytu_numeru = 4;
+	}
+	if ((efekty_dŸwiêkowe > 1) || (efekty_dŸwiêkowe < 0))
+	{
+		cout << "Opcja efekty dŸwiêkowe przyjmuje wartoœci 0 lub 1" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		efekty_dŸwiêkowe = 1;
+	}
+	if (efekty_dŸwiêkowe == 1 && stan_dŸwiêków == 0)
+	{
+		cout << "Nie mo¿esz mieæ wy³¹czonych dŸwiêków i w³¹czonych efektów dŸwiêkowych" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		stan_dŸwiêków = 1;
+	}
+	if (g³os_odczytu_numeru > 0 && stan_dŸwiêków == 0)
+	{
+		cout << "Nie mo¿esz mieæ wy³¹czonych dŸwiêków i w³¹czon¹ mowê" << endl;
+		cout << "Ustawiam domyœlne ustawienie" << endl;
+		stan_dŸwiêków = 1;
 	}
 }
 
@@ -895,7 +1075,7 @@ void Koniec_gry(ofstream & log_ogólny, fstream & log, int & iloœæ_pieniêdzy)
 
 	if (stan_dŸwiêków == 1) //Kompilacja je¿eli stan_dŸwiêków == 1
 		if (iloœæ_pieniêdzy == 0) //Je¿eli bud¿et jest równy 0 to
-			if (EfektyKompletne) PlaySound("Efekty dzwiêkowe/bankrut.wav", nullptr, SND_SYNC);
+			if (EfektyKompletne) PlaySound("Efekty_dŸwiêkowe/bankrut.wav", nullptr, SND_SYNC);
 			else
 				for (int i = 0; i < 5; ++i) //Rozpoczêcie pêtli która wykona 5 obrotów
 				{
@@ -907,13 +1087,13 @@ void Koniec_gry(ofstream & log_ogólny, fstream & log, int & iloœæ_pieniêdzy)
 	{
 		cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwiêkszenia bud¿etu
 		if (EfektyKompletne)
-			if (rand() % 1) PlaySound("Efekty dzwiêkowe/wygrana1.wav", nullptr, SND_SYNC);
-			else PlaySound("Efekty dzwiêkowe/wygrana2.wav", nullptr, SND_SYNC);
+			if (rand() % 1) PlaySound("Efekty_dŸwiêkowe/wygrana1.wav", nullptr, SND_SYNC);
+			else PlaySound("Efekty_dŸwiêkowe/wygrana2.wav", nullptr, SND_SYNC);
 	}
 	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2)
 	{
 		cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwielokrotnienia przynajmniej 2 razy bud¿etu
-		if (EfektyKompletne) PlaySound("Efekty dzwiêkowe/zwielokrotnenie.wav", nullptr, SND_SYNC);
+		if (EfektyKompletne) PlaySound("Efekty_dŸwiêkowe/zwielokrotnenie.wav", nullptr, SND_SYNC);
 	}
 }
 
@@ -1059,6 +1239,17 @@ void Ustaw_ustawienia(string & tekst)
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			g³os_szybkoœæ_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+		}
+	}
+	else if (tekst.find("efekty_dŸwiêkowe") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("efekty_dŸwiêkowe")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+		if (atoi(tekst.c_str())) efekty_dŸwiêkowe = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		else
+		{
+			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
+			efekty_dŸwiêkowe = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 }

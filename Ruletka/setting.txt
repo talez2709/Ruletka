@@ -7,5 +7,6 @@ styl_liczenia_wygranej 1
 kwota_pocz¹tkowa 1000
 stan_dŸwiêków 1
 czy_kontynuowaæ_grê 1
-g³os_odczytu_numeru 3
+g³os_odczytu_numeru 1
 g³os_szybkoœæ_odczytu_numeru 4
+efekty_dŸwiêkowe 1
