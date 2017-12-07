@@ -4,20 +4,20 @@
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
-      <LINE>369</LINE>
-      <COLUMN>10</COLUMN>
+      <LINE>423</LINE>
+      <COLUMN>16</COLUMN>
     </SFA>
     <DEFECTCODE>6246</DEFECTCODE>
-    <DESCRIPTION>Lokalna deklaracja „generator” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „363” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
-    <FUNCTION>Wylosuj</FUNCTION>
-    <DECORATED>?Wylosuj@@YAHABH0@Z</DECORATED>
-    <FUNCLINE>361</FUNCLINE>
+    <DESCRIPTION>Lokalna deklaracja „numers” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „400” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
+    <FUNCTION>Odczytaj_liczbę</FUNCTION>
+    <DECORATED>?Odczytaj_liczbę@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>397</FUNCLINE>
     <PATH>
       <SFA>
         <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
         <FILENAME>main.cpp</FILENAME>
-        <LINE>363</LINE>
-        <COLUMN>24</COLUMN>
+        <LINE>400</LINE>
+        <COLUMN>20</COLUMN>
       </SFA>
     </PATH>
   </DEFECT>

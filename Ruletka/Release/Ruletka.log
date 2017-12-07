@@ -1,7 +1,5 @@
 ﻿  main.cpp
   Trwa generowanie kodu
-  11 of 301 functions ( 3.7%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    65 functions had inline decision re-evaluated but remain unchanged
+  All 311 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Zakończono generowanie kodu
   Ruletka.vcxproj -> F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Release\Ruletka.exe
