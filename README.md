@@ -1,4 +1,8 @@
 # Ruletka
+
+Gra konsolowa w ruletkę, przy użyciu tylko najpopularniejszych zakładów 
+
+
 Efekty dźwiękowe zostaną samodzienie pobrane po uruchomieniu programu, jeżeli nie zostaną proszę folder Efekty dzwiękowe skopiować do folderu gdzie znajduje się plik exe
 Odczyt głosowy zostanie samodzienie pobrany po uruchomieniu programu, jeżeli nie zostaną proszę folder Głos skopiować do folderu gdzie znajduje się plik exe
 
