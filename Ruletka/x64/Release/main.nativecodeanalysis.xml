@@ -4,20 +4,20 @@
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
-      <LINE>423</LINE>
+      <LINE>454</LINE>
       <COLUMN>16</COLUMN>
     </SFA>
     <DEFECTCODE>6246</DEFECTCODE>
-    <DESCRIPTION>Lokalna deklaracja „numers” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „400” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
+    <DESCRIPTION>Lokalna deklaracja „numers” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „431” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
     <FUNCTION>Odczytaj_liczbę</FUNCTION>
     <DECORATED>?Odczytaj_liczbę@@YAXAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
-    <FUNCLINE>397</FUNCLINE>
+    <FUNCLINE>428</FUNCLINE>
     <PATH>
       <SFA>
         <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
         <FILENAME>main.cpp</FILENAME>
-        <LINE>400</LINE>
-        <COLUMN>20</COLUMN>
+        <LINE>431</LINE>
+        <COLUMN>14</COLUMN>
       </SFA>
     </PATH>
   </DEFECT>

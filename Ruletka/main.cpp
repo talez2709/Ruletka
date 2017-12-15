@@ -7,8 +7,8 @@
 #include <random> //random_device,distribution()
 #include <sstream> //stringstream, zamiana liczby na string
 #include <string> //Obs³uga stringów
-#include <windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),HANDLE,GetStdHandle(),SetConsoleTextAttribute()
-#include <MMsystem.h> //PlaySound() (Aby dzia³a³o trzeba dodaæ winmm.lib lub coredll.lib do linkera (konsolidatora))
+#include <Windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),HANDLE,GetStdHandle(),SetConsoleTextAttribute()
+#include <mmsystem.h> //PlaySound() (Aby dzia³a³o trzeba dodaæ winmm.lib lub coredll.lib do linkera (konsolidatora))
 #pragma comment(lib, "winmm.lib") //Dodanie winmm.lib do linkera (konsolidatora)
 #include <urlmon.h> //URLDownloadToFileA() (Aby dzia³a³o trzeba dodaæ urlmon.lib do linkera (konsolidatora))
 #pragma comment(lib, "urlmon.lib") //Dodanie urlmon.lib do linkera (konsolidatora)
@@ -42,24 +42,27 @@ void Show_Cursor(); //Funkcja wy³¹cza pokazanie kursora tekstowego
 //-------------------------------------------------------------------------------------
 
 //----------------------------- deklaracje tablic pomocniczych ------------------------
-const int Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 }; // Kolejnoœæ liczb zgodna z ko³em ruletki
+const unsigned short Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 }; // Kolejnoœæ liczb zgodna z ko³em ruletki
 const char Ruletka_plansza_kolor[] = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' }; //Kolor dla ka¿dej liczby na planszy
-const int Ruletka_plansza_kolor_col[] = { 2,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; //Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
+const unsigned short Ruletka_plansza_kolor_col[] = { 2,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; //Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
 //-------------------------------------------------------------------------------------
 
-//------ deklaracje zmiennych globalnych do zmian funcjonowania programu --------------
-short iloœæ_minimalna_obrotów_ruletki = 2; // Minimalna iloœæ obrotów ruletki przed podaniem wartoœci wylosowanej
-short iloœæ_max_dodatkowych_obrotów_ruletki = 3; // Maksymalna iloœæ dodatkowych obrotów ruletki przed podaniem wartoœci wylosowanej
-short czas_przeskoku_kulki_szybki = 50; //Czas w ms przerwy pomiêdzy przeskokami na pocz¹tek losowania na kolejn¹ liczbê na kole ruletki
-short czas_przeskoku_kulki_wolny = 75; //Czas w ms przerwy pomiêdzy przeskokami pod koniec losowania na kolejn¹ liczbê na kole ruletki
-short czas_przerwy_dzwiêku = 500; //Czas w ms przerwy pomiêdzy pikniêciami oznaczaj¹cymi wynik zak³adu
-short styl_liczenia_wygranej = 1; //0 dla odejmowania w³o¿onych w zak³ad pieniêdzy (przy tym zak³ady 1:1 nie zwiêkszaj¹ iloœæ_pieniêdzy), 1 dla nie odejmowania (przy tym zak³ady 1:1 zwiêkszaj¹ iloœæ_pieniêdzy)
-int kwota_pocz¹tkowa = 1000; //Iloœæ $ z którymi zaczyna siê grê
-short stan_dŸwiêków = 1; //Czy w³¹czone dŸwiêki 1 <-tak 0 <-nie
-short czy_kontynuowaæ_grê = 1; //Czy w³¹czone kontynuowanie gry od skoñczonej poprzednio pozycji 1 <-tak 0 <-nie
-short g³os_odczytu_numeru = 1; //Wybór g³osu który odczyta wylosowany numer 0 <- Brak 1 <- Jacek (Ivona) 2 <- Ewa (Ivona) 3 <- Maja (Ivona) 4 <- Jan (Ivona) 5 <- Jacek (Ivona 2) 6 <- Ewa (Ivona 2) 7 <- Maja (Ivona 2) 8 <- Jan (Ivona 2) 9 <- Agata (Scansoft)
-short g³os_szybkoœæ_odczytu_numeru = 4; //Wybór szybkoœci mowy, skala od 1 do 5
-short efekty_dŸwiêkowe = 1; //Czy w³¹czone efekty dŸwiêkowe 1 <-tak 0 <-nie
+//---------- deklaracje typu strukturalnego do zmian ustawieñ programu ----------------
+struct S_Ustawienia //Struktura z wpisanymi domyœlnymi ustawieniami
+{
+	short iloœæ_minimalna_obrotów_ruletki = 2; // Minimalna iloœæ obrotów ruletki przed podaniem wartoœci wylosowanej
+	short iloœæ_max_dodatkowych_obrotów_ruletki = 3; // Maksymalna iloœæ dodatkowych obrotów ruletki przed podaniem wartoœci wylosowanej
+	short czas_przeskoku_kulki_szybki = 50; //Czas w ms przerwy pomiêdzy przeskokami na pocz¹tek losowania na kolejn¹ liczbê na kole ruletki
+	short czas_przeskoku_kulki_wolny = 75; //Czas w ms przerwy pomiêdzy przeskokami pod koniec losowania na kolejn¹ liczbê na kole ruletki
+	short czas_przerwy_dzwiêku = 500; //Czas w ms przerwy pomiêdzy pikniêciami oznaczaj¹cymi wynik zak³adu
+	short styl_liczenia_wygranej = 1; //0 dla odejmowania w³o¿onych w zak³ad pieniêdzy (przy tym zak³ady 1:1 nie zwiêkszaj¹ iloœæ_pieniêdzy), 1 dla nie odejmowania (przy tym zak³ady 1:1 zwiêkszaj¹ iloœæ_pieniêdzy)
+	int kwota_pocz¹tkowa = 1000; //Iloœæ $ z którymi zaczyna siê grê
+	short stan_dŸwiêków = 1; //Czy w³¹czone dŸwiêki 1 <-tak 0 <-nie
+	short czy_kontynuowaæ_grê = 1; //Czy w³¹czone kontynuowanie gry od skoñczonej poprzednio pozycji 1 <-tak 0 <-nie
+	short g³os_odczytu_numeru = 1; //Wybór g³osu który odczyta wylosowany numer 0 <- Brak 1 <- Jacek (Ivona) 2 <- Ewa (Ivona) 3 <- Maja (Ivona) 4 <- Jan (Ivona) 5 <- Jacek (Ivona 2) 6 <- Ewa (Ivona 2) 7 <- Maja (Ivona 2) 8 <- Jan (Ivona 2) 9 <- Agata (Scansoft)
+	short g³os_szybkoœæ_odczytu_numeru = 4; //Wybór szybkoœci mowy, skala od 1 do 5
+	short efekty_dŸwiêkowe = 1; //Czy w³¹czone efekty dŸwiêkowe 1 <-tak 0 <-nie
+};
 //-------------------------------------------------------------------------------------
 
 //---------------------------- deklaracje zmiennych globalnych ------------------------
@@ -67,6 +70,7 @@ SYSTEMTIME Czas; //Struktura do której zapisywana jest aktualna data i czas
 bool G³osyKompletne = true;
 bool EfektyKompletne = true;
 string G³os;
+S_Ustawienia Ustawienia;
 //-------------------------------------------------------------------------------------
 
 int main()
@@ -83,7 +87,7 @@ int main()
 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
 	log_ogólny.open("log_ogólny.txt", ios::app); //Otworzenie pliku z ustawieniem kursora zapisu do pliku
 	fstream log; //Utworzenie typu do celu zapisu i/lub odczytu do i/lub z pliku
-	int iloœæ_pieniêdzy = kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funkcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
+	int iloœæ_pieniêdzy = Ustawienia.kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funkcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
 	string typ_zak³adu; //Przechowuje typ zak³adu wprowadzony przez u¿ytkownika
 	char co_kontynuowaæ; //Deklaracja znaku który przechowuje nazwany znakiem punkt od którego kontynuowaæ runde
 
@@ -107,16 +111,16 @@ string Obstaw()
 	string zaklad_typ; //Deklaracja zmiennej typu string przechowywuj¹cej typ zak³adu
 
 	do { //Pêtla do aby wykona³a siê conajmniej raz
-		cout << "Jak¹ opcje chcesz obstawic ? (zgodnie z poni¿szym opisem) :" << endl; //Zadanie pytania u¿ytkownikowi
+		cout << "Jak¹ opcje chcesz obstawiæ? (zgodnie z poni¿szym opisem) :" << endl; //Zadanie pytania u¿ytkownikowi
 		cout << "p - parzyste" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 		cout << "n - nieparzyste" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
-		cout << "r - czerwone(red)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
-		cout << "b - czarne(black)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "r - czerwone (red)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "b - czarne (black)" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 		cout << "g - górna po³owa" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 		cout << "d - dolna po³owa" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 		cout << "k1, k2, k3 - kolumna 1, kolumna 2, kolumna 3" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
-		cout << "w1, w2, ..., w12 - wiersz trzech numerów" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
-		cout << "0 - 36 - pojedyncze pole o odpowiednim numerze" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "w1, w2, ... , w12 - wiersz trzech numerów" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
+		cout << "0-36 - pojedyñcze pole o odpowiednim numerze" << endl; //Wskazaæ mo¿liw¹ odpowiedŸ
 		cin >> zaklad_typ; //Pobranie od u¿ytkownika odpowiedzi na pytanie
 	} while ( //U¿ywam takiej sk³adni poniewa¿ jeœli masz wyra¿enie z logicznymi operatorami && lub ||, to w momencie gdy wynik wyra¿enia ju¿ jest znany, to nie jest wyliczany dalej. (Poniewa¿ C++ jest "leniwe", co zarazem jest optymalne)
 		zaklad_typ != "p" && //Sprawdzanie czy wprowadzono zak³ad na liczby parzyste
@@ -188,10 +192,10 @@ void Wczytaj_Kwotê_Zak³adu(int & kwota_zak³adu, const int & iloœæ_pieniêdzy)
 
 	while (true) //Rozpoczêcie pêtli nieskoñczonej
 	{
-		cout << "Masz " << iloœæ_pieniêdzy << "$, jak¹ kwotê chcesz obstawiæ wynik?" << endl; //Podanie akualnego stanu konta i zadanie pytania o kwotê zak³adu
+		cout << "Masz " << iloœæ_pieniêdzy << "$, jak¹ kwot¹ chcesz obstawiæ wynik?" << endl; //Podanie akualnego stanu konta i zadanie pytania o kwotê zak³adu
 		cin >> kwota_zak³adu_s; //Pobranie w tekœcie kwoty zak³¹du
-		kwota_zak³adu = atoi(kwota_zak³adu_s.c_str()); //Zmiana stringaa na inta i wpisanie do zmiennej kwota_zak³adu
-		if (kwota_zak³adu > 0 && kwota_zak³adu <= iloœæ_pieniêdzy) //Sprawdzenie czy kwota zak³¹du jest wiêksza od zeri i mniejsza lub równa dostêpnej gotówce
+		kwota_zak³adu = atoi(kwota_zak³adu_s.c_str()); //Zmiana stringa na inta i wpisanie do zmiennej kwota_zak³adu
+		if ((kwota_zak³adu > 0) && (kwota_zak³adu <= iloœæ_pieniêdzy)) //Sprawdzenie czy kwota zak³¹du jest wiêksza od zeri i mniejsza lub równa dostêpnej gotówce
 			break; //Je¿eli tak to zatrzymuje pêtle
 		else //W przeciwym wypadku
 			if (kwota_zak³adu == 0) //Je¿eli wynikiem zamiany na liczbê jest zero (wynikiem zamiany jest zero kiedy tekst to zero lub kiedy jest b³¹d zamiany) to
@@ -201,33 +205,33 @@ void Wczytaj_Kwotê_Zak³adu(int & kwota_zak³adu, const int & iloœæ_pieniêdzy)
 					if (kwota_zak³adu_s[i] != '0') //Je¿eli znak na i-tej pozycji
 					{
 						cout << "Wprowadzi³eæ nieprawid³ow¹ wartoœæ" << endl; //Poinformowanie u¿ytkownika, ¿e nie mo¿e obstawiæ tekstowego
-						if (stan_dŸwiêków) cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+						if (Ustawienia.stan_dŸwiêków) cout << '\a'; //Je¿eli stan_dŸwiêków == 1 to wywo³anie pikniêcia w g³oœniku
 						czy_zero = false; //Zmiana wartoœci zmiennej czy znaleziono zero w tekœcie na false
 						break; //Zatrzymanie pêtli
 					}
 				if (czy_zero) //Sprawdzenie czy znaleziono same zera w tekœcie, je¿eli tak to
 				{
 					cout << "Nie mo¿esz obstawiæ zerowego zak³adu" << endl; //Poinformowanie u¿ytkownika, ¿e nie mo¿e obstawiæ zerowego zak³adu
-					if (stan_dŸwiêków) cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+					if (Ustawienia.stan_dŸwiêków) cout << '\a'; //Je¿eli stan_dŸwiêków == 1 to wywo³anie pikniêcia w g³oœniku
 				}
 			}
 			else if (kwota_zak³adu > iloœæ_pieniêdzy) //Je¿eli u¿ytkownik chce obstawiæ za wiêcej ni¿ ma, to
 			{
 				cout << "Nie masz tyle pieniêdzy" << endl; //Poinformowanie go o tym
-				if (stan_dŸwiêków) cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				if (Ustawienia.stan_dŸwiêków) cout << '\a'; //Je¿eli stan_dŸwiêków == 1 to wywo³anie pikniêcia w g³oœniku
 			}
 			else if (kwota_zak³adu < 0) //Je¿eli u¿ytkownik chce obstawiæ za ujemn¹ kwotê, to
 			{
 				cout << "Nie mo¿esz obstawiæ ujemn¹ kwot¹ zak³adu" << endl; //Poinformowanie go o tym
-				if (stan_dŸwiêków) cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				if (Ustawienia.stan_dŸwiêków) cout << '\a'; //Je¿eli stan_dŸwiêków == 1 to wywo³anie pikniêcia w g³oœniku
 			}
 	}
 }
 
 int Zakrêæ_Ruletk¹()
 {
-	int iloœæ_zakrêceñ = rand() % (iloœæ_max_dodatkowych_obrotów_ruletki + 1) + iloœæ_minimalna_obrotów_ruletki; //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ pseudolosow¹ (o niskiej pseoudolosowoœci) iloœæ obrotów ruletk¹ ((od 0 do max dodatkowych obrotów ruletki) + minimalna iloœæ obrotów ruletki) zanim nastêpi finalny obrót
-	double czas_przeskoku_kulki_szybki_opóŸnienie = czas_przeskoku_kulki_szybki / (iloœæ_zakrêceñ * 37.0); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
+	int iloœæ_zakrêceñ = rand() % (Ustawienia.iloœæ_max_dodatkowych_obrotów_ruletki + 1) + Ustawienia.iloœæ_minimalna_obrotów_ruletki; //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ pseudolosow¹ (o niskiej pseoudolosowoœci) iloœæ obrotów ruletk¹ ((od 0 do max dodatkowych obrotów ruletki) + minimalna iloœæ obrotów ruletki) zanim nastêpi finalny obrót
+	double czas_przeskoku_kulki_szybki_opóŸnienie = Ustawienia.czas_przeskoku_kulki_szybki / (iloœæ_zakrêceñ * 37.0); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
 	Hide_Cursor(); //Ukrycie kursora tekstowego w konsoli
 	for (int i = 0; i < iloœæ_zakrêceñ; ++i) //Wykonanie iloœæ_zakrêceñ obrotów ruletk¹
 		for (int ii = 0; ii < 37; ++ii) //Przejœcie przez wszystkie pozycje ruletki
@@ -239,12 +243,12 @@ int Zakrêæ_Ruletk¹()
 			cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 		}
 	int wylosowana_pozycja = Wylosuj(0, 36); //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ losow¹ lub pseudolosow¹ liczbê (o wysokiej pseoudolosowoœci) pozycjê na ruletce
-	double czas_przeskoku_kulki_wolny_przyspieszenie = (czas_przeskoku_kulki_wolny - czas_przeskoku_kulki_szybki) / (double)(wylosowana_pozycja); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
+	double czas_przeskoku_kulki_wolny_przyspieszenie = (Ustawienia.czas_przeskoku_kulki_wolny - Ustawienia.czas_przeskoku_kulki_szybki) / (double)(wylosowana_pozycja); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
 	for (int i = 0; i < wylosowana_pozycja; ++i) //Przejœcie przez pozycje do pozycji o 1 mniejszej od wylosowanej pozyji na ruletce
 	{
 		Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[i]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 		cout << Ruletka_ko³o[i]; //Wypisanie numeru na kole ruletki na którym znajduje siê pêtla
-		Sleep((DWORD)(czas_przeskoku_kulki_szybki + (czas_przeskoku_kulki_wolny_przyspieszenie*i))); //Przestój który zwiêksza siê co zmianê pozycji pêtli
+		Sleep((DWORD)(Ustawienia.czas_przeskoku_kulki_szybki + (czas_przeskoku_kulki_wolny_przyspieszenie*i))); //Przestój który zwiêksza siê co zmianê pozycji pêtli
 		Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 		cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ podem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 	}
@@ -264,15 +268,56 @@ int SprawdŸ_Zak³ad(const int & kwota, const string & typ_zak³adu, const int & wy
 
 	if (wylosowana_liczba == 0) //Warunek sprawdzaj¹cy czy wylosowano 0
 	{ //Je¿eli tak to
-		if (typ_zak³adu == "p") wygrana /= 2; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-		else if (typ_zak³adu == "n") wygrana /= 2; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-		else if (typ_zak³adu == "r") wygrana /= 2; //Je¿eli typ zak³adu by³ r to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-		else if (typ_zak³adu == "b") wygrana /= 2; //Je¿eli typ zak³adu by³ b to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-		else if (typ_zak³adu == "g") wygrana /= 2; //Je¿eli typ zak³adu by³ g to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-		else if (typ_zak³adu == "d") wygrana /= 2; //Je¿eli typ zak³adu by³ d to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-		else if (typ_zak³adu[0] == 'k') wygrana *= 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
-		else if (typ_zak³adu[0] == 'w') wygrana *= 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
-		else if (typ_zak³adu[0] == '0') wygrana *= 35; //Je¿eli typ zak³adu by³ 0 to przegra³o siê zak³ad
+		switch (typ_zak³adu[0]) //Switch do obliczenia wygranej lub przegranej
+		{
+		case 'p':
+		{
+			wygrana /= 2; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+			break; //Wyjœcie z switcha
+		}
+		case 'n':
+		{
+			wygrana /= 2; //Je¿eli typ zak³adu by³ n to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+			break; //Wyjœcie z switcha
+		}
+		case 'r':
+		{
+			wygrana /= 2; //Je¿eli typ zak³adu by³ r to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+			break; //Wyjœcie z switcha
+		}
+		case 'b':
+		{
+			wygrana /= 2; //Je¿eli typ zak³adu by³ b to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+			break; //Wyjœcie z switcha
+		}
+		case 'g':
+		{
+			wygrana /= 2; //Je¿eli typ zak³adu by³ g to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+			break; //Wyjœcie z switcha
+		}
+		case 'd':
+		{
+			wygrana /= 2; //Je¿eli typ zak³adu by³ d to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+			break; //Wyjœcie z switcha
+		}
+		case 'k':
+		{
+			wygrana *= 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
+			break; //Wyjœcie z switcha
+		}
+		case 'w':
+		{
+			wygrana *= 0; //Je¿eli typ zak³adu by³ w to przegra³o siê zak³ad
+			break; //Wyjœcie z switcha
+		}
+		case '0':
+		{
+			wygrana *= 35; //Je¿eli typ zak³adu by³ 0 to wygra³o siê zak³ad
+			break; //Wyjœcie z switcha
+		}
+		default:
+			break; //W przeciwym wypadku wyjœcie z switcha
+		}
 	}
 	else //Je¿eli wylosowana liczba nie jest zerem to
 	{
@@ -304,9 +349,9 @@ int SprawdŸ_Zak³ad(const int & kwota, const string & typ_zak³adu, const int & wy
 		else wygrana *= 0; //Je¿eli wylosowana liczba nie jest równa obstawionej liczbie to przegra³o siê zak³ad
 	}
 
-	if (wygrana >= kwota) cout << "Obstawiles poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
-	else if (wygrana == kwota / 2) cout << "Obstawiles niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
-	else cout << "Obstawiles niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
+	if (wygrana >= kwota) cout << "Obstawi³eœ poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
+	else if (wygrana == kwota / 2) cout << "Obstawi³eœ niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
+	else cout << "Obstawi³eœ niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
 
 	return wygrana; //Zwracam wartoœ wygranej lub zwrotu
 }
@@ -323,7 +368,7 @@ bool Czy_Kontynuowaæ(const int & iloœæ_pieniêdzy)
 
 	while (true) //Rozpoczêcie pêtli nieskoñczonej
 	{
-		cout << "Na koncie masz " << iloœæ_pieniêdzy << "$, czy chcesz grac dalej('t' - tak, 'n' - nie) ?" << endl; //Pointormowanie o stanie konta i zapytanie o to czy gra dalej
+		cout << "Na koncie masz " << iloœæ_pieniêdzy << "$, czy chcesz grac dalej ('t'-tak, 'n'-nie) ?" << endl; //Pointormowanie o stanie konta i zapytanie o to czy gra dalej
 		cin >> tak_nie; //Pobranie od u¿ytkownika odpowiedzi na powy¿sze pytanie
 		if (tak_nie == "t" || tak_nie == "tak" || tak_nie == "Tak" || tak_nie == "TAK" || tak_nie == "n" || tak_nie == "nie" || tak_nie == "Nie" || tak_nie == "NIE") //Sprawdzenie czy odpowiedŸ pasuje do mo¿liwoœci
 			if (tak_nie[0] == 't' || tak_nie[0] == 'T') return true; //Je¿eli pasuje to sprawdzam czy pierwsza litera to t i zwracam wartoœæ true
@@ -362,21 +407,7 @@ int Wylosuj(const int & od_liczby, const int & do_liczby)
 {
 	if (od_liczby > do_liczby) //Je¿eli od jest wiêksze ni¿ do to
 	{
-		int od_l = do_liczby; //Przypisz do nowej zmiennej wartoœ do jako wartoœæ od
-		int do_l = od_liczby; //Przypisz do nowej zmiennej wartoœ od jako wartoœæ do
-		random_device generator; //Generator liczb losowych, który generuje niedeterministyczne liczby losowe, jeœli s¹ obs³ugiwane.
-		if (generator.entropy() != 32) //Je¿eli entropia jest mniejsza od 32 oznacza, ¿e komputer nie dysponuje mo¿liwoœci¹ u¿ycia tego generatora liczb losowy
-		{
-#if defined (__x86_64__) || defined(_M_X64) || defined(__x86_64) || defined(__amd64) || defined(__amd64__) || defined(_M_AMD64) //Sprawdzenie czy sytem operacyjny jest 64-bitowy
-			mt19937_64 mgenerator((unsigned int)time(nullptr)); //Dla 64 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 64 bitowej
-			return ((mgenerator() % (do_l - od_l + 1)) + od_l); //Zwraca wygenerowan¹ liczbê z uwzglêdnieniem przedzia³u
-#else
-			mt19937 mgenerator((unsigned int)time(nullptr)); //Dla 32 bitowego systemu zamiast powy¿szego generatora u¿ywa generator liczb pseudolosowych Mersenne Twister 19937 w wersji 32 bitowej
-			return ((mgenerator() % (do_l - od_l + 1)) + od_l); //Zwraca wygenerowan¹ liczbê z uwzglêdnieniem przedzia³u
-#endif
-		}
-		uniform_int_distribution<int> distribution(od_l, do_l); //Wsazuje zakres generowanych liczb
-		return distribution(generator); //Zwraca wygenerowan¹ liczbê z uwzglêdnieniem przedzia³u
+		return Wylosuj(do_liczby, od_liczby); //Wywo³ujemy funkcje z przeciwn¹ kolejnoœci¹ argumentów
 	}
 
 	random_device generator; //Generator liczb losowych, który generuje niedeterministyczne liczby losowe, jeœli s¹ obs³ugiwane.
@@ -395,7 +426,7 @@ int Wylosuj(const int & od_liczby, const int & do_liczby)
 }
 
 void Odczytaj_liczbê(const int & wylosowana_liczba, const string & typ_zak³adu) {
-	if ((g³os_odczytu_numeru == 0) || (!G³osyKompletne)) return; //Je¿eli ustawienia wy³¹czaj¹ g³os lub brak plików g³osu to wyjdŸ z funkcji
+	if ((Ustawienia.g³os_odczytu_numeru == 0) || (!G³osyKompletne)) return; //Je¿eli ustawienia wy³¹czaj¹ g³os lub brak plików g³osu to wyjdŸ z funkcji
 
 	stringstream numers; //Utworzenie typu do zamiany liczby na tekst
 	numers << wylosowana_liczba; //Wpisanie to typu wylosowanej liczby
@@ -428,12 +459,12 @@ void Odczytaj_liczbê(const int & wylosowana_liczba, const string & typ_zak³adu) 
 
 void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, int & iloœæ_pieniêdzy, int & kwota_zak³adu, int & wylosowana_liczba, string & typ_zak³adu)
 {
-	if (!czy_kontynuowaæ_grê) //Je¿eli czy_kontynuowaæ_grê == 0
+	if (!Ustawienia.czy_kontynuowaæ_grê) //Je¿eli czy_kontynuowaæ_grê == 0
 		if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 		{
 			co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
 			remove("log_aktualny.txt"); //Usuniêcie pliku log aktualny poniewa¿ rozpoczyna siê now¹ grê
-			log_ogólny << endl << "Uruchomiono ponownie grê z wy³¹czon¹ opcj¹ kontynuowania" << endl; //Wpisanie do buforu logu ogólnego informacje o rozpoczêciu nowej gry spowodowane ustawieniem gry
+			log_ogólny << '\n' << "Uruchomiono ponownie grê z wy³¹czon¹ opcj¹ kontynuowania" << '\n'; //Wpisanie do buforu logu ogólnego informacje o rozpoczêciu nowej gry spowodowane ustawieniem gry
 			log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 		}
 
@@ -473,9 +504,9 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			pocz¹tek += 2;  //Przesuniêcie o +2 pozycji pocz¹tku tekstu o po której jest typ zak³adu
 			buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
-			buf2.erase(buf2.find(" Wylosowano"), buf2.size() - buf2.find(" Wylosowano"));
+			buf2.erase(buf2.find(" Wylosowano"), string::npos); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê nazw¹ typu zak³adu
 			typ_zak³adu = buf2; //Przypisanie do zmiennej przechowywuj¹cej typ zak³adu wczytanego typu zak³adu
-			buf.erase(buf.find("Obstawiono zaklad"), buf.size() - buf.find("Obstawiono zaklad"));
+			buf.erase(buf.find("Obstawiono zaklad"), string::npos); //Usuniêcie wszystkiego w prawo razem z wyszukanym tekstem
 			pocz¹tek = 0; //Przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie zak³adu
 			if (buf[12] == 'a') { pocz¹tek = 14; } //Sprawdzenie czy na pozycji 12 teksty znajduje siê litera a œwiadcz¹ca o wyrazie po którym jest kwota zak³adu, je¿eli tak to pozycja pocz¹tkowa tekstu wynosi 14
 			else //Je¿eli nie to
@@ -486,7 +517,7 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			int koniec = pocz¹tek + 1; //Przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
 			while (buf[koniec] != '$' && koniec < (unsigned short)buf.size()) ++koniec; //Poszukujemy znaku dolara przed którym jest kwota zak³adu
 			buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
-			buf2.erase(koniec, buf2.size() - koniec); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
+			buf2.erase(koniec, string::npos); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			kwota_zak³adu = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 			pocz¹tek = (unsigned short)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
@@ -506,7 +537,7 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			typ_zak³adu = buf2; //Przypisanie do zmiennej przechowywuj¹cej typ zak³adu wczytanego typu zak³adu
-			buf.erase(buf.find("Obstawiono zaklad"), buf.size() - buf.find("Obstawiono zaklad"));
+			buf.erase(buf.find("Obstawiono zaklad"), string::npos); //Usuniêcie wszystkiego w prawo razem z wyszukanym tekstem
 			pocz¹tek = 0; //Przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie zak³adu
 			if (buf[12] == 'a') pocz¹tek = 14; //Sprawdzenie czy na pozycji 12 teksty znajduje siê litera a œwiadcz¹ca o wyrazie po którym jest kwota zak³adu, je¿eli tak to pozycja pocz¹tkowa tekstu wynosi 14
 			else //Je¿eli nie to
@@ -517,7 +548,7 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			unsigned short koniec = pocz¹tek + 1; //Przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
 			while (buf[koniec] != '$' && koniec < (unsigned short)buf.size()) ++koniec; //Pêtla poszukuj¹ca znaku dolara, pêtla koñczy siê znalezieniem znaku dolara
 			buf2 = buf; //W³o¿enie do bufora pomocniczego do ciêcia tekstu wczeœniej odczytanego tekstu
-			buf2.erase(koniec, buf2.size() - koniec); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
+			buf2.erase(koniec, string::npos); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			kwota_zak³adu = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 			pocz¹tek = (unsigned short)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
@@ -539,9 +570,9 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 				pocz¹tek += 3; //Po znalezienu z przesuwamy pozycje +3
 			}
 			unsigned short koniec = pocz¹tek + 1; //Utworzenie i przypisanie do zmiennej pozycji pocz¹tku +1 wskazuj¹cej koniec tekst o kwocie zak³adu
-			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec;
+			while (buf[koniec] != '$' && koniec < (int)buf.size()) ++koniec; //Pêtla szukaj¹ca znaku dolara
 			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
-			buf2.erase(koniec, buf2.size() - koniec); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
+			buf2.erase(koniec, string::npos); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê liczb¹
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			kwota_zak³adu = atoi(buf2.c_str()); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 			pocz¹tek = (unsigned short)bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
@@ -566,7 +597,7 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 	else
 	{
 		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
-		log.open("log_aktualny.txt", ios::out);
+		log.open("log_aktualny.txt", ios::out); //Otwarcie pliku w trybie tylko do zapisu
 		GetSystemTime(&Czas); //Pobieranie aktualnej daty i czasu z zegara systemowego
 		log << "Gra rozpoczeta dnia " << Czas.wDay << "." << Czas.wMonth << "." << Czas.wYear << " o godzinie "; //Wpisanie do bufora zapisu danych o dniu,miesi¹cu i roku do pliku log_aktualny.txt
 		if (Czas.wHour < 10) log << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania godzinny je¿eli godzina jest minejsza ni¿ 10 do pliku log_aktualny.txt
@@ -574,14 +605,14 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 		if (Czas.wMinute < 10) log << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania minut je¿eli minuty jest minejsze ni¿ 10 do pliku log_aktualny.txt
 		log << Czas.wMinute << ":"; //Wpisanie do bufora zapisu znaku : dla rozdzielenia minut od sekund do pliku log_aktualny.txt
 		if (Czas.wSecond < 10) log << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania sekund je¿eli sekundy jest minejsza ni¿ 10 do pliku log_aktualny.txt
-		log << Czas.wSecond << endl; // Wpisanie do bufora zapisu danych o sekundzie do pliku log_aktualny.txt
+		log << Czas.wSecond << '\n'; // Wpisanie do bufora zapisu danych o sekundzie do pliku log_aktualny.txt
 		log_ogólny << "Nowa gra rozpoczeta dnia " << Czas.wDay << "." << Czas.wMonth << "." << Czas.wYear << " o godzinie "; //Wpisanie do bufora zapisu danych o dniu,miesi¹cu i roku do pliku log_ogólny.txt
 		if (Czas.wHour < 10) log_ogólny << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania godzinny je¿eli godzina jest minejsza ni¿ 10 do pliku log_ogólny.txt
 		log_ogólny << Czas.wHour << ":";//Wpisanie do bufora zapisu znaku : dla rozdzielenia godzin od minut do pliku log_aktualny.txt
 		if (Czas.wMinute < 10) log_ogólny << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania minut je¿eli minuty jest minejsza ni¿ 10 do pliku log_ogólny.txt
 		log_ogólny << Czas.wMinute << ":"; //Wpisanie do bufora zapisu znaku : dla rozdzielenia minut od sekund do pliku log_ogólny.txt
 		if (Czas.wSecond < 10) log_ogólny << "0"; //Wpisanie do bufora zapisu znaku zera dla równego formatowania sekund je¿eli sekundy jest minejsza ni¿ 10 do pliku log_ogólny.txt
-		log_ogólny << Czas.wSecond << endl; // Wpisanie do bufora zapisu danych o sekundzie do pliku log_ogólny.txt
+		log_ogólny << Czas.wSecond << '\n'; // Wpisanie do bufora zapisu danych o sekundzie do pliku log_ogólny.txt
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 	}
@@ -589,7 +620,7 @@ void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 
 void SprawdŸ_Pliki()
 {
-	if (efekty_dŸwiêkowe == 1) //Je¿eli w³¹czono efekty dŸwiêkowe
+	if (Ustawienia.efekty_dŸwiêkowe == 1) //Je¿eli w³¹czono efekty dŸwiêkowe
 	{
 		if ((_access("Efekty_dŸwiêkowe", 0))) //SprawdŸ czy nie ma folderu Efekty dŸwiêkowe
 		{
@@ -616,65 +647,68 @@ void SprawdŸ_Pliki()
 				}
 		}
 
-		if ((_access("Efekty_dŸwiêkowe/wygrana1.wav", 0))) //Sprawdzenie czy plik nie istnieje
-		{
-			if (!czy_pobierano) //Sprawdzanie czy jakieœ pobieranie siê rozpocze³o
+		if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+			if ((_access("Efekty_dŸwiêkowe/wygrana1.wav", 0))) //Sprawdzenie czy plik nie istnieje
 			{
-				cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
-				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
-			}
-			auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/wygrana1.wav", "Efekty_dŸwiêkowe/wygrana1.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
-				if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+				if (!czy_pobierano) //Sprawdzanie czy jakieœ pobieranie siê rozpocze³o
 				{
-					czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
-					cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-					EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
+					czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
 				}
-		}
+				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/wygrana1.wav", "Efekty_dŸwiêkowe/wygrana1.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+					if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+					{
+						czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
+						cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+						EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					}
+			}
 
-		if ((_access("Efekty_dŸwiêkowe/wygrana2.wav", 0))) //Sprawdzenie czy plik nie istnieje
-		{
-			if (!czy_pobierano) //Sprawdzanie czy jakieœ pobieranie siê rozpocze³o
+		if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+			if ((_access("Efekty_dŸwiêkowe/wygrana2.wav", 0))) //Sprawdzenie czy plik nie istnieje
 			{
-				cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
-				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
-			}
-			auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/wygrana2.wav", "Efekty_dŸwiêkowe/wygrana2.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
-				if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+				if (!czy_pobierano) //Sprawdzanie czy jakieœ pobieranie siê rozpocze³o
 				{
-					czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
-					cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-					EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
+					czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
 				}
-		}
+				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/wygrana2.wav", "Efekty_dŸwiêkowe/wygrana2.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+					if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+					{
+						czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
+						cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+						EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					}
+			}
 
-		if ((_access("Efekty_dŸwiêkowe/zwielokrotnenie.wav", 0))) //Sprawdzenie czy plik nie istnieje
-		{
-			if (!czy_pobierano) //Sprawdzanie czy jakieœ pobieranie siê rozpocze³o
+		if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+			if ((_access("Efekty_dŸwiêkowe/zwielokrotnenie.wav", 0))) //Sprawdzenie czy plik nie istnieje
 			{
-				cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
-				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
-			}
-			auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/zwielokrotnenie.wav", "Efekty_dŸwiêkowe/zwielokrotnenie.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
-				if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+				if (!czy_pobierano) //Sprawdzanie czy jakieœ pobieranie siê rozpocze³o
 				{
-					czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
-					cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-					EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
+					czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
 				}
-		}
+				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/zwielokrotnenie.wav", "Efekty_dŸwiêkowe/zwielokrotnenie.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+					if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+					{
+						czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
+						cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+						EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					}
+			}
 
-		if (czy_pobierano) cout << "Pobrano brakuj¹ce pliki efektów" << endl; //Poinformowanie o ukoñczonu pobierania plików
+		if (czy_pobierano && czy_pobrano) cout << "Pobrano brakuj¹ce pliki efektów" << endl; //Poinformowanie o ukoñczonu pobierania plików
 	}
 
-	if (g³os_odczytu_numeru > 0) //Je¿eli w³¹czono odczyt g³osowy
+	if (Ustawienia.g³os_odczytu_numeru > 0) //Je¿eli w³¹czono odczyt g³osowy
 	{
 		G³os = "G³os/"; //Wpisanie do zmiennej G³os pocz¹tku œcie¿ki do pliku z g³osem
 
-		switch (g³os_odczytu_numeru) //U¿ycie warunku wielokrotnego wyboru do wpisania odpowiedniej nazwy g³osu do zmiennej g³os_nazwa
+		switch (Ustawienia.g³os_odczytu_numeru) //U¿ycie warunku wielokrotnego wyboru do wpisania odpowiedniej nazwy g³osu do zmiennej g³os_nazwa
 		{
 		case 1: //Gdy g³os_odczytu_numeru==1
 		{
@@ -727,7 +761,7 @@ void SprawdŸ_Pliki()
 		}
 
 		G³os += "_"; //Dodanie do zmiennej podkreœlenia odzielaj¹cego nazwê od szybkoœci
-		G³os += '0' + g³os_szybkoœæ_odczytu_numeru; //Dodanie do zmiennej szybkoœci mowy
+		G³os += '0' + Ustawienia.g³os_szybkoœæ_odczytu_numeru; //Dodanie do zmiennej szybkoœci mowy
 		G³os += "/"; //Dodanie do zmiennej ukoœnika który odziela nazwê folderu od pliku
 
 		const string link = "https://github.com/talez2709/Ruletka/raw/master/Ruletka/G%C5%82os/"; //Zmienna przechowywuj¹ca pocz¹tek strony do pobierania g³osu
@@ -923,105 +957,106 @@ void SprawdŸ_ustawienia()
 	{
 		ofstream ustawienia; //Utworzenie typu do celu zapisu do pliku
 		ustawienia.open("setting.txt"); //Otwarcie pliku do wygenerowania ustawieñ domyœlnych
-		ustawienia << "iloœæ_minimalna_obrotów_ruletki 2" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych iloœæ_minimalna_obrotów_ruletki
-		ustawienia << "iloœæ_max_dodatkowych_obrotów_ruletki 3" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych iloœæ_max_dodatkowych_obrotów_ruletki
-		ustawienia << "czas_przeskoku_kulki_szybki 50" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czas_przeskoku_kulki_szybki
-		ustawienia << "czas_przeskoku_kulki_wolny 75" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czas_przeskoku_kulki_wolny
-		ustawienia << "czas_przerwy_dzwiêku 500" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czas_przerwy_dzwiêku
-		ustawienia << "styl_liczenia_wygranej 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych styl_liczenia_wygranej
-		ustawienia << "kwota_pocz¹tkowa 1000" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych kwota_pocz¹tkowa
-		ustawienia << "stan_dŸwiêków 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych stan_dŸwiêków
-		ustawienia << "czy_kontynuowaæ_grê 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czy_kontynuowaæ_grê
-		ustawienia << "g³os_odczytu_numeru 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych g³os_odczytu_numeru
-		ustawienia << "g³os_szybkoœæ_odczytu_numeru 4" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych g³os_szybkoœæ_odczytu_numeru
-		ustawienia << "efekty_dŸwiêkowe 1" << endl; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych efekty_dŸwiêkowe
+		ustawienia << "iloœæ_minimalna_obrotów_ruletki 2" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych iloœæ_minimalna_obrotów_ruletki
+		ustawienia << "iloœæ_max_dodatkowych_obrotów_ruletki 3" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych iloœæ_max_dodatkowych_obrotów_ruletki
+		ustawienia << "czas_przeskoku_kulki_szybki 50" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czas_przeskoku_kulki_szybki
+		ustawienia << "czas_przeskoku_kulki_wolny 75" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czas_przeskoku_kulki_wolny
+		ustawienia << "czas_przerwy_dzwiêku 500" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czas_przerwy_dzwiêku
+		ustawienia << "styl_liczenia_wygranej 1" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych styl_liczenia_wygranej
+		ustawienia << "kwota_pocz¹tkowa 1000" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych kwota_pocz¹tkowa
+		ustawienia << "stan_dŸwiêków 1" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych stan_dŸwiêków
+		ustawienia << "czy_kontynuowaæ_grê 1" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych czy_kontynuowaæ_grê
+		ustawienia << "g³os_odczytu_numeru 1" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych g³os_odczytu_numeru
+		ustawienia << "g³os_szybkoœæ_odczytu_numeru 4" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych g³os_szybkoœæ_odczytu_numeru
+		ustawienia << "efekty_dŸwiêkowe 1" << '\n'; //Wpisanie do pliku domyœnych ustawieñ dotycz¹cych efekty_dŸwiêkowe
+		ustawienia.flush(); //Zapisanie do pliku setting.txt danych wpisanych do bufora danych
 	}
 
-	if (czas_przeskoku_kulki_wolny < czas_przeskoku_kulki_szybki) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if (Ustawienia.czas_przeskoku_kulki_wolny < Ustawienia.czas_przeskoku_kulki_szybki) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Wartoœæ wolnego czasu przeskoku kulki musi byæ ni¿sza ni¿ wartoœæ szybkiego czasu przeskoku kulki" << endl; //(Wartoœci tych zmiennych to czas opóŸnienia wiêc im jest wy¿szy tym d³u¿sza przerwa)
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		czas_przeskoku_kulki_szybki = 50; //Ustawienie wartoœci domyœlnej
-		czas_przeskoku_kulki_wolny = 75; //Ustawienie wartoœci domyœlnej
+		Ustawienia.czas_przeskoku_kulki_szybki = 50; //Ustawienie wartoœci domyœlnej
+		Ustawienia.czas_przeskoku_kulki_wolny = 75; //Ustawienie wartoœci domyœlnej
 	}
-	if (iloœæ_minimalna_obrotów_ruletki < 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if (Ustawienia.iloœæ_minimalna_obrotów_ruletki < 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Iloœæ minimalna obrotów ruletki nie mo¿e byæ mniejsza od 0" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		iloœæ_minimalna_obrotów_ruletki = 2; //Ustawienie wartoœci domyœlnej
+		Ustawienia.iloœæ_minimalna_obrotów_ruletki = 2; //Ustawienie wartoœci domyœlnej
 	}
-	if (iloœæ_max_dodatkowych_obrotów_ruletki < 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if (Ustawienia.iloœæ_max_dodatkowych_obrotów_ruletki < 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Iloœæ max obrotów ruletki nie mo¿e byæ mniejsza od 0" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		iloœæ_max_dodatkowych_obrotów_ruletki = 3; //Ustawienie wartoœci domyœlnej
+		Ustawienia.iloœæ_max_dodatkowych_obrotów_ruletki = 3; //Ustawienie wartoœci domyœlnej
 	}
-	if ((iloœæ_minimalna_obrotów_ruletki == 0) && (iloœæ_max_dodatkowych_obrotów_ruletki == 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if ((Ustawienia.iloœæ_minimalna_obrotów_ruletki == 0) && (Ustawienia.iloœæ_max_dodatkowych_obrotów_ruletki == 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Jedna z deklaracji w sprawie obrotów ruletki musi byæ wiêksza od zera" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		iloœæ_minimalna_obrotów_ruletki = 2; //Ustawienie wartoœci domyœlnej
-		iloœæ_max_dodatkowych_obrotów_ruletki = 3; //Ustawienie wartoœci domyœlnej
+		Ustawienia.iloœæ_minimalna_obrotów_ruletki = 2; //Ustawienie wartoœci domyœlnej
+		Ustawienia.iloœæ_max_dodatkowych_obrotów_ruletki = 3; //Ustawienie wartoœci domyœlnej
 	}
-	if (((styl_liczenia_wygranej > 1) || (styl_liczenia_wygranej < 0))) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if (((Ustawienia.styl_liczenia_wygranej > 1) || (Ustawienia.styl_liczenia_wygranej < 0))) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Styl liczeia wygranej przyjmuje wartoœci tylko 0 lub 1" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		styl_liczenia_wygranej = 1; //Ustawienie wartoœci domyœlnej
+		Ustawienia.styl_liczenia_wygranej = 1; //Ustawienie wartoœci domyœlnej
 	}
-	if (czas_przerwy_dzwiêku < 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if (Ustawienia.czas_przerwy_dzwiêku < 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Czas przerwy dŸwiêku nie mo¿e byæ mniejszy od zera" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		czas_przerwy_dzwiêku = 500; //Ustawienie wartoœci domyœlnej
+		Ustawienia.czas_przerwy_dzwiêku = 500; //Ustawienie wartoœci domyœlnej
 	}
-	if (kwota_pocz¹tkowa < 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if (Ustawienia.kwota_pocz¹tkowa < 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Kwota pocz¹tkowa nie mo¿e byæ mniejsza od zera" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		kwota_pocz¹tkowa = 1000; //Ustawienie wartoœci domyœlnej
+		Ustawienia.kwota_pocz¹tkowa = 1000; //Ustawienie wartoœci domyœlnej
 	}
-	if ((stan_dŸwiêków > 1) || (stan_dŸwiêków < 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if ((Ustawienia.stan_dŸwiêków > 1) || (Ustawienia.stan_dŸwiêków < 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Stan dŸwiêków przyjmuje wartoœci tylko 0 lub 1" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		stan_dŸwiêków = 1; //Ustawienie wartoœci domyœlnej
+		Ustawienia.stan_dŸwiêków = 1; //Ustawienie wartoœci domyœlnej
 	}
-	if ((czy_kontynuowaæ_grê > 1) || (czy_kontynuowaæ_grê < 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if ((Ustawienia.czy_kontynuowaæ_grê > 1) || (Ustawienia.czy_kontynuowaæ_grê < 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Opcja kontynuowania gry przyjmuje wartoœci tylko 0 lub 1" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		czy_kontynuowaæ_grê = 1; //Ustawienie wartoœci domyœlnej
+		Ustawienia.czy_kontynuowaæ_grê = 1; //Ustawienie wartoœci domyœlnej
 	}
-	if ((g³os_odczytu_numeru > 10) || (g³os_odczytu_numeru < 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if ((Ustawienia.g³os_odczytu_numeru > 10) || (Ustawienia.g³os_odczytu_numeru < 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Opcja g³os odczytu numeru przyjmuje wartoœci w przedziale [0;10]" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		g³os_odczytu_numeru = 1; //Ustawienie wartoœci domyœlnej
+		Ustawienia.g³os_odczytu_numeru = 1; //Ustawienie wartoœci domyœlnej
 	}
-	if ((g³os_szybkoœæ_odczytu_numeru > 5) || (g³os_szybkoœæ_odczytu_numeru < 1)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if ((Ustawienia.g³os_szybkoœæ_odczytu_numeru > 5) || (Ustawienia.g³os_szybkoœæ_odczytu_numeru < 1)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Opcja szybkoœæ g³osu odczytu przyjmuje wartoœci w przedziale [1;5]" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		g³os_szybkoœæ_odczytu_numeru = 4; //Ustawienie wartoœci domyœlnej
+		Ustawienia.g³os_szybkoœæ_odczytu_numeru = 4; //Ustawienie wartoœci domyœlnej
 	}
-	if ((efekty_dŸwiêkowe > 1) || (efekty_dŸwiêkowe < 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if ((Ustawienia.efekty_dŸwiêkowe > 1) || (Ustawienia.efekty_dŸwiêkowe < 0)) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Opcja efekty dŸwiêkowe przyjmuje wartoœci 0 lub 1" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		efekty_dŸwiêkowe = 1; //Ustawienie wartoœci domyœlnej
+		Ustawienia.efekty_dŸwiêkowe = 1; //Ustawienie wartoœci domyœlnej
 	}
-	if (efekty_dŸwiêkowe == 1 && stan_dŸwiêków == 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if (Ustawienia.efekty_dŸwiêkowe == 1 && Ustawienia.stan_dŸwiêków == 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Nie mo¿esz mieæ wy³¹czonych dŸwiêków i w³¹czonych efektów dŸwiêkowych" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		stan_dŸwiêków = 1; //Ustawienie wartoœci domyœlnej
+		Ustawienia.stan_dŸwiêków = 1; //Ustawienie wartoœci domyœlnej
 	}
-	if (g³os_odczytu_numeru > 0 && stan_dŸwiêków == 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
+	if (Ustawienia.g³os_odczytu_numeru > 0 && Ustawienia.stan_dŸwiêków == 0) //Sprawdzenie czy prawid³owo wprowadzono ustawienie, czy ³apie siê w zakresie i warunkach
 	{
 		cout << "Nie mo¿esz mieæ wy³¹czonych dŸwiêków i w³¹czon¹ mowê" << endl;
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
-		stan_dŸwiêków = 1; //Ustawienie wartoœci domyœlnej
+		Ustawienia.stan_dŸwiêków = 1; //Ustawienie wartoœci domyœlnej
 	}
 }
 
@@ -1030,26 +1065,26 @@ void Og³oœ_wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pie
 	if (wygrana >= kwota_zak³adu) //Je¿eli wygrana jest wiêksza lub równa kwocie zak³adu to znaczy, ¿e siê wygra³o zak³ad
 	{
 		iloœæ_pieniêdzy += wygrana; //Dopisanie do salda kwoty wygranej z zak³adu
-		if (styl_liczenia_wygranej) iloœæ_pieniêdzy += kwota_zak³adu; //Dopisanie do salda kwoty zak³adu
+		if (Ustawienia.styl_liczenia_wygranej) iloœæ_pieniêdzy += kwota_zak³adu; //Dopisanie do salda kwoty zak³adu
 		log << " Wygrywasz " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie wygranej zak³adu
-		log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+		log << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
 		log_ogólny << " Wygrywasz " << wygrana << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie wygranej zak³adu
-		log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
+		log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-		if (stan_dŸwiêków)
+		if (Ustawienia.stan_dŸwiêków) //Je¿eli stan_dŸwiêków == 1
 		{
-			if (EfektyKompletne) //Je¿eli s¹ wszystkie pliki efektów dŸwiêkowych to
+			if (G³osyKompletne) //Je¿eli s¹ wszystkie pliki g³osów to
 			{
 				PlaySound((G³os + "win.wav").c_str(), nullptr, SND_SYNC); //Odtworzenie efektu wygrania zak³adu
 			}
 			else
 			{
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-				Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
-				cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
+				cout << '\a'; //Wywo³anie pikniêcia w g³oœniku
+				Sleep(Ustawienia.czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
+				cout << '\a'; //Wywo³anie pikniêcia w g³oœniku
+				Sleep(Ustawienia.czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
+				cout << '\a'; //Wywo³anie pikniêcia w g³oœniku
 			}
 		}
 	}
@@ -1057,60 +1092,62 @@ void Og³oœ_wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pie
 	{
 		iloœæ_pieniêdzy += wygrana; //Dopisanie do salda kwoty zwrotu z zak³adu
 		log << " Dostajesz polowe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie zwrotu zak³adu
-		log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+		log << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
 		log_ogólny << " Dostajesz polowe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie zwrotu zak³adu
-		log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
+		log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-		if (!EfektyKompletne) //Je¿eli nie ma wszystkich plików efektów dŸwiêkowych to
-		{
-			cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-			Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
-			cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-		}
+		if (Ustawienia.stan_dŸwiêków) //Je¿eli stan_dŸwiêków == 1
+			if (!G³osyKompletne) //Je¿eli nie ma wszystkich plików g³osów to
+			{
+				cout << '\a'; //Wywo³anie pikniêcia w g³oœniku
+				Sleep(Ustawienia.czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem
+				cout << '\a'; //Wywo³anie pikniêcia w g³oœniku
+			}
 	}
 	else if (wygrana == 0) //Je¿eli wygrana jest równa 0 to znaczy, ¿e siê zak³ad przegra³o
 	{
 		log << " Przegrales " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o przegranej kwocie
-		log << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+		log << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
 		log_ogólny << " Przegrales " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o przegranej kwocie
-		log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+		log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-		if (!EfektyKompletne) cout << "\a";  //Je¿eli nie ma wszystkich plików efektów dŸwiêkowych to wywo³anie pikniêcia w g³oœniku
+		if (Ustawienia.stan_dŸwiêków)
+			if (!G³osyKompletne) cout << '\a';  //Je¿eli nie ma wszystkich plików g³osów to wywo³anie pikniêcia w g³oœniku
 	}
 }
 
 void Koniec_gry(ofstream & log_ogólny, fstream & log, const int & iloœæ_pieniêdzy)
 {
 	cout << endl << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Poinformowanie u¿ytkownika o saldzie konta
-	log << endl << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
-	log_ogólny << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
+	log << '\n' << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
+	log_ogólny << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
 	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 	log.close(); //Zamkniêcie pliku log aktualny
 	remove("log_aktualny.txt"); //Usuniêcie pliku log aktualny poniewa¿ skoñczy³o siê grê
 
-	if (stan_dŸwiêków == 1) //Je¿eli stan_dŸwiêków == 1
+	if (Ustawienia.stan_dŸwiêków == 1) //Je¿eli stan_dŸwiêków == 1
 		if (iloœæ_pieniêdzy == 0) //Je¿eli bud¿et jest równy 0 to
 			if (EfektyKompletne) PlaySound("Efekty_dŸwiêkowe/bankrut.wav", nullptr, SND_SYNC); //Je¿eli pliki efektów s¹ dostêpne, odtworzenie efektu bankruta
 			else //W przeciwym wypadku
 				for (unsigned short i = 0; i < 5; ++i) //Rozpoczêcie pêtli która wykona 5 obrotów
 				{
-					cout << "\a"; //Wywo³anie pikniêcia w g³oœniku
-					Sleep(czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem //Przerwa przed kolejnym pikniêciem
+					cout << '\a'; //Wywo³anie pikniêcia w g³oœniku
+					Sleep(Ustawienia.czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem //Przerwa przed kolejnym pikniêciem
 				}
 
-	if (iloœæ_pieniêdzy > kwota_pocz¹tkowa && iloœæ_pieniêdzy < kwota_pocz¹tkowa * 2) //Sprawdzenie czy zwiêkszy³o siê bud¿et
+	if (iloœæ_pieniêdzy > Ustawienia.kwota_pocz¹tkowa && iloœæ_pieniêdzy < Ustawienia.kwota_pocz¹tkowa * 2) //Sprawdzenie czy zwiêkszy³o siê bud¿et
 	{
 		cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwiêkszenia bud¿etu
 		if (EfektyKompletne) //Je¿eli pliki efektów s¹ dostêpne
 			if (rand() % 1) PlaySound("Efekty_dŸwiêkowe/wygrana1.wav", nullptr, SND_SYNC); //Wylosowanie numeru otworzonego efektu, odtworzenie je¿eli wylosowano efekt 0
 			else PlaySound("Efekty_dŸwiêkowe/wygrana2.wav", nullptr, SND_SYNC); //Odtworzenie je¿eli wylosowano efekt 1
 	}
-	else if (iloœæ_pieniêdzy >= kwota_pocz¹tkowa * 2) //Sprawdzenie czy zwielokrotniono przynajmniej 2 razy bud¿et
+	else if (iloœæ_pieniêdzy >= Ustawienia.kwota_pocz¹tkowa * 2) //Sprawdzenie czy zwielokrotniono przynajmniej 2 razy bud¿et
 	{
-		cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwielokrotnienia przynajmniej 2 razy bud¿etu
+		cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / Ustawienia.kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwielokrotnienia przynajmniej 2 razy bud¿etu
 		if (EfektyKompletne) PlaySound("Efekty_dŸwiêkowe/zwielokrotnenie.wav", nullptr, SND_SYNC); //Odtworzenie efektu dŸwiêkowego wzamian za zwielokrotnienie bud¿etu, je¿eli pliki efektów s¹ dostêpne
 	}
 }
@@ -1118,7 +1155,11 @@ void Koniec_gry(ofstream & log_ogólny, fstream & log, const int & iloœæ_pieniêdz
 void Pêtla_g³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, string & typ_zak³adu, int & wylosowana_liczba)
 {
 	if (co_kontynuowaæ == 'n') Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy); //Przypisanie do zmiennej pobranej od u¿ytkownika kwoty zak³adu
-	else cout << "Obstawiono za " << kwota_zak³adu << "$" << endl; //Wypisanie wczytanej kwoty zak³adu
+	else
+	{
+		cout << "Masz " << iloœæ_pieniêdzy << "$" << endl; //Wypisanie wczytanej informacji o posiadanej iloœci pieniêdzy
+		cout << "Obstawiono za " << kwota_zak³adu << "$" << endl; //Wypisanie wczytanej kwoty zak³adu
+	}
 	if (co_kontynuowaæ == 'n') log << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie obstawionego zak³adu
 	if (co_kontynuowaæ == 'n') log_ogólny << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie obstawionego zak³adu
 	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
@@ -1152,122 +1193,122 @@ void Ustaw_ustawienia(string & tekst)
 	if (tekst.find("iloœæ_minimalna_obrotów_ruletki") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("iloœæ_minimalna_obrotów_ruletki")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) iloœæ_minimalna_obrotów_ruletki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.iloœæ_minimalna_obrotów_ruletki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			g³os_szybkoœæ_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.g³os_szybkoœæ_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("iloœæ_max_dodatkowych_obrotów_ruletki") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("iloœæ_max_dodatkowych_obrotów_ruletki")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) iloœæ_max_dodatkowych_obrotów_ruletki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.iloœæ_max_dodatkowych_obrotów_ruletki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			iloœæ_max_dodatkowych_obrotów_ruletki = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.iloœæ_max_dodatkowych_obrotów_ruletki = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("czas_przeskoku_kulki_szybki") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("czas_przeskoku_kulki_szybki")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) czas_przeskoku_kulki_szybki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.czas_przeskoku_kulki_szybki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			czas_przeskoku_kulki_szybki = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.czas_przeskoku_kulki_szybki = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("czas_przeskoku_kulki_wolny") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("czas_przeskoku_kulki_wolny")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) czas_przeskoku_kulki_wolny = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.czas_przeskoku_kulki_wolny = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			czas_przeskoku_kulki_wolny = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.czas_przeskoku_kulki_wolny = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("styl_liczenia_wygranej") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("styl_liczenia_wygranej")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) styl_liczenia_wygranej = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.styl_liczenia_wygranej = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			styl_liczenia_wygranej = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.styl_liczenia_wygranej = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("kwota_pocz¹tkowa") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("kwota_pocz¹tkowa")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) kwota_pocz¹tkowa = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.kwota_pocz¹tkowa = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			kwota_pocz¹tkowa = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.kwota_pocz¹tkowa = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("stan_dŸwiêków") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("stan_dŸwiêków")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) stan_dŸwiêków = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.stan_dŸwiêków = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			stan_dŸwiêków = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.stan_dŸwiêków = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("czy_kontynuowaæ_grê") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("czy_kontynuowaæ_grê")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) czy_kontynuowaæ_grê = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.czy_kontynuowaæ_grê = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			czy_kontynuowaæ_grê = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.czy_kontynuowaæ_grê = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("g³os_odczytu_numeru") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("g³os_odczytu_numeru")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) g³os_odczytu_numeru = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.g³os_odczytu_numeru = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			g³os_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.g³os_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("g³os_szybkoœæ_odczytu_numeru") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("g³os_szybkoœæ_odczytu_numeru")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) g³os_szybkoœæ_odczytu_numeru = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.g³os_szybkoœæ_odczytu_numeru = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			g³os_szybkoœæ_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.g³os_szybkoœæ_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 	else if (tekst.find("efekty_dŸwiêkowe") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
 		tekst.erase(0, size("efekty_dŸwiêkowe")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-		if (atoi(tekst.c_str())) efekty_dŸwiêkowe = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
+		if (atoi(tekst.c_str())) Ustawienia.efekty_dŸwiêkowe = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
 			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
-			efekty_dŸwiêkowe = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
+			Ustawienia.efekty_dŸwiêkowe = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
 }
