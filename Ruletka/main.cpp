@@ -4,6 +4,7 @@
 #include <io.h> //!_access()
 #include <iostream> //Obs³uga strumenia cout,cin
 #include <locale.h> //setlocale()
+#include <map> //Obs³uga drzew binarnych (map)
 #include <random> //random_device,distribution()
 #include <sstream> //stringstream, zamiana liczby na string
 #include <string> //Obs³uga stringów
@@ -12,6 +13,7 @@
 #pragma comment(lib, "winmm.lib") //Dodanie winmm.lib do linkera (konsolidatora)
 #include <urlmon.h> //URLDownloadToFileA() (Aby dzia³a³o trzeba dodaæ urlmon.lib do linkera (konsolidatora))
 #pragma comment(lib, "urlmon.lib") //Dodanie urlmon.lib do linkera (konsolidatora)
+#include "resource.h" //Plik z ikonami
 //-------------------------------------------------------------------------------------
 
 //-------------------------- deklaracja wyboru przestrzeni nazw std -------------------
@@ -25,14 +27,19 @@ int Zakrêæ_Ruletk¹(); //Funkcja losuje liczbê z ko³a ruletki
 int SprawdŸ_Zak³ad(const int & kwota, const string & typ_zak³adu, const int & wylosowana_liczba); //Funcja sprawdza czy wygraliœmy i podaje kwote wygranej/przegranej/odzysku czêœci w³o¿onych pieniêdzy
 bool Czy_Kontynuowaæ(const int & iloœæ_pieniêdzy); //Funkcja sprawdzj¹ca czy ma siê œrodki do gry, je¿eli ma siê to pyta czy chce siê graæ dalej
 int Wylosuj(const int & od_liczby, const int & do_liczby); //Funkcja która losuje liczby od liczby do liczby losowo lub psudolosowo metod¹ MT
-void Odczytaj_liczbê(const int & wylosowana_liczba, const string & typ_zak³adu); //Funkcja do odczytu wylosowanej liczby i jej po³o¿enia
-void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, int & iloœæ_pieniêdzy, int & kwota_zak³adu, int & wylosowana_liczba, string & typ_zak³adu); //Funkcja wczytuj¹ca z pliku ostatnie ruchy gracza
+void Odczytaj_Liczbê(const int & wylosowana_liczba, const string & typ_zak³adu); //Funkcja do odczytu wylosowanej liczby i jej po³o¿enia
+void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, int & iloœæ_pieniêdzy, int & kwota_zak³adu, int & wylosowana_liczba, string & typ_zak³adu); //Funkcja wczytuj¹ca z pliku ostatnie ruchy gracza
 void SprawdŸ_Pliki(); //Funkcja sprawdzaj¹ca czy wszystkie pliki dŸwiêkowe s¹ na miejscu
-void SprawdŸ_ustawienia(); //sprawdzanie poprawnoœci deklaracji definicji preprocesora do zmian funcjonowania programu
-void Og³oœ_wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log); //Funkcja informuj¹ca gracza o wyniku zak³adu
-void Koniec_gry(ofstream & log_ogólny, fstream & log, const int & iloœæ_pieniêdzy); //Funkcja informuj¹ca o wynikach gracza jak skoñczy³ grê
-void Pêtla_g³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, string & typ_zak³adu, int & wylosowana_liczba); //Funkcja wywo³uj¹ca funkcje obs³uguj¹ce wszystkie elementy ruletki
-void Ustaw_ustawienia(string & tekst); //Funkcja zamieniaj¹ca wczytan¹ linijkê z ustawieniami na zmianê ustawieñ programu
+void SprawdŸ_Ustawienia(); //sprawdzanie poprawnoœci deklaracji definicji preprocesora do zmian funcjonowania programu
+void Og³oœ_Wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log); //Funkcja informuj¹ca gracza o wyniku zak³adu
+void Koniec_Gry(ofstream & log_ogólny, fstream & log, const int & iloœæ_pieniêdzy); //Funkcja informuj¹ca o wynikach gracza jak skoñczy³ grê
+void Pêtla_G³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, string & typ_zak³adu, int & wylosowana_liczba); //Funkcja wywo³uj¹ca funkcje obs³uguj¹ce wszystkie elementy ruletki
+void Ustaw_Ustawienia(string & tekst); //Funkcja zamieniaj¹ca wczytan¹ linijkê z ustawieniami na zmianê ustawieñ programu
+void Inicjacje_Pocz¹tkowe(); //Funkcja do zainicjowanie funkcji pocz¹tkowych
+bool Wyci¹gnij_z_Programu(const string & œcie¿ka, unsigned short numer_zasobu); //Funkcja kopiuj¹ca do folderu z programem plik bêd¹cy wewn¹trz exe
+void Wypakuj_Rar(const string & nazwa_folderu); //Funkcja wypakowywuj¹ca pliki z archiwum rar
+bool Przenieœ_Plik(const string & z_pliku, const string & do_pliku); //Funkcja przenosz¹ca plik z œcie¿ki z_pliku do œcie¿ki do_pliku
+void Usuñ_Folder_Wypakowany_i_Winrar(const string & G³os); //Funkcja usuwaj¹ca wypakowany folder i program Winrar z folderu z programem
 //-------------------------------------------------------------------------------------
 
 //------------------------------- deklaracje funkcji obcych ---------------------------
@@ -41,10 +48,11 @@ void Hide_Cursor(); //Funkcja w³¹cza pokazanie kursora tekstowego
 void Show_Cursor(); //Funkcja wy³¹cza pokazanie kursora tekstowego
 //-------------------------------------------------------------------------------------
 
-//----------------------------- deklaracje tablic pomocniczych ------------------------
+//----------------------------- deklaracje sta³ych tablic pomocniczych ------------------------
 const unsigned short Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 }; // Kolejnoœæ liczb zgodna z ko³em ruletki
 const char Ruletka_plansza_kolor[] = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' }; //Kolor dla ka¿dej liczby na planszy
 const unsigned short Ruletka_plansza_kolor_col[] = { 2,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; //Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
+const map<string, unsigned short> Numer_zasobu_rar = { { "Agata_1",193 },{ "Agata_2",194 },{ "Agata_3",195 },{ "Agata_4",196 },{ "Agata_5",197 },{ "Ewa_1",198 },{ "Ewa_2",199 },{ "Ewa_3",200 },{ "Ewa_4",201 },{ "Ewa_5",202 },{ "Ewa2_1",203 },{ "Ewa2_2",204 },{ "Ewa2_3",205 },{ "Ewa2_4",206 },{ "Ewa2_5",207 },{ "Jacek_1",208 },{ "Jacek_2",209 },{ "Jacek_3",210 },{ "Jacek_4",211 },{ "Jacek_5",212 },{ "Jacek2_1",213 },{ "Jacek2_2",214 },{ "Jacek2_3",215 },{ "Jacek2_4",216 },{ "Jacek2_5",217 },{ "Jan_1",218 },{ "Jan_2",219 },{ "Jan_3",220 },{ "Jan_4",221 },{ "Jan_5",222 },{ "Jan2_1",223 },{ "Jan2_2",224 },{ "Jan2_3",225 },{ "Jan2_4",226 },{ "Jan2_5",227 },{ "Maja_1",228 },{ "Maja_2",229 },{ "Maja_3",230 },{ "Maja_4",231 },{ "Maja_5",232 },{ "Maja2_1",233 },{ "Maja2_2",234 },{ "Maja2_3",235 },{ "Maja2_4",236 },{ "Maja2_5",237 } };
 //-------------------------------------------------------------------------------------
 
 //---------- deklaracje typu strukturalnego do zmian ustawieñ programu ----------------
@@ -73,14 +81,11 @@ string G³os;
 S_Ustawienia Ustawienia;
 //-------------------------------------------------------------------------------------
 
-int main()
+int main(int argc, char *argv[])
 {
-	//Inicjowanie funkcji
-	setlocale(LC_ALL, "polish"); // W celu polskich liter w konsoli
-	srand((unsigned int)time(nullptr)); //Zainicjowanie generatorza LCG (Liniowy Generator Kongruentny) dla ma³o wa¿nych liczb
-	Show_Cursor(); //Pokazanie kursora tekstowego w konsoli
+	Inicjacje_Pocz¹tkowe(); //Zainicjowanie funkcji pocz¹tkowych
 
-	SprawdŸ_ustawienia(); //Wczytanie ustawieñ z pliku
+	SprawdŸ_Ustawienia(); //Wczytanie ustawieñ z pliku
 	SprawdŸ_Pliki(); //Wczytanie plików audio
 
 	//Inicjowanie zmiennych lokalnych
@@ -91,15 +96,15 @@ int main()
 	string typ_zak³adu; //Przechowuje typ zak³adu wprowadzony przez u¿ytkownika
 	char co_kontynuowaæ; //Deklaracja znaku który przechowuje nazwany znakiem punkt od którego kontynuowaæ runde
 
-	Wczytaj_z_pliku(log_ogólny, log, co_kontynuowaæ, iloœæ_pieniêdzy, kwota_zak³adu, wylosowana_liczba, typ_zak³adu); //Wczytanie stanu gry z pliku
+	Wczytaj_z_Pliku(log_ogólny, log, co_kontynuowaæ, iloœæ_pieniêdzy, kwota_zak³adu, wylosowana_liczba, typ_zak³adu); //Wczytanie stanu gry z pliku
 
 	do
 	{
-		Pêtla_g³ówna(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log, co_kontynuowaæ, typ_zak³adu, wylosowana_liczba); //Funkcja obs³uguj¹ca wszystkie elementy gry
+		Pêtla_G³ówna(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log, co_kontynuowaæ, typ_zak³adu, wylosowana_liczba); //Funkcja obs³uguj¹ca wszystkie elementy gry
 		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
 	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy)); //Pêtla dza³aj¹ca do czasu wartoœci fa³sz zwróconej przez funkcjê Czy_kontynuowaæ
 
-	Koniec_gry(log_ogólny, log, iloœæ_pieniêdzy); //Zakoñczenie gry i wskazanie wyniku
+	Koniec_Gry(log_ogólny, log, iloœæ_pieniêdzy); //Zakoñczenie gry i wskazanie wyniku
 
 	system("pause"); //Wywo³anie funkcji wymagaj¹cej do zamkniêcia naciœniêcie dowolnego klawisza
 
@@ -425,7 +430,7 @@ int Wylosuj(const int & od_liczby, const int & do_liczby)
 	return distribution(generator); //Zwraca wygenerowan¹ liczbê
 }
 
-void Odczytaj_liczbê(const int & wylosowana_liczba, const string & typ_zak³adu) {
+void Odczytaj_Liczbê(const int & wylosowana_liczba, const string & typ_zak³adu) {
 	if ((Ustawienia.g³os_odczytu_numeru == 0) || (!G³osyKompletne)) return; //Je¿eli ustawienia wy³¹czaj¹ g³os lub brak plików g³osu to wyjdŸ z funkcji
 
 	stringstream numers; //Utworzenie typu do zamiany liczby na tekst
@@ -457,7 +462,7 @@ void Odczytaj_liczbê(const int & wylosowana_liczba, const string & typ_zak³adu) 
 		}
 }
 
-void Wczytaj_z_pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, int & iloœæ_pieniêdzy, int & kwota_zak³adu, int & wylosowana_liczba, string & typ_zak³adu)
+void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, int & iloœæ_pieniêdzy, int & kwota_zak³adu, int & wylosowana_liczba, string & typ_zak³adu)
 {
 	if (!Ustawienia.czy_kontynuowaæ_grê) //Je¿eli czy_kontynuowaæ_grê == 0
 		if (!_access("log_aktualny.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
@@ -637,14 +642,17 @@ void SprawdŸ_Pliki()
 				cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
 			}
-			auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/bankrut.wav", "Efekty_dŸwiêkowe/bankrut.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
-				if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
-				{
-					czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
-					cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-					EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-				}
+			if (!Wyci¹gnij_z_Programu("Efekty_dŸwiêkowe/bankrut.wav", IDR_bankrut)) //Je¿eli nie uda³o wydobyæ siê z zasobów pliku bankrut.wav
+			{
+				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/bankrut.wav", "Efekty_dŸwiêkowe/bankrut.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+					if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+					{
+						czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
+						cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudanym pobieraniu i konsekwencji tego
+						EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					}
+			}
 		}
 
 		if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
@@ -655,14 +663,17 @@ void SprawdŸ_Pliki()
 					cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 					czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
 				}
-				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/wygrana1.wav", "Efekty_dŸwiêkowe/wygrana1.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
-				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
-					if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
-					{
-						czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
-						cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-						EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-					}
+				if (!Wyci¹gnij_z_Programu("Efekty_dŸwiêkowe/wygrana1.wav", IDR_wygrana1)) //Je¿eli nie uda³o wydobyæ siê z zasobów pliku wygrana1.wav
+				{
+					auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/wygrana1.wav", "Efekty_dŸwiêkowe/wygrana1.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
+					if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+						if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+						{
+							czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
+							cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudanym pobieraniu i konsekwencji tego
+							EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+						}
+				}
 			}
 
 		if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
@@ -673,14 +684,17 @@ void SprawdŸ_Pliki()
 					cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 					czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
 				}
-				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/wygrana2.wav", "Efekty_dŸwiêkowe/wygrana2.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
-				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
-					if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
-					{
-						czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
-						cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-						EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-					}
+				if (!Wyci¹gnij_z_Programu("Efekty_dŸwiêkowe/wygrana2.wav", IDR_wygrana2)) //Je¿eli nie uda³o wydobyæ siê z zasobów pliku wygrana2.wav
+				{
+					auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/wygrana2.wav", "Efekty_dŸwiêkowe/wygrana2.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
+					if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+						if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+						{
+							czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
+							cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudanym pobieraniu i konsekwencji tego
+							EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+						}
+				}
 			}
 
 		if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
@@ -691,14 +705,17 @@ void SprawdŸ_Pliki()
 					cout << "Rozpoczynam pobieranie brakuj¹cych plików efektów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 					czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
 				}
-				auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/zwielokrotnenie.wav", "Efekty_dŸwiêkowe/zwielokrotnenie.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
-				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
-					if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
-					{
-						czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
-						cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-						EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-					}
+				if (!Wyci¹gnij_z_Programu("Efekty_dŸwiêkowe/zwielokrotnenie.wav", IDR_zwielokrotnenie)) //Je¿eli nie uda³o wydobyæ siê z zasobów pliku zwielokrotnienie.wav
+				{
+					auto res = URLDownloadToFileA(nullptr, "https://github.com/talez2709/Ruletka/raw/master/Ruletka/Efekty_d%C5%BAwi%C4%99kowe/zwielokrotnenie.wav", "Efekty_dŸwiêkowe/zwielokrotnenie.wav", 0, nullptr); //Rozpoczêcie pobierania pliku
+					if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+						if (czy_pobrano) //Je¿eli ostatnie pobieranie zakoñczono prawid³owo
+						{
+							czy_pobrano = false; //Ustawienie zmiennej informuj¹cej o sukcesie pobierania na wartoœæ false
+							cout << "Brak plików dla efektów dŸwiêkowych oraz nie mo¿na pobraæ danych, wy³¹czono efekty dŸwiêkowe muzyczne, w³¹czono efekty systemowe" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+							EfektyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+						}
+				}
 			}
 
 		if (czy_pobierano && czy_pobrano) cout << "Pobrano brakuj¹ce pliki efektów" << endl; //Poinformowanie o ukoñczonu pobierania plików
@@ -768,13 +785,15 @@ void SprawdŸ_Pliki()
 
 		string g³os2 = G³os.substr(5, string::npos); //Utworzenie zmiennej typu string do celów operowania adresem przy pobieraniu danych i w³o¿enie do zmiennej napisu z zmiennej G³os z pominiêciem 5 pierwszych znaków
 
+		string g³os3 = g³os2.substr(0, g³os2.size() - 1);
+
 		if ((_access("G³os", 0))) //SprawdŸ czy nie ma folderu G³os
 		{
 			CreateDirectoryA("G³os", nullptr); //Je¿eli nie ma to utwórz go
 		}
-		if ((_access(("G³os/" + g³os2).c_str(), 0))) //SprawdŸ czy nie ma w folderze G³os podfolderu z nazw¹ i szybkoœci¹ g³osu
+		if ((_access((G³os).c_str(), 0))) //SprawdŸ czy nie ma w folderze G³os podfolderu z nazw¹ i szybkoœci¹ g³osu
 		{
-			CreateDirectoryA(("G³os/" + g³os2).c_str(), nullptr); //Je¿eli nie ma to utwórz go
+			CreateDirectoryA((G³os).c_str(), nullptr); //Je¿eli nie ma to utwórz go
 		}
 
 		bool czy_pobierano = false; //Utworzenie zmiennej logicznej informuj¹cej czy jakieœ pobieranie siê rozpocze³o
@@ -785,13 +804,18 @@ void SprawdŸ_Pliki()
 			{
 				cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+				Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+				Wypakuj_Rar(g³os3 + ".rar");
 			}
-			auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "p.wav").c_str(), ("G³os/" + g³os2 + "p.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+			if (!Przenieœ_Plik(g³os2 + "p.wav", G³os + "p.wav"))
 			{
-				cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-				G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-				return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "p.wav").c_str(), (G³os + "p.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+				{
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
 			}
 		}
 
@@ -801,13 +825,18 @@ void SprawdŸ_Pliki()
 			{
 				cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+				Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+				Wypakuj_Rar(g³os3 + ".rar");
 			}
-			auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "n.wav").c_str(), ("G³os/" + g³os2 + "n.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+			if (!Przenieœ_Plik(g³os2 + "n.wav", G³os + "n.wav"))
 			{
-				cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-				G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-				return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "n.wav").c_str(), (G³os + "n.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+				{
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
 			}
 		}
 
@@ -817,13 +846,18 @@ void SprawdŸ_Pliki()
 			{
 				cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+				Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+				Wypakuj_Rar(g³os3 + ".rar");
 			}
-			auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "r.wav").c_str(), ("G³os/" + g³os2 + "r.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+			if (!Przenieœ_Plik(g³os2 + "r.wav", G³os + "r.wav"))
 			{
-				cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-				G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-				return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "r.wav").c_str(), (G³os + "r.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+				{
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
 			}
 		}
 
@@ -833,13 +867,18 @@ void SprawdŸ_Pliki()
 			{
 				cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+				Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+				Wypakuj_Rar(g³os3 + ".rar");
 			}
-			auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "b.wav").c_str(), ("G³os/" + g³os2 + "b.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+			if (!Przenieœ_Plik(g³os2 + "b.wav", G³os + "b.wav"))
 			{
-				cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-				G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-				return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "b.wav").c_str(), (G³os + "b.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+				{
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
 			}
 		}
 
@@ -849,13 +888,18 @@ void SprawdŸ_Pliki()
 			{
 				cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+				Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+				Wypakuj_Rar(g³os3 + ".rar");
 			}
-			auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "g.wav").c_str(), ("G³os/" + g³os2 + "g.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+			if (!Przenieœ_Plik(g³os2 + "g.wav", G³os + "g.wav"))
 			{
-				cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-				G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-				return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "g.wav").c_str(), (G³os + "g.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+				{
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
 			}
 		}
 
@@ -865,13 +909,18 @@ void SprawdŸ_Pliki()
 			{
 				cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+				Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+				Wypakuj_Rar(g³os3 + ".rar");
 			}
-			auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "d.wav").c_str(), ("G³os/" + g³os2 + "d.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
-			if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+			if (!Przenieœ_Plik(g³os2 + "d.wav", G³os + "d.wav"))
 			{
-				cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-				G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-				return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "d.wav").c_str(), (G³os + "d.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+				{
+					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+				}
 			}
 		}
 
@@ -883,13 +932,18 @@ void SprawdŸ_Pliki()
 				{
 					cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 					czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+					Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+					Wypakuj_Rar(g³os3 + ".rar");
 				}
-				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "k" + (char)(48 + i) + ".wav").c_str(), ("G³os/" + g³os2 + "k" + (char)(48 + i) + ".wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
-				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+				if (!Przenieœ_Plik(g³os2 + (char)(48 + i) + ".wav", G³os + (char)(48 + i) + ".wav"))
 				{
-					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+					auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "k" + (char)(48 + i) + ".wav").c_str(), (G³os + "k" + (char)(48 + i) + ".wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+					if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+					{
+						cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+						G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+						return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+					}
 				}
 			}
 		}
@@ -904,13 +958,18 @@ void SprawdŸ_Pliki()
 				{
 					cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 					czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+					Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+					Wypakuj_Rar(g³os3 + ".rar");
 				}
-				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "w" + numers.str() + ".wav").c_str(), ("G³os/" + g³os2 + "w" + numers.str() + ".wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
-				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+				if (!Przenieœ_Plik(g³os2 + "w" + numers.str() + ".wav", G³os + "w" + numers.str() + ".wav"))
 				{
-					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
-					G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
-					return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+					auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "w" + numers.str() + ".wav").c_str(), (G³os + "w" + numers.str() + ".wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+					if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+					{
+						cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+						G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+						return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+					}
 				}
 			}
 		}
@@ -925,8 +984,34 @@ void SprawdŸ_Pliki()
 				{
 					cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
 					czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+					Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+					Wypakuj_Rar(g³os3 + ".rar");
 				}
-				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + numers.str() + ".wav").c_str(), ("G³os/" + g³os2 + numers.str() + ".wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+				if (!Przenieœ_Plik(g³os2 + numers.str() + ".wav", G³os + numers.str() + ".wav"))
+				{
+					auto res = URLDownloadToFileA(nullptr, (link + g³os2 + numers.str() + ".wav").c_str(), (G³os + numers.str() + ".wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+					if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
+					{
+						cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
+						G³osyKompletne = false; //Wpisanie do zmiennej wartoœci false informuj¹cej o niekompletnych plikach audio
+						return; //Wyjœcie z funkcji poniewa¿ nie ma sensu sprawdzania dalej
+					}
+				}
+			}
+		}
+
+		if ((_access((G³os + "win.wav").c_str(), 0))) //Sprawdzenie czy plik nie istnieje
+		{
+			if (!czy_pobierano) //Sprawdzanie czy jakieœ pobieranie siê rozpocze³o
+			{
+				cout << "Rozpoczynam pobieranie brakuj¹cych plików g³osów" << endl; //Poinformowaniu o rozpoczêciu pobierania
+				czy_pobierano = true; //Zmiana zmiennej aby wiadomo, ¿e rozpoczêto pobieranie
+				Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
+				Wypakuj_Rar(g³os3 + ".rar");
+			}
+			if (!Przenieœ_Plik(g³os2 + "win.wav", G³os + "win.wav"))
+			{
+				auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "win.wav").c_str(), (G³os + "win.wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
 				if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
 				{
 					cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
@@ -936,11 +1021,15 @@ void SprawdŸ_Pliki()
 			}
 		}
 
-		if (czy_pobierano) cout << "Pobrano brakuj¹ce pliki g³osów" << endl; //Poinformowanie o ukoñczonu pobierania plików
+		if (czy_pobierano)
+		{
+			cout << endl << "Pobrano brakuj¹ce pliki g³osów" << endl; //Poinformowanie o ukoñczonu pobierania plików
+			Usuñ_Folder_Wypakowany_i_Winrar(g³os2);
+		}
 	}
 }
 
-void SprawdŸ_ustawienia()
+void SprawdŸ_Ustawienia()
 {
 	if (!_access("setting.txt", 0)) // Sprawdzenie dostêpu do pliku (je¿eli takowy istnieje, musi istnieæ plik)
 	{
@@ -950,7 +1039,7 @@ void SprawdŸ_ustawienia()
 		while (!ustawienia.eof()) //Pêtla trwaj¹ca do koñca pliku
 		{
 			getline(ustawienia, buf); //Wczytanie ca³ej lini tekstu z pliku
-			Ustaw_ustawienia(buf); //Zamiana wczytanej lini na ustawienie programu
+			Ustaw_Ustawienia(buf); //Zamiana wczytanej lini na ustawienie programu
 		}
 	}
 	else
@@ -1060,7 +1149,7 @@ void SprawdŸ_ustawienia()
 	}
 }
 
-void Og³oœ_wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log)
+void Og³oœ_Wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log)
 {
 	if (wygrana >= kwota_zak³adu) //Je¿eli wygrana jest wiêksza lub równa kwocie zak³adu to znaczy, ¿e siê wygra³o zak³ad
 	{
@@ -1118,7 +1207,7 @@ void Og³oœ_wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pie
 	}
 }
 
-void Koniec_gry(ofstream & log_ogólny, fstream & log, const int & iloœæ_pieniêdzy)
+void Koniec_Gry(ofstream & log_ogólny, fstream & log, const int & iloœæ_pieniêdzy)
 {
 	cout << endl << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << endl; //Poinformowanie u¿ytkownika o saldzie konta
 	log << '\n' << "Koñczysz grê z wynikiem " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
@@ -1152,7 +1241,7 @@ void Koniec_gry(ofstream & log_ogólny, fstream & log, const int & iloœæ_pieniêdz
 	}
 }
 
-void Pêtla_g³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, string & typ_zak³adu, int & wylosowana_liczba)
+void Pêtla_G³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, string & typ_zak³adu, int & wylosowana_liczba)
 {
 	if (co_kontynuowaæ == 'n') Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy); //Przypisanie do zmiennej pobranej od u¿ytkownika kwoty zak³adu
 	else
@@ -1184,11 +1273,11 @@ void Pêtla_g³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofs
 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log_ogólny << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu ogólnego informacji o wylosowanej liczbie
 	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') Odczytaj_liczbê(wylosowana_liczba, typ_zak³adu);
+	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') Odczytaj_Liczbê(wylosowana_liczba, typ_zak³adu);
 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba); //Przypisanie do wygranej kwoty zgodnej z wygran¹, je¿eli siê coœwygra³o
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') Og³oœ_wynik(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log); //Funkcja informuj¹ca u¿ytkownika czy wygra³ zak³ad
+	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') Og³oœ_Wynik(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log); //Funkcja informuj¹ca u¿ytkownika czy wygra³ zak³ad
 }
-void Ustaw_ustawienia(string & tekst)
+void Ustaw_Ustawienia(string & tekst)
 {
 	if (tekst.find("iloœæ_minimalna_obrotów_ruletki") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
 	{
@@ -1196,7 +1285,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.iloœæ_minimalna_obrotów_ruletki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.g³os_szybkoœæ_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1207,7 +1296,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.iloœæ_max_dodatkowych_obrotów_ruletki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.iloœæ_max_dodatkowych_obrotów_ruletki = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1218,7 +1307,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.czas_przeskoku_kulki_szybki = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.czas_przeskoku_kulki_szybki = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1229,7 +1318,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.czas_przeskoku_kulki_wolny = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.czas_przeskoku_kulki_wolny = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1240,7 +1329,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.styl_liczenia_wygranej = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.styl_liczenia_wygranej = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1251,7 +1340,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.kwota_pocz¹tkowa = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.kwota_pocz¹tkowa = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1262,7 +1351,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.stan_dŸwiêków = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.stan_dŸwiêków = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1273,7 +1362,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.czy_kontynuowaæ_grê = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.czy_kontynuowaæ_grê = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1284,7 +1373,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.g³os_odczytu_numeru = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.g³os_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1295,7 +1384,7 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.g³os_szybkoœæ_odczytu_numeru = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.g³os_szybkoœæ_odczytu_numeru = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
@@ -1306,11 +1395,97 @@ void Ustaw_ustawienia(string & tekst)
 		if (atoi(tekst.c_str())) Ustawienia.efekty_dŸwiêkowe = atoi(tekst.c_str()); //Sprawdzenie czy po usuniêciu tekstu, to co pozosta³o jest wartoœci¹ ró¿n¹ od zera
 		else //W przeciwym wypadku
 		{
-			for (const char & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca wartoœæ na tym polu do zmiennej i
+			for (const auto & i : tekst) //Pêtla id¹ca po ka¿dym elemencie tablicy tekst i przypisuj¹ca adresowi tego pola adres zmiennej i
 				if (i != '0') return; //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji //Je¿eli zmienna i jest ró¿na od znaku 0 to wychodzi z funkcji
 			Ustawienia.efekty_dŸwiêkowe = 0; //Je¿eli wszystkie pozycje wyrazu tekst s¹ zerami to zaczy, ¿e jego wartoœæ liczbowa to 0
 		}
 	}
+}
+
+void Inicjacje_Pocz¹tkowe()
+{
+	//Inicjowanie ustawieñ programu
+	WNDCLASSEX wincl; //Utworzenie typu do zmiany w³aœciwoœci programu
+	wincl.hIcon = LoadIcon(GetModuleHandle(nullptr), MAKEINTRESOURCE(IDI_ICON1)); //Przypisanie ikony programu
+	wincl.hIconSm = LoadIcon(GetModuleHandle(nullptr), MAKEINTRESOURCE(IDI_ICON1));//Przypisanie ma³ej ikony programu
+
+	//Inicjowanie funkcji
+	setlocale(LC_ALL, "polish"); // W celu polskich liter w konsoli
+	srand((unsigned int)time(nullptr)); //Zainicjowanie generatorza LCG (Liniowy Generator Kongruentny) dla ma³o wa¿nych liczb
+	Show_Cursor(); //Pokazanie kursora tekstowego w konsoli
+}
+
+bool Wyci¹gnij_z_Programu(const string & œcie¿ka, unsigned short numer_zasobu)
+{
+	HRSRC hPlik = FindResource(GetModuleHandle(nullptr), MAKEINTRESOURCE(numer_zasobu), RT_RCDATA); //Tworz¹ uchwyt do pliku znajudj¹cego siê w plikach zasobów
+	if (hPlik != nullptr) //Je¿eli uchyt nie jest pusty (Znalaz³o zasób)
+	{
+		auto pPlik = LoadResource(GetModuleHandle(nullptr), hPlik); //Przypisujê uchwytowi miejsce Ÿród³owe pliku
+		auto dwDlugosc = SizeofResource(GetModuleHandle(nullptr), hPlik); //Przypisujê zmiennej wielkoœæ pliku
+		auto hPlik = CreateFile(œcie¿ka.c_str(), GENERIC_WRITE, NULL, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, nullptr); //Tworzê plik
+		DWORD dwBajtyZapisane; //Tworzê i inicjujê zmiennn¹ informuj¹c¹ o iloœæi zapisanych danych
+		if (!WriteFile(hPlik, pPlik, dwDlugosc, &dwBajtyZapisane, nullptr)) //Je¿eli zapis do pliku siê nie uda³
+			return false; //Zwróæ fa³sz
+		if (dwBajtyZapisane != dwDlugosc) //Je¿eli iloœæ zapisanych danych jest inna ni¿ iloœæ danych do zapisania
+			return false; //Zwróæ fa³sz
+		CloseHandle(hPlik); //Zamykam uchwyt do pliku Ÿród³owego
+		return true; //Zwracam, ¿e zapis siê uda³
+	}
+	else return false; //W przeciwym wypadku zwracam fa³sz
+}
+
+void Wypakuj_Rar(const string & nazwa_folderu)
+{
+	if ((_access("Rar.exe", 0))) //Sprawdzenie czy plik nie istnieje
+		Wyci¹gnij_z_Programu("Rar.exe", IDR_RAR); //Je¿eli nie istnieje to wyci¹gam z pamiêci
+	system(("Rar.exe x " + nazwa_folderu).c_str()); //Wydajê polecenie rozpakowania archiwum rar
+}
+
+bool Przenieœ_Plik(const string & z_pliku, const string & do_pliku)
+{
+	return MoveFile(z_pliku.c_str(), do_pliku.c_str()); //Zwracam wynik przenoszenia pliku
+}
+
+void Usuñ_Folder_Wypakowany_i_Winrar(const string & G³os)
+{
+	DeleteFile((G³os + "p.wav").c_str()); //Usuwam plik p.wav
+
+	DeleteFile((G³os + "n.wav").c_str()); //Usuwam plik n.wav
+
+	DeleteFile((G³os + "r.wav").c_str()); //Usuwam plik r.wav
+
+	DeleteFile((G³os + "b.wav").c_str()); //Usuwam plik b.wav
+
+	DeleteFile((G³os + "g.wav").c_str()); //Usuwam plik g.wav
+
+	DeleteFile((G³os + "d.wav").c_str()); //Usuwam plik d.wav
+
+	DeleteFile((G³os + "win.wav").c_str()); //Usuwam plik win.wav
+
+	for (unsigned short i = 1; i <= 3; ++i) //Pêtla licz¹ca od 1 do 3
+		DeleteFile((G³os + "k" + (char)(48 + i) + ".wav").c_str()); //Usuwam plik k
+
+	for (unsigned short i = 1; i <= 12; ++i) //Pêtla licz¹ca od 1 do 12
+	{
+		stringstream numers; //Utworzenie typu do zamiany liczby na tekst
+		numers << i; //Wpisanie do typu wartoœci z obrotu pêtli
+		DeleteFile((G³os + "w" + numers.str() + ".wav").c_str());  //Usuwam plik w
+	}
+
+	for (unsigned short i = 0; i <= 36; ++i) //Pêtla licz¹ca od 0 do 36
+	{
+		stringstream numers; //Utworzenie typu do zamiany liczby na tekst
+		numers << i; //Wpisanie do typu wartoœci z obrotu pêtli
+		DeleteFile((G³os + numers.str() + ".wav").c_str()); //Usuwam plik
+	}
+
+	string g³os2 = G³os.substr(0, G³os.size() - 1); //Tworzê zmienn¹ string do której wk³adam skrócony o ostatni znak string G³os
+
+	RemoveDirectory(g³os2.c_str()); //Usuwam folder
+
+	DeleteFile((g³os2 + ".rar").c_str()); //Sprawdzenie czy plik nie istnieje
+
+	DeleteFile("Rar.exe"); //Usuwam plik Rar.exe
 }
 
 /*

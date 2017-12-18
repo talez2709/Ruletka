@@ -13,10 +13,191 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki zasobów\Efekty_dźwiękowe">
+      <UniqueIdentifier>{9815b474-3c70-4135-980e-145dddf33607}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Ikony">
+      <UniqueIdentifier>{fdcfbb60-beb8-4241-b79b-2e91e5a4aa66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Głos">
+      <UniqueIdentifier>{1c28d51a-8c9e-4f0c-b432-e2be7cc30c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Programy">
+      <UniqueIdentifier>{c663c672-a35f-440b-9b35-b624c124d611}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Pliki zasobów</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Efekty_dźwiękowe\bankrut.wav">
+      <Filter>Pliki zasobów\Efekty_dźwiękowe</Filter>
+    </Media>
+    <Media Include="Efekty_dźwiękowe\wygrana1.wav">
+      <Filter>Pliki zasobów\Efekty_dźwiękowe</Filter>
+    </Media>
+    <Media Include="Efekty_dźwiękowe\wygrana2.wav">
+      <Filter>Pliki zasobów\Efekty_dźwiękowe</Filter>
+    </Media>
+    <Media Include="Efekty_dźwiękowe\zwielokrotnenie.wav">
+      <Filter>Pliki zasobów\Efekty_dźwiękowe</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Ikony\170752-200 [256x256].ico">
+      <Filter>Pliki zasobów\Ikony</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Głos\Agata_1.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Agata_2.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Agata_3.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Agata_4.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Agata_5.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa_1.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa_2.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa_3.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa_4.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa_5.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa2_1.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa2_2.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa2_3.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa2_4.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Ewa2_5.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek_1.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek_2.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek_3.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek_4.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek_5.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek2_1.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek2_2.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek2_3.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek2_4.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jacek2_5.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan_1.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan_2.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan_3.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan_4.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan_5.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan2_1.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan2_2.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan2_3.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan2_4.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Jan2_5.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja_1.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja_2.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja_3.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja_4.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja_5.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja2_1.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja2_2.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja2_3.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja2_4.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Głos\Maja2_5.rar">
+      <Filter>Pliki zasobów\Głos</Filter>
+    </None>
+    <None Include="Programy\Rar.exe">
+      <Filter>Pliki zasobów\Programy</Filter>
+    </None>
   </ItemGroup>
 </Project>

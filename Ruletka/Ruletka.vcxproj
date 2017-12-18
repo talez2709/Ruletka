@@ -141,6 +141,12 @@
       <GenerateCatalogFiles>true</GenerateCatalogFiles>
       <UpdateFileHashes>true</UpdateFileHashes>
     </Manifest>
+    <CustomBuildStep>
+      <Inputs>
+      </Inputs>
+      <Command>
+      </Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -207,6 +213,69 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Ikony\170752-200 [256x256].ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Efekty_dźwiękowe\bankrut.wav" />
+    <Media Include="Efekty_dźwiękowe\wygrana1.wav" />
+    <Media Include="Efekty_dźwiękowe\wygrana2.wav" />
+    <Media Include="Efekty_dźwiękowe\zwielokrotnenie.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Głos\Agata_1.rar" />
+    <None Include="Głos\Agata_2.rar" />
+    <None Include="Głos\Agata_3.rar" />
+    <None Include="Głos\Agata_4.rar" />
+    <None Include="Głos\Agata_5.rar" />
+    <None Include="Głos\Ewa2_1.rar" />
+    <None Include="Głos\Ewa2_2.rar" />
+    <None Include="Głos\Ewa2_3.rar" />
+    <None Include="Głos\Ewa2_4.rar" />
+    <None Include="Głos\Ewa2_5.rar" />
+    <None Include="Głos\Ewa_1.rar" />
+    <None Include="Głos\Ewa_2.rar" />
+    <None Include="Głos\Ewa_3.rar" />
+    <None Include="Głos\Ewa_4.rar" />
+    <None Include="Głos\Ewa_5.rar" />
+    <None Include="Głos\Jacek2_1.rar" />
+    <None Include="Głos\Jacek2_2.rar" />
+    <None Include="Głos\Jacek2_3.rar" />
+    <None Include="Głos\Jacek2_4.rar" />
+    <None Include="Głos\Jacek2_5.rar" />
+    <None Include="Głos\Jacek_1.rar" />
+    <None Include="Głos\Jacek_2.rar" />
+    <None Include="Głos\Jacek_3.rar" />
+    <None Include="Głos\Jacek_4.rar" />
+    <None Include="Głos\Jacek_5.rar" />
+    <None Include="Głos\Jan2_1.rar" />
+    <None Include="Głos\Jan2_2.rar" />
+    <None Include="Głos\Jan2_3.rar" />
+    <None Include="Głos\Jan2_4.rar" />
+    <None Include="Głos\Jan2_5.rar" />
+    <None Include="Głos\Jan_1.rar" />
+    <None Include="Głos\Jan_2.rar" />
+    <None Include="Głos\Jan_3.rar" />
+    <None Include="Głos\Jan_4.rar" />
+    <None Include="Głos\Jan_5.rar" />
+    <None Include="Głos\Maja2_1.rar" />
+    <None Include="Głos\Maja2_2.rar" />
+    <None Include="Głos\Maja2_3.rar" />
+    <None Include="Głos\Maja2_4.rar" />
+    <None Include="Głos\Maja2_5.rar" />
+    <None Include="Głos\Maja_1.rar" />
+    <None Include="Głos\Maja_2.rar" />
+    <None Include="Głos\Maja_3.rar" />
+    <None Include="Głos\Maja_4.rar" />
+    <None Include="Głos\Maja_5.rar" />
+    <None Include="Programy\Rar.exe" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
