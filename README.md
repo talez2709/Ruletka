@@ -1,7 +1,13 @@
 # Ruletka
 
-Gra konsolowa w ruletkę, przy użyciu tylko najpopularniejszych zakładów 
+Gra konsolowa w ruletkę, przy użyciu tylko najpopularniejszych zakładów
 
+Do uruchomienia wystarczy plik Ruletka.exe
+
+Obsługiwane systemy : 32bit Win XP i w górę, 64 bit Win 7 i w górę
+
+Wersja z folderu x64 dla 64 - bitowych procesorów
+Proszę używać wersji Release
 
 Efekty dźwiękowe zostaną samodzienie pobrane po uruchomieniu programu, jeżeli nie zostaną proszę folder Efekty dzwiękowe skopiować do folderu gdzie znajduje się plik exe
 Odczyt głosowy zostanie samodzienie pobrany po uruchomieniu programu, jeżeli nie zostaną proszę folder Głos skopiować do folderu gdzie znajduje się plik exe

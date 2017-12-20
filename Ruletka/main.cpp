@@ -1,6 +1,8 @@
 //------------------ deklaracje bibiotek u¿ywanych w programie -----------------------
+#include <array> //Kontener tablica
 #include <ctime> //time()
-#include <fstream> //Obs³uga pliku
+#include <deque> //Lista dwukierunkowa
+#include <fstream> //Obs³uga plików
 #include <io.h> //!_access()
 #include <iostream> //Obs³uga strumenia cout,cin
 #include <locale.h> //setlocale()
@@ -8,11 +10,12 @@
 #include <random> //random_device,distribution()
 #include <sstream> //stringstream, zamiana liczby na string
 #include <string> //Obs³uga stringów
-#include <Windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),HANDLE,GetStdHandle(),SetConsoleTextAttribute()
-#include <mmsystem.h> //PlaySound() (Aby dzia³a³o trzeba dodaæ winmm.lib lub coredll.lib do linkera (konsolidatora))
+#include <Windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),GetStdHandle(),SetConsoleTextAttribute(),DeleteFile(),RemoveDirectory(), zmiana ustawieñ konsoli, pobieranie aktualnego czasu
+#include <mmsystem.h> //PlaySound() (Aby dzia³a³o trzeba dodaæ winmm.lib lub coredll.lib do linkera (konsolidatora)), Odtwarzanie muzyki
 #pragma comment(lib, "winmm.lib") //Dodanie winmm.lib do linkera (konsolidatora)
-#include <urlmon.h> //URLDownloadToFileA() (Aby dzia³a³o trzeba dodaæ urlmon.lib do linkera (konsolidatora))
+#include <urlmon.h> //URLDownloadToFile() (Aby dzia³a³o trzeba dodaæ urlmon.lib do linkera (konsolidatora)), pobieranie plików z internetu
 #pragma comment(lib, "urlmon.lib") //Dodanie urlmon.lib do linkera (konsolidatora)
+#include <vector> //Obs³uga vectorów
 #include "resource.h" //Plik z ikonami
 //-------------------------------------------------------------------------------------
 
@@ -40,6 +43,7 @@ bool Wyci¹gnij_z_Programu(const string & œcie¿ka, unsigned short numer_zasobu); 
 void Wypakuj_Rar(const string & nazwa_folderu); //Funkcja wypakowywuj¹ca pliki z archiwum rar
 bool Przenieœ_Plik(const string & z_pliku, const string & do_pliku); //Funkcja przenosz¹ca plik z œcie¿ki z_pliku do œcie¿ki do_pliku
 void Usuñ_Folder_Wypakowany_i_Winrar(const string & G³os); //Funkcja usuwaj¹ca wypakowany folder i program Winrar z folderu z programem
+void Wypakuj_Wszystkie_G³osy(); //Funkcja wypakowywuj¹ca wszystkie pliki g³osów
 //-------------------------------------------------------------------------------------
 
 //------------------------------- deklaracje funkcji obcych ---------------------------
@@ -50,9 +54,10 @@ void Show_Cursor(); //Funkcja wy³¹cza pokazanie kursora tekstowego
 
 //----------------------------- deklaracje sta³ych tablic pomocniczych ------------------------
 const unsigned short Ruletka_ko³o[] = { 0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26 }; // Kolejnoœæ liczb zgodna z ko³em ruletki
-const char Ruletka_plansza_kolor[] = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' }; //Kolor dla ka¿dej liczby na planszy
-const unsigned short Ruletka_plansza_kolor_col[] = { 2,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; //Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
-const map<string, unsigned short> Numer_zasobu_rar = { { "Agata_1",193 },{ "Agata_2",194 },{ "Agata_3",195 },{ "Agata_4",196 },{ "Agata_5",197 },{ "Ewa_1",198 },{ "Ewa_2",199 },{ "Ewa_3",200 },{ "Ewa_4",201 },{ "Ewa_5",202 },{ "Ewa2_1",203 },{ "Ewa2_2",204 },{ "Ewa2_3",205 },{ "Ewa2_4",206 },{ "Ewa2_5",207 },{ "Jacek_1",208 },{ "Jacek_2",209 },{ "Jacek_3",210 },{ "Jacek_4",211 },{ "Jacek_5",212 },{ "Jacek2_1",213 },{ "Jacek2_2",214 },{ "Jacek2_3",215 },{ "Jacek2_4",216 },{ "Jacek2_5",217 },{ "Jan_1",218 },{ "Jan_2",219 },{ "Jan_3",220 },{ "Jan_4",221 },{ "Jan_5",222 },{ "Jan2_1",223 },{ "Jan2_2",224 },{ "Jan2_3",225 },{ "Jan2_4",226 },{ "Jan2_5",227 },{ "Maja_1",228 },{ "Maja_2",229 },{ "Maja_3",230 },{ "Maja_4",231 },{ "Maja_5",232 },{ "Maja2_1",233 },{ "Maja2_2",234 },{ "Maja2_3",235 },{ "Maja2_4",236 },{ "Maja2_5",237 } };
+const array<char, 37 >Ruletka_plansza_kolor = { 'g','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r','r','b','r','b','r','b','r','b','r','b','b','r','b','r','b','r','b','r' }; //Kolor dla ka¿dej liczby na planszy
+const deque<unsigned short> Ruletka_plansza_kolor_col = { 2,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4,4,8,4,8,4,8,4,8,4,8,8,4,8,4,8,4,8,4 }; //Kod koloru do funkcji zmiany koloru tekstu dla ka¿dej liczby na planszy
+const map<string, unsigned short> Numer_zasobu_rar = { { "Agata_1",IDR_RCDATA1 },{ "Agata_2",IDR_RCDATA2 },{ "Agata_3",IDR_RCDATA3 },{ "Agata_4",IDR_RCDATA4 },{ "Agata_5",IDR_RCDATA5 },{ "Ewa_1",IDR_RCDATA6 },{ "Ewa_2",IDR_RCDATA7 },{ "Ewa_3",IDR_RCDATA8 },{ "Ewa_4",IDR_RCDATA9 },{ "Ewa_5",IDR_RCDATA10 },{ "Ewa2_1",IDR_RCDATA11 },{ "Ewa2_2",IDR_RCDATA12 },{ "Ewa2_3",IDR_RCDATA13 },{ "Ewa2_4",IDR_RCDATA14 },{ "Ewa2_5",IDR_RCDATA15 },{ "Jacek_1",IDR_RCDATA16 },{ "Jacek_2",IDR_RCDATA17 },{ "Jacek_3",IDR_RCDATA18 },{ "Jacek_4",IDR_RCDATA19 },{ "Jacek_5",IDR_RCDATA20 },{ "Jacek2_1",IDR_RCDATA21 },{ "Jacek2_2",IDR_RCDATA22 },{ "Jacek2_3",IDR_RCDATA23 },{ "Jacek2_4",IDR_RCDATA24 },{ "Jacek2_5",IDR_RCDATA25 },{ "Jan_1",IDR_RCDATA26 },{ "Jan_2",IDR_RCDATA27 },{ "Jan_3",IDR_RCDATA28 },{ "Jan_4",IDR_RCDATA29 },{ "Jan_5",IDR_RCDATA30 },{ "Jan2_1",IDR_RCDATA31 },{ "Jan2_2",IDR_RCDATA32 },{ "Jan2_3",IDR_RCDATA33 },{ "Jan2_4",IDR_RCDATA34 },{ "Jan2_5",IDR_RCDATA35 },{ "Maja_1",IDR_RCDATA36 },{ "Maja_2",IDR_RCDATA37 },{ "Maja_3",IDR_RCDATA38 },{ "Maja_4",IDR_RCDATA39 },{ "Maja_5",IDR_RCDATA40 },{ "Maja2_1",IDR_RCDATA41 },{ "Maja2_2",IDR_RCDATA42 },{ "Maja2_3",IDR_RCDATA43 },{ "Maja2_4",IDR_RCDATA44 },{ "Maja2_5",IDR_RCDATA45 } };
+vector<string> Nazwa_g³osu = { "","Jacek","Ewa","Maja","Jan","Jacek2","Ewa2","Maja2","Jan2","Agata" };
 //-------------------------------------------------------------------------------------
 
 //---------- deklaracje typu strukturalnego do zmian ustawieñ programu ----------------
@@ -327,10 +332,10 @@ int SprawdŸ_Zak³ad(const int & kwota, const string & typ_zak³adu, const int & wy
 	else //Je¿eli wylosowana liczba nie jest zerem to
 	{
 		if (typ_zak³adu == "p") //Je¿eli typ zak³adu to p
-			if (wylosowana_liczba % 2 == 0) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest parzysta, je¿eli tak to wygrana jest 1:1
+			if (!(wylosowana_liczba & 1)) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest parzysta, je¿eli tak to wygrana jest 1:1
 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest parzysta to przegra³o siê zak³ad
 		else if (typ_zak³adu == "n") //Je¿eli typ zak³adu to n
-			if (wylosowana_liczba % 2 == 1) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest nieparzysta, je¿eli tak to wygrana jest 1:1
+			if (wylosowana_liczba & 1) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest nieparzysta, je¿eli tak to wygrana jest 1:1
 			else wygrana *= 0; //Je¿eli obstawiony numer nie jest nieparzysta to przegra³o siê zak³ad
 		else if (typ_zak³adu == "r") //Je¿eli typ zak³adu to n
 			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') wygrana *= 1; //To sprawdzam czy wylosowana liczba jest czerwona, je¿eli tak to wygrana jest 1:1
@@ -345,17 +350,17 @@ int SprawdŸ_Zak³ad(const int & kwota, const string & typ_zak³adu, const int & wy
 			if (wylosowana_liczba > 18) wygrana *= 1; //To sprawdzam czy wylosowana liczba jest od 19 do 36, je¿eli tak to wygrana jest 1:1
 			else wygrana *= 0; //Je¿eli wylosowana liczba nie nale¿y do przedzia³u [19,36] to przegra³o siê zak³ad
 		else if (typ_zak³adu[0] == 'k') //Je¿eli typ zak³adu to k
-			if ((wylosowana_liczba - 1) % 3 == typ_zak³adu[1] - 49) wygrana *= 2; //To sprawdzam czy wylosowana liczba jest z obstawionej kolumny, je¿eli tak to wygrana jest 2:1
+			if ((wylosowana_liczba - 1) % 3 == typ_zak³adu[1] - '1') wygrana *= 2; //To sprawdzam czy wylosowana liczba jest z obstawionej kolumny, je¿eli tak to wygrana jest 2:1
 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest z obstawionej kolumny to przegra³o siê zak³ad
 		else if (typ_zak³adu[0] == 'w') //Je¿eli typ zak³adu to w
-			if (((wylosowana_liczba - 1) / 3 + 1) == typ_zak³adu[1] - 48) wygrana *= 11; //To sprawdzam czy wylosowana liczba jest z obstawionego wiersza, je¿eli tak to wygrana jest 11:1
+			if (((wylosowana_liczba - 1) / 3 + 1) == typ_zak³adu[1] - '0') wygrana *= 11; //To sprawdzam czy wylosowana liczba jest z obstawionego wiersza, je¿eli tak to wygrana jest 11:1
 			else wygrana *= 0; //Je¿eli wylosowana liczba nie jest z obstawionego wiersza to przegra³o siê zak³ad
 		else if (wylosowana_liczba == atoi(typ_zak³adu.c_str())) wygrana *= 35; //Je¿eli typ zak³adu to liczba, to sprawdzam czy wylosowana liczba jest równa obstawionej liczbie, je¿eli tak to wygrana jest 35:1
 		else wygrana *= 0; //Je¿eli wylosowana liczba nie jest równa obstawionej liczbie to przegra³o siê zak³ad
 	}
 
 	if (wygrana >= kwota) cout << "Obstawi³eœ poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
-	else if (wygrana == kwota / 2) cout << "Obstawi³eœ niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
+	else if (wygrana == (kwota >> 1)) cout << "Obstawi³eœ niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
 	else cout << "Obstawi³eœ niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
 
 	return wygrana; //Zwracam wartoœ wygranej lub zwrotu
@@ -365,7 +370,7 @@ bool Czy_Kontynuowaæ(const int & iloœæ_pieniêdzy)
 {
 	string tak_nie; //Zadeklarowanie zmiennej typu string
 
-	if (iloœæ_pieniêdzy == 0) //Je¿eli posiadana iloœæ gotówki jest róna 0
+	if (iloœæ_pieniêdzy == 0) //Je¿eli posiadana iloœæ gotówki jest równa 0
 	{
 		cout << "Nie mo¿esz kontynuowaæ, przegra³eœ wszystko" << endl; //Poinformowanie u¿ytkownika, ¿e jest bankrutem
 		return false; //Zwrot wartoœci false, co oznacza, ¿e kolejna runda siê nie odbêdzie
@@ -401,7 +406,7 @@ void Show_Cursor()
 	HANDLE hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
 	CONSOLE_CURSOR_INFO hCCI; //Stworzenie zmiennej typu informacji o kursorze tekstowym w konsoli
 	GetConsoleCursorInfo(hConsoleOut, &hCCI); //Przypisanie do zmiennej informacji o kursorze tekstowym w konsoli
-	if (hCCI.bVisible != TRUE) //Sprawdzenie czy wartoœæ widocznoœci kursorsora tekstego w konsoli jest ró¿na od prawdy
+	if (!hCCI.bVisible) //Sprawdzenie czy wartoœæ widocznoœci kursorsora tekstego w konsoli jest ró¿na od prawdy
 	{
 		hCCI.bVisible = TRUE;//Je¿eli tak, to zmiena widocznoœci kursora na widoczny
 		SetConsoleCursorInfo(hConsoleOut, &hCCI); //I ustawienie widocznoœci kursora zgodnie z poprzedni¹ zmienn¹
@@ -436,12 +441,12 @@ void Odczytaj_Liczbê(const int & wylosowana_liczba, const string & typ_zak³adu) 
 	stringstream numers; //Utworzenie typu do zamiany liczby na tekst
 	numers << wylosowana_liczba; //Wpisanie to typu wylosowanej liczby
 	PlaySound((G³os + numers.str() + ".wav").c_str(), nullptr, SND_SYNC); //Odczytanie wylosowanego numeru
-	if (wylosowana_liczba != 0)
+	if (wylosowana_liczba | 0) //Je¿eli nie jest to 0
 		if (typ_zak³adu == "p" || typ_zak³adu == "n") //Je¿eli typ zak³adu to p lub n
-			if (wylosowana_liczba % 2 == 0) //Je¿eli wylosowana liczba modulo 2 jest 0 to
-				PlaySound((G³os + "p.wav").c_str(), nullptr, SND_SYNC); //Powiedz, ¿e wylosowana licza jest parzysta
+			if (wylosowana_liczba & 1) //Je¿eli wylosowana liczba modulo 2 jest 0 to
+				PlaySound((G³os + "n.wav").c_str(), nullptr, SND_SYNC); //Powiedz, ¿e wylosowana licza jest nieparzysta
 			else
-				PlaySound((G³os + "n.wav").c_str(), nullptr, SND_SYNC); //W przeciwym wypadku powiedz, ¿e wylosowana licza jest nieparzysta
+				PlaySound((G³os + "p.wav").c_str(), nullptr, SND_SYNC); //W przeciwym wypadku powiedz, ¿e wylosowana licza jest parzysta
 		else if (typ_zak³adu == "r" || typ_zak³adu == "b") //Je¿eli typ zak³adu to r lub b
 			if (Ruletka_plansza_kolor[wylosowana_liczba] == 'r') //Je¿eli kolor wylosowanej liczby to czerwony
 				PlaySound((G³os + "r.wav").c_str(), nullptr, SND_SYNC); //Powiedz, ¿e wylosowana liczba jest koloru czerwonego
@@ -453,7 +458,7 @@ void Odczytaj_Liczbê(const int & wylosowana_liczba, const string & typ_zak³adu) 
 			else
 				PlaySound((G³os + "d.wav").c_str(), nullptr, SND_SYNC); //W przeciwym wypadku powiedz, ¿e wylosowana liczba jest z dolnej po³ówki
 		else if (typ_zak³adu[0] == 'k') //Je¿eli typ zak³adu to k
-			PlaySound((G³os + "k" + (char)(((wylosowana_liczba - 1) % 3) + 49) + ".wav").c_str(), nullptr, SND_SYNC); //Powiedz z jakiej kolumny jest wylosowana liczba
+			PlaySound((G³os + "k" + (char)(((wylosowana_liczba - 1) % 3) + '1') + ".wav").c_str(), nullptr, SND_SYNC); //Powiedz z jakiej kolumny jest wylosowana liczba
 		else if (typ_zak³adu[0] == 'w') //Je¿eli typ zak³adu to w
 		{
 			stringstream numers; //Utworzenie typu do zamiany liczby na tekst
@@ -628,9 +633,7 @@ void SprawdŸ_Pliki()
 	if (Ustawienia.efekty_dŸwiêkowe == 1) //Je¿eli w³¹czono efekty dŸwiêkowe
 	{
 		if ((_access("Efekty_dŸwiêkowe", 0))) //SprawdŸ czy nie ma folderu Efekty dŸwiêkowe
-		{
 			CreateDirectoryA("Efekty_dŸwiêkowe", nullptr); //Je¿eli nie ma to utwórz go
-		}
 
 		bool czy_pobierano = false; //Utworzenie zmiennej informuj¹c¹ czy rozpoczêto pobieranie plików
 		bool czy_pobrano = true; //Utworzenie zmiennej informuj¹c¹ czy ostatnie pobieranie zakoñczy³o siê sukesem
@@ -724,59 +727,7 @@ void SprawdŸ_Pliki()
 	if (Ustawienia.g³os_odczytu_numeru > 0) //Je¿eli w³¹czono odczyt g³osowy
 	{
 		G³os = "G³os/"; //Wpisanie do zmiennej G³os pocz¹tku œcie¿ki do pliku z g³osem
-
-		switch (Ustawienia.g³os_odczytu_numeru) //U¿ycie warunku wielokrotnego wyboru do wpisania odpowiedniej nazwy g³osu do zmiennej g³os_nazwa
-		{
-		case 1: //Gdy g³os_odczytu_numeru==1
-		{
-			G³os += "Jacek"; //Dodanie do zmiennej nazwy wybranego g³osu Jacek
-			break; //Wyjœcie z instrukcji case //Wyjœcie z instrukcji case
-		}
-		case 2: //Gdy g³os_odczytu_numeru==2
-		{
-			G³os += "Ewa"; //Dodanie do zmiennej nazwy wybranego g³osu Ewa
-			break; //Wyjœcie z instrukcji case
-		}
-		case 3: //Gdy g³os_odczytu_numeru==3
-		{
-			G³os += "Maja"; //Dodanie do zmiennej nazwy wybranego g³osu Maja
-			break; //Wyjœcie z instrukcji case
-		}
-		case 4: //Gdy g³os_odczytu_numeru==4
-		{
-			G³os += "Jan"; //Dodanie do zmiennej nazwy wybranego g³osu Jan
-			break; //Wyjœcie z instrukcji case
-		}
-		case 5: //Gdy g³os_odczytu_numeru==5
-		{
-			G³os += "Jacek2"; //Dodanie do zmiennej nazwy wybranego g³osu Jacek 2
-			break; //Wyjœcie z instrukcji case
-		}
-
-		case 6: //Gdy g³os_odczytu_numeru==6
-		{
-			G³os += "Ewa2"; //Dodanie do zmiennej nazwy wybranego g³osu Ewa 2
-			break; //Wyjœcie z instrukcji case
-		}
-		case 7: //Gdy g³os_odczytu_numeru==7
-		{
-			G³os += "Maja2"; //Dodanie do zmiennej nazwy wybranego g³osu Maja 2
-			break; //Wyjœcie z instrukcji case
-		}
-		case 8: //Gdy g³os_odczytu_numeru==8
-		{
-			G³os += "Jan2"; //Dodanie do zmiennej nazwy wybranego g³osu Jan 2
-			break; //Wyjœcie z instrukcji case
-		}
-		case 9: //Gdy g³os_odczytu_numeru==9
-		{
-			G³os += "Agata"; //Dodanie do zmiennej nazwy wybranego g³osu Agata
-			break; //Wyjœcie z instrukcji case
-		}
-		default: //Je¿eli ¿aden warunek nie jest spe³niony to
-			break; //Wyjœcie z instrukcji case
-		}
-
+		G³os += Nazwa_g³osu[Ustawienia.g³os_odczytu_numeru]; //U¿ycie tablicy do wpisania odpowiedniej nazwy g³osu do zmiennej G³os
 		G³os += "_"; //Dodanie do zmiennej podkreœlenia odzielaj¹cego nazwê od szybkoœci
 		G³os += '0' + Ustawienia.g³os_szybkoœæ_odczytu_numeru; //Dodanie do zmiennej szybkoœci mowy
 		G³os += "/"; //Dodanie do zmiennej ukoœnika który odziela nazwê folderu od pliku
@@ -788,13 +739,9 @@ void SprawdŸ_Pliki()
 		string g³os3 = g³os2.substr(0, g³os2.size() - 1);
 
 		if ((_access("G³os", 0))) //SprawdŸ czy nie ma folderu G³os
-		{
 			CreateDirectoryA("G³os", nullptr); //Je¿eli nie ma to utwórz go
-		}
 		if ((_access((G³os).c_str(), 0))) //SprawdŸ czy nie ma w folderze G³os podfolderu z nazw¹ i szybkoœci¹ g³osu
-		{
 			CreateDirectoryA((G³os).c_str(), nullptr); //Je¿eli nie ma to utwórz go
-		}
 
 		bool czy_pobierano = false; //Utworzenie zmiennej logicznej informuj¹cej czy jakieœ pobieranie siê rozpocze³o
 
@@ -926,7 +873,7 @@ void SprawdŸ_Pliki()
 
 		for (unsigned short i = 1; i <= 3; ++i) //Pêtla licz¹ca od 1 do 3
 		{
-			if ((_access((G³os + "k" + (char)(48 + i) + ".wav").c_str(), 0))) //Sprawdzenie czy plik nie istnieje
+			if ((_access((G³os + "k" + (char)('0' + i) + ".wav").c_str(), 0))) //Sprawdzenie czy plik nie istnieje
 			{
 				if (!czy_pobierano) //Sprawdzanie czy jakieœ pobieranie siê rozpocze³o
 				{
@@ -935,9 +882,9 @@ void SprawdŸ_Pliki()
 					Wyci¹gnij_z_Programu((g³os3 + ".rar"), Numer_zasobu_rar.at(g³os3));
 					Wypakuj_Rar(g³os3 + ".rar");
 				}
-				if (!Przenieœ_Plik(g³os2 + (char)(48 + i) + ".wav", G³os + (char)(48 + i) + ".wav"))
+				if (!Przenieœ_Plik(g³os2 + (char)('0' + i) + ".wav", G³os + (char)('0' + i) + ".wav"))
 				{
-					auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "k" + (char)(48 + i) + ".wav").c_str(), (G³os + "k" + (char)(48 + i) + ".wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
+					auto res = URLDownloadToFileA(nullptr, (link + g³os2 + "k" + (char)('0' + i) + ".wav").c_str(), (G³os + "k" + (char)('0' + i) + ".wav").c_str(), 0, nullptr); //Rozpoczêcie pobierania pliku
 					if (res != S_OK) //Je¿eli nie powiod³o siê pobieranie pliku
 					{
 						cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; //Poinformowanie o nieudajnym pobieraniu i konsekwencji tego
@@ -1163,10 +1110,7 @@ void Og³oœ_Wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pie
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 		if (Ustawienia.stan_dŸwiêków) //Je¿eli stan_dŸwiêków == 1
 		{
-			if (G³osyKompletne) //Je¿eli s¹ wszystkie pliki g³osów to
-			{
-				PlaySound((G³os + "win.wav").c_str(), nullptr, SND_SYNC); //Odtworzenie efektu wygrania zak³adu
-			}
+			if (G³osyKompletne) PlaySound((G³os + "win.wav").c_str(), nullptr, SND_SYNC); //Je¿eli s¹ wszystkie pliki g³osów to odtworzenie efektu wygrania zak³adu
 			else
 			{
 				cout << '\a'; //Wywo³anie pikniêcia w g³oœniku
@@ -1177,7 +1121,7 @@ void Og³oœ_Wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pie
 			}
 		}
 	}
-	else if (wygrana == (kwota_zak³adu / 2)) //Je¿eli wygrana jest równa po³owie kwocie zak³adu to znaczy, ¿e dostaje siê zwrot po³owy kwoty zak³adu
+	else if (wygrana == (kwota_zak³adu >> 1)) //Je¿eli wygrana jest równa po³owie kwocie zak³adu to znaczy, ¿e dostaje siê zwrot po³owy kwoty zak³adu
 	{
 		iloœæ_pieniêdzy += wygrana; //Dopisanie do salda kwoty zwrotu z zak³adu
 		log << " Dostajesz polowe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie zwrotu zak³adu
@@ -1227,14 +1171,14 @@ void Koniec_Gry(ofstream & log_ogólny, fstream & log, const int & iloœæ_pieniêdz
 					Sleep(Ustawienia.czas_przerwy_dzwiêku); //Przerwa przed kolejnym pikniêciem //Przerwa przed kolejnym pikniêciem
 				}
 
-	if (iloœæ_pieniêdzy > Ustawienia.kwota_pocz¹tkowa && iloœæ_pieniêdzy < Ustawienia.kwota_pocz¹tkowa * 2) //Sprawdzenie czy zwiêkszy³o siê bud¿et
+	if (iloœæ_pieniêdzy > Ustawienia.kwota_pocz¹tkowa && iloœæ_pieniêdzy < (Ustawienia.kwota_pocz¹tkowa << 1)) //Sprawdzenie czy zwiêkszy³o siê bud¿et
 	{
 		cout << "Gratuluje zwiêkszy³eœ swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwiêkszenia bud¿etu
 		if (EfektyKompletne) //Je¿eli pliki efektów s¹ dostêpne
-			if (rand() % 1) PlaySound("Efekty_dŸwiêkowe/wygrana1.wav", nullptr, SND_SYNC); //Wylosowanie numeru otworzonego efektu, odtworzenie je¿eli wylosowano efekt 0
+			if (rand() & 1) PlaySound("Efekty_dŸwiêkowe/wygrana1.wav", nullptr, SND_SYNC); //Wylosowanie numeru otworzonego efektu, odtworzenie je¿eli wylosowano efekt 0
 			else PlaySound("Efekty_dŸwiêkowe/wygrana2.wav", nullptr, SND_SYNC); //Odtworzenie je¿eli wylosowano efekt 1
 	}
-	else if (iloœæ_pieniêdzy >= Ustawienia.kwota_pocz¹tkowa * 2) //Sprawdzenie czy zwielokrotniono przynajmniej 2 razy bud¿et
+	else if (iloœæ_pieniêdzy >= (Ustawienia.kwota_pocz¹tkowa << 1)) //Sprawdzenie czy zwielokrotniono przynajmniej 2 razy bud¿et
 	{
 		cout << "Gratuluje zwiêkszy³eœ " << iloœæ_pieniêdzy / Ustawienia.kwota_pocz¹tkowa << " krotnie swój zasób finansowy" << endl; //Wyœwietlenie gratulacji z powodu zwielokrotnienia przynajmniej 2 razy bud¿etu
 		if (EfektyKompletne) PlaySound("Efekty_dŸwiêkowe/zwielokrotnenie.wav", nullptr, SND_SYNC); //Odtworzenie efektu dŸwiêkowego wzamian za zwielokrotnienie bud¿etu, je¿eli pliki efektów s¹ dostêpne
@@ -1243,39 +1187,55 @@ void Koniec_Gry(ofstream & log_ogólny, fstream & log, const int & iloœæ_pieniêdz
 
 void Pêtla_G³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ, string & typ_zak³adu, int & wylosowana_liczba)
 {
-	if (co_kontynuowaæ == 'n') Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy); //Przypisanie do zmiennej pobranej od u¿ytkownika kwoty zak³adu
+	if (co_kontynuowaæ == 'n')
+	{
+		Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy); //Przypisanie do zmiennej pobranej od u¿ytkownika kwoty zak³adu
+		log << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie obstawionego zak³adu
+		log_ogólny << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie obstawionego zak³adu
+		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+	}
 	else
 	{
 		cout << "Masz " << iloœæ_pieniêdzy << "$" << endl; //Wypisanie wczytanej informacji o posiadanej iloœci pieniêdzy
 		cout << "Obstawiono za " << kwota_zak³adu << "$" << endl; //Wypisanie wczytanej kwoty zak³adu
 	}
-	if (co_kontynuowaæ == 'n') log << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie obstawionego zak³adu
-	if (co_kontynuowaæ == 'n') log_ogólny << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie obstawionego zak³adu
-	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') typ_zak³adu = Obstaw(); //Przypisanie do zmiennej pobranej od u¿ytkownika typu zak³adu
+	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k')
+	{
+		typ_zak³adu = Obstaw(); //Przypisanie do zmiennej pobranej od u¿ytkownika typu zak³adu
+		log << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu aktualnego informacji o typie obstawionego zak³adu
+		log_ogólny << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu ogólnego informacji o typie obstawionego zak³adu
+		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+	}
 	else cout << "Obstawiono zak³ad " << typ_zak³adu << endl; //Wypisanie wczytanego typu zak³adu
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu aktualnego informacji o typie obstawionego zak³adu
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') log_ogólny << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu ogólnego informacji o typie obstawionego zak³adu
-	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') iloœæ_pieniêdzy -= kwota_zak³adu; //Odjêcie od iloœci pieniêdzy kwoty zak³adu
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl; //Poinformowanie u¿ytkownika o rozpoczêciu losowania
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') wylosowana_liczba = Zakrêæ_Ruletk¹(); //Wylosowanie i przypisanie do zmiennej liczby bêdêcej na  wylosowanej pozycji na kole ruletki
-	else {
+	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't')
+	{
+		cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl; //Poinformowanie u¿ytkownika o rozpoczêciu losowania
+		wylosowana_liczba = Zakrêæ_Ruletk¹(); //Wylosowanie i przypisanie do zmiennej liczby bêdêcej na  wylosowanej pozycji na kole ruletki
+	}
+	else
+	{
 		cout << "Wylosowano numer "; //Poinformowaniu o wylosowaniu liczby
 		Change_Col(Ruletka_plansza_kolor_col[wylosowana_liczba]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 		cout << wylosowana_liczba; //Wypisanie wylosowanej liczby
 		Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 		cout << ". "; //Wypisanie kropki koñcz¹cej zdanie
 	}
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu aktualnego informacji o wylosowanej liczbie
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') log_ogólny << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu ogólnego informacji o wylosowanej liczbie
-	log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-	log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') Odczytaj_Liczbê(wylosowana_liczba, typ_zak³adu);
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba); //Przypisanie do wygranej kwoty zgodnej z wygran¹, je¿eli siê coœwygra³o
-	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') Og³oœ_Wynik(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log); //Funkcja informuj¹ca u¿ytkownika czy wygra³ zak³ad
+	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't')
+	{
+		log << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu aktualnego informacji o wylosowanej liczbie
+		log_ogólny << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu ogólnego informacji o wylosowanej liczbie
+		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+		Odczytaj_Liczbê(wylosowana_liczba, typ_zak³adu);
+	}
+	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w')
+	{
+		wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba); //Przypisanie do wygranej kwoty zgodnej z wygran¹, je¿eli siê coœwygra³o
+		Og³oœ_Wynik(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log); //Funkcja informuj¹ca u¿ytkownika czy wygra³ zak³ad
+	}
 }
 void Ustaw_Ustawienia(string & tekst)
 {
@@ -1424,10 +1384,8 @@ bool Wyci¹gnij_z_Programu(const string & œcie¿ka, unsigned short numer_zasobu)
 		auto dwDlugosc = SizeofResource(GetModuleHandle(nullptr), hPlik); //Przypisujê zmiennej wielkoœæ pliku
 		auto hPlik = CreateFile(œcie¿ka.c_str(), GENERIC_WRITE, NULL, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, nullptr); //Tworzê plik
 		DWORD dwBajtyZapisane; //Tworzê i inicjujê zmiennn¹ informuj¹c¹ o iloœæi zapisanych danych
-		if (!WriteFile(hPlik, pPlik, dwDlugosc, &dwBajtyZapisane, nullptr)) //Je¿eli zapis do pliku siê nie uda³
-			return false; //Zwróæ fa³sz
-		if (dwBajtyZapisane != dwDlugosc) //Je¿eli iloœæ zapisanych danych jest inna ni¿ iloœæ danych do zapisania
-			return false; //Zwróæ fa³sz
+		if (!WriteFile(hPlik, pPlik, dwDlugosc, &dwBajtyZapisane, nullptr)) return false; //Je¿eli zapis do pliku siê nie uda³ zwróæ fa³sz
+		if (dwBajtyZapisane != dwDlugosc) return false; //Je¿eli iloœæ zapisanych danych jest inna ni¿ iloœæ danych do zapisania zwróæ fa³sz
 		CloseHandle(hPlik); //Zamykam uchwyt do pliku Ÿród³owego
 		return true; //Zwracam, ¿e zapis siê uda³
 	}
@@ -1436,8 +1394,7 @@ bool Wyci¹gnij_z_Programu(const string & œcie¿ka, unsigned short numer_zasobu)
 
 void Wypakuj_Rar(const string & nazwa_folderu)
 {
-	if ((_access("Rar.exe", 0))) //Sprawdzenie czy plik nie istnieje
-		Wyci¹gnij_z_Programu("Rar.exe", IDR_RAR); //Je¿eli nie istnieje to wyci¹gam z pamiêci
+	if ((_access("Rar.exe", 0))) Wyci¹gnij_z_Programu("Rar.exe", IDR_RAR);  //Sprawdzenie czy plik nie istnieje je¿eli nie istnieje to wyci¹gam z pamiêci
 	system(("Rar.exe x " + nazwa_folderu).c_str()); //Wydajê polecenie rozpakowania archiwum rar
 }
 
@@ -1463,7 +1420,7 @@ void Usuñ_Folder_Wypakowany_i_Winrar(const string & G³os)
 	DeleteFile((G³os + "win.wav").c_str()); //Usuwam plik win.wav
 
 	for (unsigned short i = 1; i <= 3; ++i) //Pêtla licz¹ca od 1 do 3
-		DeleteFile((G³os + "k" + (char)(48 + i) + ".wav").c_str()); //Usuwam plik k
+		DeleteFile((G³os + "k" + (char)('0' + i) + ".wav").c_str()); //Usuwam plik k
 
 	for (unsigned short i = 1; i <= 12; ++i) //Pêtla licz¹ca od 1 do 12
 	{
@@ -1486,6 +1443,17 @@ void Usuñ_Folder_Wypakowany_i_Winrar(const string & G³os)
 	DeleteFile((g³os2 + ".rar").c_str()); //Sprawdzenie czy plik nie istnieje
 
 	DeleteFile("Rar.exe"); //Usuwam plik Rar.exe
+}
+
+void Wypakuj_Wszystkie_G³osy()
+{
+	for (short i = 1; i <= 9; ++i)
+		for (short ii = 1; ii <= 5; ++ii)
+		{
+			Ustawienia.g³os_odczytu_numeru = i;
+			Ustawienia.g³os_szybkoœæ_odczytu_numeru = ii;
+			SprawdŸ_Pliki(); //Wczytanie plików audio
+		}
 }
 
 /*

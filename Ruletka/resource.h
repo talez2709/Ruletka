@@ -7,7 +7,6 @@
 #define IDR_wygrana1                    125
 #define IDR_wygrana2                    126
 #define IDR_zwielokrotnenie             127
-#define IDR_RAR                         189
 #define IDR_RCDATA1                     193
 #define IDR_RCDATA2                     194
 #define IDR_RCDATA3                     195
@@ -53,12 +52,13 @@
 #define IDR_RCDATA43                    235
 #define IDR_RCDATA44                    236
 #define IDR_RCDATA45                    237
+#define IDR_RAR                    238
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        238
+#define _APS_NEXT_RESOURCE_VALUE        239
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           101

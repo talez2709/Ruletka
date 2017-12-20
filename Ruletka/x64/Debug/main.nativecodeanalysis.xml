@@ -4,19 +4,19 @@
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
-      <LINE>459</LINE>
+      <LINE>464</LINE>
       <COLUMN>16</COLUMN>
     </SFA>
     <DEFECTCODE>6246</DEFECTCODE>
-    <DESCRIPTION>Lokalna deklaracja „numers” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „436” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
+    <DESCRIPTION>Lokalna deklaracja „numers” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „441” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
     <FUNCTION>Odczytaj_Liczbę</FUNCTION>
     <DECORATED>?Odczytaj_Liczbę@@YAXAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
-    <FUNCLINE>433</FUNCLINE>
+    <FUNCLINE>438</FUNCLINE>
     <PATH>
       <SFA>
         <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
         <FILENAME>main.cpp</FILENAME>
-        <LINE>436</LINE>
+        <LINE>441</LINE>
         <COLUMN>14</COLUMN>
       </SFA>
     </PATH>
@@ -25,19 +25,19 @@
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
-      <LINE>1425</LINE>
+      <LINE>1385</LINE>
       <COLUMN>7</COLUMN>
     </SFA>
     <DEFECTCODE>6246</DEFECTCODE>
-    <DESCRIPTION>Lokalna deklaracja „hPlik” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „1420” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
+    <DESCRIPTION>Lokalna deklaracja „hPlik” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „1380” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
     <FUNCTION>Wyciągnij_z_Programu</FUNCTION>
     <DECORATED>?Wyciągnij_z_Programu@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@Z</DECORATED>
-    <FUNCLINE>1418</FUNCLINE>
+    <FUNCLINE>1378</FUNCLINE>
     <PATH>
       <SFA>
         <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
         <FILENAME>main.cpp</FILENAME>
-        <LINE>1420</LINE>
+        <LINE>1380</LINE>
         <COLUMN>7</COLUMN>
       </SFA>
     </PATH>
@@ -46,19 +46,19 @@
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
-      <LINE>1449</LINE>
+      <LINE>1406</LINE>
       <COLUMN>5</COLUMN>
     </SFA>
     <DEFECTCODE>6244</DEFECTCODE>
-    <DESCRIPTION>Lokalna deklaracja „Głos” ukrywa poprzednią deklarację w wierszu „80” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
+    <DESCRIPTION>Lokalna deklaracja „Głos” ukrywa poprzednią deklarację w wierszu „85” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
     <FUNCTION>Usuń_Folder_Wypakowany_i_Winrar</FUNCTION>
     <DECORATED>?Usuń_Folder_Wypakowany_i_Winrar@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
-    <FUNCLINE>1449</FUNCLINE>
+    <FUNCLINE>1406</FUNCLINE>
     <PATH>
       <SFA>
         <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
         <FILENAME>main.cpp</FILENAME>
-        <LINE>80</LINE>
+        <LINE>85</LINE>
         <COLUMN>7</COLUMN>
       </SFA>
     </PATH>
