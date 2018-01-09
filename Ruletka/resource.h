@@ -1,12 +1,13 @@
+#pragma once
 //{{NO_DEPENDENCIES}}
 // Plik do³¹czany wygenerowany przez œrodowisko Microsoft Visual C++.
 // U¿ywany przez: Resource.rc
 //
 #define IDI_ICON1                       109
-#define IDR_bankrut                     124
-#define IDR_wygrana1                    125
-#define IDR_wygrana2                    126
-#define IDR_zwielokrotnenie             127
+#define IDR_BANKRUT                     124
+#define IDR_WYGRANA1                    125
+#define IDR_WYGRANA2                    126
+#define IDR_ZWIELOKROTNIENIE             127
 #define IDR_RCDATA1                     193
 #define IDR_RCDATA2                     194
 #define IDR_RCDATA3                     195

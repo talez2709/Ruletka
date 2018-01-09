@@ -4,19 +4,19 @@
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
-      <LINE>464</LINE>
+      <LINE>466</LINE>
       <COLUMN>16</COLUMN>
     </SFA>
     <DEFECTCODE>6246</DEFECTCODE>
-    <DESCRIPTION>Lokalna deklaracja „numers” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „441” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
+    <DESCRIPTION>Lokalna deklaracja „numers” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „443” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
     <FUNCTION>Odczytaj_Liczbę</FUNCTION>
     <DECORATED>?Odczytaj_Liczbę@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
-    <FUNCLINE>438</FUNCLINE>
+    <FUNCLINE>440</FUNCLINE>
     <PATH>
       <SFA>
         <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
         <FILENAME>main.cpp</FILENAME>
-        <LINE>441</LINE>
+        <LINE>443</LINE>
         <COLUMN>14</COLUMN>
       </SFA>
     </PATH>
@@ -25,19 +25,40 @@
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
-      <LINE>1385</LINE>
-      <COLUMN>7</COLUMN>
+      <LINE>1428</LINE>
+      <COLUMN>13</COLUMN>
     </SFA>
     <DEFECTCODE>6246</DEFECTCODE>
-    <DESCRIPTION>Lokalna deklaracja „hPlik” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „1380” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
+    <DESCRIPTION>Lokalna deklaracja „hPlik” ukrywa deklarację o tej samej nazwie w zewnętrznym zakresie. Dodatkowe informacje można znaleźć w poprzedniej deklaracji w wierszu „1423” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
     <FUNCTION>Wyciągnij_z_Programu</FUNCTION>
-    <DECORATED>?Wyciągnij_z_Programu@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@Z</DECORATED>
-    <FUNCLINE>1378</FUNCLINE>
+    <DECORATED>?Wyciągnij_z_Programu@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABG@Z</DECORATED>
+    <FUNCLINE>1421</FUNCLINE>
     <PATH>
       <SFA>
         <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
         <FILENAME>main.cpp</FILENAME>
-        <LINE>1380</LINE>
+        <LINE>1423</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>1449</LINE>
+      <COLUMN>5</COLUMN>
+    </SFA>
+    <DEFECTCODE>6244</DEFECTCODE>
+    <DESCRIPTION>Lokalna deklaracja „Głos” ukrywa poprzednią deklarację w wierszu „91” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
+    <FUNCTION>Usuń_Folder_Wypakowany_i_Winrar</FUNCTION>
+    <DECORATED>?Usuń_Folder_Wypakowany_i_Winrar@@YAXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>1449</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
+        <FILENAME>main.cpp</FILENAME>
+        <LINE>91</LINE>
         <COLUMN>7</COLUMN>
       </SFA>
     </PATH>
@@ -46,21 +67,42 @@
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
-      <LINE>1406</LINE>
-      <COLUMN>5</COLUMN>
+      <LINE>1506</LINE>
+      <COLUMN>14</COLUMN>
     </SFA>
-    <DEFECTCODE>6244</DEFECTCODE>
-    <DESCRIPTION>Lokalna deklaracja „Głos” ukrywa poprzednią deklarację w wierszu „85” w „f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp”.</DESCRIPTION>
-    <FUNCTION>Usuń_Folder_Wypakowany_i_Winrar</FUNCTION>
-    <DECORATED>?Usuń_Folder_Wypakowany_i_Winrar@@YAXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
-    <FUNCLINE>1406</FUNCLINE>
-    <PATH>
-      <SFA>
-        <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
-        <FILENAME>main.cpp</FILENAME>
-        <LINE>85</LINE>
-        <COLUMN>7</COLUMN>
-      </SFA>
-    </PATH>
+    <DEFECTCODE>6330</DEFECTCODE>
+    <DESCRIPTION>Element „const char” przekazany jako _Param_(1), gdy jest wymagany element „unsigned char” w wywołaniu elementu „isspace”.</DESCRIPTION>
+    <FUNCTION>StringtoBool</FUNCTION>
+    <DECORATED>?StringtoBool@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>1499</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>1507</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>6330</DEFECTCODE>
+    <DESCRIPTION>Element „const char” przekazany jako _Param_(1), gdy jest wymagany element „unsigned char” w wywołaniu elementu „isalpha”.</DESCRIPTION>
+    <FUNCTION>StringtoBool</FUNCTION>
+    <DECORATED>?StringtoBool@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>1499</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>1508</LINE>
+      <COLUMN>50</COLUMN>
+    </SFA>
+    <DEFECTCODE>6330</DEFECTCODE>
+    <DESCRIPTION>Element „const char” przekazany jako _Param_(1), gdy jest wymagany element „unsigned char” w wywołaniu elementu „isspace”.</DESCRIPTION>
+    <FUNCTION>StringtoBool</FUNCTION>
+    <DECORATED>?StringtoBool@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>1499</FUNCLINE>
+    <PATH></PATH>
   </DEFECT>
 </DEFECTS>

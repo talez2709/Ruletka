@@ -142,6 +142,10 @@
       <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
       <SubSystem>Console</SubSystem>
+      <HeapReserveSize>
+      </HeapReserveSize>
+      <StackReserveSize>
+      </StackReserveSize>
     </Link>
     <Manifest>
       <GenerateCategoryTags>true</GenerateCategoryTags>

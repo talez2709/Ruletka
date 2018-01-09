@@ -1,7 +1,7 @@
 ﻿  main.cpp
   Trwa generowanie kodu
-  3 of 880 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  1 of 1365 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    8 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   Ruletka.vcxproj -> F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\x64\Release\Ruletka.exe

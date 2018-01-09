@@ -1,4 +1,4 @@
-iloœæ_minimalna_obrotów_ruletki 2
+iloœæ_min_dodatkowych_obrotów_ruletki 2
 iloœæ_max_dodatkowych_obrotów_ruletki 3
 czas_przeskoku_kulki_szybki 50
 czas_przeskoku_kulki_wolny 75
@@ -10,3 +10,4 @@ czy_kontynuowaæ_grê 1
 g³os_odczytu_numeru 1
 g³os_szybkoœæ_odczytu_numeru 4
 efekty_dŸwiêkowe 1
+g³os_pobierz_wszystkie 0
