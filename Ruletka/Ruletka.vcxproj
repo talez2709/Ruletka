@@ -116,6 +116,12 @@
     <ResourceCompile>
       <Culture>0x0415</Culture>
     </ResourceCompile>
+    <PostBuildEvent>
+      <Command>DEL /s F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Debug\Ruletka.7z.001 &amp; DEL /s F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Debug\Ruletka.7z.002 &amp; c: &amp;cd "c:\PProgram Files\7-ZipPortable\App\7-Zip" &amp; 7z.exe a -t7z -v24m -ms=on -mx9 -mmt "F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Debug\Ruletka.7z"  "F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Debug\Ruletka.exe"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Kompresja exe część 24MB</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -161,6 +167,10 @@
     <ResourceCompile>
       <Culture>0x0415</Culture>
     </ResourceCompile>
+    <PostBuildEvent>
+      <Command>DEL /s F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\x64\Debug\Ruletka.7z.001 &amp; DEL /s F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\x64\Debug\Ruletka.7z.002 &amp; c: &amp;cd "c:\PProgram Files\7-ZipPortable\App\7-Zip64" &amp; 7z.exe a -t7z -v24m -ms=on -mx9 -mmt "F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\x64\Debug\Ruletka.7z"  "F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\x64\Debug\Ruletka.exe"</Command>
+      <Message>Kompresja exe część 24MB</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -200,6 +210,12 @@
     <ResourceCompile>
       <Culture>0x0415</Culture>
     </ResourceCompile>
+    <PostBuildEvent>
+      <Command>DEL /s F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Release\Ruletka.7z.001 &amp; DEL /s F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Release\Ruletka.7z.002 &amp; c: &amp;cd "c:\PProgram Files\7-ZipPortable\App\7-Zip" &amp; 7z.exe a -t7z -v24m -ms=on -mx9 -mmt "F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Release\Ruletka.7z"  "F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Release\Ruletka.exe"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Kompresja rar część 24MB</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -240,6 +256,10 @@
     <ResourceCompile>
       <Culture>0x0415</Culture>
     </ResourceCompile>
+    <PostBuildEvent>
+      <Command>DEL /s F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\x64\Release\Ruletka.7z.001 &amp; DEL /s F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\x64\Release\Ruletka.7z.002 &amp; c: &amp;cd "c:\PProgram Files\7-ZipPortable\App\7-Zip64" &amp; 7z.exe a -t7z -v24m -ms=on -mx9 -mmt "F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\x64\Release\Ruletka.7z"  "F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\x64\Release\Ruletka.exe"</Command>
+      <Message>Kompresja exe część 24MB</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

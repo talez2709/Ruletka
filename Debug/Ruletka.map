@@ -1,6 +1,6 @@
  Ruletka
 
- Timestamp is 5a54f4c3 (Tue Jan  9 17:58:43 2018)
+ Timestamp is 5a55360e (Tue Jan  9 22:37:18 2018)
 
  Preferred load address is 00400000
 
@@ -13680,8 +13680,3 @@
  0005:000003cc       __IMPORT_DESCRIPTOR_urlmon 0071c3cc     urlmon:urlmon.dll
  0005:000003e0       __NULL_IMPORT_DESCRIPTOR   0071c3e0     winmm:WINMM.dll
  0006:00000000       ___guard_check_icall_fptr  0071e000     LIBCMTD:guard_support.obj
-
- Exports
-
-  ordinal    name
-

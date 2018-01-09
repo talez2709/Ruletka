@@ -1,6 +1,6 @@
  Ruletka
 
- Timestamp is 5a54f487 (Tue Jan  9 17:57:43 2018)
+ Timestamp is 5a5525cb (Tue Jan  9 21:27:55 2018)
 
  Preferred load address is 0000000140000000
 
@@ -13584,8 +13584,3 @@
  0007:00000010       __guard_dispatch_icall_fptr 0000000140421010     LIBCMTD:guard_support.obj
  0007:00000020       __guard_ss_verify_failure_fptr 0000000140421020     LIBCMTD:guard_support.obj
  0007:00000030       __guard_ss_verify_sp_fptr  0000000140421030     LIBCMTD:guard_support.obj
-
- Exports
-
-  ordinal    name
-
