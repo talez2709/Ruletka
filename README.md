@@ -18,6 +18,8 @@ Po pierwszym uruchomieniu zostanie wygenerowany plik z ustawieniami
 
 Jeżeli log się nie tworzy proszę wyłączyć program antywirusowy lub wyłączyć uruchamianie pogramu w piaskownicy lub dodać plik exe do wyjątków
 
+Jeżeli tekst w konsoli jest źle formatowany, proszę ponownie uruchomić aplikację 
+
 Domyślne ustawienia programu
 ilość_min_dodatkowych_obrotów_ruletki 2 // Minimalna ilość obrotów ruletki przed podaniem wartości wylosowanej
 ilość_max_dodatkowych_obrotów_ruletki 3 // Maksymalna ilość dodatkowych obrotów ruletki przed podaniem wartości wylosowanej
