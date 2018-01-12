@@ -25,6 +25,9 @@
     <Filter Include="Pliki zasobów\Programy">
       <UniqueIdentifier>{c663c672-a35f-440b-9b35-b624c124d611}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki zasobów\Inne">
+      <UniqueIdentifier>{ab308423-5fdc-4291-a32c-d8b7a42f1706}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -199,5 +202,10 @@
     <None Include="Programy\Rar.exe">
       <Filter>Pliki zasobów\Programy</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Inne\Do_użytkownika.txt">
+      <Filter>Pliki zasobów\Inne</Filter>
+    </Text>
   </ItemGroup>
 </Project>

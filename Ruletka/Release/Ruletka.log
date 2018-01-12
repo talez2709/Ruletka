@@ -1,18 +1,1 @@
-﻿  main.cpp
-  Trwa generowanie kodu
-  0 of 1366 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  Zakończono generowanie kodu
-  Ruletka.vcxproj -> F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Release\Ruletka.exe
-  Deleted file - F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Release\Ruletka.7z.001
-  Deleted file - F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Release\Ruletka.7z.002
-  
-  7-Zip 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18
-  Scanning
-  
-  Creating archive F:\Users\Krzysztof\Documents\Szkoła\2017-2018\Informatyka\Labolatorium\Ruletka\Release\Ruletka.7z
-  
-  Compressing  Ruletka.exe
-  
-  Everything is Ok
+﻿F:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Platforms\Win32\PlatformToolsets\v141_xp\Toolset.targets(28,5): error MSB8026: Obecny zestaw narzędzi platformy nie obsługuje analizy statycznej.

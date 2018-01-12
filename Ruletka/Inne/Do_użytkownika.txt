@@ -1,0 +1,4 @@
+Wiem, ¿e pojawia siê problem:
+Jak program musi pobraæ g³os, to potem napisy w konsoli, a w szczególnoœci podczas losowania s¹ wyœwietlane nieprawid³owo. Lekarstwem na to jest usuniêcie plików log, bo mog¹ zawieraæ b³êdne dane i ponowne uruchomienie aplikacji
+
+Przepraszam za problem

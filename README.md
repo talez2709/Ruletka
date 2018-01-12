@@ -30,6 +30,5 @@ styl_liczenia_wygranej 1 //0 dla odejmowania włożonych w zakład pieniędzy (p
 kwota_początkowa 1000 //Ilość $ z którymi zaczyna się grę
 stan_dźwięków 1 //Czy włączone dźwięki 1 <-tak 0 <-nie
 czy_kontynuować_grę 1 //Czy włączone kontynuowanie gry od skończonej poprzednio pozycji 1 <-tak 0 <-nie
-głos_odczytu_numeru 1 //Wybór głosu który odczyta wylosowany numer 0 <- Brak 1 <- Jacek (Ivona) 2 <- Ewa (Ivona) 3 <- Maja (Ivona) 4 <- Jan (Ivona) 5 <- Jacek (Ivona 2) 6 <- Ewa (Ivona 2) 7 <- Maja (Ivona 2) 8 <- Jan (Ivona 2) 9 <- Agata (Scansoft)
+głos_odczytu_numeru 1 //Wybór głosu który odczyta wylosowany numer 0 <- Wyłączono 1 <- Jacek (Ivona) 2 <- Ewa (Ivona) 3 <- Maja (Ivona) 4 <- Jan (Ivona) 5 <- Jacek (Ivona 2) 6 <- Ewa (Ivona 2) 7 <- Maja (Ivona 2) 8 <- Jan (Ivona 2) 9 <- Agata (Scansoft)
 efekty_dźwiękowe = 1; //Czy włączone efekty dźwiękowe 1 <-tak 0 <-nie
-głos_pobierz_wszystkie = 0; //Czy pobrać od razu wszystkie głosy

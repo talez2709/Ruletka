@@ -10,4 +10,3 @@ czy_kontynuowaæ_grê 1
 g³os_odczytu_numeru 1
 g³os_szybkoœæ_odczytu_numeru 4
 efekty_dŸwiêkowe 1
-g³os_pobierz_wszystkie 0

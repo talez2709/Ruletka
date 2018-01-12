@@ -46,7 +46,6 @@ bool Wyci¹gnij_z_Programu(const string & œcie¿ka, const unsigned short & numer_z
 void Wypakuj_Rar(const string & nazwa_folderu); //Funkcja wypakowywuj¹ca pliki z archiwum rar
 bool Przenieœ_Plik(const string & z_pliku, const string & do_pliku); //Funkcja przenosz¹ca plik z œcie¿ki z_pliku do œcie¿ki do_pliku
 void Usuñ_Folder_Wypakowany_i_Winrar(const string & G³os); //Funkcja usuwaj¹ca wypakowany folder i program Winrar z folderu z programem
-void Wypakuj_Wszystkie_G³osy(); //Funkcja wypakowywuj¹ca wszystkie pliki g³osów
 //-------------------------------------------------------------------------------------
 
 //------------------------------- deklaracje funkcji obcych ---------------------------
@@ -55,6 +54,7 @@ void Hide_Cursor(); //Funkcja w³¹cza pokazywanie kursora tekstowego
 void Show_Cursor(); //Funkcja wy³¹cza pokazywanie kursora tekstowego
 bool StringtoBool(const string & var); //Funkcja zamienia string na bool
 short stos(const string& _Str, size_t *_Idx = 0, int _Base = 10); //Przerobiona wersja stoi na sto(short)
+BOOL TerminateProcess(const DWORD & dwProcessId, const UINT & uExitCode); //Funkcja zamykaj¹ca dany proces
 //-------------------------------------------------------------------------------------
 
 //----------------------------- deklaracje sta³ych tablic pomocniczych ------------------------
@@ -80,7 +80,6 @@ struct S_Ustawienia //Struktura z wpisanymi domyœlnymi ustawieniami
 	short g³os_odczytu_numeru = 1; //Wybór g³osu który odczyta wylosowany numer 0 <- Brak 1 <- Jacek (Ivona) 2 <- Ewa (Ivona) 3 <- Maja (Ivona) 4 <- Jan (Ivona) 5 <- Jacek (Ivona 2) 6 <- Ewa (Ivona 2) 7 <- Maja (Ivona 2) 8 <- Jan (Ivona 2) 9 <- Agata (Scansoft)
 	short g³os_szybkoœæ_odczytu_numeru = (2 * 2); //Wybór szybkoœci mowy, skala od 1 do 5
 	bool efekty_dŸwiêkowe = true; //Czy w³¹czone efekty dŸwiêkowe 1 <-tak 0 <-nie
-	bool g³os_pobierz_wszystkie = false; //Czy pobraæ od razu wszystkie g³osy
 };
 //-------------------------------------------------------------------------------------
 
@@ -250,7 +249,7 @@ int Zakrêæ_Ruletk¹()
 	const double czas_przeskoku_kulki_szybki_opóŸnienie = Ustawienia.czas_przeskoku_kulki_szybki / (iloœæ_zakrêceñ * 37.0); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
 	Hide_Cursor(); //Ukrycie kursora tekstowego w konsoli
 	for (auto i = 0; i < iloœæ_zakrêceñ; ++i) //Wykonanie iloœæ_zakrêceñ obrotów ruletk¹
-		for (auto ii = 0; ii < 37; ++ii) //Przejœcie przez wszystkie pozycje ruletki
+		for (size_t ii = 0; ii < 37; ++ii) //Przejœcie przez wszystkie pozycje ruletki
 		{
 			Change_Col(Ruletka_plansza_kolor_col[Ruletka_ko³o[ii]]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
 			cout << Ruletka_ko³o[ii]; //Wypisanie numeru na kole ruletki na którym znajduje siê pêtla
@@ -258,7 +257,7 @@ int Zakrêæ_Ruletk¹()
 			Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
 			cout << "\b\b" << "  " << "\b\b"; //Cofniêcie kursora tekstowego do lewej strony konsoli aby zape³niæ potem spacjami czyli niewidocznym znakiem wiersza konsoli aby widaæ przejœcie pomiêdzy liczbami na ruletce
 		}
-	const int wylosowana_pozycja = Wylosuj(0, 36); //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ losow¹ lub pseudolosow¹ liczbê (o wysokiej pseoudolosowoœci) pozycjê na ruletce
+	const auto wylosowana_pozycja = Wylosuj(0, 36); //Deklarowanie i przpisanie zmiennej liczbowj zawieraj¹c¹ losow¹ lub pseudolosow¹ liczbê (o wysokiej pseoudolosowoœci) pozycjê na ruletce
 	const double czas_przeskoku_kulki_wolny_przyspieszenie = (Ustawienia.czas_przeskoku_kulki_wolny - Ustawienia.czas_przeskoku_kulki_szybki) / (double)(wylosowana_pozycja); //Deklarowanie i przpisanie zmiennej zmiennoprzecinkowej zawieraj¹c¹ czas o ile kolejna wartoœæ na kole ruletki powinna byæ szybciej pokazana
 	for (auto i = 0; i < wylosowana_pozycja; ++i) //Przejœcie przez pozycje do pozycji o 1 mniejszej od wylosowanej pozyji na ruletce
 	{
@@ -538,10 +537,13 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			pocz¹tek = bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
-			buf2 = move(bufor2); //Przeniesienie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
-			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
-			buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
-			sscanf_s(buf2.c_str(), "%d", &iloœæ_pieniêdzy); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			if (bufor2.find("Gra rozpoczeta") == string::npos) //Zabezpieczenie przed wczytymaniem iloœci pozosta³ych pieniêdzy jak siê nie rozegra³o pe³nej rundy
+			{
+				buf2 = move(bufor2); //Przeniesienie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
+				buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+				buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
+				sscanf_s(buf2.c_str(), "%d", &iloœæ_pieniêdzy); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			}
 		}
 		else if (buf.find("Obstawiono zaklad") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o typie obstawionego zak³adu
 		{
@@ -569,10 +571,13 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			pocz¹tek = bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
-			buf2 = move(bufor2); //Przeniesienie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
-			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
-			buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
-			sscanf_s(buf2.c_str(), "%d", &iloœæ_pieniêdzy); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			if (bufor2.find("Gra rozpoczeta") == string::npos) //Zabezpieczenie przed wczytymaniem iloœci pozosta³ych pieniêdzy jak siê nie rozegra³o pe³nej rundy
+			{
+				buf2 = move(bufor2); //Przeniesienie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
+				buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+				buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
+				sscanf_s(buf2.c_str(), "%d", &iloœæ_pieniêdzy); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			}
 		}
 		else if (buf.find("Obstawiono za") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o kwocie obstawionego zak³adu
 		{
@@ -593,10 +598,13 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			pocz¹tek = bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
-			buf2 = move(bufor2); //Przeniesienie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
-			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
-			buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
-			sscanf_s(buf2.c_str(), "%d", &iloœæ_pieniêdzy); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			if (bufor2.find("Gra rozpoczeta") == string::npos) //Zabezpieczenie przed wczytymaniem iloœci pozosta³ych pieniêdzy jak siê nie rozegra³o pe³nej rundy
+			{
+				buf2 = move(bufor2); //Przeniesienie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
+				buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
+				buf2.erase(buf2.size() - 1, 1); //Usuniêcie z bufora pomocniczego znaku dolara z prawej strony
+				sscanf_s(buf2.c_str(), "%d", &iloœæ_pieniêdzy); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
+			}
 		}
 		else if (buf.find("Gra rozpoczeta dnia") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o rozpoczêciu nowej gry
 			co_kontynuowaæ = 'n'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od pocz¹tku
@@ -735,6 +743,82 @@ void SprawdŸ_Pliki(const short & g³os_odczytu_numeru, const short & g³os_szybkoœ
 
 		const string g³os3 = g³os2.substr(0, g³os2.size() - 1); //Utorzenie stringa obez ostatniego znaku g³os2
 
+		if (!(_access("Do_u¿ytkownika.txt", NULL))) //Sprawdzam czy plik istnieje
+		{
+			if ( //Je¿eli tak to sprawdzam czy wszystkie pliki s¹ pobrane
+				(!(_access((G³os + "p.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk p
+				(!(_access((G³os + "n.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk n
+				(!(_access((G³os + "r.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk r
+				(!(_access((G³os + "b.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk b
+				(!(_access((G³os + "g.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk g
+				(!(_access((G³os + "d.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk d
+				(!(_access((G³os + "win.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk win
+				(!(_access((G³os + "k1.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk k1
+				(!(_access((G³os + "k2.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk k2
+				(!(_access((G³os + "k3.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk k3
+				(!(_access((G³os + "w1.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w1
+				(!(_access((G³os + "w2.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w2
+				(!(_access((G³os + "w3.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w3
+				(!(_access((G³os + "w4.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w4
+				(!(_access((G³os + "w5.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w5
+				(!(_access((G³os + "w6.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w6
+				(!(_access((G³os + "w7.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w7
+				(!(_access((G³os + "w8.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w8
+				(!(_access((G³os + "w9.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w9
+				(!(_access((G³os + "w10.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w10
+				(!(_access((G³os + "w11.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w11
+				(!(_access((G³os + "w12.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk w12
+				(!(_access((G³os + "0.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 0
+				(!(_access((G³os + "1.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 1
+				(!(_access((G³os + "2.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 2
+				(!(_access((G³os + "3.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 3
+				(!(_access((G³os + "4.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 4
+				(!(_access((G³os + "5.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 5
+				(!(_access((G³os + "6.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 6
+				(!(_access((G³os + "7.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 7
+				(!(_access((G³os + "8.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 8
+				(!(_access((G³os + "9.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 9
+				(!(_access((G³os + "10.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 10
+				(!(_access((G³os + "11.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 11
+				(!(_access((G³os + "12.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 12
+				(!(_access((G³os + "13.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 13
+				(!(_access((G³os + "14.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 14
+				(!(_access((G³os + "15.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 15
+				(!(_access((G³os + "16.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 16
+				(!(_access((G³os + "17.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 17
+				(!(_access((G³os + "18.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 18
+				(!(_access((G³os + "19.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 19
+				(!(_access((G³os + "20.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 20
+				(!(_access((G³os + "21.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 21
+				(!(_access((G³os + "22.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 22
+				(!(_access((G³os + "23.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 23
+				(!(_access((G³os + "24.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 24
+				(!(_access((G³os + "25.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 25
+				(!(_access((G³os + "26.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 26
+				(!(_access((G³os + "27.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 27
+				(!(_access((G³os + "28.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 28
+				(!(_access((G³os + "29.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 29
+				(!(_access((G³os + "30.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 30
+				(!(_access((G³os + "31.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 31
+				(!(_access((G³os + "32.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 32
+				(!(_access((G³os + "33.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 33
+				(!(_access((G³os + "34.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 34
+				(!(_access((G³os + "35.wav").c_str(), NULL))) && //Sprawdzam czy jest dŸwiêk 35
+				(!(_access((G³os + "36.wav").c_str(), NULL))) //Sprawdzam czy jest dŸwiêk 36
+				)
+			{
+				cout << "Pobrano wszystkie pliki g³osów" << endl; //Poinformowanie, ¿e pobrano wszystkie pliki g³osów
+				DeleteFile("Do_u¿ytkownika.txt"); //Usuwam plik Do_u¿ytkownika.txt
+				Usuñ_Folder_Wypakowany_i_Winrar(g³os2); //Usniêcie folderu z wypakowanymi elementami i programu do wypakowywania
+				return; //Wyjœcie z funkcji
+			}
+
+			G³osyKompletne = false; //Zmieniam wartoœæ zmiennej na false poniewa¿ nie ma wszystkich plików g³osu
+			cout << "Wy³¹czono g³os z powodu braku plików" << endl; //Informujê o tym u¿ytkownika
+			Usuñ_Folder_Wypakowany_i_Winrar(g³os2); //Usniêcie folderu z wypakowanymi elementami i programu do wypakowywania
+			return; //Wyjœcie z funkcji
+		}
+
 		if ((_access("G³os", NULL))) //SprawdŸ czy nie ma folderu G³os
 			CreateDirectory("G³os", nullptr); //Je¿eli nie ma to utwórz go
 		if ((_access((G³os).c_str(), NULL))) //SprawdŸ czy nie ma w folderze G³os podfolderu z nazw¹ i szybkoœci¹ g³osu
@@ -749,7 +833,7 @@ void SprawdŸ_Pliki(const short & g³os_odczytu_numeru, const short & g³os_szybkoœ
 
 			while (!stos_nazw_plików.empty()) //Pêtla do czasu wyczyszczenia stosu
 			{
-				thread thr([](string a, const string & g³os2, const string & link)->void {if (!Przenieœ_Plik(g³os2 + a + ".wav", G³os + a + ".wav")) { //U¿ycie funkcji lambda aby utworzyæ w¹tki do przenoszenia plików
+				thread thr([](string a, const string & g³os2, const string & link)->void {if (!Przenieœ_Plik(g³os2 + a + ".wav", G³os + a + ".wav")) { //U¿ycie wyra¿enia lambda aby utworzyæ w¹tki do przenoszenia plików
 					const auto res = URLDownloadToFile(nullptr, (link + g³os2 + a + ".wav").c_str(), (G³os + a + ".wav").c_str(), 0, nullptr); if (res != S_OK) { //Je¿eli nieuda³o siê wydobyæ z zasobów pliku to spróbuj pobraæ plik
 						if (G³osyKompletne) { //Je¿eli nieuda³o siê pobraæ pliku
 							cout << "Brak plików dla g³osu oraz nie mo¿na pobraæ danych, wy³¹czono odczytywanie wyniku" << endl; G³osyKompletne = false; Usuñ_Folder_Wypakowany_i_Winrar(g³os2); return; //Poinformuj o tym u¿ytkownika
@@ -760,9 +844,13 @@ void SprawdŸ_Pliki(const short & g³os_odczytu_numeru, const short & g³os_szybkoœ
 				stos_nazw_plików.pop(); //Zdjêcie elementu z wieszcho³ka stosu
 			}
 			for (auto& t : vec_thr) t.join(); //Poczekanie na zakoñczenie wszystkich w¹tków
-			if (!G³osyKompletne) cout << endl << "Pobrano brakuj¹ce pliki g³osów" << endl; //Poinformowanie o ukoñczonu pobierania plików , je¿eli pobra³o siê wszystkie pliki
+			if (G³osyKompletne) cout << endl << "Pobrano brakuj¹ce pliki g³osów" << endl; //Poinformowanie o ukoñczonu pobierania plików , je¿eli pobra³o siê wszystkie pliki
 			Usuñ_Folder_Wypakowany_i_Winrar(g³os2); //Usniêcie folderu z wypakowanymi elementami i programu do wypakowywania
-			return; //Wyjœcie z funkcji
+			Wyci¹gnij_z_Programu("Do_u¿ytkownika.txt", IDR_RCDATA46); //Wyci¹gniêcie z programu pliku informuj¹cego o mo¿liwym b³êdzie
+			ShellExecuteA(nullptr, nullptr, "Ruletka.exe", nullptr, nullptr, SW_SHOW); //Ponowne uruchomienie programu
+			const auto PID = GetCurrentProcessId(); //Pobranie numeru aktualnego procesu
+			if (!TerminateProcess(PID, 123)) //Zamkniêcie bie¿¹cego procesu
+				cout << "Nie uda³o siê ponownie uruchomiæ programu, mog¹ pojawiæ siê b³êdy z wyœwietlaniem tekstu" << endl; //Poinformowanie o mo¿liwym b³êdzie
 		}
 
 		bool czy_pobierano = false; //Utworzenie zmiennej logicznej informuj¹cej czy jakieœ pobieranie siê rozpocze³o
@@ -1002,6 +1090,11 @@ void SprawdŸ_Pliki(const short & g³os_odczytu_numeru, const short & g³os_szybkoœ
 		{
 			cout << endl << "Pobrano brakuj¹ce pliki g³osów" << endl; //Poinformowanie o ukoñczonu pobierania plików
 			Usuñ_Folder_Wypakowany_i_Winrar(g³os2); //Usniêcie folderu z wypakowanymi elementami i programu do wypakowywania
+			Wyci¹gnij_z_Programu("Do_u¿ytkownika.txt", IDR_RCDATA46); //Wyci¹gniêcie z programu pliku informuj¹cego o mo¿liwym b³êdzie
+			ShellExecuteA(nullptr, nullptr, "Ruletka.exe", nullptr, nullptr, SW_SHOW); //Ponowne uruchomienie programu
+			const auto PID = GetCurrentProcessId(); //Pobranie numeru aktualnego procesu
+			if (!TerminateProcess(PID, 123)) //Zamkniêcie bie¿¹cego procesu
+				cout << "Nie uda³o siê ponownie uruchomiæ programu, mog¹ pojawiæ siê b³êdy z wyœwietlaniem tekstu" << endl; //Poinformowanie o mo¿liwym b³êdzie
 		}
 	}
 }
@@ -1021,7 +1114,7 @@ void SprawdŸ_Ustawienia()
 			++licznik;
 		}
 		ustawienia.close(); //Zamkniêcie pliku setting.txt
-		if (licznik < 13) //Je¿eli iloœæ wczytanych liniejek jest mniejsza ni¿ 13 to znacz, ¿e brakuje jakieœ linijki w pliku ustawieñ
+		if (licznik < 12) //Je¿eli iloœæ wczytanych liniejek jest mniejsza ni¿ 12 to znacz, ¿e brakuje jakieœ linijki w pliku ustawieñ
 		{
 			cout << "Plik z ustawieniami jest niekompletny, utworzy³em nowy" << endl;
 			DeleteFile("setting.txt"); //wiêc usuñ nieca³kowity plik
@@ -1033,9 +1126,9 @@ void SprawdŸ_Ustawienia()
 	{
 		ofstream ustawienia; //Utworzenie typu do celu zapisu do pliku
 		ustawienia.open("setting.txt"); //Otwarcie pliku do wygenerowania ustawieñ domyœlnych
-		auto const bufor_zapisu = new char[348]; //Utworzenie buforu
-		memcpy(bufor_zapisu, "iloœæ_min_dodatkowych_obrotów_ruletki 2\niloœæ_max_dodatkowych_obrotów_ruletki 3\nczas_przeskoku_kulki_szybki 50\nczas_przeskoku_kulki_wolny 75\nczas_przerwy_dzwiêku 500\nstyl_liczenia_wygranej 1\nkwota_pocz¹tkowa 1000\nstan_dŸwiêków 1\nczy_kontynuowaæ_grê 1\ng³os_odczytu_numeru 1\ng³os_szybkoœæ_odczytu_numeru 4\nefekty_dŸwiêkowe 1\ng³os_pobierz_wszystkie 0", 348); //Wpisanie do pliku domyœnych ustawieñ
-		ustawienia.write(bufor_zapisu, 347); //Zapisanie do pliku setting.txt danych wpisanych do bufora danych
+		auto const bufor_zapisu = new char[323]; //Utworzenie buforu
+		memcpy(bufor_zapisu, "iloœæ_min_dodatkowych_obrotów_ruletki 2\niloœæ_max_dodatkowych_obrotów_ruletki 3\nczas_przeskoku_kulki_szybki 50\nczas_przeskoku_kulki_wolny 75\nczas_przerwy_dzwiêku 500\nstyl_liczenia_wygranej 1\nkwota_pocz¹tkowa 1000\nstan_dŸwiêków 1\nczy_kontynuowaæ_grê 1\ng³os_odczytu_numeru 1\ng³os_szybkoœæ_odczytu_numeru 4\nefekty_dŸwiêkowe 1", 323); //Wpisanie do pliku domyœnych ustawieñ
+		ustawienia.write(bufor_zapisu, 322); //Zapisanie do pliku setting.txt danych wpisanych do bufora danych
 		delete[] bufor_zapisu; //Usuniêcie buforu
 		ustawienia.close(); //Zamkniêcie pliku setting.txt
 		return; //WyjdŸ z funkcji
@@ -1102,7 +1195,6 @@ void SprawdŸ_Ustawienia()
 		cout << "Ustawiam domyœlne ustawienie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje zmienone na domyœlne
 		Ustawienia.stan_dŸwiêków = true; //Ustawienie wartoœci domyœlnej
 	}
-	if (Ustawienia.g³os_pobierz_wszystkie) Wypakuj_Wszystkie_G³osy(); //Je¿eli w³¹czono obcje pobrania wszystkich g³osów, pobierz wszystkie g³osy
 }
 
 void Og³oœ_Wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofstream & log_ogólny, fstream & log)
@@ -1392,17 +1484,6 @@ void Ustaw_Ustawienia(string & tekst)
 			cout << "Ustawiam domyœlne ustawienie efekty_dŸwiêkowe" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje pozostawione przy domyœlnych
 		}
 	}
-	else if (tekst.find("g³os_pobierz_wszystkie") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
-	{
-		tekst.erase(0, size("g³os_pobierz_wszystkie")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
-
-		try {//Próba
-			Ustawienia.g³os_pobierz_wszystkie = StringtoBool(tekst);  //Przypisaninie wartoœci odczytanej z tekstu
-		}
-		catch (invalid_argument&) { //Je¿eli zostanie z³apany wyj¹tek "nieprawid³owy argument"
-			cout << "Ustawiam domyœlne ustawienie g³os_pobierz_wszystkie" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje pozostawione przy domyœlnych
-		}
-	}
 }
 
 void Inicjacje_Pocz¹tkowe()
@@ -1438,7 +1519,7 @@ bool Wyci¹gnij_z_Programu(const string & œcie¿ka, const unsigned short & numer_z
 void Wypakuj_Rar(const string & nazwa_folderu)
 {
 	if ((_access("Rar.exe", NULL))) Wyci¹gnij_z_Programu("Rar.exe", IDR_RAR);  //Sprawdzenie czy plik nie istnieje je¿eli nie istnieje to wyci¹gam z pamiêci
-	if ((_access(nazwa_folderu.substr(0, nazwa_folderu.size() - (4 << 0)).c_str(), NULL))) system(("Rar.exe x " + nazwa_folderu + " -o+ -idp").c_str()); //Wydajê polecenie rozpakowania archiwum rar je¿eli wczeœniej niewypakowano
+	if ((_access(nazwa_folderu.substr(0, nazwa_folderu.size() - (4 << 0)).c_str(), NULL))) system(("Rar.exe x " + nazwa_folderu + " -o+ -idq").c_str()); //Wydajê polecenie rozpakowania archiwum rar je¿eli wczeœniej niewypakowano
 }
 
 bool Przenieœ_Plik(const string & z_pliku, const string & do_pliku)
@@ -1490,12 +1571,6 @@ void Usuñ_Folder_Wypakowany_i_Winrar(const string & G³os)
 	DeleteFile("Rar.exe"); //Usuwam plik Rar.exe
 }
 
-void Wypakuj_Wszystkie_G³osy()
-{
-	for (short i = 1; i <= 9; ++i) //Pêtla przez wszystkie g³osy
-		for (short ii = 1; ii <= 5; ++ii) //Pêtla przez wszystkie szybkoœci g³osu
-			SprawdŸ_Pliki(i, ii); //Wczytanie plików audio
-}
 bool StringtoBool(const string & var)
 {
 	if (var.size() == 0) //Sprawdzenie czy rozmiar stringa to 0
@@ -1666,12 +1741,27 @@ inline short stos(const string& _Str, size_t *_Idx,
 	long _Ans = _CSTD strtol(_Ptr, &_Eptr, _Base);
 
 	if (_Ptr == _Eptr)
-		_Xinvalid_argument("invalid stoi argument");
+		_Xinvalid_argument("invalid stos argument");
 	if (_Errno_ref == ERANGE || _Ans < SHRT_MIN || SHRT_MAX < _Ans)
-		_Xout_of_range("stoi argument out of range");
+		_Xout_of_range("stos argument out of range");
 	if (_Idx != 0)
 		*_Idx = (size_t)(_Eptr - _Ptr);
 	return ((short)_Ans);
+}
+
+BOOL TerminateProcess(const DWORD & dwProcessId, const UINT & uExitCode)
+{
+	const DWORD dwDesiredAccess = PROCESS_TERMINATE;
+	const BOOL  bInheritHandle = FALSE;
+	const HANDLE hProcess = OpenProcess(dwDesiredAccess, bInheritHandle, dwProcessId);
+	if (hProcess == nullptr)
+		return FALSE;
+
+	const BOOL result = TerminateProcess(hProcess, uExitCode);
+
+	CloseHandle(hProcess);
+
+	return result;
 }
 
 /*

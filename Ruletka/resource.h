@@ -1,4 +1,3 @@
-#pragma once
 //{{NO_DEPENDENCIES}}
 // Plik do³¹czany wygenerowany przez œrodowisko Microsoft Visual C++.
 // U¿ywany przez: Resource.rc
@@ -7,7 +6,7 @@
 #define IDR_BANKRUT                     124
 #define IDR_WYGRANA1                    125
 #define IDR_WYGRANA2                    126
-#define IDR_ZWIELOKROTNIENIE             127
+#define IDR_ZWIELOKROTNIENIE            127
 #define IDR_RCDATA1                     193
 #define IDR_RCDATA2                     194
 #define IDR_RCDATA3                     195
@@ -53,13 +52,14 @@
 #define IDR_RCDATA43                    235
 #define IDR_RCDATA44                    236
 #define IDR_RCDATA45                    237
-#define IDR_RAR                    238
+#define IDR_RAR                         238
+#define IDR_RCDATA46                    239
 
 // Next default values for new objects
-//
+// 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        239
+#define _APS_NEXT_RESOURCE_VALUE        240
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           101
