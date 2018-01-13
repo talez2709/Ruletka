@@ -13,7 +13,7 @@
 #include <stack> //Kontener stos
 #include <string> //Obs³uga stringów
 #include <thread> //Obs³uga w¹tków
-#include <Windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),GetStdHandle(),SetConsoleTextAttribute(),DeleteFile(),RemoveDirectory(), zmiana ustawieñ konsoli, pobieranie aktualnego czasu
+#include <windows.h> //SYSTEMTIME,GetSystemTime(),Sleep(),GetStdHandle(),SetConsoleTextAttribute(),DeleteFile(),RemoveDirectory(), zmiana ustawieñ konsoli, pobieranie aktualnego czasu
 #include <mmsystem.h> //PlaySound() (Aby dzia³a³o trzeba dodaæ winmm.lib lub coredll.lib do linkera (konsolidatora)), Odtwarzanie muzyki
 #pragma comment(lib, "winmm.lib") //Dodanie winmm.lib do linkera (konsolidatora)
 #include <urlmon.h> //URLDownloadToFile(), pobiranie plików (Aby dzia³a³o trzeba dodaæ urlmon.lib do linkera (konsolidatora)), pobieranie plików z internetu
@@ -80,6 +80,7 @@ struct S_Ustawienia //Struktura z wpisanymi domyœlnymi ustawieniami
 	short g³os_odczytu_numeru = 1; //Wybór g³osu który odczyta wylosowany numer 0 <- Brak 1 <- Jacek (Ivona) 2 <- Ewa (Ivona) 3 <- Maja (Ivona) 4 <- Jan (Ivona) 5 <- Jacek (Ivona 2) 6 <- Ewa (Ivona 2) 7 <- Maja (Ivona 2) 8 <- Jan (Ivona 2) 9 <- Agata (Scansoft)
 	short g³os_szybkoœæ_odczytu_numeru = (2 * 2); //Wybór szybkoœci mowy, skala od 1 do 5
 	bool efekty_dŸwiêkowe = true; //Czy w³¹czone efekty dŸwiêkowe 1 <-tak 0 <-nie
+	bool metoda_liczenia_wygranej_zerowej = true; //0 dla nie uzyskiwania zwrotu po³owy zak³adu przy obstawieniu szans prostych a wylosowaniu 0, 1 dla uzyskiwania zwrotu po³owy zak³adu przy obstawieniu szans prostych a wylosowaniu 0
 };
 //-------------------------------------------------------------------------------------
 
@@ -281,7 +282,7 @@ int SprawdŸ_Zak³ad(const int & kwota, const string & typ_zak³adu, const int & wy
 {
 	int wygrana = kwota; //Deklaracja zmiennej przechowywuj¹ca kwotê wygran¹ lub zwrócon¹ przy wylosowaniu 0 i przypisuê jej wartoœæ kwota jakby wygrana by³a 1:1
 
-	if (wylosowana_liczba == 0) //Warunek sprawdzaj¹cy czy wylosowano 0
+	if (wylosowana_liczba == 0 && Ustawienia.metoda_liczenia_wygranej_zerowej) //Warunek sprawdzaj¹cy czy wylosowano 0
 		switch (typ_zak³adu[0]) //Je¿eli tak to switch do obliczenia wygranej lub przegranej
 		{
 		case 'p':
@@ -1114,7 +1115,7 @@ void SprawdŸ_Ustawienia()
 			++licznik;
 		}
 		ustawienia.close(); //Zamkniêcie pliku setting.txt
-		if (licznik < 12) //Je¿eli iloœæ wczytanych liniejek jest mniejsza ni¿ 12 to znacz, ¿e brakuje jakieœ linijki w pliku ustawieñ
+		if (licznik < 13) //Je¿eli iloœæ wczytanych liniejek jest mniejsza ni¿ 12 to znacz, ¿e brakuje jakieœ linijki w pliku ustawieñ
 		{
 			cout << "Plik z ustawieniami jest niekompletny, utworzy³em nowy" << endl;
 			DeleteFile("setting.txt"); //wiêc usuñ nieca³kowity plik
@@ -1126,9 +1127,9 @@ void SprawdŸ_Ustawienia()
 	{
 		ofstream ustawienia; //Utworzenie typu do celu zapisu do pliku
 		ustawienia.open("setting.txt"); //Otwarcie pliku do wygenerowania ustawieñ domyœlnych
-		auto const bufor_zapisu = new char[323]; //Utworzenie buforu
-		memcpy(bufor_zapisu, "iloœæ_min_dodatkowych_obrotów_ruletki 2\niloœæ_max_dodatkowych_obrotów_ruletki 3\nczas_przeskoku_kulki_szybki 50\nczas_przeskoku_kulki_wolny 75\nczas_przerwy_dzwiêku 500\nstyl_liczenia_wygranej 1\nkwota_pocz¹tkowa 1000\nstan_dŸwiêków 1\nczy_kontynuowaæ_grê 1\ng³os_odczytu_numeru 1\ng³os_szybkoœæ_odczytu_numeru 4\nefekty_dŸwiêkowe 1", 323); //Wpisanie do pliku domyœnych ustawieñ
-		ustawienia.write(bufor_zapisu, 322); //Zapisanie do pliku setting.txt danych wpisanych do bufora danych
+		auto const bufor_zapisu = new char[358]; //Utworzenie buforu
+		memcpy(bufor_zapisu, "iloœæ_min_dodatkowych_obrotów_ruletki 2\niloœæ_max_dodatkowych_obrotów_ruletki 3\nczas_przeskoku_kulki_szybki 50\nczas_przeskoku_kulki_wolny 75\nczas_przerwy_dzwiêku 500\nstyl_liczenia_wygranej 1\nkwota_pocz¹tkowa 1000\nstan_dŸwiêków 1\nczy_kontynuowaæ_grê 1\ng³os_odczytu_numeru 1\ng³os_szybkoœæ_odczytu_numeru 4\nefekty_dŸwiêkowe 1\nmetoda_liczenia_wygranej_zerowej 1", 358); //Wpisanie do pliku domyœnych ustawieñ
+		ustawienia.write(bufor_zapisu, 357); //Zapisanie do pliku setting.txt danych wpisanych do bufora danych
 		delete[] bufor_zapisu; //Usuniêcie buforu
 		ustawienia.close(); //Zamkniêcie pliku setting.txt
 		return; //WyjdŸ z funkcji
@@ -1482,6 +1483,17 @@ void Ustaw_Ustawienia(string & tekst)
 		}
 		catch (invalid_argument&) { //Je¿eli zostanie z³apany wyj¹tek "nieprawid³owy argument"
 			cout << "Ustawiam domyœlne ustawienie efekty_dŸwiêkowe" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje pozostawione przy domyœlnych
+		}
+	}
+	else if (tekst.find("metoda_liczenia_wygranej_zerowej") != string::npos) //Sprawdzenie czy znaleziony jest poszukiwany tekst
+	{
+		tekst.erase(0, size("metoda_liczenia_wygranej_zerowej")); //Usuniêcie s³owa z tekst aby zosta³a tylko liczba która jest wartoœci¹ ustawienia
+
+		try {//Próba
+			Ustawienia.metoda_liczenia_wygranej_zerowej = StringtoBool(tekst);  //Przypisaninie wartoœci odczytanej z tekstu
+		}
+		catch (invalid_argument&) { //Je¿eli zostanie z³apany wyj¹tek "nieprawid³owy argument"
+			cout << "Ustawiam domyœlne ustawienie metoda_liczenia_wygranej_zerowej" << endl; //Poinformowanie u¿ytkownika, ¿e bie¿¹ce ustawienie zostaje pozostawione przy domyœlnych
 		}
 	}
 }

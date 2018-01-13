@@ -270,7 +270,7 @@ PUBLIC	??_C@_0FJ@MHJENCE@Nie?5uda?$LDo?5si?j?5ponownie?5uruchomi?f@ ; `string'
 PUBLIC	??_C@_0DA@BBMHJOFN@Rozpoczynam?5pobieranie?5brakuj?$LJcy@ ; `string'
 PUBLIC	??_C@_0M@COFBHHKL@setting?4txt?$AA@		; `string'
 PUBLIC	??_C@_0DH@KNDDBEAK@Plik?5z?5ustawieniami?5jest?5niekomp@ ; `string'
-PUBLIC	??_C@_0BED@HHNOFCEA@ilo?$JM?f_min_dodatkowych_obrot?sw_ru@ ; `string'
+PUBLIC	??_C@_0BGG@GHFKPMIO@ilo?$JM?f_min_dodatkowych_obrot?sw_ru@ ; `string'
 PUBLIC	??_C@_0GC@FGDMKFMP@Warto?$JM?f?5wolnego?5czasu?5przeskoku?5@ ; `string'
 PUBLIC	??_C@_0BN@KMOICOCN@Ustawiam?5domy?$JMlne?5ustawienie?$AA@ ; `string'
 PUBLIC	??_C@_0DL@EDLBNLFA@Ilo?$JM?f?5minimalna?5obrot?sw?5ruletki?5@ ; `string'
@@ -319,6 +319,8 @@ PUBLIC	??_C@_0BN@ECEAENDF@g?$LDos_szybko?$JM?f_odczytu_numeru?$AA@ ; `string'
 PUBLIC	??_C@_0DK@MFJJJAHI@Ustawiam?5domy?$JMlne?5ustawienie?5g?$LDo@ ; `string'
 PUBLIC	??_C@_0BB@EHOIFKBK@efekty_d?$JPwi?jkowe?$AA@	; `string'
 PUBLIC	??_C@_0CO@IAMMIPJO@Ustawiam?5domy?$JMlne?5ustawienie?5efe@ ; `string'
+PUBLIC	??_C@_0CB@KFLCLANK@metoda_liczenia_wygranej_zerowej@ ; `string'
+PUBLIC	??_C@_0DO@GKLLPOIM@Ustawiam?5domy?$JMlne?5ustawienie?5met@ ; `string'
 PUBLIC	??_C@_06JGCGFIEG@polish?$AA@			; `string'
 PUBLIC	??_C@_07NGJEAPOI@Rar?4exe?$AA@			; `string'
 PUBLIC	??_C@_09OFMOFDJN@?5?9o?$CL?5?9idq?$AA@		; `string'
@@ -3178,6 +3180,16 @@ CONST	ENDS
 CONST	SEGMENT
 ??_C@_06JGCGFIEG@polish?$AA@ DB 'polish', 00H		; `string'
 CONST	ENDS
+;	COMDAT ??_C@_0DO@GKLLPOIM@Ustawiam?5domy?$JMlne?5ustawienie?5met@
+CONST	SEGMENT
+??_C@_0DO@GKLLPOIM@Ustawiam?5domy?$JMlne?5ustawienie?5met@ DB 'Ustawiam d'
+	DB	'omy', 09cH, 'lne ustawienie metoda_liczenia_wygranej_zerowej', 00H ; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0CB@KFLCLANK@metoda_liczenia_wygranej_zerowej@
+CONST	SEGMENT
+??_C@_0CB@KFLCLANK@metoda_liczenia_wygranej_zerowej@ DB 'metoda_liczenia_'
+	DB	'wygranej_zerowej', 00H			; `string'
+CONST	ENDS
 ;	COMDAT ??_C@_0CO@IAMMIPJO@Ustawiam?5domy?$JMlne?5ustawienie?5efe@
 CONST	SEGMENT
 ??_C@_0CO@IAMMIPJO@Ustawiam?5domy?$JMlne?5ustawienie?5efe@ DB 'Ustawiam d'
@@ -3431,9 +3443,9 @@ CONST	SEGMENT
 	DB	'sza ni', 0bfH, ' warto', 09cH, 0e6H, ' szybkiego czasu przesk'
 	DB	'oku kulki', 00H				; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BED@HHNOFCEA@ilo?$JM?f_min_dodatkowych_obrot?sw_ru@
+;	COMDAT ??_C@_0BGG@GHFKPMIO@ilo?$JM?f_min_dodatkowych_obrot?sw_ru@
 CONST	SEGMENT
-??_C@_0BED@HHNOFCEA@ilo?$JM?f_min_dodatkowych_obrot?sw_ru@ DB 'ilo', 09cH
+??_C@_0BGG@GHFKPMIO@ilo?$JM?f_min_dodatkowych_obrot?sw_ru@ DB 'ilo', 09cH
 	DB	0e6H, '_min_dodatkowych_obrot', 0f3H, 'w_ruletki 2', 0aH, 'ilo'
 	DB	09cH, 0e6H, '_max_dodatkowych_obrot', 0f3H, 'w_ruletki 3', 0aH
 	DB	'czas_przeskoku_kulki_szybki 50', 0aH, 'czas_przeskoku_kulki_w'
@@ -3442,7 +3454,8 @@ CONST	SEGMENT
 	DB	'stan_d', 09fH, 'wi', 0eaH, 'k', 0f3H, 'w 1', 0aH, 'czy_kontyn'
 	DB	'uowa', 0e6H, '_gr', 0eaH, ' 1', 0aH, 'g', 0b3H, 'os_odczytu_n'
 	DB	'umeru 1', 0aH, 'g', 0b3H, 'os_szybko', 09cH, 0e6H, '_odczytu_'
-	DB	'numeru 4', 0aH, 'efekty_d', 09fH, 'wi', 0eaH, 'kowe 1', 00H ; `string'
+	DB	'numeru 4', 0aH, 'efekty_d', 09fH, 'wi', 0eaH, 'kowe 1', 0aH, 'm'
+	DB	'etoda_liczenia_wygranej_zerowej 1', 00H	; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0DH@KNDDBEAK@Plik?5z?5ustawieniami?5jest?5niekomp@
 CONST	SEGMENT
@@ -5017,6 +5030,7 @@ PUBLIC	??$construct@Vthread@std@@V12@@?$_Default_allocator_traits@V?$allocator@V
 PUBLIC	??$_Unfancy@Vthread@std@@@std@@YAPEAVthread@0@PEAV10@@Z ; std::_Unfancy<std::thread>
 PUBLIC	??$_Emplace_back_with_unused_capacity@Vthread@std@@@?$vector@Vthread@std@@V?$allocator@Vthread@std@@@2@@std@@AEAAX$$QEAVthread@1@@Z ; std::vector<std::thread,std::allocator<std::thread> >::_Emplace_back_with_unused_capacity<std::thread>
 PUBLIC	??$forward@Vthread@std@@@std@@YA$$QEAVthread@0@AEAV10@@Z ; std::forward<std::thread>
+PUBLIC	??$size@D$0CB@@std@@YA_KAEAY0CB@$$CBD@Z		; std::size<char,33>
 PUBLIC	??$size@D$0BN@@std@@YA_KAEAY0BN@$$CBD@Z		; std::size<char,29>
 PUBLIC	??$size@D$0BE@@std@@YA_KAEAY0BE@$$CBD@Z		; std::size<char,20>
 PUBLIC	??$size@D$0O@@std@@YA_KAEAY0O@$$CBD@Z		; std::size<char,14>
@@ -9553,57 +9567,9 @@ $pdata$?Inicjacje_Pocz¹tkowe@@YAXXZ DD imagerel $LN9@Inicjacje_
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD imagerel $LN908@Ustaw_Usta
-	DD	imagerel $LN908@Ustaw_Usta+2826
+$pdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD imagerel $LN965@Ustaw_Usta
+	DD	imagerel $LN965@Ustaw_Usta+3042
 	DD	imagerel $unwind$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?catch$119@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$119@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-	DD	imagerel ?catch$119@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
-	DD	imagerel $unwind$?catch$119@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?catch$120@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$120@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-	DD	imagerel ?catch$120@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
-	DD	imagerel $unwind$?catch$120@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?catch$121@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$121@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-	DD	imagerel ?catch$121@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
-	DD	imagerel $unwind$?catch$121@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?catch$122@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$122@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-	DD	imagerel ?catch$122@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
-	DD	imagerel $unwind$?catch$122@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?catch$123@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$123@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-	DD	imagerel ?catch$123@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
-	DD	imagerel $unwind$?catch$123@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?catch$124@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$124@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-	DD	imagerel ?catch$124@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
-	DD	imagerel $unwind$?catch$124@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?catch$125@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$125@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-	DD	imagerel ?catch$125@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
-	DD	imagerel $unwind$?catch$125@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$?catch$126@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$126@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
-	DD	imagerel ?catch$126@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
-	DD	imagerel $unwind$?catch$126@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -9667,6 +9633,60 @@ $pdata$?catch$136@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
+$pdata$?catch$137@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$137@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$137@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
+	DD	imagerel $unwind$?catch$137@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?catch$138@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$138@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$138@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
+	DD	imagerel $unwind$?catch$138@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?catch$139@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$139@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$139@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
+	DD	imagerel $unwind$?catch$139@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?catch$140@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$140@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$140@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
+	DD	imagerel $unwind$?catch$140@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?catch$141@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$141@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$141@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
+	DD	imagerel $unwind$?catch$141@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?catch$142@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$142@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$142@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
+	DD	imagerel $unwind$?catch$142@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?catch$143@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$143@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$143@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
+	DD	imagerel $unwind$?catch$143@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?catch$144@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$144@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$144@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
+	DD	imagerel $unwind$?catch$144@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?catch$145@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD imagerel ?catch$145@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$145@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+55
+	DD	imagerel $unwind$?catch$145@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
 $pdata$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD imagerel $LN313@P?
 	DD	imagerel $LN313@P?+30
 	DD	imagerel $unwind$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
@@ -9722,7 +9742,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$?SprawdŸ_Ustawienia@@YAXXZ DD imagerel $LN280@SprawdŸ_U
-	DD	imagerel $LN280@SprawdŸ_U+2060
+	DD	imagerel $LN280@SprawdŸ_U+2075
 	DD	imagerel $unwind$?SprawdŸ_Ustawienia@@YAXXZ
 pdata	ENDS
 ;	COMDAT pdata
@@ -10291,8 +10311,8 @@ $pdata$?Czy_Kontynuowaæ@@YA_NAEBH@Z DD imagerel $LN391@Czy_Kontyn
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z DD imagerel $LN357@SprawdŸ_Z
-	DD	imagerel $LN357@SprawdŸ_Z+760
+$pdata$?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z DD imagerel $LN358@SprawdŸ_Z
+	DD	imagerel $LN358@SprawdŸ_Z+776
 	DD	imagerel $unwind$?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z
 pdata	ENDS
 ;	COMDAT pdata
@@ -11152,7 +11172,7 @@ __real@3cb0000000000000 DQ 03cb0000000000000r	; 2.22045e-16
 	DQ	0000000000000000fr		; 7.41098e-323
 ?Ustawienia@@3US_Ustawienia@@A DQ 0004b003200030002r ; 3.00393e-307 ; Ustawienia
 	DQ	0000003e8000101f4r		; 2.122e-311
-	DQ	00001000400010101r		; 1.39076e-309
+	DQ	00101000400010101r		; 7.74684e-304
 _DATA	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -15292,11 +15312,11 @@ $ip2state$?SprawdŸ_Ustawienia@@YAXXZ DD imagerel ?SprawdŸ_Ustawienia@@YAXXZ
 	DD	0ffffffffH
 	DD	imagerel ?SprawdŸ_Ustawienia@@YAXXZ+1523
 	DD	08H
-	DD	imagerel ?SprawdŸ_Ustawienia@@YAXXZ+1907
+	DD	imagerel ?SprawdŸ_Ustawienia@@YAXXZ+1922
 	DD	0ffffffffH
-	DD	imagerel ?SprawdŸ_Ustawienia@@YAXXZ+1994
+	DD	imagerel ?SprawdŸ_Ustawienia@@YAXXZ+2009
 	DD	09H
-	DD	imagerel ?SprawdŸ_Ustawienia@@YAXXZ+2015
+	DD	imagerel ?SprawdŸ_Ustawienia@@YAXXZ+2030
 	DD	0ffffffffH
 xdata	ENDS
 ;	COMDAT xdata
@@ -15463,6 +15483,69 @@ $unwind$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$?catch$145@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
+	DD	05006320aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?catch$144@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
+	DD	05006320aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?catch$143@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
+	DD	05006320aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?catch$142@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
+	DD	05006320aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?catch$141@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
+	DD	05006320aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?catch$140@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
+	DD	05006320aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?catch$139@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
+	DD	05006320aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?catch$138@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
+	DD	05006320aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?catch$137@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
+	DD	05006320aH
+	DD	imagerel __CxxFrameHandler3
+	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$?catch$136@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
 	DD	05006320aH
 	DD	imagerel __CxxFrameHandler3
@@ -15533,203 +15616,163 @@ $unwind$?catch$127@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$?catch$126@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
-	DD	05006320aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$?catch$125@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
-	DD	05006320aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$?catch$124@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
-	DD	05006320aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$?catch$123@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
-	DD	05006320aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$?catch$122@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
-	DD	05006320aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$?catch$121@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
-	DD	05006320aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$?catch$120@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
-	DD	05006320aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$?catch$119@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA DD 020a19H
-	DD	05006320aH
-	DD	imagerel __CxxFrameHandler3
-	DD	imagerel $cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
 $ip2state$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1519
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1651
 	DD	00H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1607
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1743
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1708
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1848
 	DD	02H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1801
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1945
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1839
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1983
 	DD	04H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1932
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2080
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+1970
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2118
 	DD	06H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2063
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2215
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2101
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2253
 	DD	08H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2120
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2272
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2153
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2305
 	DD	0aH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2227
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2383
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2265
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2421
 	DD	0cH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2284
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2440
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2317
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2473
 	DD	0eH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2336
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2492
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2369
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2525
 	DD	010H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2462
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2622
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2500
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2660
 	DD	012H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2593
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2757
 	DD	0ffffffffH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2631
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2795
 	DD	014H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2650
-	DD	00H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2675
-	DD	02H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2700
-	DD	04H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2725
-	DD	06H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2750
-	DD	0aH
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2775
-	DD	010H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2800
-	DD	012H
-	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2825
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2814
 	DD	0ffffffffH
-	DD	imagerel ?catch$119@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2847
+	DD	016H
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2866
 	DD	00H
-	DD	imagerel ?catch$119@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	01H
-	DD	imagerel ?catch$119@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
-	DD	00H
-	DD	imagerel ?catch$120@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	01H
-	DD	imagerel ?catch$120@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
-	DD	00H
-	DD	imagerel ?catch$121@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	03H
-	DD	imagerel ?catch$121@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
-	DD	00H
-	DD	imagerel ?catch$122@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	03H
-	DD	imagerel ?catch$122@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
-	DD	00H
-	DD	imagerel ?catch$123@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	05H
-	DD	imagerel ?catch$123@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
-	DD	00H
-	DD	imagerel ?catch$124@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	05H
-	DD	imagerel ?catch$124@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
-	DD	00H
-	DD	imagerel ?catch$125@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	07H
-	DD	imagerel ?catch$125@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
-	DD	00H
-	DD	imagerel ?catch$126@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	07H
-	DD	imagerel ?catch$126@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2891
+	DD	02H
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2916
+	DD	04H
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2941
+	DD	06H
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2966
+	DD	0aH
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2991
+	DD	010H
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+3016
+	DD	012H
+	DD	imagerel ?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+3041
+	DD	0ffffffffH
+	DD	imagerel ?catch$127@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	00H
 	DD	imagerel ?catch$127@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	09H
+	DD	01H
 	DD	imagerel ?catch$127@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
 	DD	imagerel ?catch$128@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	0bH
+	DD	01H
 	DD	imagerel ?catch$128@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
 	DD	imagerel ?catch$129@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	0bH
+	DD	03H
 	DD	imagerel ?catch$129@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
 	DD	imagerel ?catch$130@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	0dH
+	DD	03H
 	DD	imagerel ?catch$130@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
 	DD	imagerel ?catch$131@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	0fH
+	DD	05H
 	DD	imagerel ?catch$131@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
 	DD	imagerel ?catch$132@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	011H
+	DD	05H
 	DD	imagerel ?catch$132@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
 	DD	imagerel ?catch$133@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	011H
+	DD	07H
 	DD	imagerel ?catch$133@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
 	DD	imagerel ?catch$134@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	013H
+	DD	07H
 	DD	imagerel ?catch$134@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
 	DD	imagerel ?catch$135@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	013H
+	DD	09H
 	DD	imagerel ?catch$135@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
 	DD	imagerel ?catch$136@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
-	DD	015H
+	DD	0bH
 	DD	imagerel ?catch$136@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
 	DD	00H
+	DD	imagerel ?catch$137@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
+	DD	0bH
+	DD	imagerel ?catch$137@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	00H
+	DD	imagerel ?catch$138@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
+	DD	0dH
+	DD	imagerel ?catch$138@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	00H
+	DD	imagerel ?catch$139@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
+	DD	0fH
+	DD	imagerel ?catch$139@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	00H
+	DD	imagerel ?catch$140@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
+	DD	011H
+	DD	imagerel ?catch$140@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	00H
+	DD	imagerel ?catch$141@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
+	DD	011H
+	DD	imagerel ?catch$141@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	00H
+	DD	imagerel ?catch$142@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
+	DD	013H
+	DD	imagerel ?catch$142@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	00H
+	DD	imagerel ?catch$143@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
+	DD	013H
+	DD	imagerel ?catch$143@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	00H
+	DD	imagerel ?catch$144@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
+	DD	015H
+	DD	imagerel ?catch$144@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	00H
+	DD	imagerel ?catch$145@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+13
+	DD	017H
+	DD	imagerel ?catch$145@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA+41
+	DD	00H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$handlerMap$11$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
+	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
+	DD	00H
+	DD	imagerel ?catch$145@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $handlerMap$10$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$136@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$144@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15737,12 +15780,12 @@ xdata	SEGMENT
 $handlerMap$9$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$134@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$142@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 	DD	08H
 	DD	imagerel ??_R0?AVout_of_range@std@@@8
 	DD	00H
-	DD	imagerel ?catch$135@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$143@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15750,12 +15793,12 @@ xdata	SEGMENT
 $handlerMap$8$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$132@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$140@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 	DD	08H
 	DD	imagerel ??_R0?AVout_of_range@std@@@8
 	DD	00H
-	DD	imagerel ?catch$133@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$141@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15763,7 +15806,7 @@ xdata	SEGMENT
 $handlerMap$7$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$131@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$139@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15771,7 +15814,7 @@ xdata	SEGMENT
 $handlerMap$6$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$130@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$138@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15779,12 +15822,12 @@ xdata	SEGMENT
 $handlerMap$5$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$128@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$136@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 	DD	08H
 	DD	imagerel ??_R0?AVout_of_range@std@@@8
 	DD	00H
-	DD	imagerel ?catch$129@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$137@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15792,7 +15835,7 @@ xdata	SEGMENT
 $handlerMap$4$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$127@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$135@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15800,12 +15843,12 @@ xdata	SEGMENT
 $handlerMap$3$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$125@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$133@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 	DD	08H
 	DD	imagerel ??_R0?AVout_of_range@std@@@8
 	DD	00H
-	DD	imagerel ?catch$126@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$134@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15813,12 +15856,12 @@ xdata	SEGMENT
 $handlerMap$2$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$123@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$131@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 	DD	08H
 	DD	imagerel ??_R0?AVout_of_range@std@@@8
 	DD	00H
-	DD	imagerel ?catch$124@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$132@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15826,12 +15869,12 @@ xdata	SEGMENT
 $handlerMap$1$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$121@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$129@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 	DD	08H
 	DD	imagerel ??_R0?AVout_of_range@std@@@8
 	DD	00H
-	DD	imagerel ?catch$122@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$130@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15839,12 +15882,12 @@ xdata	SEGMENT
 $handlerMap$0$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 08H
 	DD	imagerel ??_R0?AVinvalid_argument@std@@@8
 	DD	00H
-	DD	imagerel ?catch$119@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$127@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 	DD	08H
 	DD	imagerel ??_R0?AVout_of_range@std@@@8
 	DD	00H
-	DD	imagerel ?catch$120@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+	DD	imagerel ?catch$128@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
 	DD	038H
 xdata	ENDS
 ;	COMDAT xdata
@@ -15904,6 +15947,11 @@ $tryMap$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$alloc
 	DD	015H
 	DD	01H
 	DD	imagerel $handlerMap$10$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+	DD	016H
+	DD	016H
+	DD	017H
+	DD	01H
+	DD	imagerel $handlerMap$11$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -15951,14 +15999,18 @@ $stateUnwindMap$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@
 	DD	00H
 	DD	0ffffffffH
 	DD	00H
+	DD	0ffffffffH
+	DD	00H
+	DD	0ffffffffH
+	DD	00H
 xdata	ENDS
 ;	COMDAT CONST
 CONST	SEGMENT
-$cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DQ 00000001619930522r ; 4.68959e-313
+$cppxdata$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DQ 00000001819930522r ; 5.11399e-313
 	DD	imagerel $stateUnwindMap$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-	DD	0bH
+	DD	0cH
 	DD	imagerel $tryMap$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
-	DD	043H
+	DD	047H
 	DD	imagerel $ip2state$?Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
 	DQ	00000000000000020r		; 1.58101e-322
 	DD	01H
@@ -24354,7 +24406,7 @@ log_ogólny$ = 544
 __$ArrayPad$ = 816
 main	PROC						; COMDAT
 
-; 95   : {
+; 96   : {
 
 $LN1044:
   00000	48 8b c4	 mov	 rax, rsp
@@ -24385,8 +24437,8 @@ $LN1044:
 	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rbp-256]
   00055	e8 00 00 00 00	 call	 memset
 
-; 96   : 	//Inicjowanie zmiennych lokalnych
-; 97   : 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
+; 97   : 	//Inicjowanie zmiennych lokalnych
+; 98   : 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
 
   0005a	48 8d 8d 20 01
 	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rbp-256]
@@ -24548,7 +24600,7 @@ $LN18@main:
   001be	90		 npad	 1
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 100  : 	int iloœæ_pieniêdzy = Ustawienia.kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funkcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
+; 101  : 	int iloœæ_pieniêdzy = Ustawienia.kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funkcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
 
   001bf	8b 05 0c 00 00
 	00		 mov	 eax, DWORD PTR ?Ustawienia@@3US_Ustawienia@@A+12
@@ -24570,7 +24622,7 @@ $LN18@main:
   001d5	c6 45 e0 00	 mov	 BYTE PTR typ_zak³adu$[rbp-256], 0
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 104  : 	thread w¹tek1(Inicjacje_Pocz¹tkowe); //Utworzenie i uruchomienie w¹tku do zainicjowania funkcji pocz¹tkowych
+; 105  : 	thread w¹tek1(Inicjacje_Pocz¹tkowe); //Utworzenie i uruchomienie w¹tku do zainicjowania funkcji pocz¹tkowych
 
   001d9	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:?Inicjacje_Pocz¹tkowe@@YAXXZ ; Inicjacje_Pocz¹tkowe
@@ -24812,7 +24864,7 @@ $LN601@main:
   00374	89 75 d8	 mov	 DWORD PTR w¹tek1$[rbp-248], esi
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 107  : 	thread w¹tek3(SprawdŸ_Ustawienia); //Utworzenie i uruchomienie w¹tku do wczytania ustawieñ z pliku
+; 108  : 	thread w¹tek3(SprawdŸ_Ustawienia); //Utworzenie i uruchomienie w¹tku do wczytania ustawieñ z pliku
 
   00377	48 8d 15 00 00
 	00 00		 lea	 rdx, OFFSET FLAT:?SprawdŸ_Ustawienia@@YAXXZ ; SprawdŸ_Ustawienia
@@ -25167,7 +25219,7 @@ $LN944@main:
 $LL4@main:
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 114  : 		Pêtla_G³ówna(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log, co_kontynuowaæ, typ_zak³adu, wylosowana_liczba); //Funkcja obs³uguj¹ca wszystkie elementy gry
+; 115  : 		Pêtla_G³ówna(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log, co_kontynuowaæ, typ_zak³adu, wylosowana_liczba); //Funkcja obs³uguj¹ca wszystkie elementy gry
 
   005a0	48 8d 45 98	 lea	 rax, QWORD PTR wylosowana_liczba$[rbp-256]
   005a4	48 89 44 24 38	 mov	 QWORD PTR [rsp+56], rax
@@ -25184,19 +25236,19 @@ $LL4@main:
   005d5	48 8d 4c 24 40	 lea	 rcx, QWORD PTR wygrana$[rsp]
   005da	e8 00 00 00 00	 call	 ?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z ; Pêtla_G³ówna
 
-; 115  : 		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
+; 116  : 		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
 
   005df	c6 44 24 68 6e	 mov	 BYTE PTR co_kontynuowaæ$[rsp], 110 ; 0000006eH
 
-; 116  : 	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy)); //Pêtla dza³aj¹ca do czasu wartoœci fa³sz zwróconej przez funkcjê Czy_kontynuowaæ
+; 117  : 	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy)); //Pêtla dza³aj¹ca do czasu wartoœci fa³sz zwróconej przez funkcjê Czy_kontynuowaæ
 
   005e4	48 8d 4c 24 6c	 lea	 rcx, QWORD PTR iloœæ_pieniêdzy$[rsp]
   005e9	e8 00 00 00 00	 call	 ?Czy_Kontynuowaæ@@YA_NAEBH@Z ; Czy_Kontynuowaæ
   005ee	84 c0		 test	 al, al
   005f0	75 ae		 jne	 SHORT $LL4@main
 
-; 117  : 
-; 118  : 	Koniec_Gry(log_ogólny, log, iloœæ_pieniêdzy); //Zakoñczenie gry i wskazanie wyniku
+; 118  : 
+; 119  : 	Koniec_Gry(log_ogólny, log, iloœæ_pieniêdzy); //Zakoñczenie gry i wskazanie wyniku
 
   005f2	4c 8d 44 24 6c	 lea	 r8, QWORD PTR iloœæ_pieniêdzy$[rsp]
   005f7	48 8d 55 00	 lea	 rdx, QWORD PTR log$[rbp-256]
@@ -25204,8 +25256,8 @@ $LL4@main:
 	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rbp-256]
   00602	e8 00 00 00 00	 call	 ?Koniec_Gry@@YAXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBH@Z ; Koniec_Gry
 
-; 119  : 
-; 120  : 	system("pause"); //Wywo³anie funkcji wymagaj¹cej do zamkniêcia naciœniêcie dowolnego klawisza
+; 120  : 
+; 121  : 	system("pause"); //Wywo³anie funkcji wymagaj¹cej do zamkniêcia naciœniêcie dowolnego klawisza
 
   00607	48 8d 0d 00 00
 	00 00		 lea	 rcx, OFFSET FLAT:??_C@_05PDJBBECF@pause?$AA@
@@ -25236,7 +25288,7 @@ $LL4@main:
   00645	90		 npad	 1
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 122  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
 
   00646	48 8d 4d 00	 lea	 rcx, QWORD PTR log$[rbp-256]
   0064a	e8 00 00 00 00	 call	 ??_D?$basic_fstream@DU?$char_traits@D@std@@@std@@QEAAXXZ
@@ -25297,11 +25349,11 @@ $LL4@main:
   006d0	90		 npad	 1
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 122  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
 
   006d1	33 c0		 xor	 eax, eax
 
-; 123  : }
+; 124  : }
 
   006d3	48 8b 8d 30 02
 	00 00		 mov	 rcx, QWORD PTR __$ArrayPad$[rbp-256]
