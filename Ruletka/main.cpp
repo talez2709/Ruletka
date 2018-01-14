@@ -282,59 +282,62 @@ int SprawdŸ_Zak³ad(const int & kwota, const string & typ_zak³adu, const int & wy
 {
 	int wygrana = kwota; //Deklaracja zmiennej przechowywuj¹ca kwotê wygran¹ lub zwrócon¹ przy wylosowaniu 0 i przypisuê jej wartoœæ kwota jakby wygrana by³a 1:1
 
-	if (wylosowana_liczba == 0 && Ustawienia.metoda_liczenia_wygranej_zerowej) //Warunek sprawdzaj¹cy czy wylosowano 0
-		switch (typ_zak³adu[0]) //Je¿eli tak to switch do obliczenia wygranej lub przegranej
-		{
-		case 'p':
-		{
-			wygrana >>= 1; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-			break; //Wyjœcie z switcha
-		}
-		case 'n':
-		{
-			wygrana >>= 1; //Je¿eli typ zak³adu by³ n to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-			break; //Wyjœcie z switcha
-		}
-		case 'r':
-		{
-			wygrana >>= 1; //Je¿eli typ zak³adu by³ r to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-			break; //Wyjœcie z switcha
-		}
-		case 'b':
-		{
-			wygrana >>= 1; //Je¿eli typ zak³adu by³ b to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-			break; //Wyjœcie z switcha
-		}
-		case 'g':
-		{
-			wygrana >>= 1; //Je¿eli typ zak³adu by³ g to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-			break; //Wyjœcie z switcha
-		}
-		case 'd':
-		{
-			wygrana >>= 1; //Je¿eli typ zak³adu by³ d to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-			break; //Wyjœcie z switcha
-		}
-		case 'k':
-		{
-			wygrana = 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
-			break; //Wyjœcie z switcha
-		}
-		case 'w':
-		{
-			wygrana = 0; //Je¿eli typ zak³adu by³ w to przegra³o siê zak³ad
-			break; //Wyjœcie z switcha
-		}
-		case '0':
-		{
-			wygrana = (wygrana << 0) + (wygrana << 1) + (wygrana << 5); //Je¿eli typ zak³adu by³ 0 to wygra³o siê zak³ad, wygrana jest 35:1
-			break; //Wyjœcie z switcha
-		}
-		default:
-			; //W przeciwym wypadkunic nie rób
-		}
+	if (wylosowana_liczba == 0) //Warunek sprawdzaj¹cy czy wylosowano 0
+		if (!Ustawienia.metoda_liczenia_wygranej_zerowej) //Sprawdzam metodê liczenia wygranej za 0, je¿eli jest to przedranie wszystkiego je¿eli nie obstawi³o siê 0 to
+			if (typ_zak³adu[0] == '0') wygrana *= 35;  //Je¿eli typ zak³adu by³ 0 to wygra³o siê zak³ad, wygrana jest 35:1
+			else wygrana = 0; //W przeciwnym wypadku przegra³o sie zak³ad
+		else //W przeciwym wypadu, dla po³owicznych wygranych
+			switch (typ_zak³adu[0]) //Switch do obliczenia wygranej lub przegranej
+			{
+			case 'p':
+			{
+				wygrana >>= 1; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+				break; //Wyjœcie z switcha
+			}
+			case 'n':
+			{
+				wygrana >>= 1; //Je¿eli typ zak³adu by³ n to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+				break; //Wyjœcie z switcha
+			}
+			case 'r':
+			{
+				wygrana >>= 1; //Je¿eli typ zak³adu by³ r to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+				break; //Wyjœcie z switcha
+			}
+			case 'b':
+			{
+				wygrana >>= 1; //Je¿eli typ zak³adu by³ b to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+				break; //Wyjœcie z switcha
+			}
+			case 'g':
+			{
+				wygrana >>= 1; //Je¿eli typ zak³adu by³ g to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+				break; //Wyjœcie z switcha
+			}
+			case 'd':
+			{
+				wygrana >>= 1; //Je¿eli typ zak³adu by³ d to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
+				break; //Wyjœcie z switcha
+			}
+			case 'k':
+			{
+				wygrana = 0; //Je¿eli typ zak³adu by³ k to przegra³o siê zak³ad
+				break; //Wyjœcie z switcha
+			}
+			case 'w':
+			{
+				wygrana = 0; //Je¿eli typ zak³adu by³ w to przegra³o siê zak³ad
+				break; //Wyjœcie z switcha
+			}
+			case '0':
+			{
+				wygrana = (wygrana << 0) + (wygrana << 1) + (wygrana << 5); //Je¿eli typ zak³adu by³ 0 to wygra³o siê zak³ad, wygrana jest 35:1
+				break; //Wyjœcie z switcha
+			}
+			default:
+				; //W przeciwym wypadkunic nie rób
+			}
 	else //Je¿eli wylosowana liczba nie jest zerem to
-	{
 		if (typ_zak³adu == "p") //Je¿eli typ zak³adu to p
 			if (!(wylosowana_liczba & 1)) /*wygrana *= 1*/; //To sprawdzam czy wylosowana liczba jest parzysta, je¿eli tak to wygrana jest 1:1
 			else wygrana = 0; //Je¿eli wylosowana liczba nie jest parzysta to przegra³o siê zak³ad
@@ -361,13 +364,12 @@ int SprawdŸ_Zak³ad(const int & kwota, const string & typ_zak³adu, const int & wy
 			else wygrana = 0; //Je¿eli wylosowana liczba nie jest z obstawionego wiersza to przegra³o siê zak³ad
 		else if (wylosowana_liczba == strtol(typ_zak³adu.c_str(), nullptr, 10)) wygrana = (wygrana << 0) + (wygrana << 1) + (wygrana << 5); //Je¿eli typ zak³adu to liczba, to sprawdzam czy wylosowana liczba jest równa obstawionej liczbie, je¿eli tak to wygrana jest 35:1
 		else wygrana = 0; //Je¿eli wylosowana liczba nie jest równa obstawionej liczbie to przegra³o siê zak³ad
-	}
 
-	if (wygrana >= kwota) cout << "Obstawi³eœ poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
-	else if (wygrana == (kwota >> 1)) cout << "Obstawi³eœ niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
-	else cout << "Obstawi³eœ niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
+		if (wygrana >= kwota) cout << "Obstawi³eœ poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
+		else if (wygrana == (kwota >> 1)) cout << "Obstawi³eœ niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
+		else cout << "Obstawi³eœ niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
 
-	return wygrana; //Zwracam wartoœ wygranej lub zwrotu
+		return wygrana; //Zwracam wartoœ wygranej lub zwrotu
 }
 
 bool Czy_Kontynuowaæ(const int & iloœæ_pieniêdzy)
