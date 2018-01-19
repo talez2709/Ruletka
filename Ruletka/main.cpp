@@ -489,11 +489,11 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 		getline(log, buf); //Odczyt ca³ej lini z pliku
 		while (!log.eof()) //Pêtla dzia³j¹ca do czasu kiedy kursor odczytu z pliku nie bêdzie na koñcu pliku
 		{
-			if (!(buf.empty()) && ((buf.find("Posiadasz") != string::npos) || (buf.find("Wylosowano") != string::npos) || (buf.find("Obstawiono zaklad") != string::npos) || (buf.find("Gra rozpoczeta dnia") != string::npos))) //Sprawdzenie czy odczytana linia zawiera interesuj¹ce s³owa kluczowe
+			if (!(buf.empty()) && ((buf.find("Posiadasz") != string::npos) || (buf.find("Wylosowano") != string::npos) || (buf.find("Obstawiono zak³ad") != string::npos) || (buf.find("Gra rozpoczêta dnia") != string::npos))) //Sprawdzenie czy odczytana linia zawiera interesuj¹ce s³owa kluczowe
 				bufor2 = buf; //Je¿eli nie jest pusta to skopiowanie do drugiego bufora celem posiadania dwóch ostatnich linijek tekstu bêd¹cego w pliku
 			getline(log, buf); //Odczyt ca³ej lini z pliku
 		}
-		if ((buf.empty()) || (!((buf.find("Posiadasz") != string::npos) || (buf.find("Wylosowano") != string::npos) || (buf.find("Obstawiono za") != string::npos) || (buf.find("Gra rozpoczeta dnia") != string::npos)))) //Sprawdzenie czy linia w buforze jest pusta lub czy nieznaleziono interesuj¹cego s³owa kluczowego
+		if ((buf.empty()) || (!((buf.find("Posiadasz") != string::npos) || (buf.find("Wylosowano") != string::npos) || (buf.find("Obstawiono za") != string::npos) || (buf.find("Gra rozpoczêta dnia") != string::npos)))) //Sprawdzenie czy linia w buforze jest pusta lub czy nieznaleziono interesuj¹cego s³owa kluczowego
 			buf = bufor2; //je¿eli jest pusta to zast¹pienie jej poprzedni¹ lini¹ tekstu z pliku
 		if (buf.find("Posiadasz") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o skoñczeniu rundy
 		{
@@ -523,7 +523,7 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			buf2.erase(buf2.find(" Wylosowano"), string::npos); //Usuniêcie z bufora pomocniczego tekstu z prawej strony, aby tekst koñczy³ siê nazw¹ typu zak³adu
 			typ_zak³adu = buf2; //Przypisanie do zmiennej przechowywuj¹cej typ zak³adu wczytanego typu zak³adu
-			buf.erase(buf.find("Obstawiono zaklad"), string::npos); //Usuniêcie wszystkiego w prawo razem z wyszukanym tekstem
+			buf.erase(buf.find("Obstawiono zak³ad"), string::npos); //Usuniêcie wszystkiego w prawo razem z wyszukanym tekstem
 			pocz¹tek = 0; //Przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie zak³adu
 			if (buf[12] == 'a') { pocz¹tek = 14; } //Sprawdzenie czy na pozycji 12 teksty znajduje siê litera a œwiadcz¹ca o wyrazie po którym jest kwota zak³adu, je¿eli tak to pozycja pocz¹tkowa tekstu wynosi 14
 			else //Je¿eli nie to
@@ -540,7 +540,7 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			pocz¹tek = bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
-			if (bufor2.find("Gra rozpoczeta") == string::npos) //Zabezpieczenie przed wczytymaniem iloœci pozosta³ych pieniêdzy jak siê nie rozegra³o pe³nej rundy
+			if (bufor2.find("Gra rozpoczêta") == string::npos) //Zabezpieczenie przed wczytymaniem iloœci pozosta³ych pieniêdzy jak siê nie rozegra³o pe³nej rundy
 			{
 				buf2 = move(bufor2); //Przeniesienie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
 				buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
@@ -548,7 +548,7 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 				sscanf_s(buf2.c_str(), "%d", &iloœæ_pieniêdzy); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 			}
 		}
-		else if (buf.find("Obstawiono zaklad") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o typie obstawionego zak³adu
+		else if (buf.find("Obstawiono zak³ad") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o typie obstawionego zak³adu
 		{
 			co_kontynuowaæ = 't'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od wylosowania liczby
 			size_t pocz¹tek = 0; //Utworzenie i przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o typie zak³adu
@@ -557,7 +557,7 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			string buf2 = buf; //Utworzenie bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego wczeœniej odczytanego tekstu
 			buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
 			typ_zak³adu = buf2; //Przypisanie do zmiennej przechowywuj¹cej typ zak³adu wczytanego typu zak³adu
-			buf.erase(buf.find("Obstawiono zaklad"), string::npos); //Usuniêcie wszystkiego w prawo razem z wyszukanym tekstem
+			buf.erase(buf.find("Obstawiono zak³ad"), string::npos); //Usuniêcie wszystkiego w prawo razem z wyszukanym tekstem
 			pocz¹tek = 0; //Przypisanie zera do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie zak³adu
 			if (buf[12] == 'a') pocz¹tek = 14; //Sprawdzenie czy na pozycji 12 teksty znajduje siê litera a œwiadcz¹ca o wyrazie po którym jest kwota zak³adu, je¿eli tak to pozycja pocz¹tkowa tekstu wynosi 14
 			else //Je¿eli nie to
@@ -574,7 +574,7 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			pocz¹tek = bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
-			if (bufor2.find("Gra rozpoczeta") == string::npos) //Zabezpieczenie przed wczytymaniem iloœci pozosta³ych pieniêdzy jak siê nie rozegra³o pe³nej rundy
+			if (bufor2.find("Gra rozpoczêta") == string::npos) //Zabezpieczenie przed wczytymaniem iloœci pozosta³ych pieniêdzy jak siê nie rozegra³o pe³nej rundy
 			{
 				buf2 = move(bufor2); //Przeniesienie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
 				buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
@@ -601,7 +601,7 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 			pocz¹tek = bufor2.size(); //Utworzenie i przypisanie do zmiennej wskazuj¹cej pocz¹tek tekst o kwocie pieniêdzy któr¹ posiada jeszcze gracz
 			while (bufor2[pocz¹tek] != ' ' && pocz¹tek > 0) --pocz¹tek; //Poszukiwanie od koñca spacji po której jest kwota pieniêdzy któr¹ posiada jeszcze gracz
 			++pocz¹tek; //Kwota jest na nastêpnym znaku wiêc przesuniêcie o jeden znak do przodu
-			if (bufor2.find("Gra rozpoczeta") == string::npos) //Zabezpieczenie przed wczytymaniem iloœci pozosta³ych pieniêdzy jak siê nie rozegra³o pe³nej rundy
+			if (bufor2.find("Gra rozpoczêta") == string::npos) //Zabezpieczenie przed wczytymaniem iloœci pozosta³ych pieniêdzy jak siê nie rozegra³o pe³nej rundy
 			{
 				buf2 = move(bufor2); //Przeniesienie do bufora pomocniczego do ciêcia tekstu i w³o¿enie do niego linie o jedn¹ wczeœniej wczeœniej odczytanego tekstu
 				buf2.erase(0, pocz¹tek); //Usuniêcie z bufora pomocniczego tekstu z lewej strony, aby tekst rozpoczyna³ siê liczb¹
@@ -609,7 +609,7 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 				sscanf_s(buf2.c_str(), "%d", &iloœæ_pieniêdzy); //Zamiana liczby w tekœcie na wartoœæ w zmiennnej liczbowej
 			}
 		}
-		else if (buf.find("Gra rozpoczeta dnia") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o rozpoczêciu nowej gry
+		else if (buf.find("Gra rozpoczêta") != string::npos) //Sprawdzenie czy w ostatniej niepustej lini znajduj¹ siê s³owa œwiadcz¹ce o rozpoczêciu nowej gry
 			co_kontynuowaæ = 'n'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od pocz¹tku
 		else //Je¿eli coœ pójdzie nie tak, to warunek aby gra siê niewysypa³a
 			co_kontynuowaæ = 'n'; //Je¿eli siê znajduj¹ to przypisanie znaku rozpoczêcia rundy od pocz¹tku
@@ -623,7 +623,7 @@ void Wczytaj_z_Pliku(ofstream & log_ogólny, fstream & log, char & co_kontynuowaæ
 		GetSystemTime(&Czas); //Pobieranie aktualnej daty i czasu z zegara systemowego
 
 		string buf;
-		buf += "Gra rozpoczeta dnia " + ((Czas.wDay < 10) ? ('0' + to_string(Czas.wDay)) : (to_string(Czas.wDay))) + '.' + ((Czas.wMonth < 10) ? ('0' + to_string(Czas.wMonth)) : (to_string(Czas.wMonth))) + '.' + to_string(Czas.wYear) + " o godzinie "; //Wpisanie do bufora zapisu danych o dniu,miesi¹cu i roku wraz z dodatkowymi zerami dla formatowania
+		buf += "Gra rozpoczêta dnia " + ((Czas.wDay < 10) ? ('0' + to_string(Czas.wDay)) : (to_string(Czas.wDay))) + '.' + ((Czas.wMonth < 10) ? ('0' + to_string(Czas.wMonth)) : (to_string(Czas.wMonth))) + '.' + to_string(Czas.wYear) + " o godzinie "; //Wpisanie do bufora zapisu danych o dniu,miesi¹cu i roku wraz z dodatkowymi zerami dla formatowania
 		if (Czas.wHour < 10) buf += '0'; //Wpisanie do bufora zapisu znaku zera dla równego formatowania godzinny je¿eli godzina jest minejsza ni¿ 10
 		buf += to_string(Czas.wHour) + ':'; //Wpisanie do bufora zapisu znaku : dla rozdzielenia godzin od minut
 		if (Czas.wMinute < 10) buf += '0'; //Wpisanie do bufora zapisu znaku zera dla równego formatowania minut je¿eli minuty jest minejsze ni¿ 10 do pliku log_aktualny.txt
@@ -1230,9 +1230,9 @@ void Og³oœ_Wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pie
 	else if (wygrana == (kwota_zak³adu >> 1)) //Je¿eli wygrana jest równa po³owie kwocie zak³adu to znaczy, ¿e dostaje siê zwrot po³owy kwoty zak³adu
 	{
 		iloœæ_pieniêdzy += wygrana; //Dopisanie do salda kwoty zwrotu z zak³adu
-		log << " Dostajesz polowe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie zwrotu zak³adu
+		log << " Dostajesz po³owe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie zwrotu zak³adu
 		log << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
-		log_ogólny << " Dostajesz polowe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie zwrotu zak³adu
+		log_ogólny << " Dostajesz po³owe zak³adu " << wygrana << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie zwrotu zak³adu
 		log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu ogólnego informacji o saldzie konta u¿ytkownika
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
@@ -1246,9 +1246,9 @@ void Og³oœ_Wynik(const int & wygrana, const int & kwota_zak³adu, int & iloœæ_pie
 	}
 	else if (wygrana == 0) //Je¿eli wygrana jest równa 0 to znaczy, ¿e siê zak³ad przegra³o
 	{
-		log << " Przegrales " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o przegranej kwocie
+		log << " Przegra³eœ " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o przegranej kwocie
 		log << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
-		log_ogólny << " Przegrales " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o przegranej kwocie
+		log_ogólny << " Przegra³eœ " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o przegranej kwocie
 		log_ogólny << " Posiadasz " << iloœæ_pieniêdzy << "$" << '\n'; //Zapisanie do bufora pliku logu aktualnego informacji o saldzie konta u¿ytkownika
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
@@ -1309,8 +1309,8 @@ void Pêtla_G³ówna(int & wygrana, int & kwota_zak³adu, int & iloœæ_pieniêdzy, ofs
 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') //Je¿eli punkt kontynuowania jest odpowiedni to
 	{
 		typ_zak³adu = Obstaw(); //Przypisanie do zmiennej pobranej od u¿ytkownika typu zak³adu
-		log << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu aktualnego informacji o typie obstawionego zak³adu
-		log_ogólny << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu ogólnego informacji o typie obstawionego zak³adu
+		log << " Obstawiono zak³ad " << typ_zak³adu; //Zapisanie do bufora pliku logu aktualnego informacji o typie obstawionego zak³adu
+		log_ogólny << " Obstawiono zak³ad " << typ_zak³adu; //Zapisanie do bufora pliku logu ogólnego informacji o typie obstawionego zak³adu
 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
 	}
@@ -1590,15 +1590,25 @@ bool StringtoBool(const string & var)
 	if (var.size() == 0) //Sprawdzenie czy rozmiar stringa to 0
 		; //Nic nie rób
 	else //W przeciwym wypadku
-		for (size_t i = 0; i < var.size(); ++i) //Przejœcie przez ca³y string
+	{
+		if (find_if(var.begin(), var.end(), [](const char & x) {return isspace(x); }) != var.end()) //Je¿eli znaleziono znak bia³y
 		{
-			if (isspace(var[i])) continue; //Je¿eli znak jest znakiem bia³ym to kontynuuj pêtlê
-			if (isalpha(var[i])) break; //W przeciwym wypadku je¿eli znak jest liter¹ to zakoñcz pêtlê
-			for (size_t ii = i; ii < var.size() && !isspace(var[ii]); ++ii) //Pêtla od znaku na którym zatrzyma³a siê poprzednia pêtla
-				if (var[ii] != '0') //Sprawdzenie czy na danej pozycji znak to nie zero
-					return true; //Zwróæ prawdê
-			return false; //Zwróæ fa³sz
+			string var2 = var; //Utworzenie kopi stringa
+			var2.erase(remove_if(var2.begin(), var2.end(), [](const char & x) {return isspace(x); }), var2.end()); //Wywo³anie usuwania znaków bia³ych i skrócenie stringa
+			return StringtoBool(var2); //Wywo³anie ponowne funkcji tylko z usuniêtymi znakami bia³ymi
 		}
+	}
+	size_t i = 0;//Utworzenie zmiennej wskazuj¹cej na pozycjê w tekœcie
+	for (; i < var.size(); ++i) //Przejœcie przez ca³y string
+	{
+		if (var[i] == '0') //Sprawdzenie czy na danej pozycji znak to zero
+			continue; //Je¿eli tak to kontynuuj
+		if (isdigit(var[i])) //SprawdŸ czy to jest cyfra
+			return true; //Je¿eli tak to zwróæ prawdê
+		break; //Zatrzymaj pêtlê
+	}
+
+	if (var[i - 1] == '0')  return false; //Je¿eli na podstatnio ogl¹danej pozycji jest 0 to zwróæ fa³sz
 
 	switch (var.size()) //Switch z zmienn¹ steruj¹c¹ rozmiar s³owa do zamiany
 	{

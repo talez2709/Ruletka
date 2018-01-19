@@ -62,37 +62,37 @@
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
-      <LINE>1595</LINE>
-      <COLUMN>14</COLUMN>
+      <LINE>1594</LINE>
+      <COLUMN>72</COLUMN>
     </SFA>
     <DEFECTCODE>6330</DEFECTCODE>
     <DESCRIPTION>Element „const char” przekazany jako _Param_(1), gdy jest wymagany element „unsigned char” w wywołaniu elementu „isspace”.</DESCRIPTION>
-    <FUNCTION>StringtoBool</FUNCTION>
-    <DECORATED>?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
-    <FUNCLINE>1588</FUNCLINE>
-    <PATH></PATH>
-  </DEFECT><DEFECT>
-    <SFA>
-      <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
-      <FILENAME>main.cpp</FILENAME>
-      <LINE>1596</LINE>
-      <COLUMN>14</COLUMN>
-    </SFA>
-    <DEFECTCODE>6330</DEFECTCODE>
-    <DESCRIPTION>Element „const char” przekazany jako _Param_(1), gdy jest wymagany element „unsigned char” w wywołaniu elementu „isalpha”.</DESCRIPTION>
-    <FUNCTION>StringtoBool</FUNCTION>
-    <DECORATED>?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
-    <FUNCLINE>1588</FUNCLINE>
+    <FUNCTION>StringtoBool::&lt;lambda_97005605773f0e8edea7fc09893eaa9e&gt;::()</FUNCTION>
+    <DECORATED>??R&lt;lambda_97005605773f0e8edea7fc09893eaa9e&gt;@@QEBAHAEBD@Z</DECORATED>
+    <FUNCLINE>1594</FUNCLINE>
     <PATH></PATH>
   </DEFECT><DEFECT>
     <SFA>
       <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
       <FILENAME>main.cpp</FILENAME>
       <LINE>1597</LINE>
-      <COLUMN>50</COLUMN>
+      <COLUMN>84</COLUMN>
     </SFA>
     <DEFECTCODE>6330</DEFECTCODE>
     <DESCRIPTION>Element „const char” przekazany jako _Param_(1), gdy jest wymagany element „unsigned char” w wywołaniu elementu „isspace”.</DESCRIPTION>
+    <FUNCTION>StringtoBool::&lt;lambda_ade6d5b274596d5fae825aa3125247d9&gt;::()</FUNCTION>
+    <DECORATED>??R&lt;lambda_ade6d5b274596d5fae825aa3125247d9&gt;@@QEBAHAEBD@Z</DECORATED>
+    <FUNCLINE>1597</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>f:\users\krzysztof\documents\szkoła\2017-2018\informatyka\labolatorium\ruletka\ruletka\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>1606</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>6330</DEFECTCODE>
+    <DESCRIPTION>Element „const char” przekazany jako _Param_(1), gdy jest wymagany element „unsigned char” w wywołaniu elementu „isdigit”.</DESCRIPTION>
     <FUNCTION>StringtoBool</FUNCTION>
     <DECORATED>?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
     <FUNCLINE>1588</FUNCLINE>

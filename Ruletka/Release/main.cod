@@ -182,14 +182,14 @@ PUBLIC	??_C@_0BB@KLDNCCFE@log_aktualny?4txt?$AA@	; `string'
 PUBLIC	??_C@_0DJ@EFIKGJBI@Uruchomiono?5ponownie?5gr?j?5z?5wy?$LD?$LJc@ ; `string'
 PUBLIC	??_C@_09LFKNBKJA@Posiadasz?$AA@			; `string'
 PUBLIC	??_C@_0L@DAFLKCID@Wylosowano?$AA@		; `string'
-PUBLIC	??_C@_0BC@EAGHPBJK@Obstawiono?5zaklad?$AA@	; `string'
-PUBLIC	??_C@_0BE@CILJHICG@Gra?5rozpoczeta?5dnia?$AA@	; `string'
+PUBLIC	??_C@_0BC@DOFAFIFF@Obstawiono?5zak?$LDad?$AA@	; `string'
+PUBLIC	??_C@_0BE@JBFFLHLI@Gra?5rozpocz?jta?5dnia?$AA@	; `string'
 PUBLIC	??_C@_0O@POHKAIHJ@Obstawiono?5za?$AA@		; `string'
 PUBLIC	??_C@_0M@DIDIAOPI@?5Wylosowano?$AA@		; `string'
-PUBLIC	??_C@_0P@JFOGGPGN@Gra?5rozpoczeta?$AA@		; `string'
+PUBLIC	??_C@_0P@CANMMJAA@Gra?5rozpocz?jta?$AA@		; `string'
 PUBLIC	??_C@_02DPKJAMEF@?$CFd?$AA@			; `string'
 PUBLIC	??_C@_0N@KHLIPMCA@?5o?5godzinie?5?$AA@		; `string'
-PUBLIC	??_C@_0BF@EHKBBICH@Gra?5rozpoczeta?5dnia?5?$AA@	; `string'
+PUBLIC	??_C@_0BF@FAKPEKKL@Gra?5rozpocz?jta?5dnia?5?$AA@ ; `string'
 PUBLIC	??_C@_06FFJMIEBD@Nowa?5g?$AA@			; `string'
 PUBLIC	??_C@_0FC@DPJNGIHL@Brak?5plik?sw?5dla?5g?$LDosu?5oraz?5nie?5m@ ; `string'
 PUBLIC	??_C@_0BB@GJELGIOA@Efekty_d?$JPwi?jkowe?$AA@	; `string'
@@ -290,14 +290,14 @@ PUBLIC	??_C@_0DF@LJEKJLPK@Nie?5mo?$LPesz?5mie?f?5wy?$LD?$LJczonych?5d?$JPwi@ ; `
 PUBLIC	??_C@_01EPMOAMKG@$?$AA@				; `string'
 PUBLIC	??_C@_0M@GPFIMODH@?5Wygrywasz?5?$AA@		; `string'
 PUBLIC	??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@		; `string'
-PUBLIC	??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@ ; `string'
-PUBLIC	??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@		; `string'
+PUBLIC	??_C@_0BL@ELKKEEIA@?5Dostajesz?5po?$LDowe?5zak?$LDadu?5?$AA@ ; `string'
+PUBLIC	??_C@_0N@HGDMDGJA@?5Przegra?$LDe?$JM?5?$AA@	; `string'
 PUBLIC	??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@ ; `string'
 PUBLIC	??_C@_0CL@DCKMMPCF@Gratuluje?5zwi?jkszy?$LDe?$JM?5sw?sj?5zas?sb@ ; `string'
 PUBLIC	??_C@_0BO@NFOANCDG@?9krotnie?5sw?sj?5zas?sb?5finansowy?$AA@ ; `string'
 PUBLIC	??_C@_0BH@GDCLDFHN@Gratuluje?5zwi?jkszy?$LDe?$JM?5?$AA@ ; `string'
 PUBLIC	??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@		; `string'
-PUBLIC	??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@	; `string'
+PUBLIC	??_C@_0BE@EBJKNDGI@?5Obstawiono?5zak?$LDad?5?$AA@ ; `string'
 PUBLIC	??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@	; `string'
 PUBLIC	??_C@_0DA@EJNBAHOM@Kulka?5w?5grze?0?5zaczekaj?5na?5wyloso@ ; `string'
 PUBLIC	??_C@_0N@CGNKGGIC@?5Wylosowano?5?$AA@		; `string'
@@ -630,6 +630,7 @@ EXTRN	___stdio_common_vsscanf:PROC
 EXTRN	__Thrd_join:PROC
 EXTRN	__Cnd_init:PROC
 EXTRN	__Mtx_destroy:PROC
+EXTRN	_isdigit:PROC
 EXTRN	??_7type_info@@6B@:QWORD			; type_info::`vftable'
 EXTRN	__Query_perf_counter:PROC
 EXTRN	__imp__GetSystemTime@4:PROC
@@ -684,7 +685,6 @@ EXTRN	_fgetc:PROC
 EXTRN	_atexit:PROC
 EXTRN	__imp__OpenProcess@12:PROC
 EXTRN	__imp__ShellExecuteA@24:PROC
-EXTRN	_isalpha:PROC
 EXTRN	___stdio_common_vsprintf_s:PROC
 EXTRN	_strcspn:PROC
 EXTRN	__imp__GetModuleHandleA@4:PROC
@@ -3246,9 +3246,10 @@ CONST	SEGMENT
 ??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@ DB 'Obstawiono zak', 0b3H
 	DB	'ad ', 00H					; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@
+;	COMDAT ??_C@_0BE@EBJKNDGI@?5Obstawiono?5zak?$LDad?5?$AA@
 CONST	SEGMENT
-??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@ DB ' Obstawiono zaklad ', 00H ; `string'
+??_C@_0BE@EBJKNDGI@?5Obstawiono?5zak?$LDad?5?$AA@ DB ' Obstawiono zak', 0b3H
+	DB	'ad ', 00H					; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@
 CONST	SEGMENT
@@ -3275,14 +3276,15 @@ CONST	SEGMENT
 ??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@ DB 'Ko', 0f1H, 'cz'
 	DB	'ysz gr', 0eaH, ' z wynikiem ', 00H		; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@
+;	COMDAT ??_C@_0N@HGDMDGJA@?5Przegra?$LDe?$JM?5?$AA@
 CONST	SEGMENT
-??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@ DB ' Przegrales ', 00H ; `string'
+??_C@_0N@HGDMDGJA@?5Przegra?$LDe?$JM?5?$AA@ DB ' Przegra', 0b3H, 'e', 09cH
+	DB	' ', 00H					; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@
+;	COMDAT ??_C@_0BL@ELKKEEIA@?5Dostajesz?5po?$LDowe?5zak?$LDadu?5?$AA@
 CONST	SEGMENT
-??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@ DB ' Dostajesz '
-	DB	'polowe zak', 0b3H, 'adu ', 00H		; `string'
+??_C@_0BL@ELKKEEIA@?5Dostajesz?5po?$LDowe?5zak?$LDadu?5?$AA@ DB ' Dostaje'
+	DB	'sz po', 0b3H, 'owe zak', 0b3H, 'adu ', 00H	; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
 CONST	SEGMENT
@@ -3756,9 +3758,10 @@ CONST	ENDS
 CONST	SEGMENT
 ??_C@_06FFJMIEBD@Nowa?5g?$AA@ DB 'Nowa g', 00H		; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BF@EHKBBICH@Gra?5rozpoczeta?5dnia?5?$AA@
+;	COMDAT ??_C@_0BF@FAKPEKKL@Gra?5rozpocz?jta?5dnia?5?$AA@
 CONST	SEGMENT
-??_C@_0BF@EHKBBICH@Gra?5rozpoczeta?5dnia?5?$AA@ DB 'Gra rozpoczeta dnia ', 00H ; `string'
+??_C@_0BF@FAKPEKKL@Gra?5rozpocz?jta?5dnia?5?$AA@ DB 'Gra rozpocz', 0eaH, 't'
+	DB	'a dnia ', 00H				; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0N@KHLIPMCA@?5o?5godzinie?5?$AA@
 CONST	SEGMENT
@@ -3768,9 +3771,9 @@ CONST	ENDS
 CONST	SEGMENT
 ??_C@_02DPKJAMEF@?$CFd?$AA@ DB '%d', 00H		; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0P@JFOGGPGN@Gra?5rozpoczeta?$AA@
+;	COMDAT ??_C@_0P@CANMMJAA@Gra?5rozpocz?jta?$AA@
 CONST	SEGMENT
-??_C@_0P@JFOGGPGN@Gra?5rozpoczeta?$AA@ DB 'Gra rozpoczeta', 00H ; `string'
+??_C@_0P@CANMMJAA@Gra?5rozpocz?jta?$AA@ DB 'Gra rozpocz', 0eaH, 'ta', 00H ; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0M@DIDIAOPI@?5Wylosowano?$AA@
 CONST	SEGMENT
@@ -3780,13 +3783,15 @@ CONST	ENDS
 CONST	SEGMENT
 ??_C@_0O@POHKAIHJ@Obstawiono?5za?$AA@ DB 'Obstawiono za', 00H ; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BE@CILJHICG@Gra?5rozpoczeta?5dnia?$AA@
+;	COMDAT ??_C@_0BE@JBFFLHLI@Gra?5rozpocz?jta?5dnia?$AA@
 CONST	SEGMENT
-??_C@_0BE@CILJHICG@Gra?5rozpoczeta?5dnia?$AA@ DB 'Gra rozpoczeta dnia', 00H ; `string'
+??_C@_0BE@JBFFLHLI@Gra?5rozpocz?jta?5dnia?$AA@ DB 'Gra rozpocz', 0eaH, 't'
+	DB	'a dnia', 00H				; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BC@EAGHPBJK@Obstawiono?5zaklad?$AA@
+;	COMDAT ??_C@_0BC@DOFAFIFF@Obstawiono?5zak?$LDad?$AA@
 CONST	SEGMENT
-??_C@_0BC@EAGHPBJK@Obstawiono?5zaklad?$AA@ DB 'Obstawiono zaklad', 00H ; `string'
+??_C@_0BC@DOFAFIFF@Obstawiono?5zak?$LDad?$AA@ DB 'Obstawiono zak', 0b3H, 'a'
+	DB	'd', 00H					; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0L@DAFLKCID@Wylosowano?$AA@
 CONST	SEGMENT
@@ -4763,6 +4768,11 @@ PUBLIC	??$_Ucopy@PBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@
 PUBLIC	??$distance@PBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAHPBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@0@Z ; std::distance<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const *>
 PUBLIC	??$?0ABV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@$$V@?$_Compressed_pair@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$_Vector_val@U?$_Simple_types@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$00@std@@QAE@U_One_then_variadic_args_t@1@ABV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@@Z ; std::_Compressed_pair<std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,1>::_Compressed_pair<std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,1><std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > const &>
 PUBLIC	??$forward@ABV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@YAABV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@ABV10@@Z ; std::forward<std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > const &>
+PUBLIC	??$_Rechecked@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAAAV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@AAV10@QAD@Z ; std::_Rechecked<std::_String_val<std::_Simple_types<char> > >
+PUBLIC	??$_Const_cast@$$CBD@std@@YA@PBD@Z		; std::_Const_cast<char const >
+PUBLIC	??$_Unchecked@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAPADABV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@@Z ; std::_Unchecked<std::_String_val<std::_Simple_types<char> > >
+PUBLIC	??$_Rechecked@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAAAV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@AAV10@QBD@Z ; std::_Rechecked<std::_String_val<std::_Simple_types<char> > >
+PUBLIC	??$_Unchecked@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAPBDABV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@@Z ; std::_Unchecked<std::_String_val<std::_Simple_types<char> > >
 PUBLIC	??$move@AAF@std@@YA$$QAFAAF@Z			; std::move<short &>
 PUBLIC	??$forward@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@YA$$QAV?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@AAV10@@Z ; std::forward<std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const > >
 PUBLIC	??$forward@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@AAV10@@Z ; std::forward<std::basic_string<char,std::char_traits<char>,std::allocator<char> > &>
@@ -4942,6 +4952,8 @@ PUBLIC	??$addressof@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std
 PUBLIC	??$addressof@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAPBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@@Z ; std::addressof<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const >
 PUBLIC	??$_Refancy@PAD$0A@@std@@YAPADPAD@Z		; std::_Refancy<char *,0>
 PUBLIC	??$addressof@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAPAV?$_String_val@U?$_Simple_types@D@std@@@0@AAV10@@Z ; std::addressof<std::_String_val<std::_Simple_types<char> > >
+PUBLIC	??$_Refancy@PBD$0A@@std@@YAPBDPBD@Z		; std::_Refancy<char const *,0>
+PUBLIC	??$addressof@$$CBV?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAPBV?$_String_val@U?$_Simple_types@D@std@@@0@ABV10@@Z ; std::addressof<std::_String_val<std::_Simple_types<char> > const >
 PUBLIC	??$_Unfancy@D@std@@YAPADPAD@Z			; std::_Unfancy<char>
 PUBLIC	??$_Min_value@I@std@@YAABIABI0@Z		; std::_Min_value<unsigned int>
 PUBLIC	??$_Traits_find@U?$char_traits@D@std@@@std@@YAIQBDII0I@Z ; std::_Traits_find<std::char_traits<char> >
@@ -5121,7 +5133,6 @@ PUBLIC	?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEA
 PUBLIC	?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@IIQBDI@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::replace
 PUBLIC	?max_size@?$_Default_allocator_traits@V?$allocator@D@std@@@std@@SAIABV?$allocator@D@2@@Z ; std::_Default_allocator_traits<std::allocator<char> >::max_size
 PUBLIC	?_Xran@?$_String_val@U?$_Simple_types@D@std@@@std@@SAXXZ ; std::_String_val<std::_Simple_types<char> >::_Xran
-PUBLIC	??0?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QAE@PBDPBU_Container_base0@1@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >
 PUBLIC	??D?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QBEABDXZ ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator*
 PUBLIC	??Y?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QAEAAV01@H@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator+=
 PUBLIC	?_Compat@?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QBEXABV12@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::_Compat
@@ -5307,7 +5318,9 @@ PUBLIC	??1_Bxty@?$_String_val@U?$_Simple_types@D@std@@@std@@QAE@XZ ; std::_Strin
 PUBLIC	??0?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QAE@PADPBU_Container_base0@1@@Z ; std::_String_iterator<std::_String_val<std::_Simple_types<char> > >::_String_iterator<std::_String_val<std::_Simple_types<char> > >
 PUBLIC	??D?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QBEAADXZ ; std::_String_iterator<std::_String_val<std::_Simple_types<char> > >::operator*
 PUBLIC	??Y?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QAEAAV01@H@Z ; std::_String_iterator<std::_String_val<std::_Simple_types<char> > >::operator+=
+PUBLIC	??0?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QAE@PBDPBU_Container_base0@1@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >
 PUBLIC	??G?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QBEHABV01@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator-
+PUBLIC	??8?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QBE_NABV01@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator==
 PUBLIC	?_Tidy@?$_Yarn@D@std@@AAEXXZ			; std::_Yarn<char>::_Tidy
 PUBLIC	?_Tidy@?$_Yarn@_W@std@@AAEXXZ			; std::_Yarn<wchar_t>::_Tidy
 PUBLIC	?begin@?$deque@GV?$allocator@G@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@G@std@@@std@@@2@XZ ; std::deque<unsigned short,std::allocator<unsigned short> >::begin
@@ -5498,8 +5511,12 @@ PUBLIC	??Y?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@
 PUBLIC	?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::append
 PUBLIC	?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBD@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::append
 PUBLIC	?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@II@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::erase
+PUBLIC	?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::erase
 PUBLIC	?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0QBD@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::replace
 PUBLIC	?begin@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::begin
+PUBLIC	?begin@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBE?AV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::begin
+PUBLIC	?end@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::end
+PUBLIC	?end@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBE?AV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::end
 PUBLIC	??A?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAADI@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::operator[]
 PUBLIC	??A?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEABDI@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::operator[]
 PUBLIC	?c_str@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEPBDXZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::c_str
@@ -5510,6 +5527,7 @@ PUBLIC	?find@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIQB
 PUBLIC	?substr@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBE?AV12@II@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::substr
 PUBLIC	?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHABV12@@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::compare
 PUBLIC	??H?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QBE?AV01@H@Z ; std::_String_iterator<std::_String_val<std::_Simple_types<char> > >::operator+
+PUBLIC	??9?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QBE_NABV01@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator!=
 PUBLIC	??0?$_Yarn@D@std@@QAE@XZ			; std::_Yarn<char>::_Yarn<char>
 PUBLIC	??1?$_Yarn@D@std@@QAE@XZ			; std::_Yarn<char>::~_Yarn<char>
 PUBLIC	?c_str@?$_Yarn@D@std@@QBEPBDXZ			; std::_Yarn<char>::c_str
@@ -6237,11 +6255,13 @@ __unwindtable$??__ENazwa_g³osu@@YAXXZ DD 0ffffffffH
 xdata$x	ENDS
 ;	COMDAT xdata$x
 xdata$x	SEGMENT
-__ehfuncinfo$_main DQ 00000001019930522r	; 3.41639e-313
+__ehfuncinfo$_main DD 019930522H
+	DD	010H
 	DD	FLAT:__unwindtable$_main
-	DQ	00000000000000000r		; 0
-	DQ	00000000000000000r		; 0
-	DQ	00000000100000000r		; 2.122e-314
+	DD	2 DUP(00H)
+	DD	2 DUP(00H)
+	DD	00H
+	DD	01H
 	ORG $+4
 __unwindtable$_main DD 0ffffffffH
 	DD	FLAT:__unwindfunclet$_main$0
@@ -7137,6 +7157,16 @@ __unwindtable$?Usuñ_Folder_Wypakowany_i_Winrar@@YAXABV?$basic_string@DU?$char_tr
 	DD	FLAT:__unwindfunclet$?Usuñ_Folder_Wypakowany_i_Winrar@@YAXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$13
 	DD	0ffffffffH
 	DD	FLAT:__unwindfunclet$?Usuñ_Folder_Wypakowany_i_Winrar@@YAXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$15
+xdata$x	ENDS
+;	COMDAT xdata$x
+xdata$x	SEGMENT
+__ehfuncinfo$?StringtoBool@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DQ 00000000119930522r ; 2.33398e-314
+	DD	FLAT:__unwindtable$?StringtoBool@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+	DQ	00000000000000000r		; 0
+	DQ	00000000000000000r		; 0
+	DQ	00000000100000000r		; 2.122e-314
+__unwindtable$?StringtoBool@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 0ffffffffH
+	DD	FLAT:__unwindfunclet$?StringtoBool@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$0
 xdata$x	ENDS
 ;	COMDAT xdata$x
 xdata$x	SEGMENT
@@ -8796,1130 +8826,737 @@ CRT$XCU	SEGMENT
 CRT$XCU	ENDS
 ; Function compile flags: /Ogtp
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xmemory0
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xmemory0
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xiosbase
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xmemory0
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-;	COMDAT ?SprawdŸ_Zak³ad@@YAHABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z
+;	COMDAT _main
 _TEXT	SEGMENT
-_kwota$1$ = -4						; size = 4
-_wylosowana_liczba$ = 8					; size = 4
-?SprawdŸ_Zak³ad@@YAHABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z PROC ; SprawdŸ_Zak³ad, COMDAT
-; _kwota$ = ecx
-; _typ_zak³adu$ = edx
+$T147 = -484						; size = 4
+$T34 = -484						; size = 4
+_wygrana$ = -484					; size = 4
+$T105 = -480						; size = 4
+$T168 = -480						; size = 4
+$T1 = -480						; size = 4
+_log$ = -476						; size = 192
+_log_ogólny$ = -284					; size = 176
+_w¹tek1$ = -108						; size = 8
+_w¹tek2$ = -100						; size = 8
+_w¹tek3$ = -92						; size = 8
+_w¹tek4$ = -84						; size = 8
+_typ_zak³adu$ = -76					; size = 24
+_kwota_zak³adu$ = -52					; size = 4
+_wylosowana_liczba$ = -48				; size = 4
+__Launcher$217 = -44					; size = 20
+__Launcher$218 = -44					; size = 20
+_iloœæ_pieniêdzy$ = -24					; size = 4
+_co_kontynuowaæ$ = -17					; size = 1
+__$ArrayPad$ = -16					; size = 4
+__$EHRec$ = -12						; size = 12
+_main	PROC						; COMDAT
 
-; 282  : {
+; 96   : {
 
   00000	55		 push	 ebp
   00001	8b ec		 mov	 ebp, esp
-  00003	83 ec 08	 sub	 esp, 8
-  00006	53		 push	 ebx
-  00007	8b c1		 mov	 eax, ecx
-  00009	56		 push	 esi
-  0000a	57		 push	 edi
-  0000b	89 45 fc	 mov	 DWORD PTR _kwota$1$[ebp], eax
-  0000e	8b 38		 mov	 edi, DWORD PTR [eax]
+  00003	6a ff		 push	 -1
+  00005	68 00 00 00 00	 push	 __ehhandler$_main
+  0000a	64 a1 00 00 00
+	00		 mov	 eax, DWORD PTR fs:0
+  00010	50		 push	 eax
+  00011	81 ec d8 01 00
+	00		 sub	 esp, 472		; 000001d8H
+  00017	a1 00 00 00 00	 mov	 eax, DWORD PTR ___security_cookie
+  0001c	33 c5		 xor	 eax, ebp
+  0001e	89 45 f0	 mov	 DWORD PTR __$ArrayPad$[ebp], eax
+  00021	56		 push	 esi
+  00022	57		 push	 edi
+  00023	50		 push	 eax
+  00024	8d 45 f4	 lea	 eax, DWORD PTR __$EHRec$[ebp]
+  00027	64 a3 00 00 00
+	00		 mov	 DWORD PTR fs:0, eax
+  0002d	68 b0 00 00 00	 push	 176			; 000000b0H
+  00032	8d 85 e4 fe ff
+	ff		 lea	 eax, DWORD PTR _log_ogólny$[ebp]
+  00038	c7 85 20 fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR $T1[ebp], 0
+  00042	6a 00		 push	 0
+  00044	50		 push	 eax
+  00045	e8 00 00 00 00	 call	 _memset
 
-; 283  : 	int wygrana = kwota; //Deklaracja zmiennej przechowywuj¹ca kwotê wygran¹ lub zwrócon¹ przy wylosowaniu 0 i przypisuê jej wartoœæ kwota jakby wygrana by³a 1:1
-; 284  : 
-; 285  : 	if (wylosowana_liczba == 0) //Warunek sprawdzaj¹cy czy wylosowano 0
+; 98   : 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
 
-  00010	8b 45 08	 mov	 eax, DWORD PTR _wylosowana_liczba$[ebp]
-  00013	8b 18		 mov	 ebx, DWORD PTR [eax]
-  00015	85 db		 test	 ebx, ebx
-  00017	75 45		 jne	 SHORT $LN4@SprawdŸ_Z
+  0004a	83 c4 08	 add	 esp, 8
+  0004d	8d 8d e4 fe ff
+	ff		 lea	 ecx, DWORD PTR _log_ogólny$[ebp]
+  00053	e8 00 00 00 00	 call	 ??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ ; std::basic_ofstream<char,std::char_traits<char> >::basic_ofstream<char,std::char_traits<char> >
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 
-; 286  : 		if (!Ustawienia.metoda_liczenia_wygranej_zerowej) //Sprawdzam metodê liczenia wygranej za 0, je¿eli jest to przedranie wszystkiego je¿eli nie obstawi³o siê 0 to
+; 1149 : 		if (_Filebuffer.open(_Filename, _Mode | ios_base::out, _Prot) == 0)
 
-  00019	8b 42 14	 mov	 eax, DWORD PTR [edx+20]
-  0001c	38 1d 17 00 00
-	00		 cmp	 BYTE PTR ?Ustawienia@@3US_Ustawienia@@A+23, bl
-  00022	75 0f		 jne	 SHORT $LN6@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00024	83 f8 10	 cmp	 eax, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00027	72 02		 jb	 SHORT $LN68@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00029	8b 12		 mov	 edx, DWORD PTR [edx]
-$LN68@SprawdŸ_Z:
+  00058	51		 push	 ecx
+  00059	6a 0a		 push	 10			; 0000000aH
+  0005b	68 00 00 00 00	 push	 OFFSET ??_C@_0P@GMFAENOC@log_og?slny?4txt?$AA@
+  00060	8d 8d e8 fe ff
+	ff		 lea	 ecx, DWORD PTR _log_ogólny$[ebp+4]
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 287  : 			if (typ_zak³adu[0] == '0') wygrana *= 35;  //Je¿eli typ zak³adu by³ 0 to wygra³o siê zak³ad, wygrana jest 35:1
+; 98   : 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
 
-  0002b	80 3a 30	 cmp	 BYTE PTR [edx], 48	; 00000030H
+  00066	c7 45 fc 00 00
+	00 00		 mov	 DWORD PTR __$EHRec$[ebp+8], 0
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 
-; 288  : 			else wygrana = 0; //W przeciwnym wypadku przegra³o sie zak³ad
-; 289  : 		else //W przeciwym wypadu, dla po³owicznych wygranych
+; 1149 : 		if (_Filebuffer.open(_Filename, _Mode | ios_base::out, _Prot) == 0)
 
-  0002e	e9 d4 01 00 00	 jmp	 $LN385@SprawdŸ_Z
-$LN6@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
+  0006d	e8 00 00 00 00	 call	 ?open@?$basic_filebuf@DU?$char_traits@D@std@@@std@@QAEPAV12@PBDHH@Z ; std::basic_filebuf<char,std::char_traits<char> >::open
+  00072	85 c0		 test	 eax, eax
 
-; 1604 : 		return (_BUF_SIZE <= _Myres);
+; 1150 : 			_Myios::setstate(ios_base::failbit);
 
-  00033	83 f8 10	 cmp	 eax, 16			; 00000010H
+  00074	8d 8d e4 fe ff
+	ff		 lea	 ecx, DWORD PTR _log_ogólny$[ebp]
+  0007a	8b 85 e4 fe ff
+	ff		 mov	 eax, DWORD PTR _log_ogólny$[ebp]
+  00080	8b 40 04	 mov	 eax, DWORD PTR [eax+4]
+  00083	75 16		 jne	 SHORT $LN17@main
+  00085	03 c8		 add	 ecx, eax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
 
-; 1594 : 		if (_Large_string_engaged())
+; 44   : 		ios_base::clear((iostate)(_Mystrbuf == 0
 
-  00036	72 02		 jb	 SHORT $LN83@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
+  00087	33 c0		 xor	 eax, eax
+  00089	39 41 38	 cmp	 DWORD PTR [ecx+56], eax
+  0008c	0f 94 c0	 sete	 al
+  0008f	8d 04 85 02 00
+	00 00		 lea	 eax, DWORD PTR [eax*4+2]
+  00096	0b 41 0c	 or	 eax, DWORD PTR [ecx+12]
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 
-; 265  : 	return (_Ptr);
+; 1151 : 		else
 
-  00038	8b 12		 mov	 edx, DWORD PTR [edx]
-$LN83@SprawdŸ_Z:
+  00099	eb 0f		 jmp	 SHORT $LN18@main
+$LN17@main:
+
+; 1152 : 			_Myios::clear();	// added with C++11
+
+  0009b	03 c8		 add	 ecx, eax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
+
+; 44   : 		ios_base::clear((iostate)(_Mystrbuf == 0
+
+  0009d	33 d2		 xor	 edx, edx
+  0009f	b8 04 00 00 00	 mov	 eax, 4
+  000a4	39 51 38	 cmp	 DWORD PTR [ecx+56], edx
+  000a7	0f 45 c2	 cmovne	 eax, edx
+$LN18@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+
+; 1206 : 		{	// construct unopened
+
+  000aa	6a 00		 push	 0
+  000ac	50		 push	 eax
+  000ad	e8 00 00 00 00	 call	 ?clear@ios_base@std@@QAEXH_N@Z ; std::ios_base::clear
+  000b2	68 c0 00 00 00	 push	 192			; 000000c0H
+  000b7	8d 85 24 fe ff
+	ff		 lea	 eax, DWORD PTR _log$[ebp]
+  000bd	6a 00		 push	 0
+  000bf	50		 push	 eax
+  000c0	e8 00 00 00 00	 call	 _memset
+  000c5	c7 85 24 fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR _log$[ebp], OFFSET ??_8?$basic_fstream@DU?$char_traits@D@std@@@std@@7B?$basic_istream@DU?$char_traits@D@std@@@1@@
+  000cf	c7 85 34 fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR _log$[ebp+16], OFFSET ??_8?$basic_fstream@DU?$char_traits@D@std@@@std@@7B?$basic_ostream@DU?$char_traits@D@std@@@1@@
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
+
+; 183  : 		{	// default constructor, do nothing
+
+  000d9	c7 85 9c fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR _log$[ebp+120], OFFSET ??_7?$basic_ios@DU?$char_traits@D@std@@@std@@6B@
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+
+; 1206 : 		{	// construct unopened
+
+  000e3	83 c4 08	 add	 esp, 8
+  000e6	c6 45 fc 01	 mov	 BYTE PTR __$EHRec$[ebp+8], 1
+  000ea	8d 85 3c fe ff
+	ff		 lea	 eax, DWORD PTR _log$[ebp+24]
+  000f0	c7 85 20 fe ff
+	ff 01 00 00 00	 mov	 DWORD PTR $T1[ebp], 1
+  000fa	8d 8d 24 fe ff
+	ff		 lea	 ecx, DWORD PTR _log$[ebp]
+  00100	50		 push	 eax
+  00101	e8 00 00 00 00	 call	 ??0?$basic_iostream@DU?$char_traits@D@std@@@std@@QAE@PAV?$basic_streambuf@DU?$char_traits@D@std@@@1@@Z ; std::basic_iostream<char,std::char_traits<char> >::basic_iostream<char,std::char_traits<char> >
+  00106	c7 45 fc 02 00
+	00 00		 mov	 DWORD PTR __$EHRec$[ebp+8], 2
+  0010d	8b 85 24 fe ff
+	ff		 mov	 eax, DWORD PTR _log$[ebp]
+  00113	8b 40 04	 mov	 eax, DWORD PTR [eax+4]
+  00116	c7 84 05 24 fe
+	ff ff 00 00 00
+	00		 mov	 DWORD PTR _log$[ebp+eax], OFFSET ??_7?$basic_fstream@DU?$char_traits@D@std@@@std@@6B@
+  00121	8b 85 24 fe ff
+	ff		 mov	 eax, DWORD PTR _log$[ebp]
+  00127	8b 48 04	 mov	 ecx, DWORD PTR [eax+4]
+  0012a	8d 41 88	 lea	 eax, DWORD PTR [ecx-120]
+  0012d	89 84 0d 20 fe
+	ff ff		 mov	 DWORD PTR _log$[ebp+ecx-4], eax
+
+; 155  : 		: _Mysb()
+
+  00134	8d 8d 3c fe ff
+	ff		 lea	 ecx, DWORD PTR _log$[ebp+24]
+  0013a	e8 00 00 00 00	 call	 ??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IAE@XZ ; std::basic_streambuf<char,std::char_traits<char> >::basic_streambuf<char,std::char_traits<char> >
+
+; 156  : 		{	// construct from pointer to C stream
+; 157  : 		_Init(_File, _Newfl);
+
+  0013f	6a 00		 push	 0
+  00141	6a 00		 push	 0
+  00143	8d 8d 3c fe ff
+	ff		 lea	 ecx, DWORD PTR _log$[ebp+24]
+  00149	c7 85 3c fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR _log$[ebp+24], OFFSET ??_7?$basic_filebuf@DU?$char_traits@D@std@@@std@@6B@
+  00153	e8 00 00 00 00	 call	 ?_Init@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IAEXPAU_iobuf@@W4_Initfl@12@@Z ; std::basic_filebuf<char,std::char_traits<char> >::_Init
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 290  : 			switch (typ_zak³adu[0]) //Switch do obliczenia wygranej lub przegranej
+; 101  : 	int iloœæ_pieniêdzy = Ustawienia.kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funkcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
 
-  0003a	0f be 02	 movsx	 eax, BYTE PTR [edx]
-  0003d	83 c0 d0	 add	 eax, -48		; ffffffd0H
-  00040	83 f8 47	 cmp	 eax, 71			; 00000047H
-  00043	0f 87 c7 01 00
-	00		 ja	 $LN53@SprawdŸ_Z
-  00049	0f b6 80 00 00
-	00 00		 movzx	 eax, BYTE PTR $LN371@SprawdŸ_Z[eax]
-  00050	ff 24 85 00 00
-	00 00		 jmp	 DWORD PTR $LN388@SprawdŸ_Z[eax*4]
-$LN10@SprawdŸ_Z:
-
-; 291  : 			{
-; 292  : 			case 'p':
-; 293  : 			{
-; 294  : 				wygrana >>= 1; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-
-  00057	d1 ff		 sar	 edi, 1
-
-; 295  : 				break; //Wyjœcie z switcha
-
-  00059	e9 b2 01 00 00	 jmp	 $LN53@SprawdŸ_Z
-$LN4@SprawdŸ_Z:
+  00158	a1 0c 00 00 00	 mov	 eax, DWORD PTR ?Ustawienia@@3US_Ustawienia@@A+12
+  0015d	89 45 e8	 mov	 DWORD PTR _iloœæ_pieniêdzy$[ebp], eax
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  0005e	8b 4a 14	 mov	 ecx, DWORD PTR [edx+20]
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00061	8b c2		 mov	 eax, edx
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00063	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00066	72 02		 jb	 SHORT $LN363@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00068	8b 02		 mov	 eax, DWORD PTR [edx]
-$LN363@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 3481 : 		return (_Traits_equal<_Traits>(_My_data._Myptr(), _My_data._Mysize, _Ptr, _Traits::length(_Ptr)));
-
-  0006a	8b 72 10	 mov	 esi, DWORD PTR [edx+16]
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  0006d	83 fe 01	 cmp	 esi, 1
-  00070	75 21		 jne	 SHORT $LN20@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  00072	0f b6 00	 movzx	 eax, BYTE PTR [eax]
-  00075	3c 70		 cmp	 al, 112			; 00000070H
-  00077	75 04		 jne	 SHORT $LN372@SprawdŸ_Z
-  00079	33 c0		 xor	 eax, eax
-  0007b	eb 05		 jmp	 SHORT $LN373@SprawdŸ_Z
-$LN372@SprawdŸ_Z:
-  0007d	1b c0		 sbb	 eax, eax
-  0007f	83 c8 01	 or	 eax, 1
-$LN373@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  00082	85 c0		 test	 eax, eax
-  00084	75 0d		 jne	 SHORT $LN20@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 344  : 		else if (typ_zak³adu == "n") //Je¿eli typ zak³adu to n
-
-  00086	f6 c3 01	 test	 bl, 1
-  00089	0f 44 c7	 cmove	 eax, edi
-  0008c	8b f8		 mov	 edi, eax
-  0008e	e9 7d 01 00 00	 jmp	 $LN53@SprawdŸ_Z
-$LN20@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00093	8b c2		 mov	 eax, edx
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00095	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00098	72 02		 jb	 SHORT $LN364@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  0009a	8b 02		 mov	 eax, DWORD PTR [edx]
-$LN364@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  0009c	83 fe 01	 cmp	 esi, 1
-  0009f	75 21		 jne	 SHORT $LN24@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  000a1	0f b6 00	 movzx	 eax, BYTE PTR [eax]
-  000a4	3c 6e		 cmp	 al, 110			; 0000006eH
-  000a6	75 04		 jne	 SHORT $LN374@SprawdŸ_Z
-  000a8	33 c0		 xor	 eax, eax
-  000aa	eb 05		 jmp	 SHORT $LN375@SprawdŸ_Z
-$LN374@SprawdŸ_Z:
-  000ac	1b c0		 sbb	 eax, eax
-  000ae	83 c8 01	 or	 eax, 1
-$LN375@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  000b1	85 c0		 test	 eax, eax
-  000b3	75 0d		 jne	 SHORT $LN24@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 347  : 		else if (typ_zak³adu == "r") //Je¿eli typ zak³adu to n
-
-  000b5	f6 c3 01	 test	 bl, 1
-  000b8	0f 45 c7	 cmovne	 eax, edi
-  000bb	8b f8		 mov	 edi, eax
-  000bd	e9 4e 01 00 00	 jmp	 $LN53@SprawdŸ_Z
-$LN24@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  000c2	8b c2		 mov	 eax, edx
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  000c4	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  000c7	72 02		 jb	 SHORT $LN365@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  000c9	8b 02		 mov	 eax, DWORD PTR [edx]
-$LN365@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  000cb	83 fe 01	 cmp	 esi, 1
-  000ce	75 25		 jne	 SHORT $LN28@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  000d0	0f b6 00	 movzx	 eax, BYTE PTR [eax]
-  000d3	3c 72		 cmp	 al, 114			; 00000072H
-  000d5	75 04		 jne	 SHORT $LN376@SprawdŸ_Z
-  000d7	33 c0		 xor	 eax, eax
-  000d9	eb 05		 jmp	 SHORT $LN377@SprawdŸ_Z
-$LN376@SprawdŸ_Z:
-  000db	1b c0		 sbb	 eax, eax
-  000dd	83 c8 01	 or	 eax, 1
-$LN377@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  000e0	85 c0		 test	 eax, eax
-  000e2	75 11		 jne	 SHORT $LN28@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 350  : 		else if (typ_zak³adu == "b") //Je¿eli typ zak³adu to n
-
-  000e4	80 bb 00 00 00
-	00 72		 cmp	 BYTE PTR ?Ruletka_plansza_kolor@@3V?$array@D$0CF@@std@@B[ebx], 114 ; 00000072H
-  000eb	0f 44 c7	 cmove	 eax, edi
-  000ee	8b f8		 mov	 edi, eax
-  000f0	e9 1b 01 00 00	 jmp	 $LN53@SprawdŸ_Z
-$LN28@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  000f5	8b c2		 mov	 eax, edx
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  000f7	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  000fa	72 02		 jb	 SHORT $LN366@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  000fc	8b 02		 mov	 eax, DWORD PTR [edx]
-$LN366@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  000fe	83 fe 01	 cmp	 esi, 1
-  00101	75 25		 jne	 SHORT $LN32@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  00103	0f b6 00	 movzx	 eax, BYTE PTR [eax]
-  00106	3c 62		 cmp	 al, 98			; 00000062H
-  00108	75 04		 jne	 SHORT $LN378@SprawdŸ_Z
-  0010a	33 c0		 xor	 eax, eax
-  0010c	eb 05		 jmp	 SHORT $LN379@SprawdŸ_Z
-$LN378@SprawdŸ_Z:
-  0010e	1b c0		 sbb	 eax, eax
-  00110	83 c8 01	 or	 eax, 1
-$LN379@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  00113	85 c0		 test	 eax, eax
-  00115	75 11		 jne	 SHORT $LN32@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 353  : 		else if (typ_zak³adu == "g") //Je¿eli typ zak³adu to g
-
-  00117	80 bb 00 00 00
-	00 62		 cmp	 BYTE PTR ?Ruletka_plansza_kolor@@3V?$array@D$0CF@@std@@B[ebx], 98 ; 00000062H
-  0011e	0f 44 c7	 cmove	 eax, edi
-  00121	8b f8		 mov	 edi, eax
-  00123	e9 e8 00 00 00	 jmp	 $LN53@SprawdŸ_Z
-$LN32@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00128	8b c2		 mov	 eax, edx
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  0012a	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  0012d	72 02		 jb	 SHORT $LN367@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  0012f	8b 02		 mov	 eax, DWORD PTR [edx]
-$LN367@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  00131	83 fe 01	 cmp	 esi, 1
-  00134	75 21		 jne	 SHORT $LN36@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  00136	0f b6 00	 movzx	 eax, BYTE PTR [eax]
-  00139	3c 67		 cmp	 al, 103			; 00000067H
-  0013b	75 04		 jne	 SHORT $LN380@SprawdŸ_Z
-  0013d	33 c0		 xor	 eax, eax
-  0013f	eb 05		 jmp	 SHORT $LN381@SprawdŸ_Z
-$LN380@SprawdŸ_Z:
-  00141	1b c0		 sbb	 eax, eax
-  00143	83 c8 01	 or	 eax, 1
-$LN381@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  00146	85 c0		 test	 eax, eax
-  00148	75 0d		 jne	 SHORT $LN36@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 356  : 		else if (typ_zak³adu == "d") //Je¿eli typ zak³adu to d
-
-  0014a	83 fb 13	 cmp	 ebx, 19			; 00000013H
-  0014d	0f 4c c7	 cmovl	 eax, edi
-  00150	8b f8		 mov	 edi, eax
-  00152	e9 b9 00 00 00	 jmp	 $LN53@SprawdŸ_Z
-$LN36@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00157	8b c2		 mov	 eax, edx
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00159	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  0015c	72 02		 jb	 SHORT $LN368@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  0015e	8b 02		 mov	 eax, DWORD PTR [edx]
-$LN368@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  00160	83 fe 01	 cmp	 esi, 1
-  00163	75 21		 jne	 SHORT $LN40@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  00165	0f b6 00	 movzx	 eax, BYTE PTR [eax]
-  00168	3c 64		 cmp	 al, 100			; 00000064H
-  0016a	75 04		 jne	 SHORT $LN382@SprawdŸ_Z
-  0016c	33 c0		 xor	 eax, eax
-  0016e	eb 05		 jmp	 SHORT $LN383@SprawdŸ_Z
-$LN382@SprawdŸ_Z:
-  00170	1b c0		 sbb	 eax, eax
-  00172	83 c8 01	 or	 eax, 1
-$LN383@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  00175	85 c0		 test	 eax, eax
-  00177	75 0d		 jne	 SHORT $LN40@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 359  : 		else if (typ_zak³adu[0] == 'k') //Je¿eli typ zak³adu to k
-
-  00179	83 fb 12	 cmp	 ebx, 18			; 00000012H
-  0017c	0f 4f c7	 cmovg	 eax, edi
-  0017f	8b f8		 mov	 edi, eax
-  00181	e9 8a 00 00 00	 jmp	 $LN53@SprawdŸ_Z
-$LN40@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00186	8b c2		 mov	 eax, edx
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00188	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  0018b	72 02		 jb	 SHORT $LN369@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  0018d	8b 02		 mov	 eax, DWORD PTR [edx]
-$LN369@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 359  : 		else if (typ_zak³adu[0] == 'k') //Je¿eli typ zak³adu to k
-
-  0018f	80 38 6b	 cmp	 BYTE PTR [eax], 107	; 0000006bH
-  00192	75 24		 jne	 SHORT $LN44@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00194	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00197	72 02		 jb	 SHORT $LN291@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00199	8b 12		 mov	 edx, DWORD PTR [edx]
-$LN291@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 360  : 			if ((wylosowana_liczba - 1) % 3 == (typ_zak³adu[1] - '1')) wygrana <<= 1; //To sprawdzam czy wylosowana liczba jest z obstawionej kolumny, je¿eli tak to wygrana jest 2:1
-
-  0019b	0f be 4a 01	 movsx	 ecx, BYTE PTR [edx+1]
-  0019f	8d 43 ff	 lea	 eax, DWORD PTR [ebx-1]
-  001a2	99		 cdq
-  001a3	be 03 00 00 00	 mov	 esi, 3
-  001a8	f7 fe		 idiv	 esi
-  001aa	83 e9 31	 sub	 ecx, 49			; 00000031H
-
-; 362  : 		else if (typ_zak³adu[0] == 'w') //Je¿eli typ zak³adu to w
-
-  001ad	03 ff		 add	 edi, edi
-  001af	33 c0		 xor	 eax, eax
-  001b1	3b d1		 cmp	 edx, ecx
-  001b3	0f 45 f8	 cmovne	 edi, eax
-  001b6	eb 58		 jmp	 SHORT $LN53@SprawdŸ_Z
-$LN44@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  001b8	8b c2		 mov	 eax, edx
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  001ba	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  001bd	72 02		 jb	 SHORT $LN370@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  001bf	8b 02		 mov	 eax, DWORD PTR [edx]
-$LN370@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 362  : 		else if (typ_zak³adu[0] == 'w') //Je¿eli typ zak³adu to w
-
-  001c1	80 38 77	 cmp	 BYTE PTR [eax], 119	; 00000077H
-  001c4	75 28		 jne	 SHORT $LN48@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  001c6	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  001c9	72 02		 jb	 SHORT $LN321@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  001cb	8b 12		 mov	 edx, DWORD PTR [edx]
-$LN321@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 363  : 			if (((wylosowana_liczba - 1) / 3 + 1) == (typ_zak³adu[1] - '0')) wygrana = (wygrana << 0) + (wygrana << 1) + (wygrana << 3); //To sprawdzam czy wylosowana liczba jest z obstawionego wiersza, je¿eli tak to wygrana jest 11:1
-
-  001cd	0f be 72 01	 movsx	 esi, BYTE PTR [edx+1]
-  001d1	8d 4b ff	 lea	 ecx, DWORD PTR [ebx-1]
-  001d4	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
-  001d9	83 ee 31	 sub	 esi, 49			; 00000031H
-  001dc	f7 e9		 imul	 ecx
-  001de	8b c2		 mov	 eax, edx
-  001e0	c1 e8 1f	 shr	 eax, 31			; 0000001fH
-  001e3	03 c2		 add	 eax, edx
-  001e5	3b c6		 cmp	 eax, esi
-  001e7	75 25		 jne	 SHORT $LN52@SprawdŸ_Z
-  001e9	6b ff 0b	 imul	 edi, edi, 11
-
-; 365  : 		else if (wylosowana_liczba == strtol(typ_zak³adu.c_str(), nullptr, 10)) wygrana = (wygrana << 0) + (wygrana << 1) + (wygrana << 5); //Je¿eli typ zak³adu to liczba, to sprawdzam czy wylosowana liczba jest równa obstawionej liczbie, je¿eli tak to wygrana jest 35:1
-
-  001ec	eb 22		 jmp	 SHORT $LN53@SprawdŸ_Z
-$LN48@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  001ee	83 f9 10	 cmp	 ecx, 16			; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  001f1	72 02		 jb	 SHORT $LN337@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  001f3	8b 12		 mov	 edx, DWORD PTR [edx]
-$LN337@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 365  : 		else if (wylosowana_liczba == strtol(typ_zak³adu.c_str(), nullptr, 10)) wygrana = (wygrana << 0) + (wygrana << 1) + (wygrana << 5); //Je¿eli typ zak³adu to liczba, to sprawdzam czy wylosowana liczba jest równa obstawionej liczbie, je¿eli tak to wygrana jest 35:1
-
-  001f5	6a 0a		 push	 10			; 0000000aH
-  001f7	6a 00		 push	 0
-  001f9	52		 push	 edx
-  001fa	e8 00 00 00 00	 call	 _strtol
-  001ff	8b 4d 08	 mov	 ecx, DWORD PTR _wylosowana_liczba$[ebp]
-  00202	83 c4 0c	 add	 esp, 12			; 0000000cH
-  00205	39 01		 cmp	 DWORD PTR [ecx], eax
-$LN385@SprawdŸ_Z:
-  00207	75 05		 jne	 SHORT $LN52@SprawdŸ_Z
-$LN18@SprawdŸ_Z:
-  00209	6b ff 23	 imul	 edi, edi, 35
-  0020c	eb 02		 jmp	 SHORT $LN53@SprawdŸ_Z
-$LN52@SprawdŸ_Z:
-
-; 366  : 		else wygrana = 0; //Je¿eli wylosowana liczba nie jest równa obstawionej liczbie to przegra³o siê zak³ad
-
-  0020e	33 ff		 xor	 edi, edi
-$LN53@SprawdŸ_Z:
-
-; 367  : 
-; 368  : 		if (wygrana >= kwota) cout << "Obstawi³eœ poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
-
-  00210	8b 75 fc	 mov	 esi, DWORD PTR _kwota$1$[ebp]
-  00213	b9 00 00 00 00	 mov	 ecx, OFFSET ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00218	8b 36		 mov	 esi, DWORD PTR [esi]
-  0021a	3b fe		 cmp	 edi, esi
-  0021c	7c 0e		 jl	 SHORT $LN54@SprawdŸ_Z
-  0021e	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0CB@GINPHDN@Obstawi?$LDe?$JM?5poprawnie?0?5wygrywasz?5@
-  00223	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-
-; 194  : 		return ((*_Pfn)(*this));
-
-  00228	8b f7		 mov	 esi, edi
-
-; 195  : 		}
-
-  0022a	eb 20		 jmp	 SHORT $LN57@SprawdŸ_Z
-$LN54@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 369  : 		else if (wygrana == (kwota >> 1)) cout << "Obstawi³eœ niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
-
-  0022c	8b c6		 mov	 eax, esi
-  0022e	d1 f8		 sar	 eax, 1
-  00230	3b f8		 cmp	 edi, eax
-  00232	75 0e		 jne	 SHORT $LN56@SprawdŸ_Z
-  00234	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0EF@MDKBMGPE@Obstawi?$LDe?$JM?5niepoprawnie?5lecz?5uda@
-  00239	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-
-; 194  : 		return ((*_Pfn)(*this));
-
-  0023e	8b f7		 mov	 esi, edi
-
-; 195  : 		}
-
-  00240	eb 0a		 jmp	 SHORT $LN57@SprawdŸ_Z
-$LN56@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 370  : 		else cout << "Obstawi³eœ niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
-
-  00242	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0CF@BAJKLKHM@Obstawi?$LDe?$JM?5niepoprawnie?0?5przegra@
-  00247	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-$LN57@SprawdŸ_Z:
-
-; 371  : 
-; 372  : 		return wygrana; //Zwracam wartoœ wygranej lub zwrotu
-
-  0024c	56		 push	 esi
-  0024d	8b c8		 mov	 ecx, eax
-  0024f	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  00254	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_02DEPNMBPN@$?4?$AA@
-  00259	8b c8		 mov	 ecx, eax
-  0025b	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-  00260	50		 push	 eax
-  00261	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
-  00266	83 c4 04	 add	 esp, 4
-  00269	8b c7		 mov	 eax, edi
-
-; 373  : }
-
-  0026b	5f		 pop	 edi
-  0026c	5e		 pop	 esi
-  0026d	5b		 pop	 ebx
-  0026e	8b e5		 mov	 esp, ebp
-  00270	5d		 pop	 ebp
-  00271	c3		 ret	 0
-  00272	66 90		 npad	 2
-$LN388@SprawdŸ_Z:
-  00274	00 00 00 00	 DD	 $LN18@SprawdŸ_Z
-  00278	00 00 00 00	 DD	 $LN10@SprawdŸ_Z
-  0027c	00 00 00 00	 DD	 $LN52@SprawdŸ_Z
-  00280	00 00 00 00	 DD	 $LN53@SprawdŸ_Z
-$LN371@SprawdŸ_Z:
-  00284	00		 DB	 0
-  00285	03		 DB	 3
-  00286	03		 DB	 3
-  00287	03		 DB	 3
-  00288	03		 DB	 3
-  00289	03		 DB	 3
-  0028a	03		 DB	 3
-  0028b	03		 DB	 3
-  0028c	03		 DB	 3
-  0028d	03		 DB	 3
-  0028e	03		 DB	 3
-  0028f	03		 DB	 3
-  00290	03		 DB	 3
-  00291	03		 DB	 3
-  00292	03		 DB	 3
-  00293	03		 DB	 3
-  00294	03		 DB	 3
-  00295	03		 DB	 3
-  00296	03		 DB	 3
-  00297	03		 DB	 3
-  00298	03		 DB	 3
-  00299	03		 DB	 3
-  0029a	03		 DB	 3
-  0029b	03		 DB	 3
-  0029c	03		 DB	 3
-  0029d	03		 DB	 3
-  0029e	03		 DB	 3
-  0029f	03		 DB	 3
-  002a0	03		 DB	 3
-  002a1	03		 DB	 3
-  002a2	03		 DB	 3
-  002a3	03		 DB	 3
-  002a4	03		 DB	 3
-  002a5	03		 DB	 3
-  002a6	03		 DB	 3
-  002a7	03		 DB	 3
-  002a8	03		 DB	 3
-  002a9	03		 DB	 3
-  002aa	03		 DB	 3
-  002ab	03		 DB	 3
-  002ac	03		 DB	 3
-  002ad	03		 DB	 3
-  002ae	03		 DB	 3
-  002af	03		 DB	 3
-  002b0	03		 DB	 3
-  002b1	03		 DB	 3
-  002b2	03		 DB	 3
-  002b3	03		 DB	 3
-  002b4	03		 DB	 3
-  002b5	03		 DB	 3
-  002b6	01		 DB	 1
-  002b7	03		 DB	 3
-  002b8	01		 DB	 1
-  002b9	03		 DB	 3
-  002ba	03		 DB	 3
-  002bb	01		 DB	 1
-  002bc	03		 DB	 3
-  002bd	03		 DB	 3
-  002be	03		 DB	 3
-  002bf	02		 DB	 2
-  002c0	03		 DB	 3
-  002c1	03		 DB	 3
-  002c2	01		 DB	 1
-  002c3	03		 DB	 3
-  002c4	01		 DB	 1
-  002c5	03		 DB	 3
-  002c6	01		 DB	 1
-  002c7	03		 DB	 3
-  002c8	03		 DB	 3
-  002c9	03		 DB	 3
-  002ca	03		 DB	 3
-  002cb	02		 DB	 2
-?SprawdŸ_Zak³ad@@YAHABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z ENDP ; SprawdŸ_Zak³ad
-_TEXT	ENDS
-; Function compile flags: /Ogtp
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xmemory0
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xmemory0
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xmemory0
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-;	COMDAT ?Pêtla_G³ówna@@YAXAAH00AAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@ABDAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
-_TEXT	SEGMENT
-tv1247 = -36						; size = 4
-_kwota_zak³adu$1$ = -32					; size = 4
-_wygrana$1$ = -28					; size = 4
-$T1 = -24						; size = 24
-_iloœæ_pieniêdzy$ = 8					; size = 4
-_log_ogólny$ = 12					; size = 4
-_log$ = 16						; size = 4
-_co_kontynuowaæ$ = 20					; size = 4
-_typ_zak³adu$ = 24					; size = 4
-_wylosowana_liczba$ = 28				; size = 4
-?Pêtla_G³ówna@@YAXAAH00AAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@ABDAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z PROC ; Pêtla_G³ówna, COMDAT
-; _wygrana$ = ecx
-; _kwota_zak³adu$ = edx
-
-; 1295 : {
-
-  00000	55		 push	 ebp
-  00001	8b ec		 mov	 ebp, esp
-  00003	83 e4 f8	 and	 esp, -8			; fffffff8H
-  00006	83 ec 24	 sub	 esp, 36			; 00000024H
-  00009	53		 push	 ebx
-
-; 1296 : 	if (co_kontynuowaæ == 'n') //Je¿eli punkt kontynuowania jest odpowiedni to
-
-  0000a	8b 5d 0c	 mov	 ebx, DWORD PTR _log_ogólny$[ebp]
-  0000d	56		 push	 esi
-  0000e	57		 push	 edi
-  0000f	8b 7d 14	 mov	 edi, DWORD PTR _co_kontynuowaæ$[ebp]
-  00012	8b f2		 mov	 esi, edx
-  00014	89 4c 24 14	 mov	 DWORD PTR _wygrana$1$[esp+48], ecx
-  00018	8b 4d 10	 mov	 ecx, DWORD PTR _log$[ebp]
-  0001b	83 c1 10	 add	 ecx, 16			; 00000010H
-  0001e	89 74 24 10	 mov	 DWORD PTR _kwota_zak³adu$1$[esp+48], esi
-  00022	80 3f 6e	 cmp	 BYTE PTR [edi], 110	; 0000006eH
-  00025	89 4c 24 0c	 mov	 DWORD PTR tv1247[esp+48], ecx
-  00029	75 70		 jne	 SHORT $LN2@P?
-
-; 1297 : 	{
-; 1298 : 		Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy); //Przypisanie do zmiennej pobranej od u¿ytkownika kwoty zak³adu
-
-  0002b	8b 55 08	 mov	 edx, DWORD PTR _iloœæ_pieniêdzy$[ebp]
-  0002e	8b ce		 mov	 ecx, esi
-  00030	e8 00 00 00 00	 call	 ?Wczytaj_Kwotê_Zak³adu@@YAXAAHABH@Z ; Wczytaj_Kwotê_Zak³adu
-
-; 1299 : 		log << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie obstawionego zak³adu
-
-  00035	ff 36		 push	 DWORD PTR [esi]
-  00037	8b 4c 24 10	 mov	 ecx, DWORD PTR tv1247[esp+52]
-  0003b	33 c0		 xor	 eax, eax
-  0003d	39 45 10	 cmp	 DWORD PTR _log$[ebp], eax
-  00040	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@
-  00045	0f 44 c8	 cmove	 ecx, eax
-  00048	51		 push	 ecx
-  00049	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-  0004e	83 c4 04	 add	 esp, 4
-  00051	8b c8		 mov	 ecx, eax
-  00053	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  00058	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_01EPMOAMKG@$?$AA@
-  0005d	8b c8		 mov	 ecx, eax
-  0005f	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-
-; 1300 : 		log_ogólny << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie obstawionego zak³adu
-
-  00064	ff 36		 push	 DWORD PTR [esi]
-  00066	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@
-  0006b	51		 push	 ecx
-  0006c	8b cb		 mov	 ecx, ebx
-  0006e	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-  00073	83 c4 04	 add	 esp, 4
-  00076	8b c8		 mov	 ecx, eax
-  00078	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  0007d	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_01EPMOAMKG@$?$AA@
-  00082	8b c8		 mov	 ecx, eax
-  00084	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-
-; 1301 : 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-
-  00089	8b 4c 24 0c	 mov	 ecx, DWORD PTR tv1247[esp+48]
-  0008d	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-
-; 1302 : 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-
-  00092	8b cb		 mov	 ecx, ebx
-  00094	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-
-; 1303 : 	}
-; 1304 : 	else //W przeciwym wypadku
-
-  00099	eb 65		 jmp	 SHORT $LN3@P?
-$LN2@P?:
-
-; 1305 : 	{
-; 1306 : 		cout << "Masz " << iloœæ_pieniêdzy << "$" << endl; //Wypisanie wczytanej informacji o posiadanej iloœci pieniêdzy
-
-  0009b	8b 45 08	 mov	 eax, DWORD PTR _iloœæ_pieniêdzy$[ebp]
-  0009e	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_05OMMBNPEF@Masz?5?$AA@
-  000a3	ff 30		 push	 DWORD PTR [eax]
-  000a5	51		 push	 ecx
-  000a6	b9 00 00 00 00	 mov	 ecx, OFFSET ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  000ab	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-  000b0	83 c4 04	 add	 esp, 4
-  000b3	8b c8		 mov	 ecx, eax
-  000b5	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  000ba	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_01EPMOAMKG@$?$AA@
-  000bf	8b c8		 mov	 ecx, eax
-  000c1	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-
-; 194  : 		return ((*_Pfn)(*this));
-
-  000c6	50		 push	 eax
-  000c7	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
-  000cc	83 c4 04	 add	 esp, 4
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1307 : 		cout << "Obstawiono za " << kwota_zak³adu << "$" << endl; //Wypisanie wczytanej kwoty zak³adu
-
-  000cf	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@
-  000d4	ff 36		 push	 DWORD PTR [esi]
-  000d6	51		 push	 ecx
-  000d7	b9 00 00 00 00	 mov	 ecx, OFFSET ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  000dc	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-  000e1	83 c4 04	 add	 esp, 4
-  000e4	8b c8		 mov	 ecx, eax
-  000e6	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  000eb	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_01EPMOAMKG@$?$AA@
-  000f0	8b c8		 mov	 ecx, eax
-  000f2	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-
-; 194  : 		return ((*_Pfn)(*this));
-
-  000f7	50		 push	 eax
-  000f8	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
-  000fd	83 c4 04	 add	 esp, 4
-$LN3@P?:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1309 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') //Je¿eli punkt kontynuowania jest odpowiedni to
-
-  00100	8a 07		 mov	 al, BYTE PTR [edi]
-  00102	3c 6e		 cmp	 al, 110			; 0000006eH
-  00104	74 3b		 je	 SHORT $LN6@P?
-  00106	3c 6b		 cmp	 al, 107			; 0000006bH
-  00108	74 37		 je	 SHORT $LN6@P?
-
-; 1316 : 	}
-; 1317 : 	else cout << "Obstawiono zak³ad " << typ_zak³adu << endl; //Wypisanie wczytanego typu zak³adu
-
-  0010a	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@
-  0010f	b9 00 00 00 00	 mov	 ecx, OFFSET ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00114	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 3047 : 		return (this->_Get_data()._Mysize);
-
-  00119	8b 5d 18	 mov	 ebx, DWORD PTR _typ_zak³adu$[ebp]
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  0011c	8b d3		 mov	 edx, ebx
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  0011e	83 7b 14 10	 cmp	 DWORD PTR [ebx+20], 16	; 00000010H
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00122	72 02		 jb	 SHORT $LN244@P?
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00124	8b 13		 mov	 edx, DWORD PTR [ebx]
-$LN244@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-
-; 169  : 	return (_Insert_string(_Ostr, _Str.data(), _Str.size()));
-
-  00126	ff 73 10	 push	 DWORD PTR [ebx+16]
-  00129	8b c8		 mov	 ecx, eax
-  0012b	e8 00 00 00 00	 call	 ??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z ; std::_Insert_string<char,std::char_traits<char>,unsigned int>
-  00130	83 c4 04	 add	 esp, 4
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-
-; 194  : 		return ((*_Pfn)(*this));
-
-  00133	50		 push	 eax
-  00134	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
-  00139	83 c4 04	 add	 esp, 4
-  0013c	e9 f7 00 00 00	 jmp	 $LN5@P?
-$LN6@P?:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1311 : 		typ_zak³adu = Obstaw(); //Przypisanie do zmiennej pobranej od u¿ytkownika typu zak³adu
-
-  00141	8d 4c 24 18	 lea	 ecx, DWORD PTR $T1[esp+48]
-  00145	e8 00 00 00 00	 call	 ?Obstaw@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ ; Obstaw
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 2071 : 		if (this != _STD addressof(_Right))
-
-  0014a	8b 5d 18	 mov	 ebx, DWORD PTR _typ_zak³adu$[ebp]
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1311 : 		typ_zak³adu = Obstaw(); //Przypisanie do zmiennej pobranej od u¿ytkownika typu zak³adu
-
-  0014d	8b f0		 mov	 esi, eax
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 2071 : 		if (this != _STD addressof(_Right))
-
-  0014f	3b de		 cmp	 ebx, esi
-  00151	74 28		 je	 SHORT $LN95@P?
-
-; 2072 : 			{	// different, assign it
-; 2073 : 			_Tidy_deallocate();
-
-  00153	8b cb		 mov	 ecx, ebx
-  00155	e8 00 00 00 00	 call	 ?_Tidy_deallocate@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXXZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Tidy_deallocate
-
-; 2137 : 		_CSTD memcpy(_My_data_mem, _Right_data_mem, _Memcpy_move_size);
-
-  0015a	0f 10 06	 movups	 xmm0, XMMWORD PTR [esi]
-  0015d	0f 11 03	 movups	 XMMWORD PTR [ebx], xmm0
-  00160	f3 0f 7e 46 10	 movq	 xmm0, QWORD PTR [esi+16]
-  00165	66 0f d6 43 10	 movq	 QWORD PTR [ebx+16], xmm0
 
 ; 3683 : 		_My_data._Mysize = 0;
 
-  0016a	c7 46 10 00 00
-	00 00		 mov	 DWORD PTR [esi+16], 0
+  00160	c7 45 c4 00 00
+	00 00		 mov	 DWORD PTR _typ_zak³adu$[ebp+16], 0
 
 ; 3684 : 		_My_data._Myres = this->_BUF_SIZE - 1;
 
-  00171	c7 46 14 0f 00
-	00 00		 mov	 DWORD PTR [esi+20], 15	; 0000000fH
+  00167	c7 45 c8 0f 00
+	00 00		 mov	 DWORD PTR _typ_zak³adu$[ebp+20], 15 ; 0000000fH
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
 
 ; 442  : 		_Left = _Right;
 
-  00178	c6 06 00	 mov	 BYTE PTR [esi], 0
-$LN95@P?:
+  0016e	c6 45 b4 00	 mov	 BYTE PTR _typ_zak³adu$[ebp], 0
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 105  : 	thread w¹tek1(Inicjacje_Pocz¹tkowe); //Utworzenie i uruchomienie w¹tku do zainicjowania funkcji pocz¹tkowych
+
+  00172	68 00 00 00 00	 push	 OFFSET ?Inicjacje_Pocz¹tkowe@@YAXXZ ; Inicjacje_Pocz¹tkowe
+  00177	8d 4d 94	 lea	 ecx, DWORD PTR _w¹tek1$[ebp]
+  0017a	c6 45 fc 04	 mov	 BYTE PTR __$EHRec$[ebp+8], 4
+  0017e	e8 00 00 00 00	 call	 ??$?0A6AXXZ$$VX@thread@std@@QAE@A6AXXZ@Z ; std::thread::thread<void (__cdecl&)(void),void>
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2585 : 	return (unique_ptr<_Ty>(new _Ty(_STD forward<_Types>(_Args)...)));
+
+  00183	6a 20		 push	 32			; 00000020H
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 105  : 	thread w¹tek1(Inicjacje_Pocz¹tkowe); //Utworzenie i uruchomienie w¹tku do zainicjowania funkcji pocz¹tkowych
+
+  00185	c6 45 fc 05	 mov	 BYTE PTR __$EHRec$[ebp+8], 5
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2585 : 	return (unique_ptr<_Ty>(new _Ty(_STD forward<_Types>(_Args)...)));
+
+  00189	e8 00 00 00 00	 call	 ??2@YAPAXI@Z		; operator new
+  0018e	8b f0		 mov	 esi, eax
+  00190	83 c4 04	 add	 esp, 4
+  00193	89 b5 1c fe ff
+	ff		 mov	 DWORD PTR $T34[ebp], esi
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+
+; 157  : 		: _Val(_STD forward<_Other>(_Arg))
+
+  00199	8d 45 b4	 lea	 eax, DWORD PTR _typ_zak³adu$[ebp]
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+
+; 311  : 		: _Ty1(), _Myval2(_STD forward<_Other2>(_Val2)...)
+
+  0019c	89 b5 20 fe ff
+	ff		 mov	 DWORD PTR $T105[ebp], esi
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+
+; 157  : 		: _Val(_STD forward<_Other>(_Arg))
+
+  001a2	89 06		 mov	 DWORD PTR [esi], eax
+  001a4	8d 45 d0	 lea	 eax, DWORD PTR _wylosowana_liczba$[ebp]
+  001a7	89 46 04	 mov	 DWORD PTR [esi+4], eax
+  001aa	8d 45 cc	 lea	 eax, DWORD PTR _kwota_zak³adu$[ebp]
+  001ad	89 46 08	 mov	 DWORD PTR [esi+8], eax
+  001b0	8d 45 e8	 lea	 eax, DWORD PTR _iloœæ_pieniêdzy$[ebp]
+  001b3	89 46 0c	 mov	 DWORD PTR [esi+12], eax
+  001b6	8d 45 ef	 lea	 eax, DWORD PTR _co_kontynuowaæ$[ebp]
+  001b9	89 46 10	 mov	 DWORD PTR [esi+16], eax
+  001bc	8d 85 24 fe ff
+	ff		 lea	 eax, DWORD PTR _log$[ebp]
+  001c2	89 46 14	 mov	 DWORD PTR [esi+20], eax
+  001c5	8d 85 e4 fe ff
+	ff		 lea	 eax, DWORD PTR _log_ogólny$[ebp]
+  001cb	89 46 18	 mov	 DWORD PTR [esi+24], eax
+  001ce	c7 46 1c 00 00
+	00 00		 mov	 DWORD PTR [esi+28], OFFSET ?Wczytaj_z_Pliku@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z ; Wczytaj_z_Pliku
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 46   : 		_Launch(&_Thr,
+
+  001d5	c6 45 fc 06	 mov	 BYTE PTR __$EHRec$[ebp+8], 6
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 227  : 		{	// construct from target
+
+  001d9	8d 4d d4	 lea	 ecx, DWORD PTR __Launcher$218[ebp]
+  001dc	0f 57 c0	 xorps	 xmm0, xmm0
+  001df	c7 45 e4 00 00
+	00 00		 mov	 DWORD PTR __Launcher$218[ebp+16], 0
+  001e6	0f 11 45 d4	 movups	 XMMWORD PTR __Launcher$218[ebp], xmm0
+  001ea	e8 00 00 00 00	 call	 ??0_Pad@std@@QAE@XZ	; std::_Pad::_Pad
+  001ef	c7 45 d4 00 00
+	00 00		 mov	 DWORD PTR __Launcher$218[ebp], OFFSET ??_7?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@U?$default_delete@V?$tuple@P6AXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@@std@@6B@
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2366 : 		this->_Myptr() = pointer();
+
+  001f6	c7 85 20 fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR $T105[ebp], 0
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+
+; 320  : 			_Myval2(_STD forward<_Other2>(_Val2)...)
+
+  00200	89 75 e4	 mov	 DWORD PTR __Launcher$218[ebp+16], esi
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 259  : 	_LaunchPad<_Target> _Launcher(_STD forward<_Target>(_Tg));
+
+  00203	c6 45 fc 07	 mov	 BYTE PTR __$EHRec$[ebp+8], 7
+
+; 260  : 	_Launcher._Launch(_Thr);
+
+  00207	8d 45 9c	 lea	 eax, DWORD PTR _w¹tek2$[ebp]
+  0020a	50		 push	 eax
+  0020b	8d 4d d4	 lea	 ecx, DWORD PTR __Launcher$218[ebp]
+  0020e	e8 00 00 00 00	 call	 ?_Launch@_Pad@std@@QAEXPAU_Thrd_imp_t@@@Z ; std::_Pad::_Launch
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2337 : 		if (get() != pointer())
+
+  00213	8b 45 e4	 mov	 eax, DWORD PTR __Launcher$218[ebp+16]
+  00216	85 c0		 test	 eax, eax
+  00218	74 0b		 je	 SHORT $LN489@main
+
+; 2127 : 		delete _Ptr;
+
+  0021a	6a 20		 push	 32			; 00000020H
+  0021c	50		 push	 eax
+  0021d	e8 00 00 00 00	 call	 ??3@YAXPAXI@Z		; operator delete
+  00222	83 c4 08	 add	 esp, 8
+$LN489@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 181  : 		{	// clean up handshake; non-virtual due to type-erasure
+
+  00225	c6 45 fc 08	 mov	 BYTE PTR __$EHRec$[ebp+8], 8
+
+; 143  : 		: _Active(true), _MyMtxp(_Mtxp)
+
+  00229	8b 75 dc	 mov	 esi, DWORD PTR __Launcher$218[ebp+8]
+
+; 119  : 		: _Active(true), _MyCndp(_Cndp)
+
+  0022c	8b 7d d8	 mov	 edi, DWORD PTR __Launcher$218[ebp+4]
+
+; 86   : 	return (_Check_C_return(_Mtx_unlock(_Mtx)));
+
+  0022f	56		 push	 esi
+
+; 181  : 		{	// clean up handshake; non-virtual due to type-erasure
+
+  00230	c7 45 d4 00 00
+	00 00		 mov	 DWORD PTR __Launcher$218[ebp], OFFSET ??_7_Pad@std@@6B@
+
+; 86   : 	return (_Check_C_return(_Mtx_unlock(_Mtx)));
+
+  00237	e8 00 00 00 00	 call	 __Mtx_unlock
+  0023c	83 c4 04	 add	 esp, 4
+
+; 35   : 	if (_Res != _Thrd_success)
+
+  0023f	85 c0		 test	 eax, eax
+  00241	74 09		 je	 SHORT $LN932@main
+
+; 36   : 		_Throw_C_error(_Res);
+
+  00243	50		 push	 eax
+  00244	e8 00 00 00 00	 call	 ?_Throw_C_error@std@@YAXH@Z ; std::_Throw_C_error
+  00249	83 c4 04	 add	 esp, 4
+$LN932@main:
+
+; 150  : 			_Mtx_destroy(_MyMtxp);
+
+  0024c	56		 push	 esi
+  0024d	e8 00 00 00 00	 call	 __Mtx_destroy
+
+; 126  : 			_Cnd_destroy(_MyCndp);
+
+  00252	57		 push	 edi
+  00253	e8 00 00 00 00	 call	 __Cnd_destroy
+  00258	83 c4 08	 add	 esp, 8
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 107  : 	w¹tek1.join(); //Poczekanie na zakoñczenie w¹tku1
+
+  0025b	8d 4d 94	 lea	 ecx, DWORD PTR _w¹tek1$[ebp]
+  0025e	c6 45 fc 09	 mov	 BYTE PTR __$EHRec$[ebp+8], 9
+  00262	e8 00 00 00 00	 call	 ?join@thread@std@@QAEXXZ ; std::thread::join
+
+; 108  : 	thread w¹tek3(SprawdŸ_Ustawienia); //Utworzenie i uruchomienie w¹tku do wczytania ustawieñ z pliku
+
+  00267	68 00 00 00 00	 push	 OFFSET ?SprawdŸ_Ustawienia@@YAXXZ ; SprawdŸ_Ustawienia
+  0026c	8d 4d a4	 lea	 ecx, DWORD PTR _w¹tek3$[ebp]
+  0026f	e8 00 00 00 00	 call	 ??$?0A6AXXZ$$VX@thread@std@@QAE@A6AXXZ@Z ; std::thread::thread<void (__cdecl&)(void),void>
+
+; 109  : 	w¹tek3.join(); //Poczekanie na zakoñczenie w¹tku3
+
+  00274	8d 4d a4	 lea	 ecx, DWORD PTR _w¹tek3$[ebp]
+  00277	c6 45 fc 0a	 mov	 BYTE PTR __$EHRec$[ebp+8], 10 ; 0000000aH
+  0027b	e8 00 00 00 00	 call	 ?join@thread@std@@QAEXXZ ; std::thread::join
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2585 : 	return (unique_ptr<_Ty>(new _Ty(_STD forward<_Types>(_Args)...)));
+
+  00280	6a 0c		 push	 12			; 0000000cH
+  00282	e8 00 00 00 00	 call	 ??2@YAPAXI@Z		; operator new
+  00287	8b f0		 mov	 esi, eax
+  00289	83 c4 04	 add	 esp, 4
+  0028c	89 b5 1c fe ff
+	ff		 mov	 DWORD PTR $T147[ebp], esi
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+
+; 311  : 		: _Ty1(), _Myval2(_STD forward<_Other2>(_Val2)...)
+
+  00292	89 b5 20 fe ff
+	ff		 mov	 DWORD PTR $T168[ebp], esi
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+
+; 157  : 		: _Val(_STD forward<_Other>(_Arg))
+
+  00298	c7 06 14 00 00
+	00		 mov	 DWORD PTR [esi], OFFSET ?Ustawienia@@3US_Ustawienia@@A+20
+  0029e	c7 46 04 12 00
+	00 00		 mov	 DWORD PTR [esi+4], OFFSET ?Ustawienia@@3US_Ustawienia@@A+18
+  002a5	c7 46 08 00 00
+	00 00		 mov	 DWORD PTR [esi+8], OFFSET ?SprawdŸ_Pliki@@YAXABF0@Z ; SprawdŸ_Pliki
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 46   : 		_Launch(&_Thr,
+
+  002ac	c6 45 fc 0b	 mov	 BYTE PTR __$EHRec$[ebp+8], 11 ; 0000000bH
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 227  : 		{	// construct from target
+
+  002b0	8d 4d d4	 lea	 ecx, DWORD PTR __Launcher$217[ebp]
+  002b3	0f 57 c0	 xorps	 xmm0, xmm0
+  002b6	c7 45 e4 00 00
+	00 00		 mov	 DWORD PTR __Launcher$217[ebp+16], 0
+  002bd	0f 11 45 d4	 movups	 XMMWORD PTR __Launcher$217[ebp], xmm0
+  002c1	e8 00 00 00 00	 call	 ??0_Pad@std@@QAE@XZ	; std::_Pad::_Pad
+  002c6	c7 45 d4 00 00
+	00 00		 mov	 DWORD PTR __Launcher$217[ebp], OFFSET ??_7?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXABF0@ZV?$reference_wrapper@F@std@@V12@@std@@U?$default_delete@V?$tuple@P6AXABF0@ZV?$reference_wrapper@F@std@@V12@@std@@@2@@std@@@std@@6B@
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2366 : 		this->_Myptr() = pointer();
+
+  002cd	c7 85 20 fe ff
+	ff 00 00 00 00	 mov	 DWORD PTR $T168[ebp], 0
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+
+; 320  : 			_Myval2(_STD forward<_Other2>(_Val2)...)
+
+  002d7	89 75 e4	 mov	 DWORD PTR __Launcher$217[ebp+16], esi
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 260  : 	_Launcher._Launch(_Thr);
+
+  002da	8d 45 ac	 lea	 eax, DWORD PTR _w¹tek4$[ebp]
+  002dd	c6 45 fc 0c	 mov	 BYTE PTR __$EHRec$[ebp+8], 12 ; 0000000cH
+  002e1	50		 push	 eax
+  002e2	8d 4d d4	 lea	 ecx, DWORD PTR __Launcher$217[ebp]
+  002e5	e8 00 00 00 00	 call	 ?_Launch@_Pad@std@@QAEXPAU_Thrd_imp_t@@@Z ; std::_Pad::_Launch
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2337 : 		if (get() != pointer())
+
+  002ea	8b 45 e4	 mov	 eax, DWORD PTR __Launcher$217[ebp+16]
+  002ed	85 c0		 test	 eax, eax
+  002ef	74 0b		 je	 SHORT $LN752@main
+
+; 2127 : 		delete _Ptr;
+
+  002f1	6a 0c		 push	 12			; 0000000cH
+  002f3	50		 push	 eax
+  002f4	e8 00 00 00 00	 call	 ??3@YAXPAXI@Z		; operator delete
+  002f9	83 c4 08	 add	 esp, 8
+$LN752@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 181  : 		{	// clean up handshake; non-virtual due to type-erasure
+
+  002fc	c6 45 fc 0d	 mov	 BYTE PTR __$EHRec$[ebp+8], 13 ; 0000000dH
+
+; 143  : 		: _Active(true), _MyMtxp(_Mtxp)
+
+  00300	8b 75 dc	 mov	 esi, DWORD PTR __Launcher$217[ebp+8]
+
+; 119  : 		: _Active(true), _MyCndp(_Cndp)
+
+  00303	8b 7d d8	 mov	 edi, DWORD PTR __Launcher$217[ebp+4]
+
+; 86   : 	return (_Check_C_return(_Mtx_unlock(_Mtx)));
+
+  00306	56		 push	 esi
+
+; 181  : 		{	// clean up handshake; non-virtual due to type-erasure
+
+  00307	c7 45 d4 00 00
+	00 00		 mov	 DWORD PTR __Launcher$217[ebp], OFFSET ??_7_Pad@std@@6B@
+
+; 86   : 	return (_Check_C_return(_Mtx_unlock(_Mtx)));
+
+  0030e	e8 00 00 00 00	 call	 __Mtx_unlock
+  00313	83 c4 04	 add	 esp, 4
+
+; 35   : 	if (_Res != _Thrd_success)
+
+  00316	85 c0		 test	 eax, eax
+  00318	74 09		 je	 SHORT $LN934@main
+
+; 36   : 		_Throw_C_error(_Res);
+
+  0031a	50		 push	 eax
+  0031b	e8 00 00 00 00	 call	 ?_Throw_C_error@std@@YAXH@Z ; std::_Throw_C_error
+  00320	83 c4 04	 add	 esp, 4
+$LN934@main:
+
+; 150  : 			_Mtx_destroy(_MyMtxp);
+
+  00323	56		 push	 esi
+  00324	e8 00 00 00 00	 call	 __Mtx_destroy
+
+; 126  : 			_Cnd_destroy(_MyCndp);
+
+  00329	57		 push	 edi
+  0032a	e8 00 00 00 00	 call	 __Cnd_destroy
+  0032f	83 c4 08	 add	 esp, 8
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 111  : 	w¹tek4.join(); //Poczekanie na zakoñczenie w¹tku4
+
+  00332	8d 4d ac	 lea	 ecx, DWORD PTR _w¹tek4$[ebp]
+  00335	c6 45 fc 0e	 mov	 BYTE PTR __$EHRec$[ebp+8], 14 ; 0000000eH
+  00339	e8 00 00 00 00	 call	 ?join@thread@std@@QAEXXZ ; std::thread::join
+
+; 112  : 	w¹tek2.join(); //Poczekanie na zakoñczenie w¹tku2
+
+  0033e	8d 4d 9c	 lea	 ecx, DWORD PTR _w¹tek2$[ebp]
+  00341	e8 00 00 00 00	 call	 ?join@thread@std@@QAEXXZ ; std::thread::join
+$LL4@main:
+
+; 113  : 	do
+; 114  : 	{
+; 115  : 		Pêtla_G³ówna(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log, co_kontynuowaæ, typ_zak³adu, wylosowana_liczba); //Funkcja obs³uguj¹ca wszystkie elementy gry
+
+  00346	8d 45 d0	 lea	 eax, DWORD PTR _wylosowana_liczba$[ebp]
+  00349	50		 push	 eax
+  0034a	8d 45 b4	 lea	 eax, DWORD PTR _typ_zak³adu$[ebp]
+  0034d	50		 push	 eax
+  0034e	8d 45 ef	 lea	 eax, DWORD PTR _co_kontynuowaæ$[ebp]
+  00351	50		 push	 eax
+  00352	8d 85 24 fe ff
+	ff		 lea	 eax, DWORD PTR _log$[ebp]
+  00358	50		 push	 eax
+  00359	8d 85 e4 fe ff
+	ff		 lea	 eax, DWORD PTR _log_ogólny$[ebp]
+  0035f	50		 push	 eax
+  00360	8d 45 e8	 lea	 eax, DWORD PTR _iloœæ_pieniêdzy$[ebp]
+  00363	50		 push	 eax
+  00364	8d 55 cc	 lea	 edx, DWORD PTR _kwota_zak³adu$[ebp]
+  00367	8d 8d 1c fe ff
+	ff		 lea	 ecx, DWORD PTR _wygrana$[ebp]
+  0036d	e8 00 00 00 00	 call	 ?Pêtla_G³ówna@@YAXAAH00AAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@ABDAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z ; Pêtla_G³ówna
+  00372	83 c4 18	 add	 esp, 24			; 00000018H
+
+; 116  : 		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
+
+  00375	c6 45 ef 6e	 mov	 BYTE PTR _co_kontynuowaæ$[ebp], 110 ; 0000006eH
+
+; 117  : 	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy)); //Pêtla dza³aj¹ca do czasu wartoœci fa³sz zwróconej przez funkcjê Czy_kontynuowaæ
+
+  00379	8d 4d e8	 lea	 ecx, DWORD PTR _iloœæ_pieniêdzy$[ebp]
+  0037c	e8 00 00 00 00	 call	 ?Czy_Kontynuowaæ@@YA_NABH@Z ; Czy_Kontynuowaæ
+  00381	84 c0		 test	 al, al
+  00383	75 c1		 jne	 SHORT $LL4@main
+
+; 118  : 
+; 119  : 	Koniec_Gry(log_ogólny, log, iloœæ_pieniêdzy); //Zakoñczenie gry i wskazanie wyniku
+
+  00385	8d 45 e8	 lea	 eax, DWORD PTR _iloœæ_pieniêdzy$[ebp]
+  00388	50		 push	 eax
+  00389	8d 95 24 fe ff
+	ff		 lea	 edx, DWORD PTR _log$[ebp]
+  0038f	8d 8d e4 fe ff
+	ff		 lea	 ecx, DWORD PTR _log_ogólny$[ebp]
+  00395	e8 00 00 00 00	 call	 ?Koniec_Gry@@YAXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@ABH@Z ; Koniec_Gry
+
+; 120  : 
+; 121  : 	system("pause"); //Wywo³anie funkcji wymagaj¹cej do zamkniêcia naciœniêcie dowolnego klawisza
+
+  0039a	68 00 00 00 00	 push	 OFFSET ??_C@_05PDJBBECF@pause?$AA@
+  0039f	e8 00 00 00 00	 call	 _system
+  003a4	83 c4 08	 add	 esp, 8
+
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
+
+  003a7	c6 45 fc 0a	 mov	 BYTE PTR __$EHRec$[ebp+8], 10 ; 0000000aH
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 54   : 		if (joinable())
+
+  003ab	83 7d b0 00	 cmp	 DWORD PTR _w¹tek4$[ebp+4], 0
+  003af	0f 85 36 01 00
+	00		 jne	 $LN938@main
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
+
+  003b5	c6 45 fc 09	 mov	 BYTE PTR __$EHRec$[ebp+8], 9
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 54   : 		if (joinable())
+
+  003b9	83 7d a8 00	 cmp	 DWORD PTR _w¹tek3$[ebp+4], 0
+  003bd	0f 85 2d 01 00
+	00		 jne	 $LN940@main
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
+
+  003c3	c6 45 fc 05	 mov	 BYTE PTR __$EHRec$[ebp+8], 5
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 54   : 		if (joinable())
+
+  003c7	83 7d a0 00	 cmp	 DWORD PTR _w¹tek2$[ebp+4], 0
+  003cb	0f 85 24 01 00
+	00		 jne	 $LN941@main
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
+
+  003d1	c6 45 fc 04	 mov	 BYTE PTR __$EHRec$[ebp+8], 4
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 54   : 		if (joinable())
+
+  003d5	83 7d 98 00	 cmp	 DWORD PTR _w¹tek1$[ebp+4], 0
+  003d9	0f 85 1b 01 00
+	00		 jne	 $LN942@main
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
+
+  003df	c6 45 fc 03	 mov	 BYTE PTR __$EHRec$[ebp+8], 3
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
 
 ; 1604 : 		return (_BUF_SIZE <= _Myres);
 
-  0017b	8b 54 24 2c	 mov	 edx, DWORD PTR $T1[esp+68]
-  0017f	83 fa 10	 cmp	 edx, 16			; 00000010H
+  003e3	8b 55 c8	 mov	 edx, DWORD PTR _typ_zak³adu$[ebp+20]
+  003e6	83 fa 10	 cmp	 edx, 16			; 00000010H
 
 ; 3694 : 		if (_My_data._Large_string_engaged())
 
-  00182	72 4d		 jb	 SHORT $LN135@P?
+  003e9	72 4d		 jb	 SHORT $LN881@main
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xmemory0
 
 ; 1050 : 		_Deallocate(_Ptr, _Count, sizeof(_Ty), alignof(_Ty));
 
-  00184	8b 4c 24 18	 mov	 ecx, DWORD PTR $T1[esp+48]
+  003eb	8b 45 b4	 mov	 eax, DWORD PTR _typ_zak³adu$[ebp]
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
 
 ; 3699 : 			_Al.deallocate(_Ptr, _My_data._Myres + 1);
 
-  00188	42		 inc	 edx
+  003ee	42		 inc	 edx
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xmemory0
 
 ; 1050 : 		_Deallocate(_Ptr, _Count, sizeof(_Ty), alignof(_Ty));
 
-  00189	8b c1		 mov	 eax, ecx
+  003ef	8b c8		 mov	 ecx, eax
 
 ; 159  : 		if (_Allocated_size >= _Big_allocation_threshold)
 
-  0018b	81 fa 00 10 00
+  003f1	81 fa 00 10 00
 	00		 cmp	 edx, 4096		; 00001000H
-  00191	72 34		 jb	 SHORT $LN138@P?
+  003f7	72 35		 jb	 SHORT $LN884@main
 
 ; 160  : 			{
 ; 161  :  #if _HAS_ALIGNED_NEW // TRANSITION, if constexpr
@@ -9942,25 +9579,25 @@ $LN95@P?:
 ; 178  : 				{	// allocation will use unaligned new; boost alignment manually
 ; 179  : 				if (_Allocated_size + _Non_user_size <= _Allocated_size)
 
-  00193	8d 72 23	 lea	 esi, DWORD PTR [edx+35]
-  00196	3b f2		 cmp	 esi, edx
-  00198	0f 86 39 02 00
-	00		 jbe	 $_Invalid_parameter$368
+  003f9	8d 72 23	 lea	 esi, DWORD PTR [edx+35]
+  003fc	3b f2		 cmp	 esi, edx
+  003fe	0f 86 fb 00 00
+	00		 jbe	 $_Invalid_parameter$949
 
 ; 180  : 					{
 ; 181  : 					goto _Invalid_parameter;
 ; 182  : 					}
 ; 183  : 				_Allocated_size += _Non_user_size;
 
-  0019e	8b d6		 mov	 edx, esi
-  001a0	a8 1f		 test	 al, 31			; 0000001fH
+  00404	8b d6		 mov	 edx, esi
+  00406	f6 c1 1f	 test	 cl, 31			; 0000001fH
 
 ; 184  : 
 ; 185  : 				const uintptr_t _Ptr_user = reinterpret_cast<uintptr_t>(_Ptr);
 ; 186  : 				if ((_Ptr_user & (_Big_allocation_alignment - 1)) != 0)
 
-  001a2	0f 85 2f 02 00
-	00		 jne	 $_Invalid_parameter$368
+  00409	0f 85 f0 00 00
+	00		 jne	 $_Invalid_parameter$949
 
 ; 187  : 					{
 ; 188  : 					goto _Invalid_parameter;
@@ -9970,8 +9607,8 @@ $LN95@P?:
 ; 192  : 				const uintptr_t _Ptr_container =
 ; 193  : 					*reinterpret_cast<uintptr_t *>(_Ptr_ptr);
 
-  001a8	8b 49 fc	 mov	 ecx, DWORD PTR [ecx-4]
-  001ab	3b c8		 cmp	 ecx, eax
+  0040f	8b 40 fc	 mov	 eax, DWORD PTR [eax-4]
+  00412	3b c1		 cmp	 eax, ecx
 
 ; 194  : 
 ; 195  :   #ifdef _DEBUG
@@ -9986,8 +9623,8 @@ $LN95@P?:
 ; 204  : 				// Extra paranoia on aligned allocation/deallocation
 ; 205  : 				if (_Ptr_container >= _Ptr_user)
 
-  001ad	0f 83 24 02 00
-	00		 jae	 $_Invalid_parameter$368
+  00414	0f 83 e5 00 00
+	00		 jae	 $_Invalid_parameter$949
 
 ; 206  : 					{
 ; 207  : 					goto _Invalid_parameter;
@@ -9998,10 +9635,10 @@ $LN95@P?:
 ; 212  :   #else /* _DEBUG */
 ; 213  : 				if (sizeof(void *) > _Ptr_user - _Ptr_container)
 
-  001b3	2b c1		 sub	 eax, ecx
-  001b5	83 f8 04	 cmp	 eax, 4
-  001b8	0f 82 19 02 00
-	00		 jb	 $_Invalid_parameter$368
+  0041a	2b c8		 sub	 ecx, eax
+  0041c	83 f9 04	 cmp	 ecx, 4
+  0041f	0f 82 da 00 00
+	00		 jb	 $_Invalid_parameter$949
 
 ; 214  :   #endif /* _DEBUG */
 ; 215  : 					{
@@ -10010,10 +9647,10 @@ $LN95@P?:
 ; 218  : 
 ; 219  : 				if (_Ptr_user - _Ptr_container > _Non_user_size)
 
-  001be	83 f8 23	 cmp	 eax, 35			; 00000023H
-  001c1	0f 87 10 02 00
-	00		 ja	 $_Invalid_parameter$368
-$LN138@P?:
+  00425	83 f9 23	 cmp	 ecx, 35			; 00000023H
+  00428	0f 87 d1 00 00
+	00		 ja	 $_Invalid_parameter$949
+$LN884@main:
 
 ; 220  : 					{
 ; 221  : 					goto _Invalid_parameter;
@@ -10035,497 +9672,203 @@ $LN138@P?:
 ; 237  : 			{
 ; 238  : 			::operator delete(_Ptr, _Allocated_size);
 
-  001c7	52		 push	 edx
-  001c8	51		 push	 ecx
-  001c9	e8 00 00 00 00	 call	 ??3@YAXPAXI@Z		; operator delete
-  001ce	83 c4 08	 add	 esp, 8
-$LN135@P?:
+  0042e	52		 push	 edx
+  0042f	50		 push	 eax
+  00430	e8 00 00 00 00	 call	 ??3@YAXPAXI@Z		; operator delete
+  00435	83 c4 08	 add	 esp, 8
+$LN881@main:
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 1312 : 		log << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu aktualnego informacji o typie obstawionego zak³adu
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
 
-  001d1	8b 4c 24 0c	 mov	 ecx, DWORD PTR tv1247[esp+48]
-  001d5	33 c0		 xor	 eax, eax
-  001d7	39 45 10	 cmp	 DWORD PTR _log$[ebp], eax
-  001da	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@
-  001df	0f 44 c8	 cmove	 ecx, eax
-  001e2	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+  00438	8d 8d 24 fe ff
+	ff		 lea	 ecx, DWORD PTR _log$[ebp]
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
 
-; 1604 : 		return (_BUF_SIZE <= _Myres);
+; 3702 : 		_My_data._Mysize = 0;
 
-  001e7	83 7b 14 10	 cmp	 DWORD PTR [ebx+20], 16	; 00000010H
+  0043e	c7 45 c4 00 00
+	00 00		 mov	 DWORD PTR _typ_zak³adu$[ebp+16], 0
 
-; 1593 : 		const value_type * _Result = _Bx._Buf;
+; 3703 : 		_My_data._Myres = this->_BUF_SIZE - 1;
 
-  001eb	8b d3		 mov	 edx, ebx
+  00445	c7 45 c8 0f 00
+	00 00		 mov	 DWORD PTR _typ_zak³adu$[ebp+20], 15 ; 0000000fH
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
 
-; 1594 : 		if (_Large_string_engaged())
+; 442  : 		_Left = _Right;
 
-  001ed	72 02		 jb	 SHORT $LN362@P?
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  001ef	8b 13		 mov	 edx, DWORD PTR [ebx]
-$LN362@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-
-; 169  : 	return (_Insert_string(_Ostr, _Str.data(), _Str.size()));
-
-  001f1	ff 73 10	 push	 DWORD PTR [ebx+16]
-  001f4	8b c8		 mov	 ecx, eax
-  001f6	e8 00 00 00 00	 call	 ??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z ; std::_Insert_string<char,std::char_traits<char>,unsigned int>
+  0044c	c6 45 b4 00	 mov	 BYTE PTR _typ_zak³adu$[ebp], 0
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 1313 : 		log_ogólny << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu ogólnego informacji o typie obstawionego zak³adu
-
-  001fb	8b 75 0c	 mov	 esi, DWORD PTR _log_ogólny$[ebp]
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-
-; 169  : 	return (_Insert_string(_Ostr, _Str.data(), _Str.size()));
-
-  001fe	83 c4 04	 add	 esp, 4
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1313 : 		log_ogólny << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu ogólnego informacji o typie obstawionego zak³adu
-
-  00201	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@
-  00206	8b ce		 mov	 ecx, esi
-  00208	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  0020d	83 7b 14 10	 cmp	 DWORD PTR [ebx+20], 16	; 00000010H
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00211	8b d3		 mov	 edx, ebx
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00213	72 02		 jb	 SHORT $LN217@P?
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00215	8b 13		 mov	 edx, DWORD PTR [ebx]
-$LN217@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-
-; 169  : 	return (_Insert_string(_Ostr, _Str.data(), _Str.size()));
-
-  00217	ff 73 10	 push	 DWORD PTR [ebx+16]
-  0021a	8b c8		 mov	 ecx, eax
-  0021c	e8 00 00 00 00	 call	 ??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z ; std::_Insert_string<char,std::char_traits<char>,unsigned int>
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1314 : 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-
-  00221	8b 4c 24 10	 mov	 ecx, DWORD PTR tv1247[esp+52]
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-
-; 169  : 	return (_Insert_string(_Ostr, _Str.data(), _Str.size()));
-
-  00225	83 c4 04	 add	 esp, 4
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1314 : 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-
-  00228	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-
-; 1315 : 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-
-  0022d	8b ce		 mov	 ecx, esi
-  0022f	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-  00234	8b 74 24 10	 mov	 esi, DWORD PTR _kwota_zak³adu$1$[esp+48]
-$LN5@P?:
-
-; 1318 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') iloœæ_pieniêdzy -= kwota_zak³adu;  //Je¿eli punkt kontynuowania jest odpowiedni to odjêcie od iloœci pieniêdzy kwoty zak³adu
-
-  00238	8a 07		 mov	 al, BYTE PTR [edi]
-  0023a	3c 6e		 cmp	 al, 110			; 0000006eH
-  0023c	74 0c		 je	 SHORT $LN8@P?
-  0023e	3c 6b		 cmp	 al, 107			; 0000006bH
-  00240	74 08		 je	 SHORT $LN8@P?
-  00242	3c 74		 cmp	 al, 116			; 00000074H
-  00244	74 04		 je	 SHORT $LN8@P?
-  00246	3c 77		 cmp	 al, 119			; 00000077H
-  00248	75 09		 jne	 SHORT $LN363@P?
-$LN8@P?:
-  0024a	8b 4d 08	 mov	 ecx, DWORD PTR _iloœæ_pieniêdzy$[ebp]
-  0024d	8b 06		 mov	 eax, DWORD PTR [esi]
-  0024f	29 01		 sub	 DWORD PTR [ecx], eax
-  00251	8a 07		 mov	 al, BYTE PTR [edi]
-$LN363@P?:
-
-; 1319 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') //Je¿eli punkt kontynuowania jest odpowiedni to
-
-  00253	3c 6e		 cmp	 al, 110			; 0000006eH
-  00255	0f 84 b2 00 00
-	00		 je	 $LN11@P?
-  0025b	3c 6b		 cmp	 al, 107			; 0000006bH
-  0025d	0f 84 aa 00 00
-	00		 je	 $LN11@P?
-  00263	3c 74		 cmp	 al, 116			; 00000074H
-  00265	0f 84 a2 00 00
-	00		 je	 $LN11@P?
-
-; 1323 : 	}
-; 1324 : 	else //W przeciwym wypadku
-; 1325 : 	{
-; 1326 : 		cout << "Wylosowano numer "; //Poinformowaniu o wylosowaniu liczby
-
-  0026b	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0BC@IEHJKDDM@Wylosowano?5numer?5?$AA@
-  00270	b9 00 00 00 00	 mov	 ecx, OFFSET ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00275	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-
-; 1327 : 		Change_Col(Ruletka_plansza_kolor_col[(size_t)wylosowana_liczba]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
-
-  0027a	8b 45 1c	 mov	 eax, DWORD PTR _wylosowana_liczba$[ebp]
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-
-; 148  : 		: _Myproxy(0), _Mynextiter(0)
-
-  0027d	33 c9		 xor	 ecx, ecx
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1327 : 		Change_Col(Ruletka_plansza_kolor_col[(size_t)wylosowana_liczba]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
-
-  0027f	8b 10		 mov	 edx, DWORD PTR [eax]
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-
-; 155  : 		if (_Myproxy == _Right._Myproxy)
-
-  00281	a1 00 00 00 00	 mov	 eax, DWORD PTR ?Ruletka_plansza_kolor_col@@3V?$deque@GV?$allocator@G@std@@@std@@B
-  00286	85 c0		 test	 eax, eax
-  00288	74 08		 je	 SHORT $LN306@P?
-
-; 156  : 			;
-; 157  : 		else if (_Right._Myproxy != 0)
-; 158  : 			_Adopt(_Right._Myproxy->_Mycont);
-
-  0028a	8b 00		 mov	 eax, DWORD PTR [eax]
-
-; 180  : 		if (_Parent == 0)
-
-  0028c	85 c0		 test	 eax, eax
-  0028e	74 02		 je	 SHORT $LN306@P?
-
-; 181  : 			{	// no future parent, just disown current parent
-; 182  :  #if _ITERATOR_DEBUG_LEVEL == 2
-; 183  : 			_Lockit _Lock(_LOCK_DEBUG);
-; 184  : 			_Orphan_me();
-; 185  :  #endif /* _ITERATOR_DEBUG_LEVEL == 2 */
-; 186  : 			}
-; 187  : 		else
-; 188  : 			{	// have a parent, do adoption
-; 189  : 			_Container_proxy *_Parent_proxy = _Parent->_Myproxy;
-; 190  : 
-; 191  :  #if _ITERATOR_DEBUG_LEVEL == 2
-; 192  : 			if (_Myproxy != _Parent_proxy)
-; 193  : 				{	// change parentage
-; 194  : 				_Lockit _Lock(_LOCK_DEBUG);
-; 195  : 				_Orphan_me();
-; 196  : 				_Mynextiter = _Parent_proxy->_Myfirstiter;
-; 197  : 				_Parent_proxy->_Myfirstiter = this;
-; 198  : 				_Myproxy = _Parent_proxy;
-; 199  : 				}
-; 200  : 
-; 201  :  #else /* _ITERATOR_DEBUG_LEVEL == 2 */
-; 202  : 			_Myproxy = _Parent_proxy;
-
-  00290	8b 08		 mov	 ecx, DWORD PTR [eax]
-$LN306@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-
-; 414  : 		_Myoff += _Off;
-
-  00292	8b 35 0c 00 00
-	00		 mov	 esi, DWORD PTR ?Ruletka_plansza_kolor_col@@3V?$deque@GV?$allocator@G@std@@@std@@B+12
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-
-; 148  : 		: _Myproxy(0), _Mynextiter(0)
-
-  00298	33 c0		 xor	 eax, eax
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-
-; 414  : 		_Myoff += _Off;
-
-  0029a	03 f2		 add	 esi, edx
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-
-; 148  : 		: _Myproxy(0), _Mynextiter(0)
-
-  0029c	85 c9		 test	 ecx, ecx
-
-; 155  : 		if (_Myproxy == _Right._Myproxy)
-
-  0029e	74 08		 je	 SHORT $LN326@P?
-
-; 156  : 			;
-; 157  : 		else if (_Right._Myproxy != 0)
-; 158  : 			_Adopt(_Right._Myproxy->_Mycont);
-
-  002a0	8b 09		 mov	 ecx, DWORD PTR [ecx]
-
-; 180  : 		if (_Parent == 0)
-
-  002a2	85 c9		 test	 ecx, ecx
-  002a4	74 02		 je	 SHORT $LN326@P?
-
-; 181  : 			{	// no future parent, just disown current parent
-; 182  :  #if _ITERATOR_DEBUG_LEVEL == 2
-; 183  : 			_Lockit _Lock(_LOCK_DEBUG);
-; 184  : 			_Orphan_me();
-; 185  :  #endif /* _ITERATOR_DEBUG_LEVEL == 2 */
-; 186  : 			}
-; 187  : 		else
-; 188  : 			{	// have a parent, do adoption
-; 189  : 			_Container_proxy *_Parent_proxy = _Parent->_Myproxy;
-; 190  : 
-; 191  :  #if _ITERATOR_DEBUG_LEVEL == 2
-; 192  : 			if (_Myproxy != _Parent_proxy)
-; 193  : 				{	// change parentage
-; 194  : 				_Lockit _Lock(_LOCK_DEBUG);
-; 195  : 				_Orphan_me();
-; 196  : 				_Mynextiter = _Parent_proxy->_Myfirstiter;
-; 197  : 				_Parent_proxy->_Myfirstiter = this;
-; 198  : 				_Myproxy = _Parent_proxy;
-; 199  : 				}
-; 200  : 
-; 201  :  #else /* _ITERATOR_DEBUG_LEVEL == 2 */
-; 202  : 			_Myproxy = _Parent_proxy;
-
-  002a6	8b 01		 mov	 eax, DWORD PTR [ecx]
-$LN326@P?:
-
-; 214  : 		return (_Myproxy == 0 ? 0 : _Myproxy->_Mycont);
-
-  002a8	85 c0		 test	 eax, eax
-  002aa	75 04		 jne	 SHORT $LN339@P?
-  002ac	33 d2		 xor	 edx, edx
-  002ae	eb 02		 jmp	 SHORT $LN340@P?
-$LN339@P?:
-  002b0	8b 10		 mov	 edx, DWORD PTR [eax]
-$LN340@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-
-; 726  : 		return ((_Off / _DEQUESIZ) & (_Mapsize - 1));
-
-  002b2	8b 42 08	 mov	 eax, DWORD PTR [edx+8]
-  002b5	8b ce		 mov	 ecx, esi
-
-; 329  : 		return (_Mycont->_Map[_Block][_Off]);
-
-  002b7	8b 52 04	 mov	 edx, DWORD PTR [edx+4]
-
-; 726  : 		return ((_Off / _DEQUESIZ) & (_Mapsize - 1));
-
-  002ba	48		 dec	 eax
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 397  : 	const HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
-
-  002bb	8b 3d 00 00 00
-	00		 mov	 edi, DWORD PTR __imp__GetStdHandle@4
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-
-; 328  : 		_Size_type _Off = _Myoff % _DEQUESIZ;
-
-  002c1	83 e6 07	 and	 esi, 7
-
-; 726  : 		return ((_Off / _DEQUESIZ) & (_Mapsize - 1));
-
-  002c4	c1 e9 03	 shr	 ecx, 3
-  002c7	23 c8		 and	 ecx, eax
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 397  : 	const HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
-
-  002c9	6a f5		 push	 -11			; fffffff5H
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-
-; 329  : 		return (_Mycont->_Map[_Block][_Off]);
-
-  002cb	8b 04 8a	 mov	 eax, DWORD PTR [edx+ecx*4]
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1327 : 		Change_Col(Ruletka_plansza_kolor_col[(size_t)wylosowana_liczba]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
-
-  002ce	0f b7 34 70	 movzx	 esi, WORD PTR [eax+esi*2]
-
-; 397  : 	const HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
-
-  002d2	ff d7		 call	 edi
-
-; 398  : 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
-
-  002d4	56		 push	 esi
-  002d5	8b 35 00 00 00
-	00		 mov	 esi, DWORD PTR __imp__SetConsoleTextAttribute@8
-  002db	50		 push	 eax
-  002dc	ff d6		 call	 esi
-
-; 1328 : 		cout << wylosowana_liczba; //Wypisanie wylosowanej liczby
-
-  002de	8b 45 1c	 mov	 eax, DWORD PTR _wylosowana_liczba$[ebp]
-  002e1	b9 00 00 00 00	 mov	 ecx, OFFSET ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  002e6	ff 30		 push	 DWORD PTR [eax]
-  002e8	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-
-; 397  : 	const HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
-
-  002ed	6a f5		 push	 -11			; fffffff5H
-  002ef	ff d7		 call	 edi
-
-; 398  : 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
-
-  002f1	6a 07		 push	 7
-  002f3	50		 push	 eax
-  002f4	ff d6		 call	 esi
-
-; 1329 : 		Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
-; 1330 : 		cout << ". "; //Wypisanie kropki koñcz¹cej zdanie
-
-  002f6	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_02KHOJGJKF@?4?5?$AA@
-  002fb	b9 00 00 00 00	 mov	 ecx, OFFSET ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00300	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-  00305	8b 75 1c	 mov	 esi, DWORD PTR _wylosowana_liczba$[ebp]
-  00308	8b 7d 14	 mov	 edi, DWORD PTR _co_kontynuowaæ$[ebp]
-  0030b	eb 22		 jmp	 SHORT $LN10@P?
-$LN11@P?:
-
-; 1320 : 	{
-; 1321 : 		cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl; //Poinformowanie u¿ytkownika o rozpoczêciu losowania
-
-  0030d	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0DA@EJNBAHOM@Kulka?5w?5grze?0?5zaczekaj?5na?5wyloso@
-  00312	b9 00 00 00 00	 mov	 ecx, OFFSET ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00317	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
+
+  00450	e8 00 00 00 00	 call	 ??_D?$basic_fstream@DU?$char_traits@D@std@@@std@@QAEXXZ
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+
+; 1132 : 		{	// destroy the object
+
+  00455	8b 85 e4 fe ff
+	ff		 mov	 eax, DWORD PTR _log_ogólny$[ebp]
+  0045b	8b 40 04	 mov	 eax, DWORD PTR [eax+4]
+  0045e	c7 84 05 e4 fe
+	ff ff 00 00 00
+	00		 mov	 DWORD PTR _log_ogólny$[ebp+eax], OFFSET ??_7?$basic_ofstream@DU?$char_traits@D@std@@@std@@6B@
+  00469	8b 85 e4 fe ff
+	ff		 mov	 eax, DWORD PTR _log_ogólny$[ebp]
+  0046f	8b 48 04	 mov	 ecx, DWORD PTR [eax+4]
+  00472	8d 41 98	 lea	 eax, DWORD PTR [ecx-104]
+  00475	89 84 0d e0 fe
+	ff ff		 mov	 DWORD PTR _log_ogólny$[ebp+ecx-4], eax
+
+; 1133 : 		}
+
+  0047c	8d 8d e8 fe ff
+	ff		 lea	 ecx, DWORD PTR _log_ogólny$[ebp+4]
+  00482	e8 00 00 00 00	 call	 ??1?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAE@XZ ; std::basic_filebuf<char,std::char_traits<char> >::~basic_filebuf<char,std::char_traits<char> >
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
 
-; 194  : 		return ((*_Pfn)(*this));
+; 87   : 		{	// destroy the object
 
-  0031c	50		 push	 eax
-  0031d	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
-  00322	83 c4 04	 add	 esp, 4
+  00487	8b 85 e4 fe ff
+	ff		 mov	 eax, DWORD PTR _log_ogólny$[ebp]
+  0048d	8b 40 04	 mov	 eax, DWORD PTR [eax+4]
+  00490	c7 84 05 e4 fe
+	ff ff 00 00 00
+	00		 mov	 DWORD PTR _log_ogólny$[ebp+eax], OFFSET ??_7?$basic_ostream@DU?$char_traits@D@std@@@std@@6B@
+  0049b	8b 85 e4 fe ff
+	ff		 mov	 eax, DWORD PTR _log_ogólny$[ebp]
+  004a1	8b 48 04	 mov	 ecx, DWORD PTR [eax+4]
+  004a4	8d 41 f8	 lea	 eax, DWORD PTR [ecx-8]
+  004a7	89 84 0d e0 fe
+	ff ff		 mov	 DWORD PTR _log_ogólny$[ebp+ecx-4], eax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xiosbase
+
+; 523  : 		_Ios_base_dtor(this);
+
+  004ae	8d 85 4c ff ff
+	ff		 lea	 eax, DWORD PTR _log_ogólny$[ebp+104]
+  004b4	c7 45 fc 0f 00
+	00 00		 mov	 DWORD PTR __$EHRec$[ebp+8], 15 ; 0000000fH
+  004bb	50		 push	 eax
+  004bc	c7 85 4c ff ff
+	ff 00 00 00 00	 mov	 DWORD PTR _log_ogólny$[ebp+104], OFFSET ??_7ios_base@std@@6B@
+  004c6	e8 00 00 00 00	 call	 ?_Ios_base_dtor@ios_base@std@@CAXPAV12@@Z ; std::ios_base::_Ios_base_dtor
+  004cb	83 c4 04	 add	 esp, 4
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 1322 : 		wylosowana_liczba = Zakrêæ_Ruletk¹(); //Wylosowanie i przypisanie do zmiennej liczby bêdêcej na  wylosowanej pozycji na kole ruletki
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
 
-  00325	e8 00 00 00 00	 call	 ?Zakrêæ_Ruletk¹@@YAHXZ	; Zakrêæ_Ruletk¹
-  0032a	8b 75 1c	 mov	 esi, DWORD PTR _wylosowana_liczba$[ebp]
-  0032d	89 06		 mov	 DWORD PTR [esi], eax
-$LN10@P?:
+  004ce	33 c0		 xor	 eax, eax
 
-; 1331 : 	}
-; 1332 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') //Je¿eli punkt kontynuowania jest odpowiedni to
+; 124  : }
 
-  0032f	8a 07		 mov	 al, BYTE PTR [edi]
-  00331	3c 6e		 cmp	 al, 110			; 0000006eH
-  00333	74 08		 je	 SHORT $LN13@P?
-  00335	3c 6b		 cmp	 al, 107			; 0000006bH
-  00337	74 04		 je	 SHORT $LN13@P?
-  00339	3c 74		 cmp	 al, 116			; 00000074H
-  0033b	75 59		 jne	 SHORT $LN12@P?
-$LN13@P?:
+  004d0	8b 4d f4	 mov	 ecx, DWORD PTR __$EHRec$[ebp]
+  004d3	64 89 0d 00 00
+	00 00		 mov	 DWORD PTR fs:0, ecx
+  004da	59		 pop	 ecx
+  004db	5f		 pop	 edi
+  004dc	5e		 pop	 esi
+  004dd	8b 4d f0	 mov	 ecx, DWORD PTR __$ArrayPad$[ebp]
+  004e0	33 cd		 xor	 ecx, ebp
+  004e2	e8 00 00 00 00	 call	 @__security_check_cookie@4
+  004e7	8b e5		 mov	 esp, ebp
+  004e9	5d		 pop	 ebp
+  004ea	c3		 ret	 0
+$LN938@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
 
-; 1333 : 	{
-; 1334 : 		log << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu aktualnego informacji o wylosowanej liczbie
+; 55   : 			_STD terminate();
 
-  0033d	ff 36		 push	 DWORD PTR [esi]
-  0033f	8b 4c 24 10	 mov	 ecx, DWORD PTR tv1247[esp+52]
-  00343	33 c0		 xor	 eax, eax
-  00345	39 45 10	 cmp	 DWORD PTR _log$[ebp], eax
-  00348	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0N@CGNKGGIC@?5Wylosowano?5?$AA@
-  0034d	0f 44 c8	 cmove	 ecx, eax
-  00350	51		 push	 ecx
-  00351	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-  00356	83 c4 04	 add	 esp, 4
-  00359	8b c8		 mov	 ecx, eax
-  0035b	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-
-; 1335 : 		log_ogólny << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu ogólnego informacji o wylosowanej liczbie
-
-  00360	ff 36		 push	 DWORD PTR [esi]
-  00362	ba 00 00 00 00	 mov	 edx, OFFSET ??_C@_0N@CGNKGGIC@?5Wylosowano?5?$AA@
-  00367	51		 push	 ecx
-  00368	8b 4d 0c	 mov	 ecx, DWORD PTR _log_ogólny$[ebp]
-  0036b	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-  00370	83 c4 04	 add	 esp, 4
-  00373	8b c8		 mov	 ecx, eax
-  00375	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-
-; 1336 : 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-
-  0037a	8b 4c 24 0c	 mov	 ecx, DWORD PTR tv1247[esp+48]
-  0037e	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-
-; 1337 : 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-
-  00383	8b 4d 0c	 mov	 ecx, DWORD PTR _log_ogólny$[ebp]
-  00386	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-
-; 1338 : 		Odczytaj_Liczbê(wylosowana_liczba, typ_zak³adu);
-
-  0038b	8b d3		 mov	 edx, ebx
-  0038d	8b ce		 mov	 ecx, esi
-  0038f	e8 00 00 00 00	 call	 ?Odczytaj_Liczbê@@YAXABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z ; Odczytaj_Liczbê
-  00394	8a 07		 mov	 al, BYTE PTR [edi]
-$LN12@P?:
-
-; 1339 : 	}
-; 1340 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') //Je¿eli punkt kontynuowania jest odpowiedni to
-
-  00396	3c 6e		 cmp	 al, 110			; 0000006eH
-  00398	74 0c		 je	 SHORT $LN15@P?
-  0039a	3c 6b		 cmp	 al, 107			; 0000006bH
-  0039c	74 08		 je	 SHORT $LN15@P?
-  0039e	3c 74		 cmp	 al, 116			; 00000074H
-  003a0	74 04		 je	 SHORT $LN15@P?
-  003a2	3c 77		 cmp	 al, 119			; 00000077H
-  003a4	75 2a		 jne	 SHORT $LN14@P?
-$LN15@P?:
-
-; 1341 : 	{
-; 1342 : 		wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba); //Przypisanie do wygranej kwoty zgodnej z wygran¹, je¿eli siê coœwygra³o
-
-  003a6	8b 4c 24 10	 mov	 ecx, DWORD PTR _kwota_zak³adu$1$[esp+48]
-  003aa	8b d3		 mov	 edx, ebx
-  003ac	56		 push	 esi
-  003ad	e8 00 00 00 00	 call	 ?SprawdŸ_Zak³ad@@YAHABHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z ; SprawdŸ_Zak³ad
-  003b2	8b 4c 24 18	 mov	 ecx, DWORD PTR _wygrana$1$[esp+52]
-  003b6	83 c4 04	 add	 esp, 4
-
-; 1343 : 		Og³oœ_Wynik(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log); //Funkcja informuj¹ca u¿ytkownika czy wygra³ zak³ad
-
-  003b9	8b 54 24 10	 mov	 edx, DWORD PTR _kwota_zak³adu$1$[esp+48]
-  003bd	ff 75 10	 push	 DWORD PTR _log$[ebp]
-  003c0	89 01		 mov	 DWORD PTR [ecx], eax
-  003c2	ff 75 0c	 push	 DWORD PTR _log_ogólny$[ebp]
-  003c5	ff 75 08	 push	 DWORD PTR _iloœæ_pieniêdzy$[ebp]
-  003c8	e8 00 00 00 00	 call	 ?Og³oœ_Wynik@@YAXABH0AAHAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@@Z ; Og³oœ_Wynik
-  003cd	83 c4 0c	 add	 esp, 12			; 0000000cH
-$LN14@P?:
-
-; 1345 : }
-
-  003d0	5f		 pop	 edi
-  003d1	5e		 pop	 esi
-  003d2	5b		 pop	 ebx
-  003d3	8b e5		 mov	 esp, ebp
-  003d5	5d		 pop	 ebp
-  003d6	c3		 ret	 0
-$_Invalid_parameter$368:
+  004eb	e8 00 00 00 00	 call	 _terminate
+$LN944@main:
+$LN940@main:
+  004f0	e8 00 00 00 00	 call	 _terminate
+$LN945@main:
+$LN941@main:
+  004f5	e8 00 00 00 00	 call	 _terminate
+$LN946@main:
+$LN942@main:
+  004fa	e8 00 00 00 00	 call	 _terminate
+$LN947@main:
+$_Invalid_parameter$949:
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xmemory0
 
 ; 244  : 	_SCL_SECURE_INVALID_ARGUMENT_NO_ASSERT;
 
-  003d7	e8 00 00 00 00	 call	 __invalid_parameter_noinfo_noreturn
-$LN367@P?:
-$LN364@P?:
-  003dc	cc		 int	 3
-?Pêtla_G³ówna@@YAXAAH00AAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@ABDAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z ENDP ; Pêtla_G³ówna
+  004ff	e8 00 00 00 00	 call	 __invalid_parameter_noinfo_noreturn
+$LN948@main:
+$LN937@main:
+  00504	cc		 int	 3
 _TEXT	ENDS
+;	COMDAT text$x
+text$x	SEGMENT
+__unwindfunclet$_main$0:
+  00000	8d 8d e4 fe ff
+	ff		 lea	 ecx, DWORD PTR _log_ogólny$[ebp]
+  00006	e9 00 00 00 00	 jmp	 ??_D?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAEXXZ
+__unwindfunclet$_main$9:
+  0000b	8b 85 20 fe ff
+	ff		 mov	 eax, DWORD PTR $T1[ebp]
+  00011	83 e0 01	 and	 eax, 1
+  00014	0f 84 12 00 00
+	00		 je	 $LN40@main
+  0001a	83 a5 20 fe ff
+	ff fe		 and	 DWORD PTR $T1[ebp], -2	; fffffffeH
+  00021	8d 8d 9c fe ff
+	ff		 lea	 ecx, DWORD PTR _log$[ebp+120]
+  00027	e9 00 00 00 00	 jmp	 ??1?$basic_ios@DU?$char_traits@D@std@@@std@@UAE@XZ ; std::basic_ios<char,std::char_traits<char> >::~basic_ios<char,std::char_traits<char> >
+$LN40@main:
+  0002c	c3		 ret	 0
+__unwindfunclet$_main$10:
+  0002d	8d 8d 44 fe ff
+	ff		 lea	 ecx, DWORD PTR _log$[ebp+32]
+  00033	e9 00 00 00 00	 jmp	 ??1?$basic_iostream@DU?$char_traits@D@std@@@std@@UAE@XZ ; std::basic_iostream<char,std::char_traits<char> >::~basic_iostream<char,std::char_traits<char> >
+__unwindfunclet$_main$1:
+  00038	8d 8d 24 fe ff
+	ff		 lea	 ecx, DWORD PTR _log$[ebp]
+  0003e	e9 00 00 00 00	 jmp	 ??_D?$basic_fstream@DU?$char_traits@D@std@@@std@@QAEXXZ
+__unwindfunclet$_main$2:
+  00043	8d 4d b4	 lea	 ecx, DWORD PTR _typ_zak³adu$[ebp]
+  00046	e9 00 00 00 00	 jmp	 ??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::~basic_string<char,std::char_traits<char>,std::allocator<char> >
+__unwindfunclet$_main$3:
+  0004b	8d 4d 94	 lea	 ecx, DWORD PTR _w¹tek1$[ebp]
+  0004e	e9 00 00 00 00	 jmp	 ??1thread@std@@QAE@XZ	; std::thread::~thread
+__unwindfunclet$_main$39:
+  00053	8d 8d 20 fe ff
+	ff		 lea	 ecx, DWORD PTR $T105[ebp]
+  00059	e9 00 00 00 00	 jmp	 ??1?$unique_ptr@V?$tuple@P6AXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@U?$default_delete@V?$tuple@P6AXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@QAE@XZ ; std::unique_ptr<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > &,std::basic_fstream<char,std::char_traits<char> > &,char &,int &,int &,int &,std::basic_string<char,std::char_traits<char>,std::allocator<char> > &),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,std::default_delete<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > &,std::basic_fstream<char,std::char_traits<char> > &,char &,int &,int &,int &,std::basic_string<char,std::char_traits<char>,std::allocator<char> > &),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > > > >::~unique_ptr<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > &,std::basic_fstream<char,std::char_traits<char> > &,char &,int &,int &,int &,std::basic_string<char,std::char_traits<char>,std::allocator<char> > &),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,std::default_delete<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > &,std::basic_fstream<char,std::char_traits<char> > &,char &,int &,int &,int &,std::basic_string<char,std::char_traits<char>,std::allocator<char> > &),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > > > >
+__unwindfunclet$_main$113:
+  0005e	8d 4d d4	 lea	 ecx, DWORD PTR __Launcher$218[ebp]
+  00061	e9 00 00 00 00	 jmp	 ??1?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@U?$default_delete@V?$tuple@P6AXAAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AAV?$basic_fstream@DU?$char_traits@D@std@@@2@AADAAH33AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@@std@@QAE@XZ
+__unwindfunclet$_main$4:
+  00066	8d 4d 9c	 lea	 ecx, DWORD PTR _w¹tek2$[ebp]
+  00069	e9 00 00 00 00	 jmp	 ??1thread@std@@QAE@XZ	; std::thread::~thread
+__unwindfunclet$_main$5:
+  0006e	8d 4d a4	 lea	 ecx, DWORD PTR _w¹tek3$[ebp]
+  00071	e9 00 00 00 00	 jmp	 ??1thread@std@@QAE@XZ	; std::thread::~thread
+__unwindfunclet$_main$164:
+  00076	8d 8d 20 fe ff
+	ff		 lea	 ecx, DWORD PTR $T168[ebp]
+  0007c	e9 00 00 00 00	 jmp	 ??1?$unique_ptr@V?$tuple@P6AXABF0@ZV?$reference_wrapper@F@std@@V12@@std@@U?$default_delete@V?$tuple@P6AXABF0@ZV?$reference_wrapper@F@std@@V12@@std@@@2@@std@@QAE@XZ ; std::unique_ptr<std::tuple<void (__cdecl*)(short const &,short const &),std::reference_wrapper<short>,std::reference_wrapper<short> >,std::default_delete<std::tuple<void (__cdecl*)(short const &,short const &),std::reference_wrapper<short>,std::reference_wrapper<short> > > >::~unique_ptr<std::tuple<void (__cdecl*)(short const &,short const &),std::reference_wrapper<short>,std::reference_wrapper<short> >,std::default_delete<std::tuple<void (__cdecl*)(short const &,short const &),std::reference_wrapper<short>,std::reference_wrapper<short> > > >
+__unwindfunclet$_main$188:
+  00081	8d 4d d4	 lea	 ecx, DWORD PTR __Launcher$217[ebp]
+  00084	e9 00 00 00 00	 jmp	 ??1?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXABF0@ZV?$reference_wrapper@F@std@@V12@@std@@U?$default_delete@V?$tuple@P6AXABF0@ZV?$reference_wrapper@F@std@@V12@@std@@@2@@std@@@std@@QAE@XZ
+__unwindfunclet$_main$6:
+  00089	8d 4d ac	 lea	 ecx, DWORD PTR _w¹tek4$[ebp]
+  0008c	e9 00 00 00 00	 jmp	 ??1thread@std@@QAE@XZ	; std::thread::~thread
+__ehhandler$_main:
+  00091	8b 54 24 08	 mov	 edx, DWORD PTR [esp+8]
+  00095	8d 42 0c	 lea	 eax, DWORD PTR [edx+12]
+  00098	8b 8a 1c fe ff
+	ff		 mov	 ecx, DWORD PTR [edx-484]
+  0009e	33 c8		 xor	 ecx, eax
+  000a0	e8 00 00 00 00	 call	 @__security_check_cookie@4
+  000a5	8b 4a fc	 mov	 ecx, DWORD PTR [edx-4]
+  000a8	33 c8		 xor	 ecx, eax
+  000aa	e8 00 00 00 00	 call	 @__security_check_cookie@4
+  000af	b8 00 00 00 00	 mov	 eax, OFFSET __ehfuncinfo$_main
+  000b4	e9 00 00 00 00	 jmp	 ___CxxFrameHandler3
+text$x	ENDS
+_main	ENDP
 END

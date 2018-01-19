@@ -178,14 +178,14 @@ PUBLIC	??_C@_0BB@KLDNCCFE@log_aktualny?4txt?$AA@	; `string'
 PUBLIC	??_C@_0DJ@EFIKGJBI@Uruchomiono?5ponownie?5gr?j?5z?5wy?$LD?$LJc@ ; `string'
 PUBLIC	??_C@_09LFKNBKJA@Posiadasz?$AA@			; `string'
 PUBLIC	??_C@_0L@DAFLKCID@Wylosowano?$AA@		; `string'
-PUBLIC	??_C@_0BC@EAGHPBJK@Obstawiono?5zaklad?$AA@	; `string'
-PUBLIC	??_C@_0BE@CILJHICG@Gra?5rozpoczeta?5dnia?$AA@	; `string'
+PUBLIC	??_C@_0BC@DOFAFIFF@Obstawiono?5zak?$LDad?$AA@	; `string'
+PUBLIC	??_C@_0BE@JBFFLHLI@Gra?5rozpocz?jta?5dnia?$AA@	; `string'
 PUBLIC	??_C@_0O@POHKAIHJ@Obstawiono?5za?$AA@		; `string'
 PUBLIC	??_C@_0M@DIDIAOPI@?5Wylosowano?$AA@		; `string'
-PUBLIC	??_C@_0P@JFOGGPGN@Gra?5rozpoczeta?$AA@		; `string'
+PUBLIC	??_C@_0P@CANMMJAA@Gra?5rozpocz?jta?$AA@		; `string'
 PUBLIC	??_C@_02DPKJAMEF@?$CFd?$AA@			; `string'
 PUBLIC	??_C@_0N@KHLIPMCA@?5o?5godzinie?5?$AA@		; `string'
-PUBLIC	??_C@_0BF@EHKBBICH@Gra?5rozpoczeta?5dnia?5?$AA@	; `string'
+PUBLIC	??_C@_0BF@FAKPEKKL@Gra?5rozpocz?jta?5dnia?5?$AA@ ; `string'
 PUBLIC	??_C@_06FFJMIEBD@Nowa?5g?$AA@			; `string'
 PUBLIC	??_C@_0FC@DPJNGIHL@Brak?5plik?sw?5dla?5g?$LDosu?5oraz?5nie?5m@ ; `string'
 PUBLIC	??_C@_0BB@GJELGIOA@Efekty_d?$JPwi?jkowe?$AA@	; `string'
@@ -286,14 +286,14 @@ PUBLIC	??_C@_0DF@LJEKJLPK@Nie?5mo?$LPesz?5mie?f?5wy?$LD?$LJczonych?5d?$JPwi@ ; `
 PUBLIC	??_C@_01EPMOAMKG@$?$AA@				; `string'
 PUBLIC	??_C@_0M@GPFIMODH@?5Wygrywasz?5?$AA@		; `string'
 PUBLIC	??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@		; `string'
-PUBLIC	??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@ ; `string'
-PUBLIC	??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@		; `string'
+PUBLIC	??_C@_0BL@ELKKEEIA@?5Dostajesz?5po?$LDowe?5zak?$LDadu?5?$AA@ ; `string'
+PUBLIC	??_C@_0N@HGDMDGJA@?5Przegra?$LDe?$JM?5?$AA@	; `string'
 PUBLIC	??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@ ; `string'
 PUBLIC	??_C@_0CL@DCKMMPCF@Gratuluje?5zwi?jkszy?$LDe?$JM?5sw?sj?5zas?sb@ ; `string'
 PUBLIC	??_C@_0BO@NFOANCDG@?9krotnie?5sw?sj?5zas?sb?5finansowy?$AA@ ; `string'
 PUBLIC	??_C@_0BH@GDCLDFHN@Gratuluje?5zwi?jkszy?$LDe?$JM?5?$AA@ ; `string'
 PUBLIC	??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@		; `string'
-PUBLIC	??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@	; `string'
+PUBLIC	??_C@_0BE@EBJKNDGI@?5Obstawiono?5zak?$LDad?5?$AA@ ; `string'
 PUBLIC	??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@	; `string'
 PUBLIC	??_C@_0DA@EJNBAHOM@Kulka?5w?5grze?0?5zaczekaj?5na?5wyloso@ ; `string'
 PUBLIC	??_C@_0N@CGNKGGIC@?5Wylosowano?5?$AA@		; `string'
@@ -626,6 +626,7 @@ EXTRN	__stdio_common_vsscanf:PROC
 EXTRN	_Thrd_join:PROC
 EXTRN	_Cnd_init:PROC
 EXTRN	_Mtx_destroy:PROC
+EXTRN	isdigit:PROC
 EXTRN	??_7type_info@@6B@:BYTE				; type_info::`vftable'
 EXTRN	_Query_perf_counter:PROC
 EXTRN	__imp_GetSystemTime:PROC
@@ -680,7 +681,6 @@ EXTRN	fgetc:PROC
 EXTRN	atexit:PROC
 EXTRN	__imp_OpenProcess:PROC
 EXTRN	__imp_ShellExecuteA:PROC
-EXTRN	isalpha:PROC
 EXTRN	__stdio_common_vsprintf_s:PROC
 EXTRN	strcspn:PROC
 EXTRN	__imp_GetModuleHandleA:PROC
@@ -3320,9 +3320,10 @@ CONST	SEGMENT
 ??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@ DB 'Obstawiono zak', 0b3H
 	DB	'ad ', 00H					; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@
+;	COMDAT ??_C@_0BE@EBJKNDGI@?5Obstawiono?5zak?$LDad?5?$AA@
 CONST	SEGMENT
-??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@ DB ' Obstawiono zaklad ', 00H ; `string'
+??_C@_0BE@EBJKNDGI@?5Obstawiono?5zak?$LDad?5?$AA@ DB ' Obstawiono zak', 0b3H
+	DB	'ad ', 00H					; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@
 CONST	SEGMENT
@@ -3349,14 +3350,15 @@ CONST	SEGMENT
 ??_C@_0BJ@GCHIFPGC@Ko?qczysz?5gr?j?5z?5wynikiem?5?$AA@ DB 'Ko', 0f1H, 'cz'
 	DB	'ysz gr', 0eaH, ' z wynikiem ', 00H		; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@
+;	COMDAT ??_C@_0N@HGDMDGJA@?5Przegra?$LDe?$JM?5?$AA@
 CONST	SEGMENT
-??_C@_0N@NPCHEJIF@?5Przegrales?5?$AA@ DB ' Przegrales ', 00H ; `string'
+??_C@_0N@HGDMDGJA@?5Przegra?$LDe?$JM?5?$AA@ DB ' Przegra', 0b3H, 'e', 09cH
+	DB	' ', 00H					; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@
+;	COMDAT ??_C@_0BL@ELKKEEIA@?5Dostajesz?5po?$LDowe?5zak?$LDadu?5?$AA@
 CONST	SEGMENT
-??_C@_0BL@LJEGNEAJ@?5Dostajesz?5polowe?5zak?$LDadu?5?$AA@ DB ' Dostajesz '
-	DB	'polowe zak', 0b3H, 'adu ', 00H		; `string'
+??_C@_0BL@ELKKEEIA@?5Dostajesz?5po?$LDowe?5zak?$LDadu?5?$AA@ DB ' Dostaje'
+	DB	'sz po', 0b3H, 'owe zak', 0b3H, 'adu ', 00H	; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0M@GNFNLGIH@?5Posiadasz?5?$AA@
 CONST	SEGMENT
@@ -3830,9 +3832,10 @@ CONST	ENDS
 CONST	SEGMENT
 ??_C@_06FFJMIEBD@Nowa?5g?$AA@ DB 'Nowa g', 00H		; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BF@EHKBBICH@Gra?5rozpoczeta?5dnia?5?$AA@
+;	COMDAT ??_C@_0BF@FAKPEKKL@Gra?5rozpocz?jta?5dnia?5?$AA@
 CONST	SEGMENT
-??_C@_0BF@EHKBBICH@Gra?5rozpoczeta?5dnia?5?$AA@ DB 'Gra rozpoczeta dnia ', 00H ; `string'
+??_C@_0BF@FAKPEKKL@Gra?5rozpocz?jta?5dnia?5?$AA@ DB 'Gra rozpocz', 0eaH, 't'
+	DB	'a dnia ', 00H				; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0N@KHLIPMCA@?5o?5godzinie?5?$AA@
 CONST	SEGMENT
@@ -3842,9 +3845,9 @@ CONST	ENDS
 CONST	SEGMENT
 ??_C@_02DPKJAMEF@?$CFd?$AA@ DB '%d', 00H		; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0P@JFOGGPGN@Gra?5rozpoczeta?$AA@
+;	COMDAT ??_C@_0P@CANMMJAA@Gra?5rozpocz?jta?$AA@
 CONST	SEGMENT
-??_C@_0P@JFOGGPGN@Gra?5rozpoczeta?$AA@ DB 'Gra rozpoczeta', 00H ; `string'
+??_C@_0P@CANMMJAA@Gra?5rozpocz?jta?$AA@ DB 'Gra rozpocz', 0eaH, 'ta', 00H ; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0M@DIDIAOPI@?5Wylosowano?$AA@
 CONST	SEGMENT
@@ -3854,13 +3857,15 @@ CONST	ENDS
 CONST	SEGMENT
 ??_C@_0O@POHKAIHJ@Obstawiono?5za?$AA@ DB 'Obstawiono za', 00H ; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BE@CILJHICG@Gra?5rozpoczeta?5dnia?$AA@
+;	COMDAT ??_C@_0BE@JBFFLHLI@Gra?5rozpocz?jta?5dnia?$AA@
 CONST	SEGMENT
-??_C@_0BE@CILJHICG@Gra?5rozpoczeta?5dnia?$AA@ DB 'Gra rozpoczeta dnia', 00H ; `string'
+??_C@_0BE@JBFFLHLI@Gra?5rozpocz?jta?5dnia?$AA@ DB 'Gra rozpocz', 0eaH, 't'
+	DB	'a dnia', 00H				; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BC@EAGHPBJK@Obstawiono?5zaklad?$AA@
+;	COMDAT ??_C@_0BC@DOFAFIFF@Obstawiono?5zak?$LDad?$AA@
 CONST	SEGMENT
-??_C@_0BC@EAGHPBJK@Obstawiono?5zaklad?$AA@ DB 'Obstawiono zaklad', 00H ; `string'
+??_C@_0BC@DOFAFIFF@Obstawiono?5zak?$LDad?$AA@ DB 'Obstawiono zak', 0b3H, 'a'
+	DB	'd', 00H					; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0L@DAFLKCID@Wylosowano?$AA@
 CONST	SEGMENT
@@ -4837,6 +4842,11 @@ PUBLIC	??$_Ucopy@PEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std
 PUBLIC	??$distance@PEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YA_JPEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@0@Z ; std::distance<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const * __ptr64>
 PUBLIC	??$?0AEBV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@$$V@?$_Compressed_pair@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$_Vector_val@U?$_Simple_types@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$00@std@@QEAA@U_One_then_variadic_args_t@1@AEBV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@@Z ; std::_Compressed_pair<std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,1>::_Compressed_pair<std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >,std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,1><std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > const & __ptr64>
 PUBLIC	??$forward@AEBV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@YAAEBV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@AEBV10@@Z ; std::forward<std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > const & __ptr64>
+PUBLIC	??$_Rechecked@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAAEAV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@AEAV10@QEAD@Z ; std::_Rechecked<std::_String_val<std::_Simple_types<char> > >
+PUBLIC	??$_Const_cast@$$CBD@std@@YA@PEBD@Z		; std::_Const_cast<char const >
+PUBLIC	??$_Unchecked@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAPEADAEBV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@@Z ; std::_Unchecked<std::_String_val<std::_Simple_types<char> > >
+PUBLIC	??$_Rechecked@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAAEAV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@AEAV10@QEBD@Z ; std::_Rechecked<std::_String_val<std::_Simple_types<char> > >
+PUBLIC	??$_Unchecked@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAPEBDAEBV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@@Z ; std::_Unchecked<std::_String_val<std::_Simple_types<char> > >
 PUBLIC	??$move@AEAF@std@@YA$$QEAFAEAF@Z		; std::move<short & __ptr64>
 PUBLIC	??$forward@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@YA$$QEAV?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@AEAV10@@Z ; std::forward<std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const > >
 PUBLIC	??$forward@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@AEAV10@@Z ; std::forward<std::basic_string<char,std::char_traits<char>,std::allocator<char> > & __ptr64>
@@ -5016,6 +5026,8 @@ PUBLIC	??$addressof@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std
 PUBLIC	??$addressof@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAPEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@AEBV10@@Z ; std::addressof<std::basic_string<char,std::char_traits<char>,std::allocator<char> > const >
 PUBLIC	??$_Refancy@PEAD$0A@@std@@YAPEADPEAD@Z		; std::_Refancy<char * __ptr64,0>
 PUBLIC	??$addressof@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAPEAV?$_String_val@U?$_Simple_types@D@std@@@0@AEAV10@@Z ; std::addressof<std::_String_val<std::_Simple_types<char> > >
+PUBLIC	??$_Refancy@PEBD$0A@@std@@YAPEBDPEBD@Z		; std::_Refancy<char const * __ptr64,0>
+PUBLIC	??$addressof@$$CBV?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAPEBV?$_String_val@U?$_Simple_types@D@std@@@0@AEBV10@@Z ; std::addressof<std::_String_val<std::_Simple_types<char> > const >
 PUBLIC	??$_Unfancy@D@std@@YAPEADPEAD@Z			; std::_Unfancy<char>
 PUBLIC	??$_Min_value@_K@std@@YAAEB_KAEB_K0@Z		; std::_Min_value<unsigned __int64>
 PUBLIC	??$_Traits_find@U?$char_traits@D@std@@@std@@YA_KQEBD_K101@Z ; std::_Traits_find<std::char_traits<char> >
@@ -5195,7 +5207,6 @@ PUBLIC	?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA
 PUBLIC	?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@_K_KQEBD0@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::replace
 PUBLIC	?max_size@?$_Default_allocator_traits@V?$allocator@D@std@@@std@@SA_KAEBV?$allocator@D@2@@Z ; std::_Default_allocator_traits<std::allocator<char> >::max_size
 PUBLIC	?_Xran@?$_String_val@U?$_Simple_types@D@std@@@std@@SAXXZ ; std::_String_val<std::_Simple_types<char> >::_Xran
-PUBLIC	??0?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEAA@PEBDPEBU_Container_base0@1@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >
 PUBLIC	??D?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEBAAEBDXZ ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator*
 PUBLIC	??Y?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEAAAEAV01@_J@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator+=
 PUBLIC	?_Compat@?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEBAXAEBV12@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::_Compat
@@ -5381,7 +5392,9 @@ PUBLIC	??1_Bxty@?$_String_val@U?$_Simple_types@D@std@@@std@@QEAA@XZ ; std::_Stri
 PUBLIC	??0?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEAA@PEADPEBU_Container_base0@1@@Z ; std::_String_iterator<std::_String_val<std::_Simple_types<char> > >::_String_iterator<std::_String_val<std::_Simple_types<char> > >
 PUBLIC	??D?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEBAAEADXZ ; std::_String_iterator<std::_String_val<std::_Simple_types<char> > >::operator*
 PUBLIC	??Y?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEAAAEAV01@_J@Z ; std::_String_iterator<std::_String_val<std::_Simple_types<char> > >::operator+=
+PUBLIC	??0?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEAA@PEBDPEBU_Container_base0@1@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >
 PUBLIC	??G?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEBA_JAEBV01@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator-
+PUBLIC	??8?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEBA_NAEBV01@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator==
 PUBLIC	?_Tidy@?$_Yarn@D@std@@AEAAXXZ			; std::_Yarn<char>::_Tidy
 PUBLIC	?_Tidy@?$_Yarn@_W@std@@AEAAXXZ			; std::_Yarn<wchar_t>::_Tidy
 PUBLIC	?begin@?$deque@GV?$allocator@G@std@@@std@@QEBA?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@G@std@@@std@@@2@XZ ; std::deque<unsigned short,std::allocator<unsigned short> >::begin
@@ -5572,8 +5585,12 @@ PUBLIC	??Y?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV0
 PUBLIC	?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@AEBV12@@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::append
 PUBLIC	?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@QEBD@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::append
 PUBLIC	?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@_K_K@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::erase
+PUBLIC	?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::erase
 PUBLIC	?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0QEBD@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::replace
 PUBLIC	?begin@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::begin
+PUBLIC	?begin@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBA?AV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::begin
+PUBLIC	?end@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::end
+PUBLIC	?end@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBA?AV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::end
 PUBLIC	??A?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAD_K@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::operator[]
 PUBLIC	??A?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBAAEBD_K@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::operator[]
 PUBLIC	?c_str@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBAPEBDXZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::c_str
@@ -5584,6 +5601,7 @@ PUBLIC	?find@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBA_K
 PUBLIC	?substr@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBA?AV12@_K0@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::substr
 PUBLIC	?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEBAHAEBV12@@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::compare
 PUBLIC	??H?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEBA?AV01@_J@Z ; std::_String_iterator<std::_String_val<std::_Simple_types<char> > >::operator+
+PUBLIC	??9?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@QEBA_NAEBV01@@Z ; std::_String_const_iterator<std::_String_val<std::_Simple_types<char> > >::operator!=
 PUBLIC	??0?$_Yarn@D@std@@QEAA@XZ			; std::_Yarn<char>::_Yarn<char>
 PUBLIC	??1?$_Yarn@D@std@@QEAA@XZ			; std::_Yarn<char>::~_Yarn<char>
 PUBLIC	?c_str@?$_Yarn@D@std@@QEBAPEBDXZ		; std::_Yarn<char>::c_str
@@ -6183,6 +6201,12 @@ $pdata$??$_Uninitialized_copy@PEBV?$basic_string@DU?$char_traits@D@std@@V?$alloc
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
+$pdata$??$_Find_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD imagerel ??$_Find_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+	DD	imagerel ??$_Find_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+55
+	DD	imagerel $unwind$??$_Find_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
 $pdata$??$?0V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@std@@@?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@std@@@std@@QEAA@$$QEAV?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@1@@Z DD imagerel ??$?0V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@std@@@?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@std@@@std@@QEAA@$$QEAV?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@1@@Z
 	DD	imagerel ??$?0V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@std@@@?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@std@@@std@@QEAA@$$QEAV?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@1@@Z+59
 	DD	imagerel $unwind$??$?0V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@std@@@?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@std@@@std@@QEAA@$$QEAV?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@U?$default_delete@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@V?$reference_wrapper@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@3@@std@@@2@@1@@Z
@@ -6438,6 +6462,30 @@ pdata	SEGMENT
 $pdata$??$_Ucopy@PEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@AEAAPEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@PEBV21@0PEAV21@@Z DD imagerel $LN25@Ucopy
 	DD	imagerel $LN25@Ucopy+26
 	DD	imagerel $unwind$??$_Ucopy@PEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@AEAAPEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@PEBV21@0PEAV21@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+	DD	imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+43
+	DD	imagerel $unwind$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$2$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+43
+	DD	imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+138
+	DD	imagerel $chain$2$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$3$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+138
+	DD	imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+148
+	DD	imagerel $chain$3$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$??$_Find_if_unchecked@PEBDV<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YAPEBDPEBD0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z DD imagerel ??$_Find_if_unchecked@PEBDV<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YAPEBDPEBD0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z
+	DD	imagerel ??$_Find_if_unchecked@PEBDV<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YAPEBDPEBD0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z+55
+	DD	imagerel $unwind$??$_Find_if_unchecked@PEBDV<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YAPEBDPEBD0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -7242,6 +7290,30 @@ pdata	SEGMENT
 $pdata$??$destroy@Vthread@std@@@?$_Default_allocator_traits@V?$allocator@Vthread@std@@@std@@@std@@SAXAEAV?$allocator@Vthread@std@@@1@QEAVthread@1@@Z DD imagerel $LN19@destroy
 	DD	imagerel $LN19@destroy+21
 	DD	imagerel $unwind$??$destroy@Vthread@std@@@?$_Default_allocator_traits@V?$allocator@Vthread@std@@@std@@@std@@SAXAEAV?$allocator@Vthread@std@@@1@QEAVthread@1@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+	DD	imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+48
+	DD	imagerel $unwind$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$2$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+48
+	DD	imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+148
+	DD	imagerel $chain$2$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$3$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+148
+	DD	imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+163
+	DD	imagerel $chain$3$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$??$find_if@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YA?AV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z DD imagerel ??$find_if@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YA?AV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z
+	DD	imagerel ??$find_if@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YA?AV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z+96
+	DD	imagerel $unwind$??$find_if@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YA?AV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -9225,6 +9297,12 @@ $pdata$?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAA
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
+$pdata$?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0@Z DD imagerel $LN112@erase
+	DD	imagerel $LN112@erase+152
+	DD	imagerel $unwind$?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
 $pdata$?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0QEBD@Z DD imagerel $LN47@replace
 	DD	imagerel $LN47@replace+42
 	DD	imagerel $unwind$?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0QEBD@Z
@@ -9447,8 +9525,8 @@ $pdata$??0invalid_argument@std@@QEAA@AEBV01@@Z DD imagerel $LN9@invalid_ar
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD imagerel $LN1800@StringtoBo
-	DD	imagerel $LN1800@StringtoBo+2164
+$pdata$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD imagerel $LN2132@StringtoBo
+	DD	imagerel $LN2132@StringtoBo+2516
 	DD	imagerel $unwind$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
 pdata	ENDS
 ;	COMDAT pdata
@@ -9687,26 +9765,26 @@ $pdata$?catch$145@?0??Ustaw_Ustawienia@@YAXAEAV?$basic_string@DU?$char_traits@D@
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD imagerel $LN313
-	DD	imagerel $LN313+30
+$pdata$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD imagerel $LN313@P?
+	DD	imagerel $LN313@P?+30
 	DD	imagerel $unwind$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$1$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD imagerel $LN313+30
-	DD	imagerel $LN313+291
+$pdata$1$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD imagerel $LN313@P?+30
+	DD	imagerel $LN313@P?+291
 	DD	imagerel $chain$1$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$2$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD imagerel $LN313+291
-	DD	imagerel $LN313+1003
+$pdata$2$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD imagerel $LN313@P?+291
+	DD	imagerel $LN313@P?+1003
 	DD	imagerel $chain$2$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$3$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD imagerel $LN313+1003
-	DD	imagerel $LN313+1077
+$pdata$3$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD imagerel $LN313@P?+1003
+	DD	imagerel $LN313@P?+1077
 	DD	imagerel $chain$3$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
 pdata	ENDS
 ;	COMDAT pdata
@@ -10311,8 +10389,8 @@ $pdata$?Czy_Kontynuowaæ@@YA_NAEBH@Z DD imagerel $LN391@Czy_Kontyn
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z DD imagerel $LN378
-	DD	imagerel $LN378+796
+$pdata$?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z DD imagerel $LN378@SprawdŸ_Z
+	DD	imagerel $LN378@SprawdŸ_Z+796
 	DD	imagerel $unwind$?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z
 pdata	ENDS
 ;	COMDAT pdata
@@ -10413,8 +10491,8 @@ $pdata$??_D?$basic_ofstream@DU?$char_traits@D@std@@@std@@QEAAXXZ DD imagerel $LN
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$main DD	imagerel $LN1044@main
-	DD	imagerel $LN1044@main+1819
+$pdata$main DD	imagerel $LN1044
+	DD	imagerel $LN1044+1819
 	DD	imagerel $unwind$main
 pdata	ENDS
 ;	COMDAT pdata
@@ -12711,12 +12789,15 @@ $stateUnwindMap$main DD 0ffffffffH
 xdata	ENDS
 ;	COMDAT CONST
 CONST	SEGMENT
-$cppxdata$main DQ 00000001419930522r		; 4.26519e-313
+$cppxdata$main DD 019930522H
+	DD	014H
 	DD	imagerel $stateUnwindMap$main
-	DQ	00000000000000000r		; 0
+	DD	00H
+	DD	00H
 	DD	020H
 	DD	imagerel $ip2state$main
-	DQ	00000000000000060r		; 4.74303e-322
+	DD	060H
+	DD	00H
 	DD	01H
 CONST	ENDS
 ;	COMDAT xdata
@@ -15450,16 +15531,16 @@ xdata	ENDS
 xdata	SEGMENT
 $chain$3$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD 020021H
 	DD	0127400H
-	DD	imagerel $LN313
-	DD	imagerel $LN313+30
+	DD	imagerel $LN313@P?
+	DD	imagerel $LN313@P?+30
 	DD	imagerel $unwind$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$2$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD 020821H
 	DD	0127408H
-	DD	imagerel $LN313+30
-	DD	imagerel $LN313+291
+	DD	imagerel $LN313@P?+30
+	DD	imagerel $LN313@P?+291
 	DD	imagerel $chain$1$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
 xdata	ENDS
 ;	COMDAT xdata
@@ -15467,8 +15548,8 @@ xdata	SEGMENT
 $chain$1$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z DD 040b21H
 	DD	013e40bH
 	DD	0113404H
-	DD	imagerel $LN313
-	DD	imagerel $LN313+30
+	DD	imagerel $LN313@P?
+	DD	imagerel $LN313@P?+30
 	DD	imagerel $unwind$?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
 xdata	ENDS
 ;	COMDAT xdata
@@ -16269,9 +16350,49 @@ $unwind$?Usuñ_Folder_Wypakowany_i_Winrar@@YAXAEBV?$basic_string@DU?$char_traits@
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 040a01H
-	DD	0a340aH
-	DD	07006720aH
+$ip2state$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD imagerel ?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+	DD	0ffffffffH
+	DD	imagerel ?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+159
+	DD	00H
+	DD	imagerel ?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+431
+	DD	0ffffffffH
+	DD	imagerel ?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+582
+	DD	00H
+	DD	imagerel ?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+584
+	DD	0ffffffffH
+	DD	imagerel ?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2432
+	DD	00H
+	DD	imagerel ?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2438
+	DD	0ffffffffH
+	DD	imagerel ?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z+2476
+	DD	00H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$stateUnwindMap$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 0ffffffffH
+	DD	imagerel ?dtor$0@?0??StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z@4HA
+xdata	ENDS
+;	COMDAT CONST
+CONST	SEGMENT
+$cppxdata$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DQ 00000000119930522r ; 2.33398e-314
+	DD	imagerel $stateUnwindMap$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+	DQ	00000000000000000r		; 0
+	DD	08H
+	DD	imagerel $ip2state$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+	DQ	00000000000000020r		; 1.58101e-322
+	DD	01H
+CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z DD 0a2f19H
+	DD	0116420H
+	DD	010541cH
+	DD	0f3418H
+	DD	0f008920cH
+	DD	07004e006H
+	DD	imagerel __GSHandlerCheck_EH
+	DD	imagerel $cppxdata$?StringtoBool@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+	DD	04aH
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -16575,6 +16696,13 @@ xdata	ENDS
 xdata	SEGMENT
 $unwind$?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAAEAV12@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0QEBD@Z DD 010401H
 	DD	06204H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@2@0@Z DD 060f01H
+	DD	09640fH
+	DD	08340fH
+	DD	0700b320fH
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -21443,6 +21571,36 @@ $unwind$??$?0V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@AEAV?$basic_string@DU?$
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$??$find_if@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YA?AV?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z DD 060f01H
+	DD	08640fH
+	DD	07340fH
+	DD	0700b320fH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$chain$3$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD 021H
+	DD	imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+	DD	imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+48
+	DD	imagerel $unwind$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$chain$2$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD 061521H
+	DD	0bf415H
+	DD	0a640cH
+	DD	095405H
+	DD	imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+	DD	imagerel ??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+48
+	DD	imagerel $unwind$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$??$remove_if@V?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YA?AV?$_String_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@0@V10@0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD 040901H
+	DD	0e0053209H
+	DD	030027003H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$??$destroy@Vthread@std@@@?$_Default_allocator_traits@V?$allocator@Vthread@std@@@std@@@std@@SAXAEAV?$allocator@Vthread@std@@@1@QEAVthread@1@@Z DD 010401H
 	DD	04204H
 xdata	ENDS
@@ -23316,6 +23474,35 @@ $unwind$??$_Launch@V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$??$_Find_if_unchecked@PEBDV<lambda_97005605773f0e8edea7fc09893eaa9e>@@@std@@YAPEBDPEBD0V<lambda_97005605773f0e8edea7fc09893eaa9e>@@@Z DD 040a01H
+	DD	07340aH
+	DD	07006320aH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$chain$3$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD 021H
+	DD	imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+	DD	imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+43
+	DD	imagerel $unwind$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$chain$2$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD 061521H
+	DD	04e415H
+	DD	0a740cH
+	DD	096405H
+	DD	imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+	DD	imagerel ??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z+43
+	DD	imagerel $unwind$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$??$_Remove_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD 030701H
+	DD	050034207H
+	DD	03002H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$??$_Ucopy@PEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@AEAAPEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@PEBV21@0PEAV21@@Z DD 010401H
 	DD	06204H
 xdata	ENDS
@@ -23865,6 +24052,12 @@ $unwind$??$?0V?$unique_ptr@V?$tuple@V<lambda_16f760d33aeaafee600d2ae62d6b8fe0>@@
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$??$_Find_if_unchecked@PEADV<lambda_ade6d5b274596d5fae825aa3125247d9>@@@std@@YAPEADPEAD0V<lambda_ade6d5b274596d5fae825aa3125247d9>@@@Z DD 040a01H
+	DD	07340aH
+	DD	07006320aH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$??$_Uninitialized_copy@PEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEAV12@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@YAPEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@PEBV10@0PEAV10@AEAV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@@Z DD 011319H
 	DD	08204H
 	DD	imagerel __GSHandlerCheck
@@ -24328,1515 +24521,2021 @@ CRT$XCU	SEGMENT
 CRT$XCU	ENDS
 ; Function compile flags: /Ogtpy
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\array
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\array
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\istream
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\istream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xiosbase
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-;	COMDAT ?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+;	COMDAT main
 _TEXT	SEGMENT
-kwota$ = 48
-typ_zak³adu$ = 56
-wylosowana_liczba$ = 64
-?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z PROC ; SprawdŸ_Zak³ad, COMDAT
-
-; 282  : {
-
-$LN378:
-  00000	48 89 5c 24 08	 mov	 QWORD PTR [rsp+8], rbx
-  00005	48 89 74 24 10	 mov	 QWORD PTR [rsp+16], rsi
-  0000a	57		 push	 rdi
-  0000b	48 83 ec 20	 sub	 rsp, 32			; 00000020H
-
-; 283  : 	int wygrana = kwota; //Deklaracja zmiennej przechowywuj¹ca kwotê wygran¹ lub zwrócon¹ przy wylosowaniu 0 i przypisuê jej wartoœæ kwota jakby wygrana by³a 1:1
-; 284  : 
-; 285  : 	if (wylosowana_liczba == 0) //Warunek sprawdzaj¹cy czy wylosowano 0
-
-  0000f	4d 63 10	 movsxd	 r10, DWORD PTR [r8]
-  00012	49 8b f8	 mov	 rdi, r8
-  00015	8b 19		 mov	 ebx, DWORD PTR [rcx]
-  00017	4c 8b ca	 mov	 r9, rdx
-  0001a	48 8b f1	 mov	 rsi, rcx
-  0001d	45 85 d2	 test	 r10d, r10d
-  00020	75 5e		 jne	 SHORT $LN4@SprawdŸ_Z
-
-; 286  : 		if (!Ustawienia.metoda_liczenia_wygranej_zerowej) //Sprawdzam metodê liczenia wygranej za 0, je¿eli jest to przedranie wszystkiego je¿eli nie obstawi³o siê 0 to
-
-  00022	44 38 15 17 00
-	00 00		 cmp	 BYTE PTR ?Ustawienia@@3US_Ustawienia@@A+23, r10b
-  00029	48 8b 42 18	 mov	 rax, QWORD PTR [rdx+24]
-  0002d	75 12		 jne	 SHORT $LN6@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  0002f	48 83 f8 10	 cmp	 rax, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00033	72 03		 jb	 SHORT $LN68@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00035	4c 8b 0a	 mov	 r9, QWORD PTR [rdx]
-$LN68@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 287  : 			if (typ_zak³adu[0] == '0') wygrana *= 35;  //Je¿eli typ zak³adu by³ 0 to wygra³o siê zak³ad, wygrana jest 35:1
-
-  00038	41 80 39 30	 cmp	 BYTE PTR [r9], 48	; 00000030H
-
-; 288  : 			else wygrana = 0; //W przeciwnym wypadku przegra³o sie zak³ad
-; 289  : 		else //W przeciwym wypadu, dla po³owicznych wygranych
-
-  0003c	e9 03 02 00 00	 jmp	 $LN374@SprawdŸ_Z
-$LN6@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00041	48 83 f8 10	 cmp	 rax, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00045	72 03		 jb	 SHORT $LN83@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00047	4c 8b 0a	 mov	 r9, QWORD PTR [rdx]
-$LN83@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 290  : 			switch (typ_zak³adu[0]) //Switch do obliczenia wygranej lub przegranej
-
-  0004a	41 0f be 01	 movsx	 eax, BYTE PTR [r9]
-  0004e	83 c0 d0	 add	 eax, -48		; ffffffffffffffd0H
-  00051	83 f8 47	 cmp	 eax, 71			; 00000047H
-  00054	0f 87 f5 01 00
-	00		 ja	 $LN53@SprawdŸ_Z
-  0005a	4c 8d 05 00 00
-	00 00		 lea	 r8, OFFSET FLAT:__ImageBase
-  00061	48 98		 cdqe
-  00063	41 0f b6 84 00
-	00 00 00 00	 movzx	 eax, BYTE PTR $LN371@SprawdŸ_Z[r8+rax]
-  0006c	41 8b 8c 80 00
-	00 00 00	 mov	 ecx, DWORD PTR $LN372@SprawdŸ_Z[r8+rax*4]
-  00074	49 03 c8	 add	 rcx, r8
-  00077	ff e1		 jmp	 rcx
-$LN10@SprawdŸ_Z:
-
-; 291  : 			{
-; 292  : 			case 'p':
-; 293  : 			{
-; 294  : 				wygrana >>= 1; //Je¿eli typ zak³adu by³ p to wygrana, a dok³adniej zwrot wynosi po³owê zak³adu
-
-  00079	d1 fb		 sar	 ebx, 1
-
-; 295  : 				break; //Wyjœcie z switcha
-
-  0007b	e9 cf 01 00 00	 jmp	 $LN53@SprawdŸ_Z
-$LN4@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00080	48 8b 4a 18	 mov	 rcx, QWORD PTR [rdx+24]
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00084	49 8b c1	 mov	 rax, r9
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00087	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  0008b	72 03		 jb	 SHORT $LN363@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  0008d	48 8b 02	 mov	 rax, QWORD PTR [rdx]
-$LN363@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 3481 : 		return (_Traits_equal<_Traits>(_My_data._Myptr(), _My_data._Mysize, _Ptr, _Traits::length(_Ptr)));
-
-  00090	48 8b 52 10	 mov	 rdx, QWORD PTR [rdx+16]
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  00094	48 83 fa 01	 cmp	 rdx, 1
-  00098	75 1b		 jne	 SHORT $LN20@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  0009a	0f b6 00	 movzx	 eax, BYTE PTR [rax]
-  0009d	3a 05 00 00 00
-	00		 cmp	 al, BYTE PTR ??_C@_01JBBJJEPG@p?$AA@
-  000a3	75 10		 jne	 SHORT $LN20@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 344  : 		else if (typ_zak³adu == "n") //Je¿eli typ zak³adu to n
-
-  000a5	44 84 d2	 test	 r10b, dl
-  000a8	ba 00 00 00 00	 mov	 edx, 0
-  000ad	0f 44 d3	 cmove	 edx, ebx
-  000b0	e9 98 01 00 00	 jmp	 $LN376@SprawdŸ_Z
-$LN20@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  000b5	49 8b c1	 mov	 rax, r9
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  000b8	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  000bc	72 03		 jb	 SHORT $LN364@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  000be	49 8b 01	 mov	 rax, QWORD PTR [r9]
-$LN364@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  000c1	48 83 fa 01	 cmp	 rdx, 1
-  000c5	75 1b		 jne	 SHORT $LN24@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  000c7	0f b6 00	 movzx	 eax, BYTE PTR [rax]
-  000ca	3a 05 00 00 00
-	00		 cmp	 al, BYTE PTR ??_C@_01EFFIKLCJ@n?$AA@
-  000d0	75 10		 jne	 SHORT $LN24@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 347  : 		else if (typ_zak³adu == "r") //Je¿eli typ zak³adu to n
-
-  000d2	44 84 d2	 test	 r10b, dl
-  000d5	ba 00 00 00 00	 mov	 edx, 0
-  000da	0f 45 d3	 cmovne	 edx, ebx
-  000dd	e9 6b 01 00 00	 jmp	 $LN376@SprawdŸ_Z
-$LN24@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  000e2	49 8b c1	 mov	 rax, r9
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  000e5	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  000e9	72 03		 jb	 SHORT $LN365@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  000eb	49 8b 01	 mov	 rax, QWORD PTR [r9]
-$LN365@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  000ee	48 83 fa 01	 cmp	 rdx, 1
-  000f2	75 25		 jne	 SHORT $LN28@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  000f4	0f b6 00	 movzx	 eax, BYTE PTR [rax]
-  000f7	3a 05 00 00 00
-	00		 cmp	 al, BYTE PTR ??_C@_01KDCPPGHE@r?$AA@
-  000fd	75 1a		 jne	 SHORT $LN28@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 350  : 		else if (typ_zak³adu == "b") //Je¿eli typ zak³adu to n
-
-  000ff	33 d2		 xor	 edx, edx
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\array
-
-; 195  : 		return (_Elems[_Pos]);
-
-  00101	4c 8d 05 00 00
-	00 00		 lea	 r8, OFFSET FLAT:__ImageBase
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 350  : 		else if (typ_zak³adu == "b") //Je¿eli typ zak³adu to n
-
-  00108	43 80 bc 02 00
-	00 00 00 72	 cmp	 BYTE PTR ?Ruletka_plansza_kolor@@3V?$array@D$0CF@@std@@B[r10+r8], 114 ; 00000072H
-  00111	0f 44 d3	 cmove	 edx, ebx
-  00114	e9 34 01 00 00	 jmp	 $LN376@SprawdŸ_Z
-$LN28@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00119	49 8b c1	 mov	 rax, r9
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  0011c	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00120	72 03		 jb	 SHORT $LN366@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00122	49 8b 01	 mov	 rax, QWORD PTR [r9]
-$LN366@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  00125	48 83 fa 01	 cmp	 rdx, 1
-  00129	75 25		 jne	 SHORT $LN32@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  0012b	0f b6 00	 movzx	 eax, BYTE PTR [rax]
-  0012e	3a 05 00 00 00
-	00		 cmp	 al, BYTE PTR ??_C@_01OJONOECF@b?$AA@
-  00134	75 1a		 jne	 SHORT $LN32@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 353  : 		else if (typ_zak³adu == "g") //Je¿eli typ zak³adu to g
-
-  00136	33 d2		 xor	 edx, edx
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\array
-
-; 195  : 		return (_Elems[_Pos]);
-
-  00138	4c 8d 05 00 00
-	00 00		 lea	 r8, OFFSET FLAT:__ImageBase
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 353  : 		else if (typ_zak³adu == "g") //Je¿eli typ zak³adu to g
-
-  0013f	43 80 bc 02 00
-	00 00 00 62	 cmp	 BYTE PTR ?Ruletka_plansza_kolor@@3V?$array@D$0CF@@std@@B[r10+r8], 98 ; 00000062H
-  00148	0f 44 d3	 cmove	 edx, ebx
-  0014b	e9 fd 00 00 00	 jmp	 $LN376@SprawdŸ_Z
-$LN32@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00150	49 8b c1	 mov	 rax, r9
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00153	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00157	72 03		 jb	 SHORT $LN367@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00159	49 8b 01	 mov	 rax, QWORD PTR [r9]
-$LN367@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  0015c	48 83 fa 01	 cmp	 rdx, 1
-  00160	75 19		 jne	 SHORT $LN36@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  00162	0f b6 00	 movzx	 eax, BYTE PTR [rax]
-  00165	3a 05 00 00 00
-	00		 cmp	 al, BYTE PTR ??_C@_01JEJKBAGA@g?$AA@
-  0016b	75 0e		 jne	 SHORT $LN36@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 356  : 		else if (typ_zak³adu == "d") //Je¿eli typ zak³adu to d
-
-  0016d	33 d2		 xor	 edx, edx
-  0016f	41 83 fa 13	 cmp	 r10d, 19
-  00173	0f 4c d3	 cmovl	 edx, ebx
-  00176	e9 d2 00 00 00	 jmp	 $LN376@SprawdŸ_Z
-$LN36@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  0017b	49 8b c1	 mov	 rax, r9
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  0017e	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00182	72 03		 jb	 SHORT $LN368@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00184	49 8b 01	 mov	 rax, QWORD PTR [r9]
-$LN368@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 25   : 	return (_Left_size == _Right_size && _Traits::compare(_Left, _Right, _Left_size) == 0);
-
-  00187	48 83 fa 01	 cmp	 rdx, 1
-  0018b	75 19		 jne	 SHORT $LN40@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-
-; 400  : 		return (_CSTD memcmp(_First1, _First2, _Count));
-
-  0018d	0f b6 00	 movzx	 eax, BYTE PTR [rax]
-  00190	3a 05 00 00 00
-	00		 cmp	 al, BYTE PTR ??_C@_01LPLHEDKD@d?$AA@
-  00196	75 0e		 jne	 SHORT $LN40@SprawdŸ_Z
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 359  : 		else if (typ_zak³adu[0] == 'k') //Je¿eli typ zak³adu to k
-
-  00198	33 d2		 xor	 edx, edx
-  0019a	41 83 fa 12	 cmp	 r10d, 18
-  0019e	0f 4f d3	 cmovg	 edx, ebx
-  001a1	e9 a7 00 00 00	 jmp	 $LN376@SprawdŸ_Z
-$LN40@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  001a6	49 8b c1	 mov	 rax, r9
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  001a9	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  001ad	72 03		 jb	 SHORT $LN369@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  001af	49 8b 01	 mov	 rax, QWORD PTR [r9]
-$LN369@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 359  : 		else if (typ_zak³adu[0] == 'k') //Je¿eli typ zak³adu to k
-
-  001b2	80 38 6b	 cmp	 BYTE PTR [rax], 107	; 0000006bH
-  001b5	75 35		 jne	 SHORT $LN44@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  001b7	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  001bb	72 03		 jb	 SHORT $LN291@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  001bd	4d 8b 09	 mov	 r9, QWORD PTR [r9]
-$LN291@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 360  : 			if ((wylosowana_liczba - 1) % 3 == (typ_zak³adu[1] - '1')) wygrana <<= 1; //To sprawdzam czy wylosowana liczba jest z obstawionej kolumny, je¿eli tak to wygrana jest 2:1
-
-  001c0	45 0f be 41 01	 movsx	 r8d, BYTE PTR [r9+1]
-  001c5	41 8d 4a ff	 lea	 ecx, DWORD PTR [r10-1]
-
-; 362  : 		else if (typ_zak³adu[0] == 'w') //Je¿eli typ zak³adu to w
-
-  001c9	03 db		 add	 ebx, ebx
-  001cb	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
-  001d0	f7 e9		 imul	 ecx
-  001d2	41 83 e8 31	 sub	 r8d, 49			; 00000031H
-  001d6	8b c2		 mov	 eax, edx
-  001d8	c1 e8 1f	 shr	 eax, 31
-  001db	03 d0		 add	 edx, eax
-  001dd	8d 04 52	 lea	 eax, DWORD PTR [rdx+rdx*2]
-  001e0	33 d2		 xor	 edx, edx
-  001e2	2b c8		 sub	 ecx, eax
-  001e4	41 3b c8	 cmp	 ecx, r8d
-  001e7	0f 45 da	 cmovne	 ebx, edx
-  001ea	eb 63		 jmp	 SHORT $LN53@SprawdŸ_Z
-$LN44@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  001ec	49 8b c1	 mov	 rax, r9
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  001ef	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  001f3	72 03		 jb	 SHORT $LN370@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  001f5	49 8b 01	 mov	 rax, QWORD PTR [r9]
-$LN370@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 362  : 		else if (typ_zak³adu[0] == 'w') //Je¿eli typ zak³adu to w
-
-  001f8	80 38 77	 cmp	 BYTE PTR [rax], 119	; 00000077H
-  001fb	75 2e		 jne	 SHORT $LN48@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  001fd	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00201	72 03		 jb	 SHORT $LN321@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00203	4d 8b 09	 mov	 r9, QWORD PTR [r9]
-$LN321@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 363  : 			if (((wylosowana_liczba - 1) / 3 + 1) == (typ_zak³adu[1] - '0')) wygrana = (wygrana << 0) + (wygrana << 1) + (wygrana << 3); //To sprawdzam czy wylosowana liczba jest z obstawionego wiersza, je¿eli tak to wygrana jest 11:1
-
-  00206	45 0f be 41 01	 movsx	 r8d, BYTE PTR [r9+1]
-  0020b	41 8d 4a ff	 lea	 ecx, DWORD PTR [r10-1]
-  0020f	b8 56 55 55 55	 mov	 eax, 1431655766		; 55555556H
-  00214	41 83 e8 31	 sub	 r8d, 49			; 00000031H
-  00218	f7 e9		 imul	 ecx
-  0021a	8b c2		 mov	 eax, edx
-  0021c	c1 e8 1f	 shr	 eax, 31
-  0021f	03 d0		 add	 edx, eax
-  00221	41 3b d0	 cmp	 edx, r8d
-  00224	75 25		 jne	 SHORT $LN52@SprawdŸ_Z
-  00226	6b db 0b	 imul	 ebx, ebx, 11
-
-; 365  : 		else if (wylosowana_liczba == strtol(typ_zak³adu.c_str(), nullptr, 10)) wygrana = (wygrana << 0) + (wygrana << 1) + (wygrana << 5); //Je¿eli typ zak³adu to liczba, to sprawdzam czy wylosowana liczba jest równa obstawionej liczbie, je¿eli tak to wygrana jest 35:1
-
-  00229	eb 24		 jmp	 SHORT $LN53@SprawdŸ_Z
-$LN48@SprawdŸ_Z:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  0022b	48 83 f9 10	 cmp	 rcx, 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  0022f	72 03		 jb	 SHORT $LN337@SprawdŸ_Z
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00231	4d 8b 09	 mov	 r9, QWORD PTR [r9]
-$LN337@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 365  : 		else if (wylosowana_liczba == strtol(typ_zak³adu.c_str(), nullptr, 10)) wygrana = (wygrana << 0) + (wygrana << 1) + (wygrana << 5); //Je¿eli typ zak³adu to liczba, to sprawdzam czy wylosowana liczba jest równa obstawionej liczbie, je¿eli tak to wygrana jest 35:1
-
-  00234	33 d2		 xor	 edx, edx
-  00236	49 8b c9	 mov	 rcx, r9
-  00239	44 8d 42 0a	 lea	 r8d, QWORD PTR [rdx+10]
-  0023d	e8 00 00 00 00	 call	 strtol
-  00242	39 07		 cmp	 DWORD PTR [rdi], eax
-$LN374@SprawdŸ_Z:
-  00244	75 05		 jne	 SHORT $LN52@SprawdŸ_Z
-$LN18@SprawdŸ_Z:
-  00246	6b db 23	 imul	 ebx, ebx, 35		; 00000023H
-  00249	eb 04		 jmp	 SHORT $LN53@SprawdŸ_Z
-$LN52@SprawdŸ_Z:
-
-; 366  : 		else wygrana = 0; //Je¿eli wylosowana liczba nie jest równa obstawionej liczbie to przegra³o siê zak³ad
-
-  0024b	33 d2		 xor	 edx, edx
-$LN376@SprawdŸ_Z:
-  0024d	8b da		 mov	 ebx, edx
-$LN53@SprawdŸ_Z:
-
-; 367  : 
-; 368  : 		if (wygrana >= kwota) cout << "Obstawi³eœ poprawnie, wygrywasz " << wygrana << "$." << endl; //Je¿eli wygrana jest wiêksza lub równa obstawionej kwocie to informujê o tym, ¿e wygra³
-
-  0024f	8b 3e		 mov	 edi, DWORD PTR [rsi]
-  00251	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00258	3b df		 cmp	 ebx, edi
-  0025a	7c 10		 jl	 SHORT $LN54@SprawdŸ_Z
-  0025c	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CB@GINPHDN@Obstawi?$LDe?$JM?5poprawnie?0?5wygrywasz?5@
-  00263	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-
-; 194  : 		return ((*_Pfn)(*this));
-
-  00268	8b fb		 mov	 edi, ebx
-
-; 195  : 		}
-
-  0026a	eb 24		 jmp	 SHORT $LN57@SprawdŸ_Z
-$LN54@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 369  : 		else if (wygrana == (kwota >> 1)) cout << "Obstawi³eœ niepoprawnie lecz uda³o Ci siê, dostajesz po³owê zak³adu " << wygrana << "$." << endl; //Je¿eli wygrana jest równa po³owie obstawionej kwocie to informujê o tym, ¿e przegra³ po³owe stawki
-
-  0026c	8b c7		 mov	 eax, edi
-  0026e	d1 f8		 sar	 eax, 1
-  00270	3b d8		 cmp	 ebx, eax
-  00272	75 10		 jne	 SHORT $LN56@SprawdŸ_Z
-  00274	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0EF@MDKBMGPE@Obstawi?$LDe?$JM?5niepoprawnie?5lecz?5uda@
-  0027b	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-
-; 194  : 		return ((*_Pfn)(*this));
-
-  00280	8b fb		 mov	 edi, ebx
-
-; 195  : 		}
-
-  00282	eb 0c		 jmp	 SHORT $LN57@SprawdŸ_Z
-$LN56@SprawdŸ_Z:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 370  : 		else cout << "Obstawi³eœ niepoprawnie, przegra³eœ " << kwota << "$." << endl; //Je¿eli wygrana jest równa zero to informujê o tym, ¿e przegra³
-
-  00284	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0CF@BAJKLKHM@Obstawi?$LDe?$JM?5niepoprawnie?0?5przegra@
-  0028b	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-$LN57@SprawdŸ_Z:
-
-; 371  : 
-; 372  : 		return wygrana; //Zwracam wartoœ wygranej lub zwrotu
-
-  00290	8b d7		 mov	 edx, edi
-  00292	48 8b c8	 mov	 rcx, rax
-  00295	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  0029a	48 8b c8	 mov	 rcx, rax
-  0029d	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02DEPNMBPN@$?4?$AA@
-  002a4	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  002a9	48 8b c8	 mov	 rcx, rax
-  002ac	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z ; std::endl<char,std::char_traits<char> >
-
-; 373  : }
-
-  002b1	48 8b 74 24 38	 mov	 rsi, QWORD PTR [rsp+56]
-  002b6	8b c3		 mov	 eax, ebx
-  002b8	48 8b 5c 24 30	 mov	 rbx, QWORD PTR [rsp+48]
-  002bd	48 83 c4 20	 add	 rsp, 32			; 00000020H
-  002c1	5f		 pop	 rdi
-  002c2	c3		 ret	 0
-  002c3	90		 npad	 1
-$LN372@SprawdŸ_Z:
-  002c4	00 00 00 00	 DD	 $LN18@SprawdŸ_Z
-  002c8	00 00 00 00	 DD	 $LN10@SprawdŸ_Z
-  002cc	00 00 00 00	 DD	 $LN52@SprawdŸ_Z
-  002d0	00 00 00 00	 DD	 $LN53@SprawdŸ_Z
-$LN371@SprawdŸ_Z:
-  002d4	00		 DB	 0
-  002d5	03		 DB	 3
-  002d6	03		 DB	 3
-  002d7	03		 DB	 3
-  002d8	03		 DB	 3
-  002d9	03		 DB	 3
-  002da	03		 DB	 3
-  002db	03		 DB	 3
-  002dc	03		 DB	 3
-  002dd	03		 DB	 3
-  002de	03		 DB	 3
-  002df	03		 DB	 3
-  002e0	03		 DB	 3
-  002e1	03		 DB	 3
-  002e2	03		 DB	 3
-  002e3	03		 DB	 3
-  002e4	03		 DB	 3
-  002e5	03		 DB	 3
-  002e6	03		 DB	 3
-  002e7	03		 DB	 3
-  002e8	03		 DB	 3
-  002e9	03		 DB	 3
-  002ea	03		 DB	 3
-  002eb	03		 DB	 3
-  002ec	03		 DB	 3
-  002ed	03		 DB	 3
-  002ee	03		 DB	 3
-  002ef	03		 DB	 3
-  002f0	03		 DB	 3
-  002f1	03		 DB	 3
-  002f2	03		 DB	 3
-  002f3	03		 DB	 3
-  002f4	03		 DB	 3
-  002f5	03		 DB	 3
-  002f6	03		 DB	 3
-  002f7	03		 DB	 3
-  002f8	03		 DB	 3
-  002f9	03		 DB	 3
-  002fa	03		 DB	 3
-  002fb	03		 DB	 3
-  002fc	03		 DB	 3
-  002fd	03		 DB	 3
-  002fe	03		 DB	 3
-  002ff	03		 DB	 3
-  00300	03		 DB	 3
-  00301	03		 DB	 3
-  00302	03		 DB	 3
-  00303	03		 DB	 3
-  00304	03		 DB	 3
-  00305	03		 DB	 3
-  00306	01		 DB	 1
-  00307	03		 DB	 3
-  00308	01		 DB	 1
-  00309	03		 DB	 3
-  0030a	03		 DB	 3
-  0030b	01		 DB	 1
-  0030c	03		 DB	 3
-  0030d	03		 DB	 3
-  0030e	03		 DB	 3
-  0030f	02		 DB	 2
-  00310	03		 DB	 3
-  00311	03		 DB	 3
-  00312	01		 DB	 1
-  00313	03		 DB	 3
-  00314	01		 DB	 1
-  00315	03		 DB	 3
-  00316	01		 DB	 1
-  00317	03		 DB	 3
-  00318	03		 DB	 3
-  00319	03		 DB	 3
-  0031a	03		 DB	 3
-  0031b	02		 DB	 2
-?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z ENDP ; SprawdŸ_Zak³ad
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-;	COMDAT ?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z
-_TEXT	SEGMENT
-$T1 = 48
-wygrana$ = 128
-kwota_zak³adu$ = 136
-iloœæ_pieniêdzy$ = 144
-log_ogólny$ = 152
-log$ = 160
-co_kontynuowaæ$ = 168
-typ_zak³adu$ = 176
-wylosowana_liczba$ = 184
-?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z PROC ; Pêtla_G³ówna, COMDAT
-
-; 1295 : {
-
-$LN313:
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main	PROC						; COMDAT
+
+; 96   : {
+
+$LN1044:
   00000	48 8b c4	 mov	 rax, rsp
-  00003	48 89 48 08	 mov	 QWORD PTR [rax+8], rcx
-  00007	55		 push	 rbp
-  00008	56		 push	 rsi
-  00009	41 54		 push	 r12
-  0000b	41 55		 push	 r13
-  0000d	41 57		 push	 r15
-  0000f	48 83 ec 50	 sub	 rsp, 80			; 00000050H
+  00003	55		 push	 rbp
+  00004	41 56		 push	 r14
+  00006	41 57		 push	 r15
+  00008	48 8d a8 a8 fd
+	ff ff		 lea	 rbp, QWORD PTR [rax-600]
+  0000f	48 81 ec 40 03
+	00 00		 sub	 rsp, 832		; 00000340H
+  00016	48 c7 44 24 60
+	fe ff ff ff	 mov	 QWORD PTR $T239[rsp], -2
+  0001f	48 89 58 08	 mov	 QWORD PTR [rax+8], rbx
+  00023	48 89 70 10	 mov	 QWORD PTR [rax+16], rsi
+  00027	48 89 78 18	 mov	 QWORD PTR [rax+24], rdi
+  0002b	4c 89 60 20	 mov	 QWORD PTR [rax+32], r12
+  0002f	48 8b 05 00 00
+	00 00		 mov	 rax, QWORD PTR __security_cookie
+  00036	48 33 c4	 xor	 rax, rsp
+  00039	48 89 85 30 02
+	00 00		 mov	 QWORD PTR __$ArrayPad$[rbp-256], rax
+  00040	33 f6		 xor	 esi, esi
+  00042	89 74 24 40	 mov	 DWORD PTR $T1[rsp], esi
+  00046	33 d2		 xor	 edx, edx
+  00048	41 b8 08 01 00
+	00		 mov	 r8d, 264		; 00000108H
+  0004e	48 8d 8d 20 01
+	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rbp-256]
+  00055	e8 00 00 00 00	 call	 memset
 
-; 1296 : 	if (co_kontynuowaæ == 'n') //Je¿eli punkt kontynuowania jest odpowiedni to
+; 97   : 	//Inicjowanie zmiennych lokalnych
+; 98   : 	ofstream log_ogólny; //Utworzenie typu do celu zapisu do pliku
 
-  00013	4c 8b ac 24 a0
-	00 00 00	 mov	 r13, QWORD PTR log$[rsp]
-  0001b	49 8b e9	 mov	 rbp, r9
-  0001e	48 89 58 10	 mov	 QWORD PTR [rax+16], rbx
-  00022	4d 8b e0	 mov	 r12, r8
-  00025	4c 89 70 20	 mov	 QWORD PTR [rax+32], r14
-  00029	33 db		 xor	 ebx, ebx
-  0002b	4c 8b b4 24 a8
-	00 00 00	 mov	 r14, QWORD PTR co_kontynuowaæ$[rsp]
-  00033	4c 8b fa	 mov	 r15, rdx
-  00036	41 80 3e 6e	 cmp	 BYTE PTR [r14], 110	; 0000006eH
-  0003a	75 78		 jne	 SHORT $LN2@P?
+  0005a	48 8d 8d 20 01
+	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rbp-256]
+  00061	e8 00 00 00 00	 call	 ??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QEAA@XZ ; std::basic_ofstream<char,std::char_traits<char> >::basic_ofstream<char,std::char_traits<char> >
+  00066	90		 npad	 1
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 
-; 1297 : 	{
-; 1298 : 		Wczytaj_Kwotê_Zak³adu(kwota_zak³adu, iloœæ_pieniêdzy); //Przypisanie do zmiennej pobranej od u¿ytkownika kwoty zak³adu
+; 1149 : 		if (_Filebuffer.open(_Filename, _Mode | ios_base::out, _Prot) == 0)
 
-  0003c	49 8b d0	 mov	 rdx, r8
-  0003f	49 8b cf	 mov	 rcx, r15
-  00042	e8 00 00 00 00	 call	 ?Wczytaj_Kwotê_Zak³adu@@YAXAEAHAEBH@Z ; Wczytaj_Kwotê_Zak³adu
+  00067	44 8d 46 0a	 lea	 r8d, QWORD PTR [rsi+10]
+  0006b	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0P@GMFAENOC@log_og?slny?4txt?$AA@
+  00072	48 8d 8d 28 01
+	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rbp-248]
+  00079	e8 00 00 00 00	 call	 ?open@?$basic_filebuf@DU?$char_traits@D@std@@@std@@QEAAPEAV12@PEBDHH@Z ; std::basic_filebuf<char,std::char_traits<char> >::open
+  0007e	44 8d 76 02	 lea	 r14d, QWORD PTR [rsi+2]
+  00082	48 85 c0	 test	 rax, rax
 
-; 1299 : 		log << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu aktualnego informacji o kwocie obstawionego zak³adu
+; 1150 : 			_Myios::setstate(ios_base::failbit);
 
-  00047	4d 85 ed	 test	 r13, r13
-  0004a	49 8d 4d 10	 lea	 rcx, QWORD PTR [r13+16]
-  0004e	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@
-  00055	48 0f 44 cb	 cmove	 rcx, rbx
-  00059	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  0005e	41 8b 17	 mov	 edx, DWORD PTR [r15]
-  00061	48 8b c8	 mov	 rcx, rax
-  00064	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  00069	48 8b c8	 mov	 rcx, rax
-  0006c	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  00073	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  00085	48 8b 85 20 01
+	00 00		 mov	 rax, QWORD PTR log_ogólny$[rbp-256]
+  0008c	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  00090	48 8d 8c 0d 20
+	01 00 00	 lea	 rcx, QWORD PTR log_ogólny$[rbp+rcx-256]
 
-; 1300 : 		log_ogólny << "Obstawiono za " << kwota_zak³adu << "$"; //Zapisanie do bufora pliku logu ogólnego informacji o kwocie obstawionego zak³adu
+; 1149 : 		if (_Filebuffer.open(_Filename, _Mode | ios_base::out, _Prot) == 0)
 
-  00078	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@
-  0007f	48 8b cd	 mov	 rcx, rbp
-  00082	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  00087	41 8b 17	 mov	 edx, DWORD PTR [r15]
-  0008a	48 8b c8	 mov	 rcx, rax
-  0008d	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  00092	48 8b c8	 mov	 rcx, rax
-  00095	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  0009c	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  00098	75 12		 jne	 SHORT $LN17@main
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
 
-; 1301 : 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
+; 44   : 		ios_base::clear((iostate)(_Mystrbuf == 0
 
-  000a1	49 8d 4d 10	 lea	 rcx, QWORD PTR [r13+16]
-  000a5	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
+  0009a	ba 06 00 00 00	 mov	 edx, 6
+  0009f	48 39 71 48	 cmp	 QWORD PTR [rcx+72], rsi
+  000a3	41 0f 45 d6	 cmovne	 edx, r14d
+  000a7	0b 51 10	 or	 edx, DWORD PTR [rcx+16]
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 
-; 1302 : 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
+; 1151 : 		else
 
-  000aa	48 8b cd	 mov	 rcx, rbp
-  000ad	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
+  000aa	eb 0d		 jmp	 SHORT $LN18@main
+$LN17@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ios
 
-; 1303 : 	}
-; 1304 : 	else //W przeciwym wypadku
+; 44   : 		ios_base::clear((iostate)(_Mystrbuf == 0
 
-  000b2	eb 6b		 jmp	 SHORT $LN3@P?
-$LN2@P?:
+  000ac	ba 04 00 00 00	 mov	 edx, 4
+  000b1	48 83 79 48 00	 cmp	 QWORD PTR [rcx+72], 0
+  000b6	0f 45 d6	 cmovne	 edx, esi
+$LN18@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 
-; 1305 : 	{
-; 1306 : 		cout << "Masz " << iloœæ_pieniêdzy << "$" << endl; //Wypisanie wczytanej informacji o posiadanej iloœci pieniêdzy
+; 1206 : 		{	// construct unopened
 
-  000b4	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_05OMMBNPEF@Masz?5?$AA@
-  000bb	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  000c2	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  000c7	41 8b 14 24	 mov	 edx, DWORD PTR [r12]
-  000cb	48 8b c8	 mov	 rcx, rax
-  000ce	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  000d3	48 8b c8	 mov	 rcx, rax
-  000d6	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  000dd	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  000b9	45 33 c0	 xor	 r8d, r8d
+  000bc	e8 00 00 00 00	 call	 ?clear@ios_base@std@@QEAAXH_N@Z ; std::ios_base::clear
+  000c1	33 d2		 xor	 edx, edx
+  000c3	41 b8 18 01 00
+	00		 mov	 r8d, 280		; 00000118H
+  000c9	48 8d 4d 00	 lea	 rcx, QWORD PTR log$[rbp-256]
+  000cd	e8 00 00 00 00	 call	 memset
+  000d2	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:__ImageBase
+  000d9	48 8d 81 00 00
+	00 00		 lea	 rax, QWORD PTR ??_8?$basic_fstream@DU?$char_traits@D@std@@@std@@7B?$basic_istream@DU?$char_traits@D@std@@@1@@[rcx]
+  000e0	48 89 45 00	 mov	 QWORD PTR log$[rbp-256], rax
+  000e4	48 8d 81 00 00
+	00 00		 lea	 rax, QWORD PTR ??_8?$basic_fstream@DU?$char_traits@D@std@@@std@@7B?$basic_ostream@DU?$char_traits@D@std@@@1@@[rcx]
+  000eb	48 89 45 10	 mov	 QWORD PTR log$[rbp-240], rax
+  000ef	c7 44 24 40 01
+	00 00 00	 mov	 DWORD PTR $T1[rsp], 1
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\istream
+
+; 45   : 		{	// construct from stream buffer pointer
+
+  000f7	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:??_7?$basic_istream@DU?$char_traits@D@std@@@std@@6B@
+  000fe	48 89 85 b8 00
+	00 00		 mov	 QWORD PTR log$[rbp-72], rax
+  00105	c7 85 b4 00 00
+	00 a0 00 00 00	 mov	 DWORD PTR log$[rbp-76], 160 ; 000000a0H
+
+; 44   : 		: _Chcount(0)
+
+  0010f	48 89 75 08	 mov	 QWORD PTR log$[rbp-248], rsi
+
+; 46   : 		_Myios::init(_Strbuf, _Isstd);
+
+  00113	45 33 c0	 xor	 r8d, r8d
+  00116	48 8d 55 18	 lea	 rdx, QWORD PTR log$[rbp-232]
+  0011a	48 8d 8d b8 00
+	00 00		 lea	 rcx, QWORD PTR log$[rbp-72]
+  00121	e8 00 00 00 00	 call	 ?init@?$basic_ios@DU?$char_traits@D@std@@@std@@IEAAXPEAV?$basic_streambuf@DU?$char_traits@D@std@@@2@_N@Z ; std::basic_ios<char,std::char_traits<char> >::init
+  00126	90		 npad	 1
+
+; 939  : 			_Myos(_Noinit, false)
+
+  00127	48 8d 45 10	 lea	 rax, QWORD PTR log$[rbp-240]
+  0012b	48 89 44 24 50	 mov	 QWORD PTR this$238[rsp], rax
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
 
-; 194  : 		return ((*_Pfn)(*this));
+; 58   : 		{	// construct uninitialized
 
-  000e2	48 8b c8	 mov	 rcx, rax
-  000e5	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z ; std::endl<char,std::char_traits<char> >
+  00130	48 8b 45 10	 mov	 rax, QWORD PTR log$[rbp-240]
+  00134	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  00138	4c 8d 25 00 00
+	00 00		 lea	 r12, OFFSET FLAT:??_7?$basic_ostream@DU?$char_traits@D@std@@@std@@6B@
+  0013f	4c 89 64 0d 10	 mov	 QWORD PTR log$[rbp+rcx-240], r12
+  00144	48 8b 45 10	 mov	 rax, QWORD PTR log$[rbp-240]
+  00148	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  0014c	8d 51 f0	 lea	 edx, DWORD PTR [rcx-16]
+  0014f	89 54 0d 0c	 mov	 DWORD PTR log$[rbp+rcx-244], edx
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\istream
+
+; 940  : 		{	// construct from stream buffer pointer
+
+  00153	48 8b 45 00	 mov	 rax, QWORD PTR log$[rbp-256]
+  00157	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  0015b	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:??_7?$basic_iostream@DU?$char_traits@D@std@@@std@@6B@
+  00162	48 89 44 0d 00	 mov	 QWORD PTR log$[rbp+rcx-256], rax
+  00167	48 8b 45 00	 mov	 rax, QWORD PTR log$[rbp-256]
+  0016b	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  0016f	8d 51 e0	 lea	 edx, DWORD PTR [rcx-32]
+  00172	89 54 0d fc	 mov	 DWORD PTR log$[rbp+rcx-260], edx
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
+
+; 1206 : 		{	// construct unopened
+
+  00176	48 8b 45 00	 mov	 rax, QWORD PTR log$[rbp-256]
+  0017a	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  0017e	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:??_7?$basic_fstream@DU?$char_traits@D@std@@@std@@6B@
+  00185	48 89 44 0d 00	 mov	 QWORD PTR log$[rbp+rcx-256], rax
+  0018a	48 8b 45 00	 mov	 rax, QWORD PTR log$[rbp-256]
+  0018e	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  00192	8d 91 48 ff ff
+	ff		 lea	 edx, DWORD PTR [rcx-184]
+  00198	89 54 0d fc	 mov	 DWORD PTR log$[rbp+rcx-260], edx
+
+; 155  : 		: _Mysb()
+
+  0019c	48 8d 4d 18	 lea	 rcx, QWORD PTR log$[rbp-232]
+  001a0	e8 00 00 00 00	 call	 ??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAA@XZ ; std::basic_streambuf<char,std::char_traits<char> >::basic_streambuf<char,std::char_traits<char> >
+
+; 156  : 		{	// construct from pointer to C stream
+
+  001a5	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:??_7?$basic_filebuf@DU?$char_traits@D@std@@@std@@6B@
+  001ac	48 89 45 18	 mov	 QWORD PTR log$[rbp-232], rax
+
+; 157  : 		_Init(_File, _Newfl);
+
+  001b0	45 33 c0	 xor	 r8d, r8d
+  001b3	33 d2		 xor	 edx, edx
+  001b5	48 8d 4d 18	 lea	 rcx, QWORD PTR log$[rbp-232]
+  001b9	e8 00 00 00 00	 call	 ?_Init@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IEAAXPEAU_iobuf@@W4_Initfl@12@@Z ; std::basic_filebuf<char,std::char_traits<char> >::_Init
+  001be	90		 npad	 1
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 1307 : 		cout << "Obstawiono za " << kwota_zak³adu << "$" << endl; //Wypisanie wczytanej kwoty zak³adu
+; 101  : 	int iloœæ_pieniêdzy = Ustawienia.kwota_pocz¹tkowa, kwota_zak³adu, wylosowana_liczba, wygrana; //Zmienne do których wczytuje siê wartoœci liczbowe pobrane od u¿ytkownika takie jak kwota zak³adu a przechowuje iloœæ posiadanych pieniêdzy a tak¿e przechowuje wyniki funkcji losowania liczby z ruletki i kwote wygran¹ z zak³adu
 
-  000ea	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0P@LMKDJHDC@Obstawiono?5za?5?$AA@
-  000f1	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  000f8	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  000fd	41 8b 17	 mov	 edx, DWORD PTR [r15]
-  00100	48 8b c8	 mov	 rcx, rax
-  00103	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-  00108	48 8b c8	 mov	 rcx, rax
-  0010b	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_01EPMOAMKG@$?$AA@
-  00112	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-
-; 194  : 		return ((*_Pfn)(*this));
-
-  00117	48 8b c8	 mov	 rcx, rax
-  0011a	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z ; std::endl<char,std::char_traits<char> >
-$LN3@P?:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1309 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k') //Je¿eli punkt kontynuowania jest odpowiedni to
-
-  0011f	41 0f b6 06	 movzx	 eax, BYTE PTR [r14]
-  00123	48 89 bc 24 90
-	00 00 00	 mov	 QWORD PTR [rsp+144], rdi
-  0012b	3c 6e		 cmp	 al, 110			; 0000006eH
-  0012d	74 45		 je	 SHORT $LN6@P?
-  0012f	3c 6b		 cmp	 al, 107			; 0000006bH
-  00131	74 41		 je	 SHORT $LN6@P?
-
-; 1316 : 	}
-; 1317 : 	else cout << "Obstawiono zak³ad " << typ_zak³adu << endl; //Wypisanie wczytanego typu zak³adu
-
-  00133	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BD@IOLLNBIB@Obstawiono?5zak?$LDad?5?$AA@
-  0013a	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00141	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  001bf	8b 05 0c 00 00
+	00		 mov	 eax, DWORD PTR ?Ustawienia@@3US_Ustawienia@@A+12
+  001c5	89 44 24 6c	 mov	 DWORD PTR iloœæ_pieniêdzy$[rsp], eax
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 3047 : 		return (this->_Get_data()._Mysize);
-
-  00146	48 8b bc 24 b0
-	00 00 00	 mov	 rdi, QWORD PTR typ_zak³adu$[rsp]
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  0014e	48 8b d7	 mov	 rdx, rdi
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00151	48 83 7f 18 10	 cmp	 QWORD PTR [rdi+24], 16
-
-; 1594 : 		if (_Large_string_engaged())
-
-  00156	72 03		 jb	 SHORT $LN187@P?
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  00158	48 8b 17	 mov	 rdx, QWORD PTR [rdi]
-$LN187@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-
-; 169  : 	return (_Insert_string(_Ostr, _Str.data(), _Str.size()));
-
-  0015b	4c 8b 47 10	 mov	 r8, QWORD PTR [rdi+16]
-  0015f	48 8b c8	 mov	 rcx, rax
-  00162	e8 00 00 00 00	 call	 ??$_Insert_string@DU?$char_traits@D@std@@_K@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@QEBD_K@Z ; std::_Insert_string<char,std::char_traits<char>,unsigned __int64>
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
-
-; 194  : 		return ((*_Pfn)(*this));
-
-  00167	48 8b c8	 mov	 rcx, rax
-  0016a	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z ; std::endl<char,std::char_traits<char> >
-  0016f	e9 b8 00 00 00	 jmp	 $LN5@P?
-$LN6@P?:
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1311 : 		typ_zak³adu = Obstaw(); //Przypisanie do zmiennej pobranej od u¿ytkownika typu zak³adu
-
-  00174	48 8d 4c 24 30	 lea	 rcx, QWORD PTR $T1[rsp]
-  00179	e8 00 00 00 00	 call	 ?Obstaw@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ ; Obstaw
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 2071 : 		if (this != _STD addressof(_Right))
-
-  0017e	48 8b bc 24 b0
-	00 00 00	 mov	 rdi, QWORD PTR typ_zak³adu$[rsp]
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1311 : 		typ_zak³adu = Obstaw(); //Przypisanie do zmiennej pobranej od u¿ytkownika typu zak³adu
-
-  00186	48 8b d8	 mov	 rbx, rax
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 2071 : 		if (this != _STD addressof(_Right))
-
-  00189	48 3b f8	 cmp	 rdi, rax
-  0018c	74 26		 je	 SHORT $LN95@P?
-
-; 2072 : 			{	// different, assign it
-; 2073 : 			_Tidy_deallocate();
-
-  0018e	48 8b cf	 mov	 rcx, rdi
-  00191	e8 00 00 00 00	 call	 ?_Tidy_deallocate@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAXXZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Tidy_deallocate
-
-; 2137 : 		_CSTD memcpy(_My_data_mem, _Right_data_mem, _Memcpy_move_size);
-
-  00196	0f 10 03	 movups	 xmm0, XMMWORD PTR [rbx]
 
 ; 3683 : 		_My_data._Mysize = 0;
 
-  00199	33 c0		 xor	 eax, eax
-
-; 2137 : 		_CSTD memcpy(_My_data_mem, _Right_data_mem, _Memcpy_move_size);
-
-  0019b	0f 11 07	 movups	 XMMWORD PTR [rdi], xmm0
-  0019e	0f 10 4b 10	 movups	 xmm1, XMMWORD PTR [rbx+16]
-  001a2	0f 11 4f 10	 movups	 XMMWORD PTR [rdi+16], xmm1
-
-; 3683 : 		_My_data._Mysize = 0;
-
-  001a6	48 89 43 10	 mov	 QWORD PTR [rbx+16], rax
+  001c9	48 89 75 f0	 mov	 QWORD PTR typ_zak³adu$[rbp-240], rsi
 
 ; 3684 : 		_My_data._Myres = this->_BUF_SIZE - 1;
 
-  001aa	48 c7 43 18 0f
-	00 00 00	 mov	 QWORD PTR [rbx+24], 15
+  001cd	48 c7 45 f8 0f
+	00 00 00	 mov	 QWORD PTR typ_zak³adu$[rbp-232], 15
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\iosfwd
 
 ; 442  : 		_Left = _Right;
 
-  001b2	88 03		 mov	 BYTE PTR [rbx], al
-$LN95@P?:
+  001d5	c6 45 e0 00	 mov	 BYTE PTR typ_zak³adu$[rbp-256], 0
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 105  : 	thread w¹tek1(Inicjacje_Pocz¹tkowe); //Utworzenie i uruchomienie w¹tku do zainicjowania funkcji pocz¹tkowych
+
+  001d9	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:?Inicjacje_Pocz¹tkowe@@YAXXZ ; Inicjacje_Pocz¹tkowe
+  001e0	48 8d 4d d0	 lea	 rcx, QWORD PTR w¹tek1$[rbp-256]
+  001e4	e8 00 00 00 00	 call	 ??$?0A6AXXZ$$VX@thread@std@@QEAA@A6AXXZ@Z ; std::thread::thread<void (__cdecl&)(void),void>
+  001e9	90		 npad	 1
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2585 : 	return (unique_ptr<_Ty>(new _Ty(_STD forward<_Types>(_Args)...)));
+
+  001ea	b9 40 00 00 00	 mov	 ecx, 64			; 00000040H
+  001ef	e8 00 00 00 00	 call	 ??2@YAPEAX_K@Z		; operator new
+  001f4	48 8b d8	 mov	 rbx, rax
+  001f7	48 89 44 24 50	 mov	 QWORD PTR $T34[rsp], rax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+
+; 157  : 		: _Val(_STD forward<_Other>(_Arg))
+
+  001fc	48 8d 45 e0	 lea	 rax, QWORD PTR typ_zak³adu$[rbp-256]
+  00200	48 89 03	 mov	 QWORD PTR [rbx], rax
+  00203	48 8d 45 98	 lea	 rax, QWORD PTR wylosowana_liczba$[rbp-256]
+  00207	48 89 43 08	 mov	 QWORD PTR [rbx+8], rax
+  0020b	48 8d 45 9c	 lea	 rax, QWORD PTR kwota_zak³adu$[rbp-256]
+  0020f	48 89 43 10	 mov	 QWORD PTR [rbx+16], rax
+  00213	48 8d 44 24 6c	 lea	 rax, QWORD PTR iloœæ_pieniêdzy$[rsp]
+  00218	48 89 43 18	 mov	 QWORD PTR [rbx+24], rax
+  0021c	48 8d 44 24 68	 lea	 rax, QWORD PTR co_kontynuowaæ$[rsp]
+  00221	48 89 43 20	 mov	 QWORD PTR [rbx+32], rax
+  00225	48 8d 45 00	 lea	 rax, QWORD PTR log$[rbp-256]
+  00229	48 89 43 28	 mov	 QWORD PTR [rbx+40], rax
+  0022d	48 8d 85 20 01
+	00 00		 lea	 rax, QWORD PTR log_ogólny$[rbp-256]
+  00234	48 89 43 30	 mov	 QWORD PTR [rbx+48], rax
+  00238	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:?Wczytaj_z_Pliku@@YAXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z ; Wczytaj_z_Pliku
+  0023f	48 89 43 38	 mov	 QWORD PTR [rbx+56], rax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+
+; 311  : 		: _Ty1(), _Myval2(_STD forward<_Other2>(_Val2)...)
+
+  00243	48 89 5c 24 40	 mov	 QWORD PTR $T105[rsp], rbx
+  00248	33 c0		 xor	 eax, eax
+  0024a	48 89 44 24 70	 mov	 QWORD PTR _Launcher$241[rsp], rax
+  0024f	48 89 44 24 78	 mov	 QWORD PTR _Launcher$241[rsp+8], rax
+  00254	48 89 45 80	 mov	 QWORD PTR _Launcher$241[rbp-240], rax
+  00258	48 89 45 88	 mov	 QWORD PTR _Launcher$241[rbp-232], rax
+  0025c	48 89 45 90	 mov	 QWORD PTR _Launcher$241[rbp-224], rax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 227  : 		{	// construct from target
+
+  00260	48 8d 4c 24 70	 lea	 rcx, QWORD PTR _Launcher$241[rsp]
+  00265	e8 00 00 00 00	 call	 ??0_Pad@std@@QEAA@XZ	; std::_Pad::_Pad
+  0026a	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:??_7?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@U?$default_delete@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@@std@@6B@
+  00271	48 89 44 24 70	 mov	 QWORD PTR _Launcher$241[rsp], rax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2366 : 		this->_Myptr() = pointer();
+
+  00276	48 89 74 24 40	 mov	 QWORD PTR $T105[rsp], rsi
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+
+; 320  : 			_Myval2(_STD forward<_Other2>(_Val2)...)
+
+  0027b	48 89 5d 90	 mov	 QWORD PTR _Launcher$241[rbp-224], rbx
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 50   : 	int _Res = _Thrd_start(_Thr, _Fp, _Arg);
+
+  0027f	4c 8d 44 24 70	 lea	 r8, QWORD PTR _Launcher$241[rsp]
+  00284	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:?_Call_func@_Pad@std@@CAIPEAX@Z ; std::_Pad::_Call_func
+  0028b	48 8d 4d c0	 lea	 rcx, QWORD PTR w¹tek2$[rbp-256]
+  0028f	e8 00 00 00 00	 call	 _Thrd_start
+
+; 51   : 	return (_Check_C_return(_Res != _Thrd_error ? _Res : _Thrd_nomem));
+
+  00294	b9 01 00 00 00	 mov	 ecx, 1
+  00299	83 f8 04	 cmp	 eax, 4
+  0029c	0f 45 c8	 cmovne	 ecx, eax
+
+; 35   : 	if (_Res != _Thrd_success)
+
+  0029f	85 c9		 test	 ecx, ecx
+  002a1	74 05		 je	 SHORT $LN1021@main
+
+; 36   : 		_Throw_C_error(_Res);
+
+  002a3	e8 00 00 00 00	 call	 ?_Throw_C_error@std@@YAXH@Z ; std::_Throw_C_error
+$LN1021@main:
+
+; 190  : 		while (!_Started)
+
+  002a8	80 7d 88 00	 cmp	 BYTE PTR _Launcher$241[rbp-232], 0
+  002ac	75 21		 jne	 SHORT $LN490@main
+  002ae	66 90		 npad	 2
+$LL489@main:
+
+; 96   : 	return (_Check_C_return(_Cnd_wait(_Cnd, _Mtx)));
+
+  002b0	48 8b 55 80	 mov	 rdx, QWORD PTR _Launcher$241[rbp-240]
+  002b4	48 8b 4c 24 78	 mov	 rcx, QWORD PTR _Launcher$241[rsp+8]
+  002b9	e8 00 00 00 00	 call	 _Cnd_wait
+
+; 35   : 	if (_Res != _Thrd_success)
+
+  002be	85 c0		 test	 eax, eax
+  002c0	74 07		 je	 SHORT $LN500@main
+
+; 36   : 		_Throw_C_error(_Res);
+
+  002c2	8b c8		 mov	 ecx, eax
+  002c4	e8 00 00 00 00	 call	 ?_Throw_C_error@std@@YAXH@Z ; std::_Throw_C_error
+$LN500@main:
+
+; 190  : 		while (!_Started)
+
+  002c9	80 7d 88 00	 cmp	 BYTE PTR _Launcher$241[rbp-232], 0
+  002cd	74 e1		 je	 SHORT $LL489@main
+$LN490@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2337 : 		if (get() != pointer())
+
+  002cf	48 8b 4d 90	 mov	 rcx, QWORD PTR _Launcher$241[rbp-224]
+  002d3	48 85 c9	 test	 rcx, rcx
+  002d6	74 0b		 je	 SHORT $LN535@main
+
+; 2127 : 		delete _Ptr;
+
+  002d8	ba 40 00 00 00	 mov	 edx, 64			; 00000040H
+  002dd	e8 00 00 00 00	 call	 ??3@YAXPEAX_K@Z		; operator delete
+  002e2	90		 npad	 1
+$LN535@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 181  : 		{	// clean up handshake; non-virtual due to type-erasure
+
+  002e3	4c 8d 3d 00 00
+	00 00		 lea	 r15, OFFSET FLAT:??_7_Pad@std@@6B@
+  002ea	4c 89 7c 24 70	 mov	 QWORD PTR _Launcher$241[rsp], r15
+
+; 119  : 		: _Active(true), _MyCndp(_Cndp)
+
+  002ef	48 8b 7c 24 78	 mov	 rdi, QWORD PTR _Launcher$241[rsp+8]
+
+; 143  : 		: _Active(true), _MyMtxp(_Mtxp)
+
+  002f4	48 8b 5d 80	 mov	 rbx, QWORD PTR _Launcher$241[rbp-240]
+
+; 86   : 	return (_Check_C_return(_Mtx_unlock(_Mtx)));
+
+  002f8	48 8b cb	 mov	 rcx, rbx
+  002fb	e8 00 00 00 00	 call	 _Mtx_unlock
+
+; 35   : 	if (_Res != _Thrd_success)
+
+  00300	85 c0		 test	 eax, eax
+  00302	74 07		 je	 SHORT $LN1030@main
+
+; 36   : 		_Throw_C_error(_Res);
+
+  00304	8b c8		 mov	 ecx, eax
+  00306	e8 00 00 00 00	 call	 ?_Throw_C_error@std@@YAXH@Z ; std::_Throw_C_error
+$LN1030@main:
+
+; 150  : 			_Mtx_destroy(_MyMtxp);
+
+  0030b	48 8b cb	 mov	 rcx, rbx
+  0030e	e8 00 00 00 00	 call	 _Mtx_destroy
+
+; 126  : 			_Cnd_destroy(_MyCndp);
+
+  00313	48 8b cf	 mov	 rcx, rdi
+  00316	e8 00 00 00 00	 call	 _Cnd_destroy
+  0031b	90		 npad	 1
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 180  : 	if (!joinable())
+
+  0031c	8b 45 d8	 mov	 eax, DWORD PTR w¹tek1$[rbp-248]
+  0031f	85 c0		 test	 eax, eax
+  00321	75 17		 jne	 SHORT $LN599@main
+
+; 181  : 		_Throw_Cpp_error(_INVALID_ARGUMENT);
+
+  00323	8d 48 01	 lea	 ecx, QWORD PTR [rax+1]
+  00326	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+  0032b	8b 45 d8	 mov	 eax, DWORD PTR w¹tek1$[rbp-248]
+
+; 182  : 	const bool _Is_null = _Thr_is_null(_Thr);	// Avoid Clang -Wparentheses-equality
+; 183  : 	if (_Is_null)
+
+  0032e	85 c0		 test	 eax, eax
+  00330	75 08		 jne	 SHORT $LN599@main
+
+; 184  : 		_Throw_Cpp_error(_INVALID_ARGUMENT);
+
+  00332	8d 48 01	 lea	 ecx, QWORD PTR [rax+1]
+  00335	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN599@main:
+
+; 199  : 	return (_Thrd_id());
+
+  0033a	e8 00 00 00 00	 call	 _Thrd_id
+
+; 185  : 	if (get_id() == _STD this_thread::get_id())
+
+  0033f	39 45 d8	 cmp	 DWORD PTR w¹tek1$[rbp-248], eax
+  00342	75 0a		 jne	 SHORT $LN600@main
+
+; 186  : 		_Throw_Cpp_error(_RESOURCE_DEADLOCK_WOULD_OCCUR);
+
+  00344	b9 05 00 00 00	 mov	 ecx, 5
+  00349	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN600@main:
+
+; 187  : 	if (_Thrd_join(_Thr, 0) != _Thrd_success)
+
+  0034e	0f 28 45 d0	 movaps	 xmm0, XMMWORD PTR w¹tek1$[rbp-256]
+  00352	66 0f 7f 44 24
+	50		 movdqa	 XMMWORD PTR $T144[rsp], xmm0
+  00358	33 d2		 xor	 edx, edx
+  0035a	48 8d 4c 24 50	 lea	 rcx, QWORD PTR $T144[rsp]
+  0035f	e8 00 00 00 00	 call	 _Thrd_join
+  00364	85 c0		 test	 eax, eax
+  00366	74 08		 je	 SHORT $LN601@main
+
+; 188  : 		_Throw_Cpp_error(_NO_SUCH_PROCESS);
+
+  00368	41 8b ce	 mov	 ecx, r14d
+  0036b	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN601@main:
+
+; 189  : 	_Thr_set_null(_Thr);
+
+  00370	48 89 75 d0	 mov	 QWORD PTR w¹tek1$[rbp-256], rsi
+  00374	89 75 d8	 mov	 DWORD PTR w¹tek1$[rbp-248], esi
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 108  : 	thread w¹tek3(SprawdŸ_Ustawienia); //Utworzenie i uruchomienie w¹tku do wczytania ustawieñ z pliku
+
+  00377	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:?SprawdŸ_Ustawienia@@YAXXZ ; SprawdŸ_Ustawienia
+  0037e	48 8d 4d b0	 lea	 rcx, QWORD PTR w¹tek3$[rbp-256]
+  00382	e8 00 00 00 00	 call	 ??$?0A6AXXZ$$VX@thread@std@@QEAA@A6AXXZ@Z ; std::thread::thread<void (__cdecl&)(void),void>
+  00387	90		 npad	 1
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 180  : 	if (!joinable())
+
+  00388	8b 45 b8	 mov	 eax, DWORD PTR w¹tek3$[rbp-248]
+  0038b	85 c0		 test	 eax, eax
+  0038d	75 17		 jne	 SHORT $LN621@main
+
+; 181  : 		_Throw_Cpp_error(_INVALID_ARGUMENT);
+
+  0038f	8d 48 01	 lea	 ecx, QWORD PTR [rax+1]
+  00392	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+  00397	8b 45 b8	 mov	 eax, DWORD PTR w¹tek3$[rbp-248]
+
+; 182  : 	const bool _Is_null = _Thr_is_null(_Thr);	// Avoid Clang -Wparentheses-equality
+; 183  : 	if (_Is_null)
+
+  0039a	85 c0		 test	 eax, eax
+  0039c	75 08		 jne	 SHORT $LN621@main
+
+; 184  : 		_Throw_Cpp_error(_INVALID_ARGUMENT);
+
+  0039e	8d 48 01	 lea	 ecx, QWORD PTR [rax+1]
+  003a1	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN621@main:
+
+; 199  : 	return (_Thrd_id());
+
+  003a6	e8 00 00 00 00	 call	 _Thrd_id
+
+; 185  : 	if (get_id() == _STD this_thread::get_id())
+
+  003ab	39 45 b8	 cmp	 DWORD PTR w¹tek3$[rbp-248], eax
+  003ae	75 0a		 jne	 SHORT $LN622@main
+
+; 186  : 		_Throw_Cpp_error(_RESOURCE_DEADLOCK_WOULD_OCCUR);
+
+  003b0	b9 05 00 00 00	 mov	 ecx, 5
+  003b5	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN622@main:
+
+; 187  : 	if (_Thrd_join(_Thr, 0) != _Thrd_success)
+
+  003ba	0f 28 45 b0	 movaps	 xmm0, XMMWORD PTR w¹tek3$[rbp-256]
+  003be	66 0f 7f 44 24
+	50		 movdqa	 XMMWORD PTR $T151[rsp], xmm0
+  003c4	33 d2		 xor	 edx, edx
+  003c6	48 8d 4c 24 50	 lea	 rcx, QWORD PTR $T151[rsp]
+  003cb	e8 00 00 00 00	 call	 _Thrd_join
+  003d0	85 c0		 test	 eax, eax
+  003d2	74 08		 je	 SHORT $LN623@main
+
+; 188  : 		_Throw_Cpp_error(_NO_SUCH_PROCESS);
+
+  003d4	41 8b ce	 mov	 ecx, r14d
+  003d7	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN623@main:
+
+; 189  : 	_Thr_set_null(_Thr);
+
+  003dc	48 89 75 b0	 mov	 QWORD PTR w¹tek3$[rbp-256], rsi
+  003e0	89 75 b8	 mov	 DWORD PTR w¹tek3$[rbp-248], esi
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2585 : 	return (unique_ptr<_Ty>(new _Ty(_STD forward<_Types>(_Args)...)));
+
+  003e3	b9 18 00 00 00	 mov	 ecx, 24
+  003e8	e8 00 00 00 00	 call	 ??2@YAPEAX_K@Z		; operator new
+  003ed	48 8b d8	 mov	 rbx, rax
+  003f0	48 89 44 24 50	 mov	 QWORD PTR $T161[rsp], rax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\tuple
+
+; 157  : 		: _Val(_STD forward<_Other>(_Arg))
+
+  003f5	48 8d 05 14 00
+	00 00		 lea	 rax, OFFSET FLAT:?Ustawienia@@3US_Ustawienia@@A+20
+  003fc	48 89 03	 mov	 QWORD PTR [rbx], rax
+  003ff	48 8d 05 12 00
+	00 00		 lea	 rax, OFFSET FLAT:?Ustawienia@@3US_Ustawienia@@A+18
+  00406	48 89 43 08	 mov	 QWORD PTR [rbx+8], rax
+  0040a	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:?SprawdŸ_Pliki@@YAXAEBF0@Z ; SprawdŸ_Pliki
+  00411	48 89 43 10	 mov	 QWORD PTR [rbx+16], rax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+
+; 311  : 		: _Ty1(), _Myval2(_STD forward<_Other2>(_Val2)...)
+
+  00415	48 89 5c 24 40	 mov	 QWORD PTR $T182[rsp], rbx
+  0041a	33 c0		 xor	 eax, eax
+  0041c	48 89 44 24 70	 mov	 QWORD PTR _Launcher$240[rsp], rax
+  00421	48 89 44 24 78	 mov	 QWORD PTR _Launcher$240[rsp+8], rax
+  00426	48 89 45 80	 mov	 QWORD PTR _Launcher$240[rbp-240], rax
+  0042a	48 89 45 88	 mov	 QWORD PTR _Launcher$240[rbp-232], rax
+  0042e	48 89 45 90	 mov	 QWORD PTR _Launcher$240[rbp-224], rax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 227  : 		{	// construct from target
+
+  00432	48 8d 4c 24 70	 lea	 rcx, QWORD PTR _Launcher$240[rsp]
+  00437	e8 00 00 00 00	 call	 ??0_Pad@std@@QEAA@XZ	; std::_Pad::_Pad
+  0043c	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:??_7?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@U?$default_delete@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@@2@@std@@@std@@6B@
+  00443	48 89 44 24 70	 mov	 QWORD PTR _Launcher$240[rsp], rax
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2366 : 		this->_Myptr() = pointer();
+
+  00448	48 89 74 24 40	 mov	 QWORD PTR $T182[rsp], rsi
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
+
+; 320  : 			_Myval2(_STD forward<_Other2>(_Val2)...)
+
+  0044d	48 89 5d 90	 mov	 QWORD PTR _Launcher$240[rbp-224], rbx
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 50   : 	int _Res = _Thrd_start(_Thr, _Fp, _Arg);
+
+  00451	4c 8d 44 24 70	 lea	 r8, QWORD PTR _Launcher$240[rsp]
+  00456	48 8d 15 00 00
+	00 00		 lea	 rdx, OFFSET FLAT:?_Call_func@_Pad@std@@CAIPEAX@Z ; std::_Pad::_Call_func
+  0045d	48 8d 4d a0	 lea	 rcx, QWORD PTR w¹tek4$[rbp-256]
+  00461	e8 00 00 00 00	 call	 _Thrd_start
+
+; 51   : 	return (_Check_C_return(_Res != _Thrd_error ? _Res : _Thrd_nomem));
+
+  00466	b9 01 00 00 00	 mov	 ecx, 1
+  0046b	83 f8 04	 cmp	 eax, 4
+  0046e	0f 45 c8	 cmovne	 ecx, eax
+
+; 35   : 	if (_Res != _Thrd_success)
+
+  00471	85 c9		 test	 ecx, ecx
+  00473	74 05		 je	 SHORT $LN1022@main
+
+; 36   : 		_Throw_C_error(_Res);
+
+  00475	e8 00 00 00 00	 call	 ?_Throw_C_error@std@@YAXH@Z ; std::_Throw_C_error
+$LN1022@main:
+
+; 190  : 		while (!_Started)
+
+  0047a	80 7d 88 00	 cmp	 BYTE PTR _Launcher$240[rbp-232], 0
+  0047e	75 1f		 jne	 SHORT $LN811@main
+$LL810@main:
+
+; 96   : 	return (_Check_C_return(_Cnd_wait(_Cnd, _Mtx)));
+
+  00480	48 8b 55 80	 mov	 rdx, QWORD PTR _Launcher$240[rbp-240]
+  00484	48 8b 4c 24 78	 mov	 rcx, QWORD PTR _Launcher$240[rsp+8]
+  00489	e8 00 00 00 00	 call	 _Cnd_wait
+
+; 35   : 	if (_Res != _Thrd_success)
+
+  0048e	85 c0		 test	 eax, eax
+  00490	74 07		 je	 SHORT $LN821@main
+
+; 36   : 		_Throw_C_error(_Res);
+
+  00492	8b c8		 mov	 ecx, eax
+  00494	e8 00 00 00 00	 call	 ?_Throw_C_error@std@@YAXH@Z ; std::_Throw_C_error
+$LN821@main:
+
+; 190  : 		while (!_Started)
+
+  00499	80 7d 88 00	 cmp	 BYTE PTR _Launcher$240[rbp-232], 0
+  0049d	74 e1		 je	 SHORT $LL810@main
+$LN811@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\memory
+
+; 2337 : 		if (get() != pointer())
+
+  0049f	48 8b 4d 90	 mov	 rcx, QWORD PTR _Launcher$240[rbp-224]
+  004a3	48 85 c9	 test	 rcx, rcx
+  004a6	74 0b		 je	 SHORT $LN856@main
+
+; 2127 : 		delete _Ptr;
+
+  004a8	ba 18 00 00 00	 mov	 edx, 24
+  004ad	e8 00 00 00 00	 call	 ??3@YAXPEAX_K@Z		; operator delete
+  004b2	90		 npad	 1
+$LN856@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thr\xthread
+
+; 181  : 		{	// clean up handshake; non-virtual due to type-erasure
+
+  004b3	4c 89 7c 24 70	 mov	 QWORD PTR _Launcher$240[rsp], r15
+
+; 119  : 		: _Active(true), _MyCndp(_Cndp)
+
+  004b8	48 8b 7c 24 78	 mov	 rdi, QWORD PTR _Launcher$240[rsp+8]
+
+; 143  : 		: _Active(true), _MyMtxp(_Mtxp)
+
+  004bd	48 8b 5d 80	 mov	 rbx, QWORD PTR _Launcher$240[rbp-240]
+
+; 86   : 	return (_Check_C_return(_Mtx_unlock(_Mtx)));
+
+  004c1	48 8b cb	 mov	 rcx, rbx
+  004c4	e8 00 00 00 00	 call	 _Mtx_unlock
+
+; 35   : 	if (_Res != _Thrd_success)
+
+  004c9	85 c0		 test	 eax, eax
+  004cb	74 07		 je	 SHORT $LN1032@main
+
+; 36   : 		_Throw_C_error(_Res);
+
+  004cd	8b c8		 mov	 ecx, eax
+  004cf	e8 00 00 00 00	 call	 ?_Throw_C_error@std@@YAXH@Z ; std::_Throw_C_error
+$LN1032@main:
+
+; 150  : 			_Mtx_destroy(_MyMtxp);
+
+  004d4	48 8b cb	 mov	 rcx, rbx
+  004d7	e8 00 00 00 00	 call	 _Mtx_destroy
+
+; 126  : 			_Cnd_destroy(_MyCndp);
+
+  004dc	48 8b cf	 mov	 rcx, rdi
+  004df	e8 00 00 00 00	 call	 _Cnd_destroy
+  004e4	90		 npad	 1
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 180  : 	if (!joinable())
+
+  004e5	8b 45 a8	 mov	 eax, DWORD PTR w¹tek4$[rbp-248]
+  004e8	85 c0		 test	 eax, eax
+  004ea	75 17		 jne	 SHORT $LN920@main
+
+; 181  : 		_Throw_Cpp_error(_INVALID_ARGUMENT);
+
+  004ec	8d 48 01	 lea	 ecx, QWORD PTR [rax+1]
+  004ef	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+  004f4	8b 45 a8	 mov	 eax, DWORD PTR w¹tek4$[rbp-248]
+
+; 182  : 	const bool _Is_null = _Thr_is_null(_Thr);	// Avoid Clang -Wparentheses-equality
+; 183  : 	if (_Is_null)
+
+  004f7	85 c0		 test	 eax, eax
+  004f9	75 08		 jne	 SHORT $LN920@main
+
+; 184  : 		_Throw_Cpp_error(_INVALID_ARGUMENT);
+
+  004fb	8d 48 01	 lea	 ecx, QWORD PTR [rax+1]
+  004fe	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN920@main:
+
+; 199  : 	return (_Thrd_id());
+
+  00503	e8 00 00 00 00	 call	 _Thrd_id
+
+; 185  : 	if (get_id() == _STD this_thread::get_id())
+
+  00508	39 45 a8	 cmp	 DWORD PTR w¹tek4$[rbp-248], eax
+  0050b	75 0a		 jne	 SHORT $LN921@main
+
+; 186  : 		_Throw_Cpp_error(_RESOURCE_DEADLOCK_WOULD_OCCUR);
+
+  0050d	b9 05 00 00 00	 mov	 ecx, 5
+  00512	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN921@main:
+
+; 187  : 	if (_Thrd_join(_Thr, 0) != _Thrd_success)
+
+  00517	0f 28 45 a0	 movaps	 xmm0, XMMWORD PTR w¹tek4$[rbp-256]
+  0051b	66 0f 7f 44 24
+	50		 movdqa	 XMMWORD PTR $T221[rsp], xmm0
+  00521	33 d2		 xor	 edx, edx
+  00523	48 8d 4c 24 50	 lea	 rcx, QWORD PTR $T221[rsp]
+  00528	e8 00 00 00 00	 call	 _Thrd_join
+  0052d	85 c0		 test	 eax, eax
+  0052f	74 08		 je	 SHORT $LN922@main
+
+; 188  : 		_Throw_Cpp_error(_NO_SUCH_PROCESS);
+
+  00531	41 8b ce	 mov	 ecx, r14d
+  00534	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN922@main:
+
+; 189  : 	_Thr_set_null(_Thr);
+
+  00539	48 89 75 a0	 mov	 QWORD PTR w¹tek4$[rbp-256], rsi
+  0053d	89 75 a8	 mov	 DWORD PTR w¹tek4$[rbp-248], esi
+
+; 180  : 	if (!joinable())
+
+  00540	8b 45 c8	 mov	 eax, DWORD PTR w¹tek2$[rbp-248]
+  00543	85 c0		 test	 eax, eax
+  00545	75 17		 jne	 SHORT $LN942@main
+
+; 181  : 		_Throw_Cpp_error(_INVALID_ARGUMENT);
+
+  00547	8d 48 01	 lea	 ecx, QWORD PTR [rax+1]
+  0054a	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+  0054f	8b 45 c8	 mov	 eax, DWORD PTR w¹tek2$[rbp-248]
+
+; 182  : 	const bool _Is_null = _Thr_is_null(_Thr);	// Avoid Clang -Wparentheses-equality
+; 183  : 	if (_Is_null)
+
+  00552	85 c0		 test	 eax, eax
+  00554	75 08		 jne	 SHORT $LN942@main
+
+; 184  : 		_Throw_Cpp_error(_INVALID_ARGUMENT);
+
+  00556	8d 48 01	 lea	 ecx, QWORD PTR [rax+1]
+  00559	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN942@main:
+
+; 199  : 	return (_Thrd_id());
+
+  0055e	e8 00 00 00 00	 call	 _Thrd_id
+
+; 185  : 	if (get_id() == _STD this_thread::get_id())
+
+  00563	39 45 c8	 cmp	 DWORD PTR w¹tek2$[rbp-248], eax
+  00566	75 0a		 jne	 SHORT $LN943@main
+
+; 186  : 		_Throw_Cpp_error(_RESOURCE_DEADLOCK_WOULD_OCCUR);
+
+  00568	b9 05 00 00 00	 mov	 ecx, 5
+  0056d	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN943@main:
+
+; 187  : 	if (_Thrd_join(_Thr, 0) != _Thrd_success)
+
+  00572	0f 28 45 c0	 movaps	 xmm0, XMMWORD PTR w¹tek2$[rbp-256]
+  00576	66 0f 7f 44 24
+	50		 movdqa	 XMMWORD PTR $T228[rsp], xmm0
+  0057c	33 d2		 xor	 edx, edx
+  0057e	48 8d 4c 24 50	 lea	 rcx, QWORD PTR $T228[rsp]
+  00583	e8 00 00 00 00	 call	 _Thrd_join
+  00588	85 c0		 test	 eax, eax
+  0058a	74 08		 je	 SHORT $LN944@main
+
+; 188  : 		_Throw_Cpp_error(_NO_SUCH_PROCESS);
+
+  0058c	41 8b ce	 mov	 ecx, r14d
+  0058f	e8 00 00 00 00	 call	 ?_Throw_Cpp_error@std@@YAXH@Z ; std::_Throw_Cpp_error
+$LN944@main:
+
+; 189  : 	_Thr_set_null(_Thr);
+
+  00594	48 89 75 c0	 mov	 QWORD PTR w¹tek2$[rbp-256], rsi
+  00598	89 75 c8	 mov	 DWORD PTR w¹tek2$[rbp-248], esi
+  0059b	0f 1f 44 00 00	 npad	 5
+$LL4@main:
+; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
+
+; 115  : 		Pêtla_G³ówna(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log, co_kontynuowaæ, typ_zak³adu, wylosowana_liczba); //Funkcja obs³uguj¹ca wszystkie elementy gry
+
+  005a0	48 8d 45 98	 lea	 rax, QWORD PTR wylosowana_liczba$[rbp-256]
+  005a4	48 89 44 24 38	 mov	 QWORD PTR [rsp+56], rax
+  005a9	48 8d 45 e0	 lea	 rax, QWORD PTR typ_zak³adu$[rbp-256]
+  005ad	48 89 44 24 30	 mov	 QWORD PTR [rsp+48], rax
+  005b2	48 8d 44 24 68	 lea	 rax, QWORD PTR co_kontynuowaæ$[rsp]
+  005b7	48 89 44 24 28	 mov	 QWORD PTR [rsp+40], rax
+  005bc	48 8d 45 00	 lea	 rax, QWORD PTR log$[rbp-256]
+  005c0	48 89 44 24 20	 mov	 QWORD PTR [rsp+32], rax
+  005c5	4c 8d 8d 20 01
+	00 00		 lea	 r9, QWORD PTR log_ogólny$[rbp-256]
+  005cc	4c 8d 44 24 6c	 lea	 r8, QWORD PTR iloœæ_pieniêdzy$[rsp]
+  005d1	48 8d 55 9c	 lea	 rdx, QWORD PTR kwota_zak³adu$[rbp-256]
+  005d5	48 8d 4c 24 40	 lea	 rcx, QWORD PTR wygrana$[rsp]
+  005da	e8 00 00 00 00	 call	 ?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z ; Pêtla_G³ówna
+
+; 116  : 		co_kontynuowaæ = 'n'; //Przypisanie znaku rozpoczêcia rundy od pocz¹tku
+
+  005df	c6 44 24 68 6e	 mov	 BYTE PTR co_kontynuowaæ$[rsp], 110 ; 0000006eH
+
+; 117  : 	} while (Czy_Kontynuowaæ(iloœæ_pieniêdzy)); //Pêtla dza³aj¹ca do czasu wartoœci fa³sz zwróconej przez funkcjê Czy_kontynuowaæ
+
+  005e4	48 8d 4c 24 6c	 lea	 rcx, QWORD PTR iloœæ_pieniêdzy$[rsp]
+  005e9	e8 00 00 00 00	 call	 ?Czy_Kontynuowaæ@@YA_NAEBH@Z ; Czy_Kontynuowaæ
+  005ee	84 c0		 test	 al, al
+  005f0	75 ae		 jne	 SHORT $LL4@main
+
+; 118  : 
+; 119  : 	Koniec_Gry(log_ogólny, log, iloœæ_pieniêdzy); //Zakoñczenie gry i wskazanie wyniku
+
+  005f2	4c 8d 44 24 6c	 lea	 r8, QWORD PTR iloœæ_pieniêdzy$[rsp]
+  005f7	48 8d 55 00	 lea	 rdx, QWORD PTR log$[rbp-256]
+  005fb	48 8d 8d 20 01
+	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rbp-256]
+  00602	e8 00 00 00 00	 call	 ?Koniec_Gry@@YAXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBH@Z ; Koniec_Gry
+
+; 120  : 
+; 121  : 	system("pause"); //Wywo³anie funkcji wymagaj¹cej do zamkniêcia naciœniêcie dowolnego klawisza
+
+  00607	48 8d 0d 00 00
+	00 00		 lea	 rcx, OFFSET FLAT:??_C@_05PDJBBECF@pause?$AA@
+  0060e	e8 00 00 00 00	 call	 system
+  00613	90		 npad	 1
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 54   : 		if (joinable())
+
+  00614	83 7d a8 00	 cmp	 DWORD PTR w¹tek4$[rbp-248], 0
+  00618	0f 85 e5 00 00
+	00		 jne	 $LN1040@main
+  0061e	83 7d b8 00	 cmp	 DWORD PTR w¹tek3$[rbp-248], 0
+  00622	0f 85 e1 00 00
+	00		 jne	 $LN1041@main
+  00628	83 7d c8 00	 cmp	 DWORD PTR w¹tek2$[rbp-248], 0
+  0062c	0f 85 dd 00 00
+	00		 jne	 $LN1042@main
+  00632	83 7d d8 00	 cmp	 DWORD PTR w¹tek1$[rbp-248], 0
+  00636	0f 85 d9 00 00
+	00		 jne	 $LN1043@main
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
 
 ; 2231 : 		_Tidy_deallocate();
 
-  001b4	48 8d 4c 24 30	 lea	 rcx, QWORD PTR $T1[rsp]
-  001b9	e8 00 00 00 00	 call	 ?_Tidy_deallocate@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAXXZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Tidy_deallocate
+  0063c	48 8d 4d e0	 lea	 rcx, QWORD PTR typ_zak³adu$[rbp-256]
+  00640	e8 00 00 00 00	 call	 ?_Tidy_deallocate@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAAXXZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Tidy_deallocate
+  00645	90		 npad	 1
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 1312 : 		log << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu aktualnego informacji o typie obstawionego zak³adu
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
 
-  001be	4d 85 ed	 test	 r13, r13
-  001c1	49 8d 4d 10	 lea	 rcx, QWORD PTR [r13+16]
-  001c5	bb 00 00 00 00	 mov	 ebx, 0
-  001ca	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@
-  001d1	48 0f 44 cb	 cmove	 rcx, rbx
-  001d5	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
+  00646	48 8d 4d 00	 lea	 rcx, QWORD PTR log$[rbp-256]
+  0064a	e8 00 00 00 00	 call	 ??_D?$basic_fstream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+  0064f	90		 npad	 1
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\fstream
 
-; 1604 : 		return (_BUF_SIZE <= _Myres);
+; 1132 : 		{	// destroy the object
 
-  001da	48 83 7f 18 10	 cmp	 QWORD PTR [rdi+24], 16
+  00650	48 8b 85 20 01
+	00 00		 mov	 rax, QWORD PTR log_ogólny$[rbp-256]
+  00657	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  0065b	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:??_7?$basic_ofstream@DU?$char_traits@D@std@@@std@@6B@
+  00662	48 89 84 0d 20
+	01 00 00	 mov	 QWORD PTR log_ogólny$[rbp+rcx-256], rax
+  0066a	48 8b 85 20 01
+	00 00		 mov	 rax, QWORD PTR log_ogólny$[rbp-256]
+  00671	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  00675	8d 91 58 ff ff
+	ff		 lea	 edx, DWORD PTR [rcx-168]
+  0067b	89 94 0d 1c 01
+	00 00		 mov	 DWORD PTR log_ogólny$[rbp+rcx-260], edx
 
-; 1593 : 		const value_type * _Result = _Bx._Buf;
+; 1133 : 		}
 
-  001df	48 8b d7	 mov	 rdx, rdi
-
-; 1594 : 		if (_Large_string_engaged())
-
-  001e2	72 03		 jb	 SHORT $LN305@P?
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  001e4	48 8b 17	 mov	 rdx, QWORD PTR [rdi]
-$LN305@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-
-; 169  : 	return (_Insert_string(_Ostr, _Str.data(), _Str.size()));
-
-  001e7	4c 8b 47 10	 mov	 r8, QWORD PTR [rdi+16]
-  001eb	48 8b c8	 mov	 rcx, rax
-  001ee	e8 00 00 00 00	 call	 ??$_Insert_string@DU?$char_traits@D@std@@_K@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@QEBD_K@Z ; std::_Insert_string<char,std::char_traits<char>,unsigned __int64>
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1313 : 		log_ogólny << " Obstawiono zaklad " << typ_zak³adu; //Zapisanie do bufora pliku logu ogólnego informacji o typie obstawionego zak³adu
-
-  001f3	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BE@EKDPDLOA@?5Obstawiono?5zaklad?5?$AA@
-  001fa	48 8b cd	 mov	 rcx, rbp
-  001fd	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstring
-
-; 1604 : 		return (_BUF_SIZE <= _Myres);
-
-  00202	48 83 7f 18 10	 cmp	 QWORD PTR [rdi+24], 16
-
-; 1593 : 		const value_type * _Result = _Bx._Buf;
-
-  00207	48 8b d7	 mov	 rdx, rdi
-
-; 1594 : 		if (_Large_string_engaged())
-
-  0020a	72 03		 jb	 SHORT $LN160@P?
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xstddef
-
-; 265  : 	return (_Ptr);
-
-  0020c	48 8b 17	 mov	 rdx, QWORD PTR [rdi]
-$LN160@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\string
-
-; 169  : 	return (_Insert_string(_Ostr, _Str.data(), _Str.size()));
-
-  0020f	4c 8b 47 10	 mov	 r8, QWORD PTR [rdi+16]
-  00213	48 8b c8	 mov	 rcx, rax
-  00216	e8 00 00 00 00	 call	 ??$_Insert_string@DU?$char_traits@D@std@@_K@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@QEBD_K@Z ; std::_Insert_string<char,std::char_traits<char>,unsigned __int64>
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1314 : 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-
-  0021b	49 8d 4d 10	 lea	 rcx, QWORD PTR [r13+16]
-  0021f	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-
-; 1315 : 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-
-  00224	48 8b cd	 mov	 rcx, rbp
-  00227	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-$LN5@P?:
-
-; 1318 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') iloœæ_pieniêdzy -= kwota_zak³adu;  //Je¿eli punkt kontynuowania jest odpowiedni to odjêcie od iloœci pieniêdzy kwoty zak³adu
-
-  0022c	41 0f b6 0e	 movzx	 ecx, BYTE PTR [r14]
-  00230	ba 09 02 00 00	 mov	 edx, 521		; 00000209H
-  00235	8d 41 95	 lea	 eax, DWORD PTR [rcx-107]
-  00238	3c 09		 cmp	 al, 9
-  0023a	77 08		 ja	 SHORT $LN307@P?
-  0023c	0f be c0	 movsx	 eax, al
-  0023f	0f a3 c2	 bt	 edx, eax
-  00242	72 05		 jb	 SHORT $LN8@P?
-$LN307@P?:
-  00244	80 f9 77	 cmp	 cl, 119			; 00000077H
-  00247	75 0b		 jne	 SHORT $LN306@P?
-$LN8@P?:
-  00249	41 8b 07	 mov	 eax, DWORD PTR [r15]
-  0024c	41 29 04 24	 sub	 DWORD PTR [r12], eax
-  00250	41 0f b6 0e	 movzx	 ecx, BYTE PTR [r14]
-$LN306@P?:
-
-; 1319 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') //Je¿eli punkt kontynuowania jest odpowiedni to
-
-  00254	80 e9 6b	 sub	 cl, 107			; 0000006bH
-  00257	80 f9 09	 cmp	 cl, 9
-  0025a	77 37		 ja	 SHORT $LN309@P?
-  0025c	0f be c1	 movsx	 eax, cl
-  0025f	0f a3 c2	 bt	 edx, eax
-  00262	73 2f		 jae	 SHORT $LN309@P?
-
-; 1320 : 	{
-; 1321 : 		cout << "Kulka w grze, zaczekaj na wylosowanie numeru..." << endl; //Poinformowanie u¿ytkownika o rozpoczêciu losowania
-
-  00264	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0DA@EJNBAHOM@Kulka?5w?5grze?0?5zaczekaj?5na?5wyloso@
-  0026b	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00272	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
+  00682	48 8d 8d 28 01
+	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rbp-248]
+  00689	e8 00 00 00 00	 call	 ??1?$basic_filebuf@DU?$char_traits@D@std@@@std@@UEAA@XZ ; std::basic_filebuf<char,std::char_traits<char> >::~basic_filebuf<char,std::char_traits<char> >
 ; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\ostream
 
-; 194  : 		return ((*_Pfn)(*this));
+; 87   : 		{	// destroy the object
 
-  00277	48 8b c8	 mov	 rcx, rax
-  0027a	e8 00 00 00 00	 call	 ??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z ; std::endl<char,std::char_traits<char> >
+  0068e	48 8b 85 20 01
+	00 00		 mov	 rax, QWORD PTR log_ogólny$[rbp-256]
+  00695	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  00699	4c 89 a4 0d 20
+	01 00 00	 mov	 QWORD PTR log_ogólny$[rbp+rcx-256], r12
+  006a1	48 8b 85 20 01
+	00 00		 mov	 rax, QWORD PTR log_ogólny$[rbp-256]
+  006a8	48 63 48 04	 movsxd	 rcx, DWORD PTR [rax+4]
+  006ac	8d 51 f0	 lea	 edx, DWORD PTR [rcx-16]
+  006af	89 94 0d 1c 01
+	00 00		 mov	 DWORD PTR log_ogólny$[rbp+rcx-260], edx
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xiosbase
+
+; 522  : 		{	// destroy the object
+
+  006b6	48 8d 05 00 00
+	00 00		 lea	 rax, OFFSET FLAT:??_7ios_base@std@@6B@
+  006bd	48 89 85 c8 01
+	00 00		 mov	 QWORD PTR log_ogólny$[rbp-88], rax
+
+; 523  : 		_Ios_base_dtor(this);
+
+  006c4	48 8d 8d c8 01
+	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rbp-88]
+  006cb	e8 00 00 00 00	 call	 ?_Ios_base_dtor@ios_base@std@@CAXPEAV12@@Z ; std::ios_base::_Ios_base_dtor
+  006d0	90		 npad	 1
 ; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
 
-; 1322 : 		wylosowana_liczba = Zakrêæ_Ruletk¹(); //Wylosowanie i przypisanie do zmiennej liczby bêdêcej na  wylosowanej pozycji na kole ruletki
-
-  0027f	e8 00 00 00 00	 call	 ?Zakrêæ_Ruletk¹@@YAHXZ	; Zakrêæ_Ruletk¹
-  00284	48 8b b4 24 b8
-	00 00 00	 mov	 rsi, QWORD PTR wylosowana_liczba$[rsp]
-  0028c	89 06		 mov	 DWORD PTR [rsi], eax
-  0028e	e9 d3 00 00 00	 jmp	 $LN10@P?
-$LN309@P?:
-
-; 1323 : 	}
-; 1324 : 	else //W przeciwym wypadku
-; 1325 : 	{
-; 1326 : 		cout << "Wylosowano numer "; //Poinformowaniu o wylosowaniu liczby
-
-  00293	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0BC@IEHJKDDM@Wylosowano?5numer?5?$AA@
-  0029a	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  002a1	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-
-; 1327 : 		Change_Col(Ruletka_plansza_kolor_col[(size_t)wylosowana_liczba]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
-
-  002a6	48 8b b4 24 b8
-	00 00 00	 mov	 rsi, QWORD PTR wylosowana_liczba$[rsp]
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-
-; 148  : 		: _Myproxy(0), _Mynextiter(0)
-
-  002ae	48 8b cb	 mov	 rcx, rbx
-
-; 155  : 		if (_Myproxy == _Right._Myproxy)
-
-  002b1	48 8b 05 00 00
-	00 00		 mov	 rax, QWORD PTR ?Ruletka_plansza_kolor_col@@3V?$deque@GV?$allocator@G@std@@@std@@B
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 1327 : 		Change_Col(Ruletka_plansza_kolor_col[(size_t)wylosowana_liczba]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
-
-  002b8	48 63 16	 movsxd	 rdx, DWORD PTR [rsi]
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-
-; 155  : 		if (_Myproxy == _Right._Myproxy)
-
-  002bb	48 85 c0	 test	 rax, rax
-  002be	74 0b		 je	 SHORT $LN249@P?
-
-; 156  : 			;
-; 157  : 		else if (_Right._Myproxy != 0)
-; 158  : 			_Adopt(_Right._Myproxy->_Mycont);
-
-  002c0	48 8b 00	 mov	 rax, QWORD PTR [rax]
-
-; 180  : 		if (_Parent == 0)
-
-  002c3	48 85 c0	 test	 rax, rax
-  002c6	74 03		 je	 SHORT $LN249@P?
-
-; 181  : 			{	// no future parent, just disown current parent
-; 182  :  #if _ITERATOR_DEBUG_LEVEL == 2
-; 183  : 			_Lockit _Lock(_LOCK_DEBUG);
-; 184  : 			_Orphan_me();
-; 185  :  #endif /* _ITERATOR_DEBUG_LEVEL == 2 */
-; 186  : 			}
-; 187  : 		else
-; 188  : 			{	// have a parent, do adoption
-; 189  : 			_Container_proxy *_Parent_proxy = _Parent->_Myproxy;
-; 190  : 
-; 191  :  #if _ITERATOR_DEBUG_LEVEL == 2
-; 192  : 			if (_Myproxy != _Parent_proxy)
-; 193  : 				{	// change parentage
-; 194  : 				_Lockit _Lock(_LOCK_DEBUG);
-; 195  : 				_Orphan_me();
-; 196  : 				_Mynextiter = _Parent_proxy->_Myfirstiter;
-; 197  : 				_Parent_proxy->_Myfirstiter = this;
-; 198  : 				_Myproxy = _Parent_proxy;
-; 199  : 				}
-; 200  : 
-; 201  :  #else /* _ITERATOR_DEBUG_LEVEL == 2 */
-; 202  : 			_Myproxy = _Parent_proxy;
-
-  002c8	48 8b 08	 mov	 rcx, QWORD PTR [rax]
-$LN249@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-
-; 414  : 		_Myoff += _Off;
-
-  002cb	4c 8b 05 18 00
-	00 00		 mov	 r8, QWORD PTR ?Ruletka_plansza_kolor_col@@3V?$deque@GV?$allocator@G@std@@@std@@B+24
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-
-; 148  : 		: _Myproxy(0), _Mynextiter(0)
-
-  002d2	48 8b c3	 mov	 rax, rbx
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-
-; 414  : 		_Myoff += _Off;
-
-  002d5	4c 03 c2	 add	 r8, rdx
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\xutility
-
-; 148  : 		: _Myproxy(0), _Mynextiter(0)
-
-  002d8	48 85 c9	 test	 rcx, rcx
-
-; 155  : 		if (_Myproxy == _Right._Myproxy)
-
-  002db	74 0b		 je	 SHORT $LN269@P?
-
-; 156  : 			;
-; 157  : 		else if (_Right._Myproxy != 0)
-; 158  : 			_Adopt(_Right._Myproxy->_Mycont);
-
-  002dd	48 8b 11	 mov	 rdx, QWORD PTR [rcx]
-
-; 180  : 		if (_Parent == 0)
-
-  002e0	48 85 d2	 test	 rdx, rdx
-  002e3	74 03		 je	 SHORT $LN269@P?
-
-; 181  : 			{	// no future parent, just disown current parent
-; 182  :  #if _ITERATOR_DEBUG_LEVEL == 2
-; 183  : 			_Lockit _Lock(_LOCK_DEBUG);
-; 184  : 			_Orphan_me();
-; 185  :  #endif /* _ITERATOR_DEBUG_LEVEL == 2 */
-; 186  : 			}
-; 187  : 		else
-; 188  : 			{	// have a parent, do adoption
-; 189  : 			_Container_proxy *_Parent_proxy = _Parent->_Myproxy;
-; 190  : 
-; 191  :  #if _ITERATOR_DEBUG_LEVEL == 2
-; 192  : 			if (_Myproxy != _Parent_proxy)
-; 193  : 				{	// change parentage
-; 194  : 				_Lockit _Lock(_LOCK_DEBUG);
-; 195  : 				_Orphan_me();
-; 196  : 				_Mynextiter = _Parent_proxy->_Myfirstiter;
-; 197  : 				_Parent_proxy->_Myfirstiter = this;
-; 198  : 				_Myproxy = _Parent_proxy;
-; 199  : 				}
-; 200  : 
-; 201  :  #else /* _ITERATOR_DEBUG_LEVEL == 2 */
-; 202  : 			_Myproxy = _Parent_proxy;
-
-  002e5	48 8b 02	 mov	 rax, QWORD PTR [rdx]
-$LN269@P?:
-
-; 214  : 		return (_Myproxy == 0 ? 0 : _Myproxy->_Mycont);
-
-  002e8	48 8b d3	 mov	 rdx, rbx
-  002eb	48 85 c0	 test	 rax, rax
-  002ee	74 03		 je	 SHORT $LN283@P?
-  002f0	48 8b 10	 mov	 rdx, QWORD PTR [rax]
-$LN283@P?:
-; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\deque
-
-; 726  : 		return ((_Off / _DEQUESIZ) & (_Mapsize - 1));
-
-  002f3	48 8b 42 10	 mov	 rax, QWORD PTR [rdx+16]
-  002f7	49 8b c8	 mov	 rcx, r8
-
-; 329  : 		return (_Mycont->_Map[_Block][_Off]);
-
-  002fa	48 8b 52 08	 mov	 rdx, QWORD PTR [rdx+8]
-  002fe	41 83 e0 07	 and	 r8d, 7
-
-; 726  : 		return ((_Off / _DEQUESIZ) & (_Mapsize - 1));
-
-  00302	48 c1 e9 03	 shr	 rcx, 3
-  00306	48 ff c8	 dec	 rax
-  00309	48 23 c8	 and	 rcx, rax
-
-; 329  : 		return (_Mycont->_Map[_Block][_Off]);
-
-  0030c	48 8b 04 ca	 mov	 rax, QWORD PTR [rdx+rcx*8]
-; File f:\users\krzysztof\documents\szko³a\2017-2018\informatyka\labolatorium\ruletka\ruletka\main.cpp
-
-; 397  : 	const HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
-
-  00310	b9 f5 ff ff ff	 mov	 ecx, -11		; fffffff5H
-
-; 1327 : 		Change_Col(Ruletka_plansza_kolor_col[(size_t)wylosowana_liczba]); //Zmiana koloru tekstu w konsoli zgodnie z kolorem numeru na ruletce
-
-  00315	42 0f b7 1c 40	 movzx	 ebx, WORD PTR [rax+r8*2]
-
-; 397  : 	const HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
-
-  0031a	ff 15 00 00 00
-	00		 call	 QWORD PTR __imp_GetStdHandle
-
-; 398  : 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
-
-  00320	48 8b c8	 mov	 rcx, rax
-  00323	0f b7 d3	 movzx	 edx, bx
-  00326	ff 15 00 00 00
-	00		 call	 QWORD PTR __imp_SetConsoleTextAttribute
-
-; 1328 : 		cout << wylosowana_liczba; //Wypisanie wylosowanej liczby
-
-  0032c	8b 16		 mov	 edx, DWORD PTR [rsi]
-  0032e	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00335	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-
-; 397  : 	const HANDLE h_wyj = GetStdHandle(STD_OUTPUT_HANDLE); //Stworzenie zmiennej typu uchwyt i przypisanie do standardowego wyjœcia
-
-  0033a	b9 f5 ff ff ff	 mov	 ecx, -11		; fffffff5H
-  0033f	ff 15 00 00 00
-	00		 call	 QWORD PTR __imp_GetStdHandle
-
-; 398  : 	SetConsoleTextAttribute(h_wyj, num_of_col); //Zmienia atrybut koloru tekstu w konsoli
-
-  00345	48 8b c8	 mov	 rcx, rax
-  00348	ba 07 00 00 00	 mov	 edx, 7
-  0034d	ff 15 00 00 00
-	00		 call	 QWORD PTR __imp_SetConsoleTextAttribute
-
-; 1329 : 		Change_Col(7); //Powrót do standardowego koloru tekstu w konsoli
-; 1330 : 		cout << ". "; //Wypisanie kropki koñcz¹cej zdanie
-
-  00353	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_02KHOJGJKF@?4?5?$AA@
-  0035a	48 8d 0d 00 00
-	00 00		 lea	 rcx, OFFSET FLAT:?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A ; std::cout
-  00361	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-$LN10@P?:
-
-; 1331 : 	}
-; 1332 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't') //Je¿eli punkt kontynuowania jest odpowiedni to
-
-  00366	41 0f b6 06	 movzx	 eax, BYTE PTR [r14]
-  0036a	3c 6e		 cmp	 al, 110			; 0000006eH
-  0036c	74 08		 je	 SHORT $LN13@P?
-  0036e	3c 6b		 cmp	 al, 107			; 0000006bH
-  00370	74 04		 je	 SHORT $LN13@P?
-  00372	3c 74		 cmp	 al, 116			; 00000074H
-  00374	75 5f		 jne	 SHORT $LN12@P?
-$LN13@P?:
-
-; 1333 : 	{
-; 1334 : 		log << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu aktualnego informacji o wylosowanej liczbie
-
-  00376	b8 00 00 00 00	 mov	 eax, 0
-  0037b	49 8d 4d 10	 lea	 rcx, QWORD PTR [r13+16]
-  0037f	4d 85 ed	 test	 r13, r13
-  00382	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0N@CGNKGGIC@?5Wylosowano?5?$AA@
-  00389	48 0f 44 c8	 cmove	 rcx, rax
-  0038d	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  00392	8b 16		 mov	 edx, DWORD PTR [rsi]
-  00394	48 8b c8	 mov	 rcx, rax
-  00397	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-
-; 1335 : 		log_ogólny << " Wylosowano " << wylosowana_liczba; //Zapisanie do bufora pliku logu ogólnego informacji o wylosowanej liczbie
-
-  0039c	48 8d 15 00 00
-	00 00		 lea	 rdx, OFFSET FLAT:??_C@_0N@CGNKGGIC@?5Wylosowano?5?$AA@
-  003a3	48 8b cd	 mov	 rcx, rbp
-  003a6	e8 00 00 00 00	 call	 ??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z ; std::operator<<<std::char_traits<char> >
-  003ab	8b 16		 mov	 edx, DWORD PTR [rsi]
-  003ad	48 8b c8	 mov	 rcx, rax
-  003b0	e8 00 00 00 00	 call	 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z ; std::basic_ostream<char,std::char_traits<char> >::operator<<
-
-; 1336 : 		log.flush(); //Zapisanie do pliku log_aktualny.txt danych wpisanych do bufora danych
-
-  003b5	49 8d 4d 10	 lea	 rcx, QWORD PTR [r13+16]
-  003b9	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-
-; 1337 : 		log_ogólny.flush(); //Zapisanie do pliku log_ogólny.txt danych wpisanych do bufora danych
-
-  003be	48 8b cd	 mov	 rcx, rbp
-  003c1	e8 00 00 00 00	 call	 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ ; std::basic_ostream<char,std::char_traits<char> >::flush
-
-; 1338 : 		Odczytaj_Liczbê(wylosowana_liczba, typ_zak³adu);
-
-  003c6	48 8b d7	 mov	 rdx, rdi
-  003c9	48 8b ce	 mov	 rcx, rsi
-  003cc	e8 00 00 00 00	 call	 ?Odczytaj_Liczbê@@YAXAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z ; Odczytaj_Liczbê
-  003d1	41 0f b6 06	 movzx	 eax, BYTE PTR [r14]
-$LN12@P?:
-
-; 1339 : 	}
-; 1340 : 	if (co_kontynuowaæ == 'n' || co_kontynuowaæ == 'k' || co_kontynuowaæ == 't' || co_kontynuowaæ == 'w') //Je¿eli punkt kontynuowania jest odpowiedni to
-
-  003d5	4c 8b b4 24 98
-	00 00 00	 mov	 r14, QWORD PTR [rsp+152]
-  003dd	2c 6b		 sub	 al, 107			; 0000006bH
-  003df	48 8b 9c 24 88
-	00 00 00	 mov	 rbx, QWORD PTR [rsp+136]
-  003e7	3c 0c		 cmp	 al, 12
-  003e9	77 35		 ja	 SHORT $LN14@P?
-  003eb	b9 09 12 00 00	 mov	 ecx, 4617		; 00001209H
-  003f0	0f a3 c1	 bt	 ecx, eax
-  003f3	73 2b		 jae	 SHORT $LN14@P?
-
-; 1341 : 	{
-; 1342 : 		wygrana = SprawdŸ_Zak³ad(kwota_zak³adu, typ_zak³adu, wylosowana_liczba); //Przypisanie do wygranej kwoty zgodnej z wygran¹, je¿eli siê coœwygra³o
-
-  003f5	4c 8b c6	 mov	 r8, rsi
-  003f8	48 8b d7	 mov	 rdx, rdi
-  003fb	49 8b cf	 mov	 rcx, r15
-  003fe	e8 00 00 00 00	 call	 ?SprawdŸ_Zak³ad@@YAHAEBHAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z ; SprawdŸ_Zak³ad
-  00403	48 8b 8c 24 80
-	00 00 00	 mov	 rcx, QWORD PTR wygrana$[rsp]
-
-; 1343 : 		Og³oœ_Wynik(wygrana, kwota_zak³adu, iloœæ_pieniêdzy, log_ogólny, log); //Funkcja informuj¹ca u¿ytkownika czy wygra³ zak³ad
-
-  0040b	4c 8b cd	 mov	 r9, rbp
-  0040e	4d 8b c4	 mov	 r8, r12
-  00411	4c 89 6c 24 20	 mov	 QWORD PTR [rsp+32], r13
-  00416	49 8b d7	 mov	 rdx, r15
-  00419	89 01		 mov	 DWORD PTR [rcx], eax
-  0041b	e8 00 00 00 00	 call	 ?Og³oœ_Wynik@@YAXAEBH0AEAHAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@@Z ; Og³oœ_Wynik
-$LN14@P?:
-  00420	48 8b bc 24 90
-	00 00 00	 mov	 rdi, QWORD PTR [rsp+144]
-
-; 1344 : 	}
-; 1345 : }
-
-  00428	48 83 c4 50	 add	 rsp, 80			; 00000050H
-  0042c	41 5f		 pop	 r15
-  0042e	41 5d		 pop	 r13
-  00430	41 5c		 pop	 r12
-  00432	5e		 pop	 rsi
-  00433	5d		 pop	 rbp
-  00434	c3		 ret	 0
-?Pêtla_G³ówna@@YAXAEAH00AEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEBDAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0@Z ENDP ; Pêtla_G³ówna
+; 123  : 	return 0; //Zwrócenie wartoœæ 0, czyli porogram zakoñczy³ siê bez b³êdu
+
+  006d1	33 c0		 xor	 eax, eax
+
+; 124  : }
+
+  006d3	48 8b 8d 30 02
+	00 00		 mov	 rcx, QWORD PTR __$ArrayPad$[rbp-256]
+  006da	48 33 cc	 xor	 rcx, rsp
+  006dd	e8 00 00 00 00	 call	 __security_check_cookie
+  006e2	4c 8d 9c 24 40
+	03 00 00	 lea	 r11, QWORD PTR [rsp+832]
+  006ea	49 8b 5b 20	 mov	 rbx, QWORD PTR [r11+32]
+  006ee	49 8b 73 28	 mov	 rsi, QWORD PTR [r11+40]
+  006f2	49 8b 7b 30	 mov	 rdi, QWORD PTR [r11+48]
+  006f6	4d 8b 63 38	 mov	 r12, QWORD PTR [r11+56]
+  006fa	49 8b e3	 mov	 rsp, r11
+  006fd	41 5f		 pop	 r15
+  006ff	41 5e		 pop	 r14
+  00701	5d		 pop	 rbp
+  00702	c3		 ret	 0
+$LN1040@main:
+; File f:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.12.25827\include\thread
+
+; 55   : 			_STD terminate();
+
+  00703	e8 00 00 00 00	 call	 terminate
+  00708	90		 npad	 1
+$LN1041@main:
+  00709	e8 00 00 00 00	 call	 terminate
+  0070e	90		 npad	 1
+$LN1042@main:
+  0070f	e8 00 00 00 00	 call	 terminate
+  00714	90		 npad	 1
+$LN1043@main:
+  00715	e8 00 00 00 00	 call	 terminate
+  0071a	cc		 int	 3
+$LN1034@main:
+main	ENDP
 _TEXT	ENDS
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$0 PROC
+  00000	48 8d 8a 20 02
+	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rdx]
+  00007	e9 00 00 00 00	 jmp	 ??_D?$basic_ofstream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+main$dtor$0 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$9 PROC
+  0000c	40 55		 push	 rbp
+  0000e	48 83 ec 20	 sub	 rsp, 32			; 00000020H
+  00012	48 8b ea	 mov	 rbp, rdx
+  00015	8b 45 40	 mov	 eax, DWORD PTR $T1[rbp]
+  00018	83 e0 01	 and	 eax, 1
+  0001b	85 c0		 test	 eax, eax
+  0001d	74 17		 je	 SHORT $LN40@main$dtor$
+  0001f	83 65 40 fe	 and	 DWORD PTR $T1[rbp], -2
+  00023	48 8d 8d 00 01
+	00 00		 lea	 rcx, QWORD PTR log$[rbp]
+  0002a	48 81 c1 b8 00
+	00 00		 add	 rcx, 184		; 000000b8H
+  00031	e8 00 00 00 00	 call	 ??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ ; std::basic_ios<char,std::char_traits<char> >::~basic_ios<char,std::char_traits<char> >
+$LN40@main$dtor$:
+  00036	48 83 c4 20	 add	 rsp, 32			; 00000020H
+  0003a	5d		 pop	 rbp
+  0003b	c3		 ret	 0
+main$dtor$9 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$13 PROC
+  0003c	48 8d 8a 00 01
+	00 00		 lea	 rcx, QWORD PTR log$[rdx]
+  00043	48 83 c1 18	 add	 rcx, 24
+  00047	e9 00 00 00 00	 jmp	 ??1?$basic_istream@DU?$char_traits@D@std@@@std@@UEAA@XZ ; std::basic_istream<char,std::char_traits<char> >::~basic_istream<char,std::char_traits<char> >
+main$dtor$13 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$10 PROC
+  0004c	48 8d 8a 00 01
+	00 00		 lea	 rcx, QWORD PTR log$[rdx]
+  00053	48 83 c1 20	 add	 rcx, 32			; 00000020H
+  00057	e9 00 00 00 00	 jmp	 ??1?$basic_iostream@DU?$char_traits@D@std@@@std@@UEAA@XZ ; std::basic_iostream<char,std::char_traits<char> >::~basic_iostream<char,std::char_traits<char> >
+main$dtor$10 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$1 PROC
+  0005c	48 8d 8a 00 01
+	00 00		 lea	 rcx, QWORD PTR log$[rdx]
+  00063	e9 00 00 00 00	 jmp	 ??_D?$basic_fstream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+main$dtor$1 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$2 PROC
+  00068	48 8d 8a e0 00
+	00 00		 lea	 rcx, QWORD PTR typ_zak³adu$[rdx]
+  0006f	e9 00 00 00 00	 jmp	 ??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::~basic_string<char,std::char_traits<char>,std::allocator<char> >
+main$dtor$2 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$3 PROC
+  00074	48 8d 8a d0 00
+	00 00		 lea	 rcx, QWORD PTR w¹tek1$[rdx]
+  0007b	e9 00 00 00 00	 jmp	 ??1thread@std@@QEAA@XZ	; std::thread::~thread
+main$dtor$3 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$44 PROC
+  00080	48 8d 8a 40 00
+	00 00		 lea	 rcx, QWORD PTR $T105[rdx]
+  00087	e9 00 00 00 00	 jmp	 ??1?$unique_ptr@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@U?$default_delete@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@QEAA@XZ ; std::unique_ptr<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > & __ptr64,std::basic_fstream<char,std::char_traits<char> > & __ptr64,char & __ptr64,int & __ptr64,int & __ptr64,int & __ptr64,std::basic_string<char,std::char_traits<char>,std::allocator<char> > & __ptr64),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,std::default_delete<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > & __ptr64,std::basic_fstream<char,std::char_traits<char> > & __ptr64,char & __ptr64,int & __ptr64,int & __ptr64,int & __ptr64,std::basic_string<char,std::char_traits<char>,std::allocator<char> > & __ptr64),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > > > >::~unique_ptr<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > & __ptr64,std::basic_fstream<char,std::char_traits<char> > & __ptr64,char & __ptr64,int & __ptr64,int & __ptr64,int & __ptr64,std::basic_string<char,std::char_traits<char>,std::allocator<char> > & __ptr64),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,std::default_delete<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > & __ptr64,std::basic_fstream<char,std::char_traits<char> > & __ptr64,char & __ptr64,int & __ptr64,int & __ptr64,int & __ptr64,std::basic_string<char,std::char_traits<char>,std::allocator<char> > & __ptr64),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > > > >
+main$dtor$44 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$118 PROC
+  0008c	48 8d 8a 70 00
+	00 00		 lea	 rcx, QWORD PTR _Launcher$241[rdx]
+  00093	e9 00 00 00 00	 jmp	 ??1?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@U?$default_delete@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@@std@@QEAA@XZ
+main$dtor$118 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$4 PROC
+  00098	48 8d 8a c0 00
+	00 00		 lea	 rcx, QWORD PTR w¹tek2$[rdx]
+  0009f	e9 00 00 00 00	 jmp	 ??1thread@std@@QEAA@XZ	; std::thread::~thread
+main$dtor$4 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$5 PROC
+  000a4	48 8d 8a b0 00
+	00 00		 lea	 rcx, QWORD PTR w¹tek3$[rdx]
+  000ab	e9 00 00 00 00	 jmp	 ??1thread@std@@QEAA@XZ	; std::thread::~thread
+main$dtor$5 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$177 PROC
+  000b0	48 8d 8a 40 00
+	00 00		 lea	 rcx, QWORD PTR $T182[rdx]
+  000b7	e9 00 00 00 00	 jmp	 ??1?$unique_ptr@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@U?$default_delete@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@@2@@std@@QEAA@XZ ; std::unique_ptr<std::tuple<void (__cdecl*)(short const & __ptr64,short const & __ptr64),std::reference_wrapper<short>,std::reference_wrapper<short> >,std::default_delete<std::tuple<void (__cdecl*)(short const & __ptr64,short const & __ptr64),std::reference_wrapper<short>,std::reference_wrapper<short> > > >::~unique_ptr<std::tuple<void (__cdecl*)(short const & __ptr64,short const & __ptr64),std::reference_wrapper<short>,std::reference_wrapper<short> >,std::default_delete<std::tuple<void (__cdecl*)(short const & __ptr64,short const & __ptr64),std::reference_wrapper<short>,std::reference_wrapper<short> > > >
+main$dtor$177 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$201 PROC
+  000bc	48 8d 8a 70 00
+	00 00		 lea	 rcx, QWORD PTR _Launcher$240[rdx]
+  000c3	e9 00 00 00 00	 jmp	 ??1?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@U?$default_delete@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@@2@@std@@@std@@QEAA@XZ
+main$dtor$201 ENDP
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$6 PROC
+  000c8	48 8d 8a a0 00
+	00 00		 lea	 rcx, QWORD PTR w¹tek4$[rdx]
+  000cf	e9 00 00 00 00	 jmp	 ??1thread@std@@QEAA@XZ	; std::thread::~thread
+main$dtor$6 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$0 PROC
+  00000	48 8d 8a 20 02
+	00 00		 lea	 rcx, QWORD PTR log_ogólny$[rdx]
+  00007	e9 00 00 00 00	 jmp	 ??_D?$basic_ofstream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+main$dtor$0 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$9 PROC
+  0000c	40 55		 push	 rbp
+  0000e	48 83 ec 20	 sub	 rsp, 32			; 00000020H
+  00012	48 8b ea	 mov	 rbp, rdx
+  00015	8b 45 40	 mov	 eax, DWORD PTR $T1[rbp]
+  00018	83 e0 01	 and	 eax, 1
+  0001b	85 c0		 test	 eax, eax
+  0001d	74 17		 je	 SHORT $LN40@main$dtor$
+  0001f	83 65 40 fe	 and	 DWORD PTR $T1[rbp], -2
+  00023	48 8d 8d 00 01
+	00 00		 lea	 rcx, QWORD PTR log$[rbp]
+  0002a	48 81 c1 b8 00
+	00 00		 add	 rcx, 184		; 000000b8H
+  00031	e8 00 00 00 00	 call	 ??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ ; std::basic_ios<char,std::char_traits<char> >::~basic_ios<char,std::char_traits<char> >
+$LN40@main$dtor$:
+  00036	48 83 c4 20	 add	 rsp, 32			; 00000020H
+  0003a	5d		 pop	 rbp
+  0003b	c3		 ret	 0
+main$dtor$9 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$13 PROC
+  0003c	48 8d 8a 00 01
+	00 00		 lea	 rcx, QWORD PTR log$[rdx]
+  00043	48 83 c1 18	 add	 rcx, 24
+  00047	e9 00 00 00 00	 jmp	 ??1?$basic_istream@DU?$char_traits@D@std@@@std@@UEAA@XZ ; std::basic_istream<char,std::char_traits<char> >::~basic_istream<char,std::char_traits<char> >
+main$dtor$13 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$10 PROC
+  0004c	48 8d 8a 00 01
+	00 00		 lea	 rcx, QWORD PTR log$[rdx]
+  00053	48 83 c1 20	 add	 rcx, 32			; 00000020H
+  00057	e9 00 00 00 00	 jmp	 ??1?$basic_iostream@DU?$char_traits@D@std@@@std@@UEAA@XZ ; std::basic_iostream<char,std::char_traits<char> >::~basic_iostream<char,std::char_traits<char> >
+main$dtor$10 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$1 PROC
+  0005c	48 8d 8a 00 01
+	00 00		 lea	 rcx, QWORD PTR log$[rdx]
+  00063	e9 00 00 00 00	 jmp	 ??_D?$basic_fstream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+main$dtor$1 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$2 PROC
+  00068	48 8d 8a e0 00
+	00 00		 lea	 rcx, QWORD PTR typ_zak³adu$[rdx]
+  0006f	e9 00 00 00 00	 jmp	 ??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QEAA@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::~basic_string<char,std::char_traits<char>,std::allocator<char> >
+main$dtor$2 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$3 PROC
+  00074	48 8d 8a d0 00
+	00 00		 lea	 rcx, QWORD PTR w¹tek1$[rdx]
+  0007b	e9 00 00 00 00	 jmp	 ??1thread@std@@QEAA@XZ	; std::thread::~thread
+main$dtor$3 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$44 PROC
+  00080	48 8d 8a 40 00
+	00 00		 lea	 rcx, QWORD PTR $T105[rdx]
+  00087	e9 00 00 00 00	 jmp	 ??1?$unique_ptr@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@U?$default_delete@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@QEAA@XZ ; std::unique_ptr<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > & __ptr64,std::basic_fstream<char,std::char_traits<char> > & __ptr64,char & __ptr64,int & __ptr64,int & __ptr64,int & __ptr64,std::basic_string<char,std::char_traits<char>,std::allocator<char> > & __ptr64),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,std::default_delete<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > & __ptr64,std::basic_fstream<char,std::char_traits<char> > & __ptr64,char & __ptr64,int & __ptr64,int & __ptr64,int & __ptr64,std::basic_string<char,std::char_traits<char>,std::allocator<char> > & __ptr64),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > > > >::~unique_ptr<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > & __ptr64,std::basic_fstream<char,std::char_traits<char> > & __ptr64,char & __ptr64,int & __ptr64,int & __ptr64,int & __ptr64,std::basic_string<char,std::char_traits<char>,std::allocator<char> > & __ptr64),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,std::default_delete<std::tuple<void (__cdecl*)(std::basic_ofstream<char,std::char_traits<char> > & __ptr64,std::basic_fstream<char,std::char_traits<char> > & __ptr64,char & __ptr64,int & __ptr64,int & __ptr64,int & __ptr64,std::basic_string<char,std::char_traits<char>,std::allocator<char> > & __ptr64),std::reference_wrapper<std::basic_ofstream<char,std::char_traits<char> > >,std::reference_wrapper<std::basic_fstream<char,std::char_traits<char> > >,std::reference_wrapper<char>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<int>,std::reference_wrapper<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > > > >
+main$dtor$44 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$118 PROC
+  0008c	48 8d 8a 70 00
+	00 00		 lea	 rcx, QWORD PTR _Launcher$241[rdx]
+  00093	e9 00 00 00 00	 jmp	 ??1?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@U?$default_delete@V?$tuple@P6AXAEAV?$basic_ofstream@DU?$char_traits@D@std@@@std@@AEAV?$basic_fstream@DU?$char_traits@D@std@@@2@AEADAEAH33AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@ZV?$reference_wrapper@V?$basic_ofstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@V?$basic_fstream@DU?$char_traits@D@std@@@std@@@2@V?$reference_wrapper@D@2@V?$reference_wrapper@H@2@V82@V82@V?$reference_wrapper@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@@std@@QEAA@XZ
+main$dtor$118 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$4 PROC
+  00098	48 8d 8a c0 00
+	00 00		 lea	 rcx, QWORD PTR w¹tek2$[rdx]
+  0009f	e9 00 00 00 00	 jmp	 ??1thread@std@@QEAA@XZ	; std::thread::~thread
+main$dtor$4 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$5 PROC
+  000a4	48 8d 8a b0 00
+	00 00		 lea	 rcx, QWORD PTR w¹tek3$[rdx]
+  000ab	e9 00 00 00 00	 jmp	 ??1thread@std@@QEAA@XZ	; std::thread::~thread
+main$dtor$5 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$177 PROC
+  000b0	48 8d 8a 40 00
+	00 00		 lea	 rcx, QWORD PTR $T182[rdx]
+  000b7	e9 00 00 00 00	 jmp	 ??1?$unique_ptr@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@U?$default_delete@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@@2@@std@@QEAA@XZ ; std::unique_ptr<std::tuple<void (__cdecl*)(short const & __ptr64,short const & __ptr64),std::reference_wrapper<short>,std::reference_wrapper<short> >,std::default_delete<std::tuple<void (__cdecl*)(short const & __ptr64,short const & __ptr64),std::reference_wrapper<short>,std::reference_wrapper<short> > > >::~unique_ptr<std::tuple<void (__cdecl*)(short const & __ptr64,short const & __ptr64),std::reference_wrapper<short>,std::reference_wrapper<short> >,std::default_delete<std::tuple<void (__cdecl*)(short const & __ptr64,short const & __ptr64),std::reference_wrapper<short>,std::reference_wrapper<short> > > >
+main$dtor$177 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$201 PROC
+  000bc	48 8d 8a 70 00
+	00 00		 lea	 rcx, QWORD PTR _Launcher$240[rdx]
+  000c3	e9 00 00 00 00	 jmp	 ??1?$_LaunchPad@V?$unique_ptr@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@U?$default_delete@V?$tuple@P6AXAEBF0@ZV?$reference_wrapper@F@std@@V12@@std@@@2@@std@@@std@@QEAA@XZ
+main$dtor$201 ENDP
+text$x	ENDS
+; Function compile flags: /Ogtpy
+;	COMDAT text$x
+text$x	SEGMENT
+$T182 = 64
+$T105 = 64
+$T1 = 64
+wygrana$ = 64
+$T228 = 80
+$T221 = 80
+$T161 = 80
+$T151 = 80
+$T34 = 80
+$T144 = 80
+this$238 = 80
+$T239 = 96
+co_kontynuowaæ$ = 104
+iloœæ_pieniêdzy$ = 108
+_Launcher$240 = 112
+_Launcher$241 = 112
+wylosowana_liczba$ = 152
+kwota_zak³adu$ = 156
+w¹tek4$ = 160
+w¹tek3$ = 176
+w¹tek2$ = 192
+w¹tek1$ = 208
+typ_zak³adu$ = 224
+log$ = 256
+log_ogólny$ = 544
+__$ArrayPad$ = 816
+main$dtor$6 PROC
+  000c8	48 8d 8a a0 00
+	00 00		 lea	 rcx, QWORD PTR w¹tek4$[rdx]
+  000cf	e9 00 00 00 00	 jmp	 ??1thread@std@@QEAA@XZ	; std::thread::~thread
+main$dtor$6 ENDP
+text$x	ENDS
 END
